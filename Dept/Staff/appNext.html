@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>HyperTrac</title>
+    <title>HyperTrac Staff</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,7 +35,7 @@
                     <i class="fas fa-walking"></i>
                 </small>
             </div>
-            <div class="sidebar-brand-text mx-3">Major<sup>Client</sup></div>
+            <div class="sidebar-brand-text mx-3">Sta<sup>ff</sup></div>
         </a>
 
         <!-- Divider -->
@@ -51,45 +51,19 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Applications
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-truck-loading"></i>
-                <span>Application Status</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="applications.html">
                 <i class="fas fa-newspaper"></i>
-                <span>Application</span>
+                <span>Applications</span>
             </a>
         </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Staffs
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Manage Staff</span>
-            </a>
-        </li>
-
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="history.html">
                 <i class="fas fa-fw fa-history"></i>
                 <span>View History</span></a>
         </li>
@@ -97,22 +71,21 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Contractor
-        </div>
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="chatWithContractor.html">
                 <i class="fas fa-fw fa-comment"></i>
                 <span>Chat with Contractor</span></a>
         </li>
 
-        <!-- Nav Item - Tables -->
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-handshake"></i>
-                <span>Invitation to Contractor</span></a>
+            <a class="nav-link" href="support.html">
+                <i class="fas fa-fw fa-comment"></i>
+                <span>Support</span></a>
         </li>
 
         <!-- Divider -->
@@ -321,11 +294,46 @@
                 <div class="bg-white mb-4">
                     <div class="text-center"><img src="../../img/logo.png" style="width:150px;height:40px;"/></div>
                 </div>
+                <!-- Content Row -->
+                <div class="row">
 
-                <div class="text-center">
-                    Dashboard
+                    <!-- Content Column -->
+                    <div class="col-lg-3 mb-4"></div>
+                    <div class="col-lg-6 mb-4">
+                        <form action="#" method="post">
+                            <table class="table">
+                                <tr>
+                                    <th>Application Name/No</th>
+                                    <td>AE10025</td>
+                                </tr>
+                                <tr>
+                                    <th>Comments</th>
+                                    <td>
+                                        <textarea class="form-control" name="comments"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Department</th>
+                                    <td>
+                                        <select name="dept" class="form-control">
+                                            <option value="0">Select Department To Assign</option>
+                                            <option value="">DEPT 1</option>
+                                            <option value="">DEPT 2</option>
+                                            <option value="">DEPT 3</option>
+                                            <option value="">DEPT 4</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <input type="submit" value="Assign Now" class="btn btn-danger"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 mb-4"></div>
                 </div>
-
             </div>
             <!-- /.container-fluid -->
 
