@@ -1,3 +1,8 @@
+<%@page import="com.hypertrac.commons.Constants"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -241,27 +246,25 @@
                                 <th>Application Status</th>
                                 <th>Finished Date / Status</th>
                             </tr>
+                           <%
+                           Constants consta = new Constants();
+                            String query = "SELECT * FROM applications";
+                            Connection con = database.getConnection();
+                            Statement st = null;
+                            ResultSet rs = null;
+                            st = con.createStatement();
+                            rs = st.executeQuery(query);
+                            int i = 1;
+                            while(rs.next()) {
+                            %>
                             <tr>
-                                <td>1</td>
-                                <td><a href="viewHistory.html">AE12005</a></td>
-                                <td>Test</td>
-                                <td>05 Mar 2019</td>
-                                <td>Finished</td>
+                                <td><%=i %></td>
+                                <td><%=rs.getString(2) %></td>
+                                <td><%=rs.getString(4) %></td>
+                                <td><%=consta.getConstant(rs.getInt(7)) %></td>
+                                <td><%=rs.getString(5) %></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="viewHistory.html">AE12025</a></td>
-                                <td>Rackle</td>
-                                <td>17 Mar 2019</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><a href="viewHistory.html">AE12112</a></td>
-                                <td>Continental</td>
-                                <td>09 June 2019</td>
-                                <td>Pending</td>
-                            </tr>
+                            <% i++; } %>
                         </table>
                     </div>
                 </div>

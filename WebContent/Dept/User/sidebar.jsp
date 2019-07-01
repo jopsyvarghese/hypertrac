@@ -7,7 +7,7 @@
                     <i class="fas fa-walking"></i>
                 </small>
             </div>
-            <div class="sidebar-brand-text mx-3">Major<sup>Client</sup></div>
+            <div class="sidebar-brand-text mx-3">Us<sup>er</sup></div>
         </a>
 
         <!-- Divider -->
@@ -19,74 +19,45 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Applications
-        </div>
+        
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="inbox.jsp">
+                <i class="fas fa-truck-loading"></i>
+                <span>Inbox</span>
+            </a>
+        </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="appStatus.jsp">
                 <i class="fas fa-truck-loading"></i>
                 <span>Application Status</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="newService.jsp">
                 <i class="fas fa-newspaper"></i>
-                <span>Application</span>
+                <span>Apply for New Service</span>
             </a>
         </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Staffs
-        </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="history.jsp">
                 <i class="fas fa-fw fa-user"></i>
-                <span>Manage Staff</span>
+                <span>View History</span>
             </a>
         </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="staffChat.jsp">
                 <i class="fas fa-fw fa-history"></i>
-                <span>View History</span></a>
+                <span>Chat With Customer Staff</span></a>
         </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Contractor
-        </div>
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-comment"></i>
-                <span>Chat with Contractor</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-handshake"></i>
-                <span>Invitation to Contractor</span></a>
-        </li>
-
+        
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

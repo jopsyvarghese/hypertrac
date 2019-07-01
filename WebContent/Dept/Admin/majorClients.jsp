@@ -230,7 +230,7 @@
                     <br/>
                 </div>
                 <div class="col-sm-12">
-                    <a href="addClient.html" class="btn btn-primary btn-sm">
+                    <a href="addClient.jsp" class="btn btn-primary btn-sm">
                         <span class="fa fa-plus-circle"></span> Add New Client
                     </a>
                     <br/><br/>
@@ -250,10 +250,10 @@
                             <td>test@gmail.com</td>
                             <td>9876543211</td>
                             <td>
-                                <a href="editClient.html" class="btn btn-primary btn-sm">
+                                <a href="editClient.jsp" class="btn btn-primary btn-sm">
                                     <span class="fa fa-pencil-alt"></span>
                                 </a> &nbsp;&nbsp;
-                                <a href="deleteClient.html" class="btn btn-danger btn-sm" onclick="return confirmDel();">
+                                <a href="deleteClient.jsp" class="btn btn-danger btn-sm" onclick="return confirmDel();">
                                     <span class="fa fa-trash-alt"></span>
                                 </a>
                             </td>
@@ -265,10 +265,10 @@
                             <td>test2@gmail.com</td>
                             <td>9876543210</td>
                             <td>
-                                <a href="editClient.html" class="btn btn-primary btn-sm">
+                                <a href="editClient.jsp" class="btn btn-primary btn-sm">
                                     <span class="fa fa-pencil-alt"></span>
                                 </a> &nbsp;&nbsp;
-                                <a href="deleteClient.html" class="btn btn-danger btn-sm" onclick="return confirmDel();">
+                                <a href="deleteClient.jsp" class="btn btn-danger btn-sm" onclick="return confirmDel();">
                                     <span class="fa fa-trash-alt"></span>
                                 </a>
                             </td>
@@ -280,10 +280,10 @@
                             <td>test3@gmail.com</td>
                             <td>9876543219</td>
                             <td>
-                                <a href="editClient.html" class="btn btn-primary btn-sm">
+                                <a href="editClient.jsp" class="btn btn-primary btn-sm">
                                     <span class="fa fa-pencil-alt"></span>
                                 </a> &nbsp;&nbsp;
-                                <a href="deleteClient.html" class="btn btn-danger btn-sm" onclick="return confirmDel();">
+                                <a href="deleteClient.jsp" class="btn btn-danger btn-sm" onclick="return confirmDel();">
                                     <span class="fa fa-trash-alt"></span>
                                 </a>
                             </td>
@@ -330,7 +330,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../login.html">Logout</a>
+                <a class="btn btn-primary" href="../../logout.jsp">Logout</a>
             </div>
         </div>
     </div>

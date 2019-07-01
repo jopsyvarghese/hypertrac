@@ -229,7 +229,7 @@
                     <div class="text-center">
                         Departments
                     </div>
-                    <a href="addDept.html" class="btn btn-primary">
+                    <a href="addDept.jsp" class="btn btn-primary">
                         <span class="fa fa-plus-circle"></span> Add Department
                     </a>
                     <br/><br/>
@@ -247,10 +247,10 @@
                             <td>Department 1</td>
                             <td>Client 1</td>
                             <td>
-                                <a href="editDept.html" class="btn btn-primary btn-sm">
+                                <a href="editDept.jsp" class="btn btn-primary btn-sm">
                                     <span class="fa fa-pencil-alt"></span>
                                 </a> &nbsp;&nbsp;
-                                <a href="deleteDept.html" class="btn btn-danger btn-sm" onclick="return confirmDel();">
+                                <a href="deleteDept.jsp" class="btn btn-danger btn-sm" onclick="return confirmDel();">
                                     <span class="fa fa-trash-alt"></span>
                                 </a>
                             </td>
@@ -261,10 +261,10 @@
                             <td>Department 2</td>
                             <td>Client 2</td>
                             <td>
-                                <a href="editDept.html" class="btn btn-primary btn-sm">
+                                <a href="editDept.jsp" class="btn btn-primary btn-sm">
                                     <span class="fa fa-pencil-alt"></span>
                                 </a> &nbsp;&nbsp;
-                                <a href="deleteDept.html" class="btn btn-danger btn-sm" onclick="return confirmDel();">
+                                <a href="deleteDept.jsp" class="btn btn-danger btn-sm" onclick="return confirmDel();">
                                     <span class="fa fa-trash-alt"></span>
                                 </a>
                             </td>
@@ -312,7 +312,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../login.html">Logout</a>
+                <a class="btn btn-primary" href="../../logout.jsp">Logout</a>
             </div>
         </div>
     </div>

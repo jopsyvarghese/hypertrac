@@ -234,7 +234,7 @@
                         <div class="text-center">
                             Support
 
-                            <form action="#" method="post">
+                            <form action="supportStaff.jsp" method="post">
                                 <table class="table">
                                     <tr>
                                         <td>

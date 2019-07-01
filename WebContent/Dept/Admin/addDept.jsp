@@ -252,7 +252,7 @@
                 <div class="text-center">
                     Add New Departments
                     <br/><br/>
-                    <form action="addDeptFinal.html" method="post">
+                    <form action="addDeptFinal.jsp" method="post">
                         <table class="table table-hover table-responsive-lg">
                             <tr>
                                 <th>Major Client</th>
@@ -327,7 +327,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../login.html">Logout</a>
+                <a class="btn btn-primary" href="../../logout.jsp">Logout</a>
             </div>
         </div>
     </div>

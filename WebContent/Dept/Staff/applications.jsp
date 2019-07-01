@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -266,30 +270,25 @@
                                 <th>Submitted Date</th>
                                 <th>Application Validity</th>
                             </tr>
+                            <%
+                            String query = "SELECT * FROM applications";
+                            Connection con = database.getConnection();
+                            Statement st = null;
+                            ResultSet rs = null;
+                            st = con.createStatement();
+                            rs = st.executeQuery(query);
+                            int i = 1;
+                            while(rs.next()) {
+                            %>
                             <tr>
-                                <td>1</td>
-                                <td><a href="viewApplication.html">AE10025</a></td>
-                                <td>Dept 1</td>
-                                <td>Test</td>
-                                <td>15 June 2019</td>
-                                <td>15 Days</td>
+                                <td><%=i %></td>
+                                <td><a href="viewApplication.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(2) %></a></td>
+                                <td><%=rs.getInt(3) %></td>
+                                <td><%=rs.getString(4) %></td>
+                                <td><%=rs.getString(5) %></td>
+                                <td><%=rs.getString(6) %></td>
                             </tr>
-                            <tr>
-                                <td>16</td>
-                                <td><a href="viewApplication.html">AE10465</a></td>
-                                <td>Dept 1</td>
-                                <td>Test Jio</td>
-                                <td>15 Feb 2019</td>
-                                <td>15 Days</td>
-                            </tr>
-                            <tr>
-                                <td>31</td>
-                                <td><a href="viewApplication.html">AE10545</a></td>
-                                <td>Dept 7</td>
-                                <td>Targus</td>
-                                <td>07 May 2019</td>
-                                <td>15 Days</td>
-                            </tr>
+                            <% i++; } %>
                         </table>
                     </div>
                 </div>
@@ -334,7 +333,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../login.html">Logout</a>
+                <a class="btn btn-primary" href="../../logout.jsp">Logout</a>
             </div>
         </div>
     </div>

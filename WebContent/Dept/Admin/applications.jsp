@@ -239,14 +239,14 @@
                         <td>Jomon Mathew</td>
                         <td>Major Client 1</td>
                         <td>23 May 2019</td>
-                        <td><a href="viewApp.html" class="btn-sm btn-primary">View</a> </td>
+                        <td><a href="viewApp.jsp" class="btn-sm btn-primary">View</a> </td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>Bittu Kurian</td>
                         <td>Major Client 3</td>
                         <td>03 June 2019</td>
-                        <td><a href="viewApp.html" class="btn-sm btn-primary">View</a> </td>
+                        <td><a href="viewApp.jsp" class="btn-sm btn-primary">View</a> </td>
                     </tr>
                 </table>
 
@@ -290,7 +290,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../login.html">Logout</a>
+                <a class="btn btn-primary" href="../../logout.jsp">Logout</a>
             </div>
         </div>
     </div>
