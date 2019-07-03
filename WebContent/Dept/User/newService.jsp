@@ -54,61 +54,66 @@
 					</div>
 
 					<div class="text-center">
-					<h4>Apply For New Service</h4><br/>
-						<table class="table table-hover">
-							<tbody>
-								<tr>
-									<td>Company (Contractor) Name</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>RC Number</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Company Address</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Telephone No.</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Telephone No.</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Email-id</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Website</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Type of Business</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Document Name/Subject/ID</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Name of Major client(s)</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Sub-Department</td>
-									<td><input type="text" class="form-control" name=""/></td>
-								</tr>
-								<tr>
-									<td>Upload Scanned Documents :</td>
-									<td><input type="file" class="form-control" name=""/></td>
-								</tr>
-							</tbody>
-						</table>
-						<input type="submit" class="btn btn-success"/>
-						<br/><br/>
+						<h4>Apply For New Service</h4>
+						<br />
+						<form action="../../serviceFileUpload" method="post"
+							enctype="multipart/form-data">
+							<table class="table table-hover">
+								<tbody>
+									<tr>
+										<td>Company (Contractor) Name</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>RC Number</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Company Address</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Telephone No.</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Telephone No.</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Email-id</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Website</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Type of Business</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Document Name/Subject/ID</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Name of Major client(s)</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Sub-Department</td>
+										<td><input type="text" class="form-control" name="" /></td>
+									</tr>
+									<tr>
+										<td>Upload Scanned Documents :</td>
+										<td><input type="file" class="form-control" name="file" multiple="multiple"/></td>
+									</tr>
+								</tbody>
+							</table>
+							<input type="submit" class="btn btn-success" />
+						</form>
+						<br />
+						<br />
 					</div>
 
 				</div>

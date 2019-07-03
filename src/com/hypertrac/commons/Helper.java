@@ -106,6 +106,30 @@ public class Helper {
 		return currentTime;
 	}
     
+    public String getDay() {
+		java.util.Date dt = new java.util.Date();
+		java.text.SimpleDateFormat sdf = 
+		     new java.text.SimpleDateFormat("dd");
+		String currentTime = sdf.format(dt);
+		return currentTime;
+	}
+    
+    public String getMonth() {
+		java.util.Date dt = new java.util.Date();
+		java.text.SimpleDateFormat sdf = 
+		     new java.text.SimpleDateFormat("MM");
+		String currentTime = sdf.format(dt);
+		return currentTime;
+	}
+    
+    public String getYear() {
+		java.util.Date dt = new java.util.Date();
+		java.text.SimpleDateFormat sdf = 
+		     new java.text.SimpleDateFormat("YYYY");
+		String currentTime = sdf.format(dt);
+		return currentTime;
+	}
+    
     public String getNameById(int id) throws SQLException {
     	String sql = "SELECT * FROM auth WHERE id="+id;
     	Connection con = com.hypertrac.dao.database.getConnection();

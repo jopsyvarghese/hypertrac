@@ -43,7 +43,7 @@ public class SignUp extends HttpServlet {
 		Long mob = Long.parseLong(request.getParameter("mob"));
 		String uname = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
-//		String pwdHash = helper.getHashedPwd(pwd);
+//		String pwd = helper.getHashedPwd(pwd);
 		Connection con = null;
 		con = com.hypertrac.dao.database.getConnection();
 		String currentTime = helper.getDateTime();

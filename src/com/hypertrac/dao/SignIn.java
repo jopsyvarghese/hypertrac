@@ -44,6 +44,8 @@ public class SignIn extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("uname");
 		String password = request.getParameter("pwd");
+		String pwd = helper.getHashedPwd(password);
+		System.out.println(pwd);
 		byte[] salt = null;
 		try {
 			salt = Helper.getSalt();
@@ -51,8 +53,6 @@ public class SignIn extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-//		String newPwd = password + salt;
-//		String pwdHash =  enc.encode(newPwd.getBytes(DEFAULT_ENCODING));
 		Connection con = null;
 		ResultSet rs = null;
 		con = com.hypertrac.dao.database.getConnection();
