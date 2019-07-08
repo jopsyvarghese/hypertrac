@@ -3,6 +3,7 @@ package com.hypertrac.dao;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.List;
 
@@ -64,13 +65,12 @@ public class serviceFileUpload extends HttpServlet {
 						String realPath = getServletContext().getRealPath(relativePath);
 						File destinationDir = new File(realPath);
 						File savedFile = new File(destinationDir, itemName);
-						boolean result = false;
+						
+						destinationDir.mkdir();
 						if (!savedFile.exists()) {
 							
 							try {
-								destinationDir.mkdir();
 								item.write(savedFile);
-								result = true;
 							} catch (SecurityException se) {
 								se.printStackTrace();
 							}
