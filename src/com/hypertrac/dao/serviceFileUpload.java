@@ -2,6 +2,7 @@ package com.hypertrac.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class serviceFileUpload extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (!isMultipart) {
 		} else {
@@ -58,26 +60,21 @@ public class serviceFileUpload extends HttpServlet {
 					try {
 						String itemName = item.getName();
 						Helper help = new Helper();
-						System.out.println("Day: " + help.getDay());
-						System.out.println("Month: " + help.getMonth());
-						System.out.println("Year: " + help.getYear());
-
-//						File savedFile = new File("img\\" + help.getYear() + "\\" + help.getMonth() + "\\"
-//								+ help.getDay() + "\\" + itemName);
-						
-						File savedFile = new File("applications");
+						String relativePath = "/img/service/" + help.getYear() +"/"+ help.getMonth() +"/"+ help.getDay()+"/";
+						String realPath = getServletContext().getRealPath(relativePath);
+						File destinationDir = new File(realPath);
+						File savedFile = new File(destinationDir, itemName);
+						boolean result = false;
 						if (!savedFile.exists()) {
-							boolean result = false;
-
+							
 							try {
-								savedFile.mkdir();
+								destinationDir.mkdir();
+								item.write(savedFile);
 								result = true;
 							} catch (SecurityException se) {
-								// handle it
+								se.printStackTrace();
 							}
-							item.write(savedFile);
 						}
-						System.out.println("Agterdflj lsdf ls");
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
