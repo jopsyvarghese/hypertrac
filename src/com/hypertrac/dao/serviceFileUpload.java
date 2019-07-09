@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
+import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
 
@@ -64,7 +65,8 @@ public class serviceFileUpload extends HttpServlet {
 						String relativePath = "/img/service/" + help.getYear() +"/"+ help.getMonth() +"/"+ help.getDay()+"/";
 						String realPath = getServletContext().getRealPath(relativePath);
 						File destinationDir = new File(realPath);
-						File savedFile = new File(destinationDir, itemName);
+						Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+						File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
 						
 						destinationDir.mkdir();
 						if (!savedFile.exists()) {
