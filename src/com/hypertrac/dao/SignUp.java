@@ -44,6 +44,7 @@ public class SignUp extends HttpServlet {
 		String uname = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
 //		String pwd = helper.getHashedPwd(pwd);
+		String rc = request.getParameter("rc");
 		Connection con = null;
 		con = com.hypertrac.dao.database.getConnection();
 		String currentTime = helper.getDateTime();
@@ -51,7 +52,7 @@ public class SignUp extends HttpServlet {
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(
-					"INSERT INTO auth(fname, lname, uname, pwd, email, mob, role, created_at) VALUES(?,?,?,?,?,?,?,?)");
+					"INSERT INTO auth(fname, lname, uname, pwd, email, mob, role, created_at, rc) VALUES(?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, fname);
 			ps.setString(2, lname);
 			ps.setString(3, uname);
@@ -60,14 +61,13 @@ public class SignUp extends HttpServlet {
 			ps.setLong(6, mob);
 			ps.setInt(7, 0);
 			ps.setString(8, currentTime);
-			out.print(ps);
+			ps.setString(9, rc);
 			int i = ps.executeUpdate();
 			RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
 			request.setAttribute("status",
 					"<strong class='text-success'>Registration Successful! Please Login...</strong>"+i);
 			rd.forward(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

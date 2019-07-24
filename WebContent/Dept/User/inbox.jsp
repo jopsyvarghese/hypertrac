@@ -51,12 +51,14 @@
                 <h4>Inbox</h4> <br/>
                 <table class="table table-hover">
                 <tr>
+                <th>Application ID</th>
                 <th>Sender</th>
                 <th>Subject</th>
                 <th>Date/Time</th>
                 </tr>
                 
                 <tr>
+                <td>AE12001</td>
                 <td>jopsy@gmail.com</td>
                 <td>Needs More Documents</td>
                 <td>2019-06-26 19:31:48</td>

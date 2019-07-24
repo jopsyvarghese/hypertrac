@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -23,9 +25,14 @@
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
 <body id="page-top">
-
+	<%
+		Helper helper = new Helper();
+		int id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		String rc = helper.getRc(id);
+		ResultSet rs = helper.getBuzzType();
+		ResultSet majorClients = helper.getMajorClients();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -62,58 +69,80 @@
 								<tbody>
 									<tr>
 										<td>Company (Contractor) Name</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><input type="text" class="form-control" name="contractorName" /></td>
 									</tr>
 									<tr>
 										<td>RC Number</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><input type="text" class="form-control" name="rc"
+											value="<%=rc%>" readonly="readonly" /></td>
 									</tr>
 									<tr>
 										<td>Company Address</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><textarea class="form-control" name="addr"></textarea></td>
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><input type="text" class="form-control" name="phone" /></td>
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><input type="text" class="form-control" name="phone2" /></td>
 									</tr>
 									<tr>
 										<td>Email-id</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><input type="text" class="form-control" name="email" /></td>
 									</tr>
 									<tr>
 										<td>Website</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><input type="text" class="form-control" name="website" /></td>
 									</tr>
 									<tr>
 										<td>Type of Business</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><select name="buzzType" class="form-control">
+												<%
+													while (rs.next()) {
+												%>
+												<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
+												<%
+													}
+												%>
+										</select>
 									</tr>
 									<tr>
 										<td>Document Name/Subject/ID</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><input type="text" class="form-control" name="docName" /></td>
 									</tr>
 									<tr>
 										<td>Name of Major client(s)</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><select name="majorClient" class="form-control"
+											onchange="loadSub()" id="majorClient">
+												<option value="0">Select Major Client</option>
+												<%
+													while (majorClients.next()) {
+												%>
+												<option value="<%=majorClients.getInt(1)%>"><%=majorClients.getString(2)%></option>
+												<%
+													}
+												%>
+										</select></td>
 									</tr>
 									<tr>
 										<td>Sub-Department</td>
-										<td><input type="text" class="form-control" name="" /></td>
+										<td><select name="subDept" class="form-control">
+												<option value="0">Select Sub-Department</option>
+												<optgroup label="" id="subCatData"></optgroup>
+										</select></td>
 									</tr>
 									<tr>
 										<td>Upload Scanned Documents :</td>
-										<td><input type="file" class="form-control" name="file" multiple="multiple"/></td>
+										<td><input type="file" class="form-control" name="file"
+											multiple="multiple" /></td>
 									</tr>
 								</tbody>
 							</table>
 							<input type="submit" class="btn btn-success" />
 						</form>
-						<br />
-						<br />
+						<br /> <br />
 					</div>
 
 				</div>
@@ -182,7 +211,12 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script>
+		function loadSub() {
+			var deptId = document.getElementById("majorClient").value;
+			$("#subCatData").load("subDept.jsp?dept=" + deptId);
+		}
+	</script>
 </body>
 
 </html>

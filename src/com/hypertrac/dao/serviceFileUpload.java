@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import com.hypertrac.commons.Helper;
  * Servlet implementation class serviceFileUpload
  */
 @WebServlet("/serviceFileUpload")
+@MultipartConfig
 public class serviceFileUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,6 +48,17 @@ public class serviceFileUpload extends HttpServlet {
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (!isMultipart) {
 		} else {
+			String contractorName = request.getParameter("contractorName");
+			String rc = request.getParameter("rc");
+			String addr = request.getParameter("addr");
+			String phone = request.getParameter("phone");
+			String phone2 = request.getParameter("phone2");
+			String email = request.getParameter("email");
+			String website = request.getParameter("website");
+			String buzzType = request.getParameter("buzzType");
+			String docName = request.getParameter("docName");
+			String majorClient = request.getParameter("majorClient");
+			String subDept = request.getParameter("subDept");
 			FileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			List items = null;
@@ -77,6 +90,7 @@ public class serviceFileUpload extends HttpServlet {
 								se.printStackTrace();
 							}
 						}
+						out.print(savedFile.getAbsolutePath());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

@@ -82,31 +82,35 @@ Header
 						<table>
 							<tr>
 								<td>First Name</td>
-								<td><input type="text" name="fname" class="form-control"></td>
+								<td><input type="text" name="fname" class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Last Name</td>
-								<td><input type="text" name="lname" class="form-control"></td>
+								<td><input type="text" name="lname" class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Username</td>
-								<td><input type="text" name="uname" class="form-control"></td>
+								<td><input type="text" name="uname" class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Password</td>
-								<td><input type="password" name="pwd" class="form-control"></td>
+								<td><input type="password" name="pwd" class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
-								<td><input type="password" name="cpwd" class="form-control"></td>
+								<td><input type="password" name="cpwd" class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Email</td>
-								<td><input type="email" name="email" class="form-control"></td>
+								<td><input type="email" name="email" class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Mobile</td>
-								<td><input type="number" name="mob" class="form-control"></td>
+								<td><input type="number" name="mob" class="form-control" required></td>
+							</tr>
+							<tr>
+								<td>RC Number</td>
+								<td><input type="text" name="rc" class="form-control" required></td>
 							</tr>
 							<tr>
 								<td colspan="2">&nbsp;</td>

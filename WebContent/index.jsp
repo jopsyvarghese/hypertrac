@@ -26,8 +26,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
+<!-- =======================================================
     Theme Name: HyperTrac
     Theme URL: http://www.preatech.com/HyperTrac-bootstrap-business-template/
     Author: BootstrapMade.com
@@ -78,7 +77,7 @@
     <div class="container">
 
       <div class="intro-img">
-        <img src="img/intro-img.svg" alt="" class="img-fluid">
+        <img src="img/student-transparent-group-work.png" alt="" class="img-fluid">
       </div>
 
       <div class="intro-info">
@@ -136,14 +135,14 @@
 
           </div>
 
-          <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
-            <img src="img/about-img.svg" class="img-fluid" alt="">
+          <div class="col-lg-6 order-lg-2 order-1 wow fadeInUp">
+            <img src="img/group.png" class="img-fluid">
           </div>
         </div>
 
         <div class="row about-extra">
           <div class="col-lg-6 wow fadeInUp">
-            <img src="img/about-extra-1.svg" class="img-fluid" alt="">
+            <img src="img/call-center.png" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
             <h4>We will make sure that your requirements are addressed on time.</h4>
@@ -158,7 +157,7 @@
 
         <div class="row about-extra">
           <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
-            <img src="img/about-extra-2.svg" class="img-fluid" alt="">
+            <img src="img/pass-doc.png" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
@@ -358,7 +357,7 @@
     <!--==========================
       Clients Section
     ============================-->
-    <section id="testimonials" class="section-bg">
+    <!-- <section id="testimonials" class="section-bg">
       <div class="container">
 
         <header class="section-header">
@@ -422,7 +421,7 @@
 
 
       </div>
-    </section><!-- #testimonials -->
+    </section> --><!-- #testimonials -->
 
     <!--==========================
       Team Section
@@ -436,13 +435,13 @@
 
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 wow fadeInUp">
+          <div class="col-lg-2 col-md-6 wow fadeInUp">
             <div class="member">
               <img src="img/team-1.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Walter White</h4>
-                  <span>Chief Executive Officer</span>
+                  <h4>Eniga Ahiante</h4>
+                  <span>VP Cyber Security & Software Dept.</span>
                   <div class="social">
                     <a href=""><i class="fa fa-twitter"></i></a>
                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -454,13 +453,13 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="member">
               <img src="img/team-2.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Sarah Jhonson</h4>
-                  <span>Product Manager</span>
+                  <h4>Eperefugha Biboye</h4>
+                  <span>Secratary/Legal Advisor</span>
                   <div class="social">
                     <a href=""><i class="fa fa-twitter"></i></a>
                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -472,13 +471,13 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
             <div class="member">
               <img src="img/team-3.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>William Anderson</h4>
-                  <span>CTO</span>
+                  <h4>Preye Obahor</h4>
+                  <span>VP Human Reources</span>
                   <div class="social">
                     <a href=""><i class="fa fa-twitter"></i></a>
                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -490,13 +489,49 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
             <div class="member">
               <img src="img/team-4.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Amanda Jepson</h4>
-                  <span>Accountant</span>
+                  <h4>Felix C A</h4>
+                  <span>EVP General Legal Counsel.</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="img/testimonial-1.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Rock Adote</h4>
+                  <span>Cyber Security, Software & Digital Marketing</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="img/testimonial-2.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Gary O.Sylvester</h4>
+                  <span>GMD/CEO</span>
                   <div class="social">
                     <a href=""><i class="fa fa-twitter"></i></a>
                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -516,7 +551,7 @@
     <!--==========================
       Clients Section
     ============================-->
-    <section id="clients" class="section-bg">
+    <!-- <section id="clients" class="section-bg">
 
       <div class="container">
 
@@ -579,7 +614,7 @@
 
       </div>
 
-    </section>
+    </section> -->
 
     <!--==========================
       Contact Section

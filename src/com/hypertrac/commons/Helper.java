@@ -9,6 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Helper {
+	Connection con;
+	public Helper() {
+		con = com.hypertrac.dao.database.getConnection();
+	}
+	
     public String getHashedPwd(String password) {
         byte[] salt = new byte[0];
         try {
@@ -42,7 +47,6 @@ public class Helper {
     
     public String buzzType(int id) throws SQLException {
     	String sql = "SELECT * FROM business WHERE id="+id;
-    	Connection con = com.hypertrac.dao.database.getConnection();
     	Statement st = con.createStatement();
     	ResultSet rs = null;
     	rs = st.executeQuery(sql);
@@ -54,7 +58,6 @@ public class Helper {
     
     public String getMajorClient(int id) throws SQLException {
     	String sql = "SELECT * FROM major_client WHERE id="+id;
-    	Connection con = com.hypertrac.dao.database.getConnection();
     	Statement st = con.createStatement();
     	ResultSet rs = null;
     	rs = st.executeQuery(sql);
@@ -67,7 +70,6 @@ public class Helper {
     public ResultSet getDept() throws SQLException {
     	String arr[] = {};
     	String sql = "SELECT * FROM dept";
-    	Connection con = com.hypertrac.dao.database.getConnection();
     	Statement st = con.createStatement();
     	ResultSet rs = null;
     	return st.executeQuery(sql);
@@ -76,7 +78,6 @@ public class Helper {
     public String getDeptById(int id) throws SQLException {
     	String arr[] = {};
     	String sql = "SELECT * FROM dept WHERE id="+id;
-    	Connection con = com.hypertrac.dao.database.getConnection();
     	Statement st = con.createStatement();
     	ResultSet rs = null;
     	rs = st.executeQuery(sql);
@@ -88,7 +89,6 @@ public class Helper {
     
     public String getSubDept(int id) throws SQLException {
     	String sql = "SELECT * FROM dept_sub WHERE id="+id;
-    	Connection con = com.hypertrac.dao.database.getConnection();
     	Statement st = con.createStatement();
     	ResultSet rs = null;
     	rs = st.executeQuery(sql);
@@ -132,7 +132,6 @@ public class Helper {
     
     public String getNameById(int id) throws SQLException {
     	String sql = "SELECT * FROM auth WHERE id="+id;
-    	Connection con = com.hypertrac.dao.database.getConnection();
     	Statement st = con.createStatement();
     	ResultSet rs = null;
     	rs = st.executeQuery(sql);
@@ -144,7 +143,6 @@ public class Helper {
     
     public String getRoleById(int id) throws SQLException {
     	String sql = "SELECT * FROM role WHERE id="+id;
-    	Connection con = com.hypertrac.dao.database.getConnection();
     	Statement st = con.createStatement();
     	ResultSet rs = null;
     	rs = st.executeQuery(sql);
@@ -152,5 +150,44 @@ public class Helper {
     	  return rs.getString(2);
     	}
     	return "";
+    }
+    
+    public String getRc(int id) throws SQLException {
+    	String rc = "";
+    	String sql = "SELECT rc FROM auth WHERE id="+id;
+    	Statement st = con.createStatement();
+    	ResultSet rs = null;
+    	rs = st.executeQuery(sql);
+    	if (rs.next()) {
+    	  return rs.getString(1);
+    	}
+    	return rc;
+    }
+    
+    public ResultSet getBuzzType() throws SQLException {
+    	String rc = "";
+    	String sql = "SELECT * FROM business";
+    	Statement st = con.createStatement();
+    	ResultSet rs = null;
+    	rs = st.executeQuery(sql);
+    	return rs;
+    }
+    
+    public ResultSet getMajorClients() throws SQLException {
+    	String rc = "";
+    	String sql = "SELECT id,cname FROM major_client";
+    	Statement st = con.createStatement();
+    	ResultSet rs = null;
+    	rs = st.executeQuery(sql);
+    	return rs;
+    }
+    
+    public ResultSet getSubDept() throws SQLException {
+    	String rc = "";
+    	String sql = "SELECT id,cname FROM major_client";
+    	Statement st = con.createStatement();
+    	ResultSet rs = null;
+    	rs = st.executeQuery(sql);
+    	return rs;
     }
 }
