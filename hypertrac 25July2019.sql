@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2019 at 07:26 PM
+-- Generation Time: Jul 25, 2019 at 03:09 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -44,7 +44,7 @@ CREATE TABLE `applications` (
 --
 
 INSERT INTO `applications` (`id`, `name_or_no`, `dept`, `subject`, `submitted_on`, `validity`, `status`, `app_by`) VALUES
-(1, 'AE10000', 4, 'Emigration Clearence', '2019-06-19 04:00:00', '15 Days', 0, 2),
+(1, 'AE10000', 1, 'Emigration Clearence', '2019-06-19 04:00:00', '15 Days', 0, 2),
 (2, 'AE00002', 9, 'Stolen Passport', '2019-06-25 00:19:20', '23 Days', 4, 0);
 
 -- --------------------------------------------------------
@@ -72,7 +72,8 @@ INSERT INTO `applications_comment` (`id`, `app_id`, `dept_assigned`, `comment`, 
 (9, 1, 3, 'Please close this asap', 1, 1, '2019-06-27 13:36:42'),
 (10, 1, 4, 'This is not the correct queue', 1, 1, '2019-06-29 10:50:33'),
 (11, 2, 7, 'Please ask the concern team', 1, 1, '2019-06-29 22:16:20'),
-(12, 2, 9, 'This has to be assigned to correct department', 1, 1, '2019-06-29 22:33:02');
+(12, 2, 9, 'This has to be assigned to correct department', 1, 1, '2019-06-29 22:33:02'),
+(13, 1, 1, 'Hello', 1, 1, '2019-07-24 21:00:35');
 
 -- --------------------------------------------------------
 
@@ -92,17 +93,16 @@ CREATE TABLE `applications_more` (
   `buzz_type` int(11) NOT NULL,
   `doc_name` varchar(255) NOT NULL,
   `major_client` int(11) NOT NULL,
-  `sub_dept` int(11) NOT NULL,
-  `rc_no` varchar(30) NOT NULL
+  `sub_dept` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `applications_more`
 --
 
-INSERT INTO `applications_more` (`id`, `fk_id`, `company`, `comp_addr`, `phone`, `phone2`, `email`, `website`, `buzz_type`, `doc_name`, `major_client`, `sub_dept`, `rc_no`) VALUES
-(1, 2, 'Tretchmore Tech Solutions', 'some address where these beggers won\'t come', 9876541230, 9895989555, 'info@trechmore.com', 'www.trechmore.com', 1, 'silly doc', 2, 2, '656898100'),
-(2, 1, 'Dorova Manpower', 'Sbc Square, Mount Crest Road, Kuwait', 32252332, 32255689, 'info@dorova.kw', 'www.dorova.kw', 1, 'Sample ', 1, 2, '23256');
+INSERT INTO `applications_more` (`id`, `fk_id`, `company`, `comp_addr`, `phone`, `phone2`, `email`, `website`, `buzz_type`, `doc_name`, `major_client`, `sub_dept`) VALUES
+(1, 2, 'Tretchmore Tech Solutions', 'some address where these beggers won\'t come', 9876541230, 9895989555, 'info@trechmore.com', 'www.trechmore.com', 1, 'silly doc', 2, 2),
+(2, 1, 'Dorova Manpower', 'Sbc Square, Mount Crest Road, Kuwait', 32252332, 32255689, 'info@dorova.kw', 'www.dorova.kw', 1, 'Sample ', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -119,19 +119,21 @@ CREATE TABLE `auth` (
   `email` varchar(50) NOT NULL,
   `mob` bigint(20) NOT NULL,
   `role` int(1) NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `rc` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `auth`
 --
 
-INSERT INTO `auth` (`id`, `fname`, `lname`, `uname`, `pwd`, `email`, `mob`, `role`, `created_at`) VALUES
-(1, 'jopsy', 'varghese', 'jopsy', 'Jopsy@123', 'jopsy@gmail.com', 7411395002, 1, '2019-06-26 18:21:51'),
-(2, 'jomit', 'jose', 'jomit', 'Jomit@123', 'jomitjose9020@gmail.com', 7411180882, 0, '2019-06-26 18:45:10'),
-(3, 'Jabir', 'Lalu', 'Jabir', 'Jabir@123', 'jabir@gmail.com', 9995559990, 2, '2019-06-26 18:54:05'),
-(4, 'admin', 'varghese', 'admin', 'Admin@123', 'sdlfkj@gmal.com', 9965656565, 3, '2019-06-26 19:31:48'),
-(5, 'Ajith', 'Kumar', 'ajith', 'Ajith@123', 'ajithkumar@gmail.com', 9876767676, 0, '2019-06-29 22:30:50');
+INSERT INTO `auth` (`id`, `fname`, `lname`, `uname`, `pwd`, `email`, `mob`, `role`, `created_at`, `rc`) VALUES
+(1, 'jopsy', 'varghese', 'jopsy', 'Jopsy@123', 'jopsy@gmail.com', 7411395002, 1, '2019-06-26 18:21:51', '234100'),
+(2, 'jomit', 'jose', 'jomit', 'Jomit@123', 'jomitjose9020@gmail.com', 7411180882, 0, '2019-06-26 18:45:10', '253585'),
+(3, 'Jabir', 'Lalu', 'Jabir', 'Jabir@123', 'jabir@gmail.com', 9995559990, 2, '2019-06-26 18:54:05', '982222'),
+(4, 'admin', 'varghese', 'admin', 'Admin@123', 'sdlfkj@gmal.com', 9965656565, 3, '2019-06-26 19:31:48', '56DC58'),
+(5, 'Ajith', 'Kumar', 'ajith', 'Ajith@123', 'ajithkumar@gmail.com', 9876767676, 0, '2019-06-29 22:30:50', '56532E3'),
+(7, 'labeesh', 'lakshmanan', 'labeesh', 'Labeesh@123', 'labeesh@gmail.com', 9876543211, 0, '2019-07-24 22:00:00', '252522');
 
 -- --------------------------------------------------------
 
@@ -339,7 +341,7 @@ ALTER TABLE `applications`
 -- AUTO_INCREMENT for table `applications_comment`
 --
 ALTER TABLE `applications_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `applications_more`
@@ -351,7 +353,7 @@ ALTER TABLE `applications_more`
 -- AUTO_INCREMENT for table `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `business`
