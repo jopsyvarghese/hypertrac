@@ -63,7 +63,7 @@
 					<div class="text-center">
 						<h4>Apply For New Service</h4>
 						<br />
-						<form action="../../serviceFileUpload" method="post"
+						<form action="createService.jsp" method="post"
 							enctype="multipart/form-data">
 							<table class="table table-hover">
 								<tbody>
