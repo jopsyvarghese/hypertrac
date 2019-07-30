@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;
 
 public class Helper {
 	Connection con;
@@ -189,5 +191,12 @@ public class Helper {
     	ResultSet rs = null;
     	rs = st.executeQuery(sql);
     	return rs;
+    }
+    
+    public String getLocalDateTime() {
+    	LocalDateTime now = LocalDateTime.now();  
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+        String formatDateTime = now.format(format);
+        return formatDateTime;
     }
 }

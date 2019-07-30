@@ -76,7 +76,7 @@
 								%>
 								<tr>
 									<td><%=i%></td>
-									<td><a href="appJourney.jsp?id=<%=rs.getInt(1)%>"><%=rs.getString(2)%></a></td>
+									<td><a href="appJourney.jsp?id=<%=rs.getInt(1)%>"><%=rs.getString(1)%></a></td>
 									<%
 										Helper helper = new Helper();
 										Constants cons = new Constants();
@@ -86,7 +86,7 @@
 									<td><%=cons.getConstant(rs.getInt(7)) %></td>
 								</tr>
 								<%
-									}
+									i++; }
 								%>
 							</tbody>
 						</table>
