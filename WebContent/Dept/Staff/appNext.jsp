@@ -30,7 +30,11 @@
 </head>
 
 <body id="page-top">
-
+<%
+	Helper helper = new Helper();
+	Connection con = database.getConnection();
+	ResultSet rs = helper.getDept();
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -88,13 +92,7 @@
 									</tr>
 									<tr>
 										<th>Department</th>
-										<td>
-											<%
-												Helper helper = new Helper();
-												Connection con = database.getConnection();
-												ResultSet rs = helper.getDept();
-											%> <select name="dept"
-											class="form-control">
+										<td><select name="dept" class="form-control">
 												<option value="0">Select Department To Assign</option>
 												<%
 													while (rs.next()) {
@@ -103,9 +101,19 @@
 												<%
 													}
 												%>
-										</select>
-										</td>
+										</select></td>
 									</tr>
+									<%-- <tr>
+										<th>Update Status</th>
+										<td><select name="status" class="form-control">
+										<%
+										String stat[] = helper.getAppStatus();
+										for (int k=0; k<stat.length; k++) {
+										%>
+											<option value="<%=k %>"><%=stat[k] %></option>
+										<% } %>
+										</select></td>
+									</tr> --%>
 									<tr>
 										<td colspan="2" class="text-center"><input type="submit"
 											value="Assign Now" class="btn btn-danger" /></td>

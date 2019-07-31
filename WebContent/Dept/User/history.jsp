@@ -94,7 +94,7 @@
 									<td><%=cons.getConstant(rs.getInt(7)) %></td>
 								</tr>
 								<%
-									}
+									i++; }
 								%>
 							</tbody>
 						</table>

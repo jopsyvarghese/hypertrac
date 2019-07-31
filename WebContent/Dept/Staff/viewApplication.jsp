@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.lang.reflect.Array"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Statement"%>
@@ -32,8 +33,11 @@
 
 <body id="page-top">
 	<%
+		Helper helper = new Helper();
 		int id = Integer.parseInt(request.getParameter("id"));
 		Connection con = database.getConnection();
+		ResultSet imgRs = helper.getImagesByFKey(id);
+		ResultSet imgRs1 = helper.getImagesByFKey(id);
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -73,8 +77,7 @@
 						<!-- Content Column -->
 						<div class="col-lg-9 mb-4">
 							<%
-							String appId = "";
-							Helper helper = new Helper();
+								String appId = "";
 								String query = "SELECT * FROM applications WHERE id=?";
 								PreparedStatement ps = con.prepareStatement(query);
 								ps.setInt(1, id);
@@ -92,7 +95,9 @@
 								<tr>
 									<th>Application Name/No.</th>
 									<td><%=rs.getString(2)%></td>
-									<% appId = rs.getString(2); %>
+									<%
+										appId = rs.getString(2);
+									%>
 								</tr>
 								<tr>
 									<th>Company (Contractor) Name</th>
@@ -100,7 +105,7 @@
 								</tr>
 								<tr>
 									<th>RC Number</th>
-									<td><%=rs1.getString(13)%></td>
+									<td><%=helper.getRc(rs.getInt(8))%></td>
 								</tr>
 								<tr>
 									<th>Company Address</th>
@@ -120,7 +125,7 @@
 								</tr>
 								<tr>
 									<th>Type Of Business</th>
-									<td><%=helper.buzzType(rs1.getInt(9)) %></td>
+									<td><%=helper.buzzType(rs1.getInt(9))%></td>
 								</tr>
 								<tr>
 									<th>Document Name/Subject/ID</th>
@@ -128,7 +133,7 @@
 								</tr>
 								<tr>
 									<th>Name of Major Client(s)</th>
-									<td><%=helper.getMajorClient(rs1.getInt(11)) %></td>
+									<td><%=helper.getMajorClient(rs1.getInt(11))%></td>
 								</tr>
 								<tr>
 									<th>Sub-Department</th>
@@ -136,7 +141,7 @@
 								</tr>
 							</table>
 							<%
-									}
+								}
 								}
 							%>
 						</div>
@@ -146,26 +151,40 @@
 
 								<!-- Indicators -->
 								<ul class="carousel-indicators">
-									<li data-target="#demo" data-slide-to="0" class="active"></li>
-									<li data-target="#demo" data-slide-to="1"></li>
-									<li data-target="#demo" data-slide-to="2"></li>
-									<li data-target="#demo" data-slide-to="3"></li>
+									<%
+										int i = 0;
+										while (imgRs.next()) {
+											String status = "";
+											if (i == 0) {
+												status = "active";
+											}
+									%>
+									<li data-target="#demo" data-slide-to="<%=i%>"
+										class="<%=status%>"></li>
+									<%
+										i++;
+										}
+									%>
 								</ul>
 
 								<!-- The slideshow -->
 								<div class="carousel-inner rounded">
-									<div class="carousel-item active">
-										<img src="../../img/sample/download.jpg" alt="Los Angeles">
+									<%
+										int j = 0;
+										while (imgRs1.next()) {
+											String status = "";
+											if (j == 0) {
+												status = "active";
+											}
+									%>
+									<div class="carousel-item <%=status%>">
+										<img src="../../images/service/<%=imgRs1.getString(1)%>"
+											alt="Documents Image" class="img-fluid">
 									</div>
-									<div class="carousel-item">
-										<img src="../../img/sample/download.png" alt="Chicago">
-									</div>
-									<div class="carousel-item">
-										<img src="../../img/sample/download3.jpg" alt="New York">
-									</div>
-									<div class="carousel-item">
-										<img src="../../img/sample/download%20(1).png" alt="New York">
-									</div>
+									<%
+										j++;
+										}
+									%>
 								</div>
 
 								<!-- Left and right controls -->
@@ -177,7 +196,8 @@
 
 							</div>
 							<div style="margin-top: 30px; text-align: center">
-								<a href="appNext.jsp?id=<%=id %>&appId=<%=appId %>" class="btn btn-danger">Next >></a>
+								<a href="appNext.jsp?id=<%=id%>&appId=<%=appId%>"
+									class="btn btn-danger">Next >></a>
 							</div>
 						</div>
 					</div>
