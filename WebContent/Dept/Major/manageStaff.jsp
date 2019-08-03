@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -24,7 +29,18 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -61,7 +77,7 @@
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<div class="text-center">
-								<a href="addStaff.html" class="btn btn-primary btn-sm"> <span
+								<a href="addStaff.jsp" class="btn btn-primary btn-sm"> <span
 									class="fa fa-plus-circle"></span> New Staff
 								</a>
 							</div>
@@ -76,40 +92,45 @@
 									<th>Phone No.</th>
 									<th>Operation</th>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>Jopsy</td>
-									<td>DEPT 1</td>
-									<td>Team Lead</td>
-									<td>jopsy@gmail.com</td>
-									<td>9995559990</td>
-									<td><a href="editStaff.html"><span class="fa fa-pen"></span></a>
-										&nbsp;&nbsp; <a href="deleteStaff.html"
-										onclick="return confirmDelete();"><span
-											class="fa fa-trash-alt"></span></a></td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Sandra</td>
-									<td>DEPT 4</td>
-									<td>Manager</td>
-									<td>sandra@gmail.com</td>
-									<td>9993339990</td>
-									<td><a href="editStaff.html"><span class="fa fa-pen"></span></a>
-										&nbsp;&nbsp; <a href="deleteStaff.html"><span
-											class="fa fa-trash-alt"></span></a></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Arun</td>
-									<td>DEPT 2</td>
-									<td>Director</td>
-									<td>arun@gmail.com</td>
-									<td>9997779990</td>
-									<td><a href="editStaff.html"><span class="fa fa-pen"></span></a>
-										&nbsp;&nbsp; <a href="deleteStaff.html"><span
-											class="fa fa-trash-alt"></span></a></td>
-								</tr>
+								<%
+								String deptQ = "SELECT * FROM staff where mc_id="+loggedId;
+								Connection con = database.getConnection();
+	                            Statement st = null;
+	                            ResultSet rs = null;
+	                            st = con.createStatement();
+	                            rs = st.executeQuery(deptQ);
+	                            int i = 1;
+	                            int staffId = 0;
+	                            String email = "";
+	                            String mobile = "";
+	                            String name = "";
+	                            String deptName = "";
+	                            String position = "";
+	                            while(rs.next()) {
+		                            staffId = rs.getInt(1);
+		                            email = helper.getEmailById(staffId);
+									mobile = helper.getPhoneById(staffId);
+									name = helper.getNameById(staffId);
+									deptName = helper.getDeptById(rs.getInt(2));
+									position = helper.getPositionById(rs.getInt(3));
+									%>
+									<tr>
+										<td><%=i %></td>
+										<td><%=name %></td>
+										<td><%=deptName %></td>
+										<td><%=position %></td>
+										<td><%=email %></td>
+										<td><%=mobile %></td>
+										<td><a href="editStaff.jsp?id=<%=staffId %>"><span class="fa fa-pen"></span></a>
+											&nbsp;&nbsp; <a href="deleteStaff.jsp?id=<%=staffId %>"
+											onclick="return confirmDelete();"><span
+												class="fa fa-trash-alt"></span></a></td>
+									</tr>
+								<%
+								i++;
+	                            }
+								%>
+								
 							</table>
 						</div>
 					</div>

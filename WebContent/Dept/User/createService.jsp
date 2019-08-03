@@ -65,157 +65,182 @@
 					</div>
 
 					<div class="text-center">
-						<br />
-						<br />
+						<br /> <br />
 						<%
-		Helper help = new Helper();
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-		if (!isMultipart) {
-		} else {
-			String contractorName = "";
-			String rc = "";
-			String addr = "";
-			String phone = "";
-			String phone2 = "";
-			String email = "";
-			String website = "";
-			int buzzType = 0;
-			String docName = "";
-			int majorClient = 0;
-			int subDept = 0;
-			FileItemFactory factory = new DiskFileItemFactory();
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			String savedFileName = "";
-			int lastInsertedId = 0;
-			List items = null;
-			try {
-				items = upload.parseRequest(request);
-			} catch (FileUploadException e) {
-				e.printStackTrace();
-			}
-			Iterator itr = items.iterator();
-			while (itr.hasNext()) {
-				FileItem item = (FileItem) itr.next();
-				if (item.isFormField()) {
-					
-					//Form Fields are Here
-				    switch(item.getFieldName()) {
-				    case "contractorName" : 
-				    	contractorName = item.getString();
-				    	break;
-				    case "rc" :
-				    	rc = item.getString();
-				    	break;
-				    case "addr":
-				    	addr = item.getString();
-				    	break;
-				    case "phone":
-				    	phone = item.getString();
-				    	break;
-				    case "phone2":
-				    	phone2 = item.getString();
-				    	break;
-				    case "email":
-				    	email = item.getString();
-				    	break;
-				    case "website":
-				    	website = item.getString();
-				    	break;
-				    case "buzzType":
-				    	buzzType = Integer.parseInt(item.getString());
-				    	break;
-				    case "docName":
-				    	docName = item.getString();
-				    	break;
-				    case "majorClient":
-				    	majorClient = Integer.parseInt(item.getString());
-				    	break;
-				    case "subDept":
-				    	subDept = Integer.parseInt(item.getString());
-				    	break;
-				    default:
-				    	break;
-				    }
-				} else {
-					//File Uploads Here
-					try {
-						String itemName = item.getName();
-						String relativePath = "/images/service/";
-						String realPath = getServletContext().getRealPath(relativePath);
-						File destinationDir = new File(realPath);
-						if(!destinationDir.exists()) {
-							destinationDir.mkdir();
-						}
-						Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-						File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
-							try {
-								item.write(savedFile);
-							} catch (SecurityException se) {
-								se.printStackTrace();
-							} catch (FileNotFoundException fne) {
-								fne.printStackTrace();
+							int maxFileSize = 50 * 1024;
+											int i = 0;
+																Helper help = new Helper();
+																boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+																if (!isMultipart) {
+																} else {
+															String contractorName = "";
+															String rc = "";
+															String addr = "";
+															String phone = "";
+															String phone2 = "";
+															String email = "";
+															String website = "";
+															int buzzType = 0;
+															String docName = "";
+															int majorClient = 0;
+															int subDept = 0;
+															FileItemFactory factory = new DiskFileItemFactory();
+															ServletFileUpload upload = new ServletFileUpload(factory);
+															String[] savedFileName = new String[10];
+															int lastInsertedId = 0;
+															List items = null;
+															try {
+																items = upload.parseRequest(request);
+															} catch (FileUploadException e) {
+																e.printStackTrace();
+															}
+															Iterator itr = items.iterator();
+															while (itr.hasNext()) {
+																FileItem item = (FileItem) itr.next();
+																if (item.isFormField()) {
+																	
+																	//Form Fields are Here
+																    switch(item.getFieldName()) {
+																    case "contractorName" : 
+																    	contractorName = item.getString();
+																    	break;
+																    case "rc" :
+																    	rc = item.getString();
+																    	break;
+																    case "addr":
+																    	addr = item.getString();
+																    	break;
+																    case "phone":
+																    	phone = item.getString();
+																    	break;
+																    case "phone2":
+																    	phone2 = item.getString();
+																    	break;
+																    case "email":
+																    	email = item.getString();
+																    	break;
+																    case "website":
+																    	website = item.getString();
+																    	break;
+																    case "buzzType":
+																    	buzzType = Integer.parseInt(item.getString());
+																    	break;
+																    case "docName":
+																    	docName = item.getString();
+																    	break;
+																    case "majorClient":
+																    	majorClient = Integer.parseInt(item.getString());
+																    	break;
+																    case "subDept":
+																    	subDept = Integer.parseInt(item.getString());
+																    	break;
+																    default:
+																    	break;
+																    }
+																} else {
+																	//File Uploads Here
+																	try {
+																		String itemName = item.getName();
+																		File uploads = new File(getServletContext().getInitParameter("file-upload"));
+																		
+																		/* String relativePath = "../images/service/";
+																		String realPath = getServletContext().getRealPath(relativePath);
+																		File destinationDir = new File(realPath);
+																		if(!destinationDir.exists()) {
+																			destinationDir.mkdir();
+																		} */
+																		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+																		File savedFile = new File(uploads, ""+timestamp.getTime()+itemName);
+																		//File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
+																			try {
+																				long sizeInBytes = item.getSize();
+																				
+																				if(sizeInBytes <= maxFileSize) {
+																					item.write(savedFile);
+																				} else {
+																					continue;
+																				}
+											} catch (SecurityException se) {
+												se.printStackTrace();
+											} catch (FileNotFoundException fne) {
+												fne.printStackTrace();
+											}
+											savedFileName[i] = savedFile.getName();
+											i++;
+
+										} catch (Exception e) {
+											e.printStackTrace();
+										}
+									}
+								}
+								Connection con = database.getConnection();
+								Statement st = con.createStatement();
+								ResultSet rs = null;
+								String sql = "INSERT INTO applications(name_or_no, dept, subject, submitted_on, validity, status, app_by)"
+										+ "VALUES(?,?,?,?,?,?,?)";
+								PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+								ps.setString(1, contractorName);
+								ps.setInt(2, majorClient);
+								ps.setString(3, docName);
+								ps.setString(4, help.getLocalDateTime());
+								ps.setString(5, "15 Days");
+								ps.setInt(6, 0);
+								ps.setInt(7, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
+
+								if (ps.executeUpdate() > 0) {
+									rs = ps.getGeneratedKeys();
+									if (rs.next()) {
+										lastInsertedId = rs.getInt(1);
+										// Adding other details to applications_more table
+										String sql2 = "INSERT INTO applications_more(fk_id, company, comp_addr, phone, phone2, email, website, buzz_type, doc_name, major_client, sub_dept)"
+												+ " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+										PreparedStatement ps2 = con.prepareStatement(sql2);
+										ps2.setInt(1, lastInsertedId);
+										ps2.setString(2, contractorName);
+										ps2.setString(3, addr);
+										ps2.setLong(4, Long.parseLong(phone));
+										ps2.setLong(5, Long.parseLong(phone2));
+										ps2.setString(6, email);
+										ps2.setString(7, website);
+										ps2.setInt(8, buzzType);
+										ps2.setString(9, docName);
+										ps2.setInt(10, majorClient);
+										ps2.setInt(11, subDept);
+										int status = 0;
+										if (ps2.executeUpdate() > 0) {
+											for (int j = 0; j < savedFileName.length; j++) {
+												if (savedFileName[j] == null || savedFileName[j] == "") {
+													continue;
+												}
+												String sql3 = "INSERT INTO applications_img(fk_id, img_path, updated_at) VALUES(?,?,?)";
+												PreparedStatement ps3 = con.prepareStatement(sql3);
+												ps3.setInt(1, lastInsertedId);
+												ps3.setString(2, savedFileName[j]);
+												ps3.setString(3, help.getLocalDateTime());
+												if (ps3.executeUpdate() > 0) {
+													status += 1;
+												}
+											}
+
+											if (status > 0) {
+												out.println(
+														"<h4 style='color:green;'>Applied Successfully. Your Reference Number Is: <strong>"
+																+ lastInsertedId + "</strong></h4>");
+											} else {
+												out.println(
+														"<h4 style='color:red;'>Sorry! Unable to Complete Application at this time.</h4>");
+											}
+
+										} else {
+											out.println(
+													"<h4 style='color:red;'>Sorry! Unable to Complete Application at this time.</h4>");
+										}
+									}
+								} else {
+									out.println("<h4 style='color:red;'>Sorry! Unable to Create Application at this time.</h4>");
+								}
 							}
-							savedFileName = savedFile.getName();
-							
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}				
-			}
-			Connection con = database.getConnection();
-			Statement st = con.createStatement();
-			ResultSet rs = null;
-			String sql = "INSERT INTO applications(name_or_no, dept, subject, submitted_on, validity, status, app_by)"+
-					"VALUES(?,?,?,?,?,?,?)";
-			PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, contractorName);
-			ps.setInt(2, majorClient);
-			ps.setString(3, docName);
-			ps.setString(4, help.getLocalDateTime());
-			ps.setString(5, "15 Days");
-			ps.setInt(6, 0);
-			ps.setInt(7, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
-			
-			if (ps.executeUpdate() > 0) {
-				rs = ps.getGeneratedKeys();
-				if (rs.next()) {
-					 lastInsertedId = rs.getInt(1);
-					 // Adding other details to applications_more table
-					 String sql2 = "INSERT INTO applications_more(fk_id, company, comp_addr, phone, phone2, email, website, buzz_type, doc_name, major_client, sub_dept)"+
-					 " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-					 PreparedStatement ps2 = con.prepareStatement(sql2);
-					 ps2.setInt(1, lastInsertedId);
-					 ps2.setString(2, contractorName);
-					 ps2.setString(3, addr);
-					 ps2.setLong(4, Long.parseLong(phone));
-					 ps2.setLong(5, Long.parseLong(phone2));
-					 ps2.setString(6, email);
-					 ps2.setString(7, website);
-					 ps2.setInt(8, buzzType);
-					 ps2.setString(9, docName);
-					 ps2.setInt(10, majorClient);
-					 ps2.setInt(11, subDept);
-					 if (ps2.executeUpdate() > 0) {
-						 String sql3 = "INSERT INTO applications_img(fk_id, img_path, updated_at) VALUES(?,?,?)";
-						 PreparedStatement ps3 = con.prepareStatement(sql3);
-						 ps3.setInt(1, lastInsertedId);
-						 ps3.setString(2, savedFileName);
-						 ps3.setString(3, help.getLocalDateTime());
-						 if (ps3.executeUpdate() > 0) {
-							 out.println("<h4 style='color:green;'>Applied Successfully. Your Reference Number Is: <strong>"+lastInsertedId + "</strong></h4>");
-						 } else {
-							 out.println("<h4 style='color:red;'>Sorry! Unable to Complete Application at this time.</h4>");
-						 }
-						 
-					 } else {
-						 out.println("<h4 style='color:red;'>Sorry! Unable to Complete Application at this time.</h4>");
-					 }
-				}
-			} else {
-				out.println("<h4 style='color:red;'>Sorry! Unable to Create Application at this time.</h4>");
-			}
-		}
-%>
+						%>
 						<br /> <br />
 					</div>
 

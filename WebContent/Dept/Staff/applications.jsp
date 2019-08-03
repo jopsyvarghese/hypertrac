@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.dao.database"%>
@@ -72,19 +73,34 @@
                                 <th>Application Validity</th>
                             </tr>
                             <%
-                            String query = "SELECT * FROM applications";
+                            Helper helper = new Helper();
                             Connection con = database.getConnection();
                             Statement st = null;
-                            ResultSet rs = null;
                             st = con.createStatement();
+                            int myId = 0;
+                            try {
+                            	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+                            } catch(NumberFormatException ne) {
+                            	ne.printStackTrace();
+                            }
+                            int myDept = 0;
+                            String deptQ = "SELECT dept FROM staff WHERE id="+myId;
+                            ResultSet drs = st.executeQuery(deptQ);
+                            if(drs.next()) {
+                            	myDept = drs.getInt(1);
+                            }
+                            drs.close();
+                                                        
+                            String query = "SELECT * FROM applications WHERE dept="+myDept;
+                            ResultSet rs = null;
                             rs = st.executeQuery(query);
                             int i = 1;
                             while(rs.next()) {
                             %>
                             <tr>
                                 <td><%=i %></td>
-                                <td><a href="viewApplication.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(2) %></a></td>
-                                <td><%=rs.getInt(3) %></td>
+                                <td><a href="viewApplication.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(1) %></a></td>
+                                <td><%=helper.getDeptById(rs.getInt(3)) %></td>
                                 <td><%=rs.getString(4) %></td>
                                 <td><%=rs.getString(5) %></td>
                                 <td><%=rs.getString(6) %></td>

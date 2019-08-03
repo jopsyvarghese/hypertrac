@@ -83,7 +83,7 @@
                             %>
                             <tr>
                                 <td><%=i %></td>
-                                <td><%=rs.getString(2) %></td>
+                                <td><%=rs.getString(1) %></td>
                                 <td><%=rs.getString(4) %></td>
                                 <td><%=consta.getConstant(rs.getInt(7)) %></td>
                                 <td><%=rs.getString(5) %></td>

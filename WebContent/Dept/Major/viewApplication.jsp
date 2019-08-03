@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<%@page import="java.io.File"%>
+<%@page import="java.lang.reflect.Array"%>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -24,13 +32,18 @@
 </head>
 
 <body id="page-top">
-
+	<%
+		Helper helper = new Helper();
+		int id = Integer.parseInt(request.getParameter("id"));
+		Connection con = database.getConnection();
+		ResultSet imgRs = helper.getImagesByFKey(id);
+		ResultSet imgRs1 = helper.getImagesByFKey(id);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<jsp:include page="sidebar.jsp"></jsp:include><jsp:include
-			page="sidebar.jsp"></jsp:include>
+		<jsp:include page="sidebar.jsp"></jsp:include>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -61,52 +74,74 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-9 mb-4">
+							<%
+								String appId = "";
+								String query = "SELECT * FROM applications WHERE id=?";
+								PreparedStatement ps = con.prepareStatement(query);
+								ps.setInt(1, id);
+								ResultSet rs = null;
+								ResultSet rs1 = null;
+								rs = ps.executeQuery();
+								if (rs.next()) {
+									String subQuery = "SELECT * FROM applications_more WHERE fk_id=?";
+									PreparedStatement ps1 = con.prepareStatement(subQuery);
+									ps1.setInt(1, id);
+									rs1 = ps1.executeQuery();
+									if (rs1.next()) {
+							%>
 							<table class="table">
 								<tr>
 									<th>Application Name/No.</th>
-									<td>17263</td>
+									<td><%=rs.getString(2)%></td>
+									<%
+										appId = rs.getString(2);
+									%>
 								</tr>
 								<tr>
 									<th>Company (Contractor) Name</th>
-									<td>Test LLP</td>
+									<td><%=rs1.getString(3)%></td>
 								</tr>
 								<tr>
 									<th>RC Number</th>
-									<td>RB938493</td>
+									<td><%=helper.getRc(rs.getInt(8))%></td>
 								</tr>
 								<tr>
 									<th>Company Address</th>
-									<td>Test LLP Sample Addr PO BOX 32</td>
+									<td><%=rs1.getString(4)%></td>
 								</tr>
 								<tr>
 									<th>Telephone No</th>
-									<td>099 3493844</td>
+									<td><%=rs1.getString(5)%></td>
 								</tr>
 								<tr>
 									<th>Email ID</th>
-									<td>info@test.com</td>
+									<td><%=rs1.getString(7)%></td>
 								</tr>
 								<tr>
 									<th>Website ID</th>
-									<td>http://www.testllp.com</td>
+									<td><%=rs1.getString(8)%></td>
 								</tr>
 								<tr>
 									<th>Type Of Business</th>
-									<td>Small</td>
+									<td><%=helper.buzzType(rs1.getInt(9))%></td>
 								</tr>
 								<tr>
 									<th>Document Name/Subject/ID</th>
-									<td>23747</td>
+									<td><%=rs1.getString(10)%></td>
 								</tr>
 								<tr>
 									<th>Name of Major Client(s)</th>
-									<td>DartMore</td>
+									<td><%=helper.getMajorClient(rs1.getInt(11))%></td>
 								</tr>
 								<tr>
 									<th>Sub-Department</th>
-									<td>EPC</td>
+									<td><%=helper.getSubDept(rs1.getInt(12))%></td>
 								</tr>
 							</table>
+							<%
+								}
+								}
+							%>
 						</div>
 						<div class="col-sm-3">
 
@@ -114,26 +149,40 @@
 
 								<!-- Indicators -->
 								<ul class="carousel-indicators">
-									<li data-target="#demo" data-slide-to="0" class="active"></li>
-									<li data-target="#demo" data-slide-to="1"></li>
-									<li data-target="#demo" data-slide-to="2"></li>
-									<li data-target="#demo" data-slide-to="3"></li>
+									<%
+										int i = 0;
+										while (imgRs.next()) {
+											String status = "";
+											if (i == 0) {
+												status = "active";
+											}
+									%>
+									<li data-target="#demo" data-slide-to="<%=i%>"
+										class="<%=status%>"></li>
+									<%
+										i++;
+										}
+									%>
 								</ul>
 
 								<!-- The slideshow -->
 								<div class="carousel-inner rounded">
-									<div class="carousel-item active">
-										<img src="../../img/sample/download.jpg" alt="Los Angeles">
+									<%
+										int j = 0;
+										while (imgRs1.next()) {
+											String status = "";
+											if (j == 0) {
+												status = "active";
+											}
+									%>
+									<div class="carousel-item <%=status%>">
+										<img src="../../../images/service/<% out.print(""+imgRs1.getString(1));%>"
+											alt="Documents Image" class="img-fluid">
 									</div>
-									<div class="carousel-item">
-										<img src="../../img/sample/download.png" alt="Chicago">
-									</div>
-									<div class="carousel-item">
-										<img src="../../img/sample/download3.jpg" alt="New York">
-									</div>
-									<div class="carousel-item">
-										<img src="../../img/sample/download%20(1).png" alt="New York">
-									</div>
+									<%
+										j++;
+										}
+									%>
 								</div>
 
 								<!-- Left and right controls -->
@@ -145,7 +194,8 @@
 
 							</div>
 							<div style="margin-top: 30px; text-align: center">
-								<a href="appNext.html" class="btn btn-danger">Next >></a>
+								<a href="appNext.jsp?id=<%=id%>&appId=<%=appId%>"
+									class="btn btn-danger">Next >></a>
 							</div>
 						</div>
 					</div>

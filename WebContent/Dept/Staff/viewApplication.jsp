@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.io.File"%>
 <%@page import="java.lang.reflect.Array"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -178,7 +179,7 @@
 											}
 									%>
 									<div class="carousel-item <%=status%>">
-										<img src="../../images/service/<%=imgRs1.getString(1)%>"
+										<img src="../../../images/service/<% out.print(""+imgRs1.getString(1));%>"
 											alt="Documents Image" class="img-fluid">
 									</div>
 									<%

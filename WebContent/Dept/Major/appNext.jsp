@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -24,7 +28,11 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+Connection con = database.getConnection();
+ResultSet rs = helper.getDept();
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -61,11 +69,18 @@
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-							<form action="#" method="post">
+							<form action="appAssign.jsp" method="post">
 								<table class="table">
+								<%
+										String appId = "";
+										String id = "";
+										id = request.getParameter("id");
+										appId = request.getParameter("appId");
+									%>
 									<tr>
 										<th>Application Name/No</th>
-										<td>AE10025</td>
+										<td><%=appId %> <input type="hidden" name="id"
+											value="<%=id%>" /></td>
 									</tr>
 									<tr>
 										<th>Comments</th>
@@ -76,10 +91,24 @@
 										<th>Department</th>
 										<td><select name="dept" class="form-control">
 												<option value="0">Select Department To Assign</option>
-												<option value="">DEPT 1</option>
-												<option value="">DEPT 2</option>
-												<option value="">DEPT 3</option>
-												<option value="">DEPT 4</option>
+												<%
+													while (rs.next()) {
+												%>
+												<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
+												<%
+													}
+												%>
+										</select></td>
+									</tr>
+									<tr>
+										<th>Update Status</th>
+										<td><select name="status" class="form-control">
+										<%
+										String stat[] = helper.getAppStatus();
+										for (int k=0; k<stat.length; k++) {
+										%>
+											<option value="<%=k %>"><%=stat[k] %></option>
+										<% } %>
 										</select></td>
 									</tr>
 									<tr>

@@ -435,6 +435,79 @@
 
         <div class="row">
 
+		<div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="img/testimonial-2.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Gary O.Sylvester</h4>
+                  <span>GMD/CEO</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+		<div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+	            <div class="member">
+	              <img src="img/team-2.jpg" class="img-fluid" alt="">
+	              <div class="member-info">
+	                <div class="member-info-content">
+	                  <h4>Eperefugha Biboye</h4>
+	                  <span>Secratary/Legal Advisor</span>
+	                  <div class="social">
+	                    <a href=""><i class="fa fa-twitter"></i></a>
+	                    <a href=""><i class="fa fa-facebook"></i></a>
+	                    <a href=""><i class="fa fa-google-plus"></i></a>
+	                    <a href=""><i class="fa fa-linkedin"></i></a>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+
+		<div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="img/testimonial-1.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Rock Adote</h4>
+                  <span>Cyber Security, Software & Digital Marketing</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+		<div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="img/team-4.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Felix C A</h4>
+                  <span>EVP General Legal Counsel.</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
           <div class="col-lg-2 col-md-6 wow fadeInUp">
             <div class="member">
               <img src="img/team-1.jpg" class="img-fluid" alt="">
@@ -453,23 +526,6 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="member">
-              <img src="img/team-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Eperefugha Biboye</h4>
-                  <span>Secratary/Legal Advisor</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
             <div class="member">
@@ -488,60 +544,7 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="member">
-              <img src="img/team-4.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Felix C A</h4>
-                  <span>EVP General Legal Counsel.</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           
-          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="member">
-              <img src="img/testimonial-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Rock Adote</h4>
-                  <span>Cyber Security, Software & Digital Marketing</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="member">
-              <img src="img/testimonial-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Gary O.Sylvester</h4>
-                  <span>GMD/CEO</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
 

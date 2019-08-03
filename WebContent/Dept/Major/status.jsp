@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<%@page import="java.util.Date"%>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
 <html lang="en">
 
 <head>
@@ -24,7 +30,14 @@
 </head>
 
 <body id="page-top">
-
+	<%
+		int id = Integer.parseInt(request.getParameter("id"));
+		Connection con = database.getConnection();
+		Statement st = null;
+		st = con.createStatement();
+		Helper helper = new Helper();
+		String[] appStatus = helper.getAppStatus();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -75,65 +88,45 @@
 										<small>Last Updated</small>
 									</div>
 									<hr />
-
+									<%
+									String appQ = "SELECT * FROM applications WHERE id="+id;
+									ResultSet rsQ = null;
+									String pDate = "";
+									rsQ = st.executeQuery(appQ);
+									if(rsQ.next()) {
+										pDate = rsQ.getString(5);
+									}
+										//Get All Changes of this application
+										String statQ = "SELECT * FROM applications_comment WHERE app_id=" + id;
+										ResultSet rs = null;
+										rs = st.executeQuery(statQ);
+										while (rs.next()) {
+									%>
 
 									<div class="col-sm-2">
 										<small> <strong
 											class="rounded-pill bg-primary text-white"
-											style="padding: 2px 4px;"> Acknowledged </strong>
+											style="padding: 2px 4px;"><%=appStatus[rs.getInt(8)] %> </strong>
 										</small>
 									</div>
 									<div class="col-sm-8">
-										<small> Department 1 / Receiver: Sanal Kumar
-											(Asst.Engineer) / sanalkumar@gmail.com </small>
+										<small> <%=helper.getDeptById(rs.getInt(3)) %> / Receiver: <%=helper.getNameById(rs.getInt(5)) %>
+											(<%=helper.getRoleById(rs.getInt(6)) %>) / <%=helper.getEmailById(rs.getInt(5)) %> </small>
 									</div>
 									<div class="col-sm-2">
-										<small>25 May 2019</small>
+										<small><%=rs.getString(7) %></small>
 									</div>
+									
+									<!-- Down Arrow  -->
 									<div class="col-sm-5"></div>
 									<div class="col-sm-2">
 										<span class="fa fa-angle-down"></span>
 									</div>
 									<div class="col-sm-5"></div>
-
-
-
-									<div class="col-sm-2">
-										<small> <strong
-											class="rounded-pill bg-warning text-white"
-											style="padding: 2px 4px;"> Processing </strong>
-										</small>
-									</div>
-									<div class="col-sm-8">
-										<small> Department 5 / Receiver: Sam Jacob (Asst.CMO)
-											/ samjacob@gmail.com </small>
-									</div>
-									<div class="col-sm-2">
-										<small>01 June 2019</small>
-									</div>
-									<div class="col-sm-5"></div>
-									<div class="col-sm-2">
-										<span class="fa fa-angle-down"></span>
-									</div>
-									<div class="col-sm-5"></div>
-
-
-
-
-									<div class="col-sm-2">
-										<small> <strong
-											class="rounded-pill bg-success text-white"
-											style="padding: 2px 4px;"> Completed </strong>
-										</small>
-									</div>
-									<div class="col-sm-8">
-										<small> Department 5 / Receiver: Sam Jacob (Asst.CMO)
-											/ samjacob@gmail.com </small>
-									</div>
-									<div class="col-sm-2">
-										<small>03 June 2019</small>
-									</div>
-
+									
+									<%
+										}
+									%>
 
 								</div>
 							</div>

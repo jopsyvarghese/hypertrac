@@ -103,7 +103,7 @@
 												%>
 										</select></td>
 									</tr>
-									<%-- <tr>
+									<tr>
 										<th>Update Status</th>
 										<td><select name="status" class="form-control">
 										<%
@@ -113,7 +113,7 @@
 											<option value="<%=k %>"><%=stat[k] %></option>
 										<% } %>
 										</select></td>
-									</tr> --%>
+									</tr>
 									<tr>
 										<td colspan="2" class="text-center"><input type="submit"
 											value="Assign Now" class="btn btn-danger" /></td>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<%@page import="java.sql.Statement"%>
-<%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -30,23 +31,15 @@
 
 <body id="page-top">
 <%
-	int loggedId = 0;
-	try {
-		if(session.getAttribute("loggedInUserId") == null) {
-			%>
-			<script>window.location="../../logout.jsp"</script>
-			<%
-		}
-		loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-	} catch(NullPointerException ne){}
-
-	Helper helper = new Helper();
-	Connection con = database.getConnection();
-	Statement st = null;
-	st = con.createStatement();
-	String sql = "SELECT id, dname FROM dept WHERE mc_id="+loggedId;
-	ResultSet rs = st.executeQuery(sql);
-	ResultSet rs1 = helper.getAllPositions();
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
 %>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -82,97 +75,62 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-2 mb-4"></div>
-						<div class="col-lg-8 mb-4">
-							<div class="text-center">Staff Registration</div>
-
-							<form action="addStaff_2.jsp" method="post">
-								<table class="table">
-									<tr>
-										<th> First Name</th>
-										<td><input type="text" name="firstName"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Last Name</th>
-										<td><input type="text" name="lastName"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>User Name</th>
-										<td><input type="text" name="userName"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Department</th>
-										<td>
-										<select name="dept" id="dept" class="form-control" onchange="return loadSub()">
-											<option value="0">Select Department</option>
-											<%
-												while (rs.next()) {
-											%>
-											<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
-											<%
-												}
-											%>
-										</select>
-										</td>
-									</tr>
-									
-									<tr>
-										<th>Sub Department</th>
-										<td>
-											<select name="subDept" class="form-control">
-												<option value="0">Select Sub Department</option>
-												<optgroup label="" id="subCatData"></optgroup>
-											</select>
-										</td>
-									</tr>
-									
-									<tr>
-										<th>Position</th>
-										<td>
-											<select name="position" class="form-control">
-												<option value="0">Select Position</option>
-												<%
-												while(rs1.next()) { %>
-													<option value="<%=rs1.getInt(1) %>"><%=rs1.getString(2) %></option>
-												<% } %>
-												
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th>Email</th>
-										<td><input type="email" name="email" class="form-control" />
-										</td>
-									</tr>
-									<tr>
-										<th>Phone</th>
-										<td><input type="number" name="phone"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Password</th>
-										<td><input type="password" name="pwd"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Confirm Password</th>
-										<td><input type="password" name="cpwd"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th colspan="2" class="text-center">
-											<button class="btn btn-success">
-												<span class="fa fa-plus-circle"></span> Register Now
-											</button>
-										</th>
-									</tr>
-								</table>
-							</form>
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+						<%
+						Helper helper = new Helper();
+						Connection con = null;
+						int lastInsertedId = 0;
+						ResultSet rs = null;
+						String firstname = request.getParameter("firstName");
+						String lastname = request.getParameter("lastName");
+						int random = (int)(Math.random() * 50000 + 1);
+						String username = request.getParameter("userName")+random;
+						int dept = Integer.parseInt(request.getParameter("dept"));
+						int subDept = Integer.parseInt(request.getParameter("subDept"));
+						int position = Integer.parseInt(request.getParameter("position"));
+						String email =  request.getParameter("email");
+						Long phone =  Long.parseLong(request.getParameter("phone"));
+						String pwd =  request.getParameter("pwd");					
+						con = database.getConnection();
+						
+						String sql = "INSERT INTO auth(fname, lname, uname, pwd, email, mob, role, created_at, rc)" +
+						"VALUES(?,?,?,?,?,?,?,?,?)";
+						PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+						ps.setString(1, firstname);
+						ps.setString(2, lastname);
+						ps.setString(3, username);
+						ps.setString(4, pwd);
+						ps.setString(5, email);
+						ps.setLong(6, phone);
+						ps.setInt(7, 1);
+						ps.setString(8, helper.getDateTime());
+						ps.setInt(9, 0);
+						if (ps.executeUpdate() > 0) {
+							rs = ps.getGeneratedKeys();
+							if (rs.next()) {
+								lastInsertedId = rs.getInt(1);
+								String sql2 = "INSERT INTO staff(id, dept, position, sub_dept_id, mc_id) VALUES (?,?,?,?,?)";
+								PreparedStatement ps2 = con.prepareStatement(sql2);
+								ps2.setInt(1, lastInsertedId);
+								ps2.setInt(2, dept);
+								ps2.setInt(3, position);
+								ps2.setInt(4, subDept);
+								ps2.setInt(5, loggedId);
+								if(ps2.executeUpdate() != 0){
+									out.println("<h4 style='color:green;'>Staff Created Successfully</h4>");	
+								}
+							} else {
+								out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+							}
+						} else {
+							out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+						}
+						%>
+						
+						
 						</div>
-						<div class="col-lg-2 mb-4"></div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>
@@ -241,12 +199,7 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-	<script>
-		function loadSub() {
-			var deptId = document.getElementById("dept").value;
-			$("#subCatData").load("subDept.jsp?dept=" + deptId);
-		}
-	</script>
+
 </body>
 
 </html>

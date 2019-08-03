@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.dao.database"%>
-<%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
@@ -30,23 +31,16 @@
 
 <body id="page-top">
 <%
-	int loggedId = 0;
-	try {
-		if(session.getAttribute("loggedInUserId") == null) {
-			%>
-			<script>window.location="../../logout.jsp"</script>
-			<%
-		}
-		loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-	} catch(NullPointerException ne){}
-
-	Helper helper = new Helper();
-	Connection con = database.getConnection();
-	Statement st = null;
-	st = con.createStatement();
-	String sql = "SELECT id, dname FROM dept WHERE mc_id="+loggedId;
-	ResultSet rs = st.executeQuery(sql);
-	ResultSet rs1 = helper.getAllPositions();
+Helper helper = new Helper();
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
 %>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -82,97 +76,40 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-2 mb-4"></div>
-						<div class="col-lg-8 mb-4">
-							<div class="text-center">Staff Registration</div>
-
-							<form action="addStaff_2.jsp" method="post">
-								<table class="table">
-									<tr>
-										<th> First Name</th>
-										<td><input type="text" name="firstName"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Last Name</th>
-										<td><input type="text" name="lastName"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>User Name</th>
-										<td><input type="text" name="userName"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Department</th>
-										<td>
-										<select name="dept" id="dept" class="form-control" onchange="return loadSub()">
-											<option value="0">Select Department</option>
-											<%
-												while (rs.next()) {
-											%>
-											<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
-											<%
-												}
-											%>
-										</select>
-										</td>
-									</tr>
-									
-									<tr>
-										<th>Sub Department</th>
-										<td>
-											<select name="subDept" class="form-control">
-												<option value="0">Select Sub Department</option>
-												<optgroup label="" id="subCatData"></optgroup>
-											</select>
-										</td>
-									</tr>
-									
-									<tr>
-										<th>Position</th>
-										<td>
-											<select name="position" class="form-control">
-												<option value="0">Select Position</option>
-												<%
-												while(rs1.next()) { %>
-													<option value="<%=rs1.getInt(1) %>"><%=rs1.getString(2) %></option>
-												<% } %>
-												
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th>Email</th>
-										<td><input type="email" name="email" class="form-control" />
-										</td>
-									</tr>
-									<tr>
-										<th>Phone</th>
-										<td><input type="number" name="phone"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Password</th>
-										<td><input type="password" name="pwd"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th>Confirm Password</th>
-										<td><input type="password" name="cpwd"
-											class="form-control" /></td>
-									</tr>
-									<tr>
-										<th colspan="2" class="text-center">
-											<button class="btn btn-success">
-												<span class="fa fa-plus-circle"></span> Register Now
-											</button>
-										</th>
-									</tr>
-								</table>
-							</form>
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+						<%
+						int id = 0;
+						id = Integer.parseInt(request.getParameter("id"));
+						String sql = "SELECT * FROM staff WHERE id="+id+" AND mc_id="+loggedId;
+						Connection con = database.getConnection();
+						Statement st = null;
+						st = con.createStatement();
+						ResultSet rs = null;
+						rs = st.executeQuery(sql);
+						if(!rs.next()) {
+							out.println("<h4 style='color:red'>Staff Doesn't Belong to Your Team</h4>");
+						} else { 
+							String sql2 = "DELETE FROM staff WHERE id=?;";
+							PreparedStatement ps2 = con.prepareStatement(sql2);
+							ps2.setInt(1, id);
+							if(ps2.executeUpdate() > 0){
+								String sql3 = "DELETE FROM auth WHERE id=?";
+								PreparedStatement ps3 = con.prepareStatement(sql3);
+								ps3.setInt(1, id);
+								if(ps3.executeUpdate() > 0){
+									out.println("<h4 style='color:green'>Deleted Staff Successfully</h4>");	
+								} else {
+									out.println("<h4 style='color:red'>Sorry! Unable to Delete Staff</h4>");
+								}
+								
+							} else {
+								out.println("<h4 style='color:red'>Sorry! Unable to Delete Staff</h4>");
+							}
+							
+						} %>
 						</div>
-						<div class="col-lg-2 mb-4"></div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>
@@ -241,12 +178,7 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-	<script>
-		function loadSub() {
-			var deptId = document.getElementById("dept").value;
-			$("#subCatData").load("subDept.jsp?dept=" + deptId);
-		}
-	</script>
+
 </body>
 
 </html>

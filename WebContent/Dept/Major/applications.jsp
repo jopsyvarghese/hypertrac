@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -24,7 +32,18 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -71,30 +90,39 @@
 									<th>Submitted Date</th>
 									<th>Application Validity</th>
 								</tr>
+								<%								
+								//GET all dept ID's
+								String deptQ = "SELECT id FROM dept where mc_id="+loggedId;
+								Connection con = database.getConnection();
+	                            Statement st = null;
+	                            ResultSet rs = null;
+	                            st = con.createStatement();
+	                            rs = st.executeQuery(deptQ);
+	                            int i = 1;
+	                            ArrayList<Integer> rowValues = new ArrayList<Integer>();
+	                            while(rs.next()) {
+	                            	rowValues.add(rs.getInt(1));
+	                            }
+	                            
+	                            for(int object:rowValues) {
+								String sql = "SELECT * FROM applications WHERE id="+object;
+								ResultSet rs1 = null;
+								rs1 = st.executeQuery(sql);
+								while(rs1.next()) {
+								%>
 								<tr>
-									<td>1</td>
-									<td><a href="viewApplication.html">AE10025</a></td>
-									<td>Dept 1</td>
-									<td>Test</td>
-									<td>15 June 2019</td>
+									<td><%=i %></td>
+									<td><a href="viewApplication.jsp?id=<%=rs1.getInt(1) %>"><%=rs1.getInt(1) %></a></td>
+									<td><%=helper.getDeptById(rs1.getInt(3)) %></td>
+									<td><%=rs1.getString(4) %></td>
+									<td><%=rs1.getString(5) %></td>
 									<td>15 Days</td>
 								</tr>
-								<tr>
-									<td>16</td>
-									<td><a href="viewApplication.html">AE10465</a></td>
-									<td>Dept 1</td>
-									<td>Test Jio</td>
-									<td>15 Feb 2019</td>
-									<td>15 Days</td>
-								</tr>
-								<tr>
-									<td>31</td>
-									<td><a href="viewApplication.html">AE10545</a></td>
-									<td>Dept 7</td>
-									<td>Targus</td>
-									<td>07 May 2019</td>
-									<td>15 Days</td>
-								</tr>
+								<% 
+								i++;
+								}
+								
+	                            } %>
 							</table>
 						</div>
 					</div>

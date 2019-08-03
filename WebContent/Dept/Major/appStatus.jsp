@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -24,7 +31,17 @@
 </head>
 
 <body id="page-top">
-
+<%
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -70,27 +87,39 @@
 									<th>Submitted Date</th>
 									<th>Current Status</th>
 								</tr>
+								<%
+								//GET all dept ID's
+								String deptQ = "SELECT id FROM dept where mc_id="+loggedId;
+								Connection con = database.getConnection();
+	                            Statement st = null;
+	                            ResultSet rs = null;
+	                            st = con.createStatement();
+	                            rs = st.executeQuery(deptQ);
+	                            int i = 1;
+	                            ArrayList<Integer> rowValues = new ArrayList<Integer>();
+	                            while(rs.next()) {
+	                            	rowValues.add(rs.getInt(1));
+	                            }
+	                            
+	                            for(int object:rowValues) {
+								String sql = "SELECT * FROM applications WHERE id="+object;
+								ResultSet rs1 = null;
+								rs1 = st.executeQuery(sql);
+								while(rs1.next()) {
+								%>
 								<tr>
-									<td>1</td>
-									<td>AE10025</td>
-									<td>Test</td>
-									<td>02 June 2019</td>
-									<td><a href="status.html">View Status</a></td>
+									<td><%=i %></td>
+									<td><%=rs1.getInt(1) %></td>
+									<td><%=rs1.getString(4) %></td>
+									<td><%=rs1.getString(5) %></td>
+									<td><a href="status.jsp?id=<%=rs1.getInt(1) %>">View Status</a></td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>AE10026</td>
-									<td>Tes234t</td>
-									<td>12 Jan 2019</td>
-									<td><a href="status.html">View Status</a></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>AE10045</td>
-									<td>Test23</td>
-									<td>24 Sept 2019</td>
-									<td><a href="status.html">View Status</a></td>
-								</tr>
+								
+							<%
+							i++;
+								}
+	                            }
+							%>
 							</table>
 						</div>
 					</div>

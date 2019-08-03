@@ -143,6 +143,47 @@ public class Helper {
 		return "";
 	}
 
+	public String getEmailById(int id) throws SQLException {
+		String sql = "SELECT email FROM auth WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
+	}
+	
+	public String getPhoneById(int id) throws SQLException {
+		String sql = "SELECT mob FROM auth WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
+	}
+	
+	public String getPositionById(int id) throws SQLException {
+		String sql = "SELECT role FROM role WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
+	}
+	
+	public ResultSet getAllPositions() throws SQLException {
+		String sql = "SELECT * FROM role";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
+	
 	public String getRoleById(int id) throws SQLException {
 		String sql = "SELECT * FROM role WHERE id="+id;
 		Statement st = con.createStatement();
