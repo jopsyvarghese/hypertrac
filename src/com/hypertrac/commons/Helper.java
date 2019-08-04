@@ -194,6 +194,14 @@ public class Helper {
 		}
 		return "";
 	}
+	
+	public ResultSet getRole() throws SQLException {
+		String sql = "SELECT * FROM role";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
 
 	public String getRc(int id) throws SQLException {
 		String rc = "";

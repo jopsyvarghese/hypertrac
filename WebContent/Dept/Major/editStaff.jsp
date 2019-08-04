@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -24,7 +30,24 @@
 </head>
 
 <body id="page-top">
+	<%
+		int id = Integer.parseInt(request.getParameter("id"));
+		Helper helper = new Helper();
+		Connection con = null;
+		ResultSet rs = null;
+		ResultSet rs2 = null;
+		con = database.getConnection();
+		int loggedId = 0;
+		try {
+			if(session.getAttribute("loggedInUserId") == null) {
+				%>
+				<script>window.location="../../logout.jsp"</script>
+				<%
+			}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+		} catch(NullPointerException ne){}
 
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -86,44 +109,117 @@
 						<div class="col-lg-2 mb-4"></div>
 						<div class="col-lg-8 mb-4">
 							<div class="text-center">Edit Staff</div>
-
-							<form action="#" method="post">
+							<%
+								String sql = "SELECT * FROM auth WHERE id=?";
+								String sql2 = "SELECT * FROM staff WHERE id=?";
+								String sql3 = "SELECT id, dname FROM dept WHERE mc_id=?";
+								ResultSet rs3 = null;
+								ResultSet rs4 = null;
+								PreparedStatement ps = con.prepareStatement(sql);
+								PreparedStatement ps2 = con.prepareStatement(sql2);
+								PreparedStatement ps3 = con.prepareStatement(sql3);
+								ps.setInt(1, id);
+								ps2.setInt(1, id);
+								ps3.setInt(1, loggedId);
+								rs = ps.executeQuery();
+								rs2 = ps2.executeQuery();
+								rs3 = ps3.executeQuery();
+								rs4 = helper.getRole();
+							%>
+							<form action="editStaff_2.jsp" method="post">
 								<table class="table">
+									<%
+										if (rs.next()) {
+									%>
+									<input type="hidden" name="id" value="<%=id%>"/>
 									<tr>
-										<th>Staff Name</th>
-										<td><input type="text" name="staffName"
-											class="form-control" value="Jopsy Varghese" /></td>
+										<th>First Name</th>
+										<td><input type="text" name="firstName"
+											class="form-control" value="<%=rs.getString(2) %>" /></td>
 									</tr>
 									<tr>
-										<th>Department</th>
-										<td><input type="text" name="dept" class="form-control"
-											value="DEPT 1" /></td>
+										<th>Last Name</th>
+										<td><input type="text" name="lastName"
+											class="form-control" value="<%=rs.getString(3) %>" /></td>
 									</tr>
 									<tr>
-										<th>Position</th>
-										<td><input type="text" name="position"
-											class="form-control" value="Team Lead" /></td>
+										<th>User Name</th>
+										<td><input type="text" name="userName"
+											class="form-control" value="<%=rs.getString(4) %>" /></td>
 									</tr>
 									<tr>
 										<th>Email</th>
 										<td><input type="email" name="email" class="form-control"
-											value="jopsy@gmail.com" /></td>
+											value="<%=rs.getString(6) %>" /></td>
 									</tr>
 									<tr>
 										<th>Phone</th>
 										<td><input type="number" name="phone"
-											class="form-control" value="9995559990" /></td>
+											class="form-control" value="<%=rs.getString(7) %>" /></td>
 									</tr>
 									<tr>
 										<th>Password</th>
 										<td><input type="password" name="pwd"
-											class="form-control" value="Admin@123" /></td>
+											class="form-control" value="<%=rs.getString(5) %>" /></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" name="cpwd"
-											class="form-control" value="Admin@123" /></td>
+											class="form-control" value="<%=rs.getString(5) %>" /></td>
 									</tr>
+									<%
+										}
+
+										if (rs2.next()) {
+									%>
+
+
+									<tr>
+										<th>Department</th>
+										<td>
+										<select name="dept" class="form-control">
+											<option value="0">Select Department</option>
+											<%
+												while (rs3.next()) {
+													String selected = "";
+													if(rs3.getInt(1) == rs2.getInt(2)) {
+														selected = "selected='selected'";
+													}
+											%>
+											<option value="<%=rs3.getInt(1)%>" <% out.print(selected);  %> ><%=rs3.getString(2) %></option>
+											<%
+												}
+											%>
+										</select>
+										<%-- <input type="text" name="dept" class="form-control"
+											value="<%=helper.getDeptById(rs2.getInt(2)) %>" /> --%></td>
+									</tr>
+									<!-- <tr>
+										<th>Sub Department</th>
+										<td><input type="text" name="subDept" class="form-control"
+											value="DEPT 1" /></td>
+									</tr> -->
+									<tr>
+										<th>Position</th>
+										<td>
+										<select name="position" class="form-control">
+											<option value="0">Select Position</option>
+										<%
+										while(rs4.next()) {
+											String selected = "selected='selected'";
+											if(rs4.getInt(1) == rs2.getInt(3)) {
+												
+											}
+										%>
+											<option value="<%=rs4.getInt(1) %>" <% out.print(selected); %> ><%=rs4.getString(2) %></option>
+										<%}%>
+										</select>
+										<%-- <input type="text" name="position"
+											class="form-control" value="<%=helper.getPositionById(rs2.getInt(3)) %>" /></td> --%>
+									</tr>
+									<%
+										}
+									%>
 									<tr>
 										<th colspan="2" class="text-center">
 											<button class="btn btn-success">
