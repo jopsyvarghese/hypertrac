@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<%@page import="com.hypertrac.commons.Helper"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.hypertrac.dao.database"%>
-<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -29,63 +24,7 @@
 </head>
 
 <body id="page-top">
-	<%
-		Helper helper = new Helper();
-		int id = 0;
-		try {
-			id = Integer.parseInt(request.getParameter("id"));
-		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
-		}
-		String apQ = "SELECT * FROM applications WHERE id=?";
-		String apMoreQ = "SELECT * FROM applications_more WHERE fk_id=?";
-		Connection con = database.getConnection();
-		PreparedStatement apPs = con.prepareStatement(apQ);
-		PreparedStatement apMorePs = con.prepareStatement(apMoreQ);
-		apPs.setInt(1, id);
-		apMorePs.setInt(1, id);
-		ResultSet rs = null;
-		ResultSet rs2 = null;
-		rs = apPs.executeQuery();
-		rs2 = apMorePs.executeQuery();
 
-		String name_or_no = "";
-		int dept = 0;
-		String subject = "";
-		int app_by = 0;
-		String company = "";
-		String comp_addr = "";
-		String phone = "";
-		String phone2 = "";
-		String email = "";
-		String website = "";
-		int buzz_type = 0;
-		String doc_name = "";
-		int major_client = 0;
-		int sub_dept = 0;
-		String rc = "";
-
-		while (rs.next()) {
-			name_or_no = rs.getString(2);
-			dept = rs.getInt(3);
-			subject = rs.getString(4);
-			app_by = rs.getInt(8);
-		}
-
-		while (rs2.next()) {
-			company = rs2.getString(3);
-			comp_addr = rs2.getString(4);
-			phone = rs2.getString(5);
-			phone2 = rs2.getString(6);
-			email = rs2.getString(7);
-			website = rs2.getString(8);
-			buzz_type = rs2.getInt(9);
-			doc_name = rs2.getString(10);
-			major_client = rs2.getInt(11);
-			sub_dept = rs2.getInt(12);
-		}
-		rc = helper.getRc(app_by);
-	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -120,63 +59,11 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-12 mb-4">
-							<form action="updateHistory.jsp" method="post"
-								enctype="multipart/form-data">
-								<input type="hidden" name="id" value="<%=id%>" />
-								<table class="table">
-									<tr>
-										<th>RC Number</th>
-										<td><%=rc%></td>
-									</tr>
-									<tr>
-										<th>Company Address</th>
-										<td><%=company + ", " + comp_addr%></td>
-									</tr>
-									<tr>
-										<th>Telephone No.</th>
-										<td><%=phone%></td>
-									</tr>
-									<tr>
-										<th>Telephone No.</th>
-										<td><%=phone2%></td>
-									</tr>
-									<tr>
-										<th>Email-id</th>
-										<td><%=email%></td>
-									</tr>
-									<tr>
-										<th>Website</th>
-										<td><%=website%></td>
-									</tr>
-									<tr>
-										<th>Type of Business</th>
-										<td><%=helper.buzzType(buzz_type)%></td>
-									</tr>
-									<tr>
-										<th>Document Name/Subject/ID</th>
-										<td><%=doc_name%></td>
-									</tr>
-									<tr>
-										<th>Name of Major client(s)</th>
-										<td><%=helper.getMajorClient(major_client)%></td>
-									</tr>
-									<tr>
-										<th>Sub-Department</th>
-										<td><%=helper.getSubDept(sub_dept)%></td>
-									</tr>
-									<tr>
-										<th>Upload Scanned Documents</th>
-										<td><input type="file" name="docs" /></td>
-									</tr>
-
-								</table>
-								<div class="text-center">
-									<input type="submit" class="btn btn-danger" value="Ok" />
-								</div>
-							</form>
-
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+							<h4 style="color:green">Updated Successfully</h4>
 						</div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>

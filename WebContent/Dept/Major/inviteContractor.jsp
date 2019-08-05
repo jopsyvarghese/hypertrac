@@ -81,7 +81,7 @@
 									</td>
 									<td><span class="fa fa-check-circle text-success"></span></td>
 									<td><span class="fa fa-check-circle text-success"></span></td>
-									<td><a href="updateStatus.html"
+									<td><a href="updateStatus.jsp"
 										class="btn btn-info btn-sm"> Update </a></td>
 								</tr>
 								<tr>
@@ -91,7 +91,7 @@
 									<td><span class="fa fa-check-circle text-success"></span></td>
 									<td><span class="fa fa-times-circle text-danger"></span></td>
 									<td><span class="fa fa-times-circle text-danger"></span></td>
-									<td><a href="updateStatus.html"
+									<td><a href="updateStatus.jsp"
 										class="btn btn-info btn-sm"> Update </a></td>
 								</tr>
 							</table>

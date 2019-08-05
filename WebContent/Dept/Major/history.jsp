@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.commons.Constants"%>
 <html lang="en">
 
 <head>
@@ -69,27 +74,25 @@
 									<th>Application Date</th>
 									<th>Finished Status</th>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td><a href="viewHistory.html">AE12005</a></td>
-									<td>Test</td>
-									<td>05 Mar 2019</td>
-									<td>Finished</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td><a href="viewHistory.html">AE12025</a></td>
-									<td>Rackle</td>
-									<td>17 Mar 2019</td>
-									<td>Pending</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td><a href="viewHistory.html">AE12112</a></td>
-									<td>Continental</td>
-									<td>09 June 2019</td>
-									<td>Pending</td>
-								</tr>
+								<%
+                           Constants consta = new Constants();
+                            String query = "SELECT * FROM applications";
+                            Connection con = database.getConnection();
+                            Statement st = null;
+                            ResultSet rs = null;
+                            st = con.createStatement();
+                            rs = st.executeQuery(query);
+                            int i = 1;
+                            while(rs.next()) {
+                            %>
+                            <tr>
+                                <td><%=i %></td>
+                                <td><a href="viewHistory.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(1) %></a></td>
+                                <td><%=rs.getString(4) %></td>
+                                <td><%=rs.getString(5) %></td>
+                                <td><%=consta.getConstant(rs.getInt(7)) %></td>
+                            </tr>
+                            <% i++; } %>
 							</table>
 						</div>
 					</div>
