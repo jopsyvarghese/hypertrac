@@ -76,6 +76,12 @@
 										</td>
 									</tr>
 									<tr>
+										<th>Extra Docs Required?</th>
+										<td><input type="radio" name="extraDocsRequired" value="1">
+											Yes <input type="radio" name="ofcVisit" value="0"> No
+										</td>
+									</tr>
+									<tr>
 										<th>Extra Documents Required</th>
 										<td><textarea class="form-control" name="extraDocs"></textarea>
 										</td>

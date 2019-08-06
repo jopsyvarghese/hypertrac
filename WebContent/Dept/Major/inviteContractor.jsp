@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -24,7 +30,18 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -73,17 +90,39 @@
 									<th>Update Status</th>
 								</tr>
 
+								<%								
+								//GET all dept ID's
+								String deptQ = "SELECT id FROM dept where mc_id="+loggedId;
+								Connection con = database.getConnection();
+	                            Statement st = null;
+	                            ResultSet rs = null;
+	                            st = con.createStatement();
+	                            rs = st.executeQuery(deptQ);
+	                            int i = 1;
+	                            ArrayList<Integer> rowValues = new ArrayList<Integer>();
+	                            while(rs.next()) {
+	                            	rowValues.add(rs.getInt(1));
+	                            }
+	                            
+	                            for(int object:rowValues) {
+								String sql = "SELECT * FROM applications WHERE id="+object;
+								ResultSet rs1 = null;
+								rs1 = st.executeQuery(sql);
+								while(rs1.next()) {
+								%>
 								<tr>
-									<td>1</td>
-									<td>AE12005</td>
-									<td><a href="sent.html">Sent</a></td>
-									<td><span class="fa fa-check-circle text-success"></span>
-									</td>
-									<td><span class="fa fa-check-circle text-success"></span></td>
-									<td><span class="fa fa-check-circle text-success"></span></td>
-									<td><a href="updateStatus.jsp"
-										class="btn btn-info btn-sm"> Update </a></td>
+									<td><%=i %></td>
+									<td><a href="viewApplication.jsp?id=<%=rs1.getInt(1) %>"><%=rs1.getInt(1) %></a></td>
+									<td><%=helper.getDeptById(rs1.getInt(3)) %></td>
+									<td><%=rs1.getString(4) %></td>
+									<td><%=rs1.getString(5) %></td>
+									<td>15 Days</td>
 								</tr>
+								<% 
+								i++;
+								}
+								
+	                            } %>
 								<tr>
 									<td>2</td>
 									<td>AE12045</td>
