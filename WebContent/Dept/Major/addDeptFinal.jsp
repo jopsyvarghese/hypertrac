@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.PreparedStatement"%>
 <html lang="en">
 
 <head>
@@ -15,8 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -31,18 +27,7 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-int loggedId = 0;
-try {
-	if(session.getAttribute("loggedInUserId") == null) {
-		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
-	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-} catch(NullPointerException ne){}
-%>
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -72,40 +57,40 @@ try {
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="text-center">Contractor's Application</div>
-					<table class="table table-responsive-lg">
-						<tr>
-							<th>Sl.No</th>
-							<th>Applicant Name/No.</th>
-							<th>Major Client Name</th>
-							<th>Submitted Date</th>
-							<th>Status</th>
-						</tr>
+
+					<!-- Content Row -->
+					<div class="row">
+
+						<!-- Content Column -->
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
 						<%
-						Connection con = database.getConnection();
-                        Statement st = null;
-                        ResultSet rs = null;
-                        st = con.createStatement();
-                        int i = 1;
-                        
-						String sql = "SELECT * FROM applications";
-						rs = st.executeQuery(sql);
-						while(rs.next()) { %>
-							<tr>
-							<td><%=i %></td>
-							<td><%=rs.getString(2) %></td>
-							<td><%=helper.getMajorClientByDeptId(rs.getInt(3)) %></td>
-							<td><%=rs.getString(5) %></td>
-							<td>View<!-- <a href="viewApp.jsp" class="btn-sm btn-primary">View</a> -->
-							</td>
-						</tr>
-						<%
-						i++;
+						Connection con = null;
+						con = database.getConnection();
+						String deptHead = request.getParameter("deptHead");
+						String deptName = request.getParameter("deptName");
+						int myId = 0;
+						myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+						if(!(myId > 0)) {
+							throw new Exception("You are not logged In");
+						}
+						String sql = "INSERT INTO dept(dname, mc_id, dept_head) VALUES (?,?,?)";
+						PreparedStatement ps = con.prepareStatement(sql);
+						ps.setString(1, deptName);
+						ps.setInt(2, myId);
+						ps.setString(3, deptHead);
+						
+						if(ps.executeUpdate() > 0) {
+							out.println("<h4 style='color:green'>Created Department Successfully</h4>");
+						} else {
+							out.println("<h4 style='color:red'>Sorry! Unable to Create</h4>");
 						}
 						%>
 						
 						
-					</table>
+						</div>
+						<div class="col-lg-3 mb-4"></div>
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -134,28 +119,6 @@ try {
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

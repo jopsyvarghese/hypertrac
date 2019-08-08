@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <html lang="en">
 
@@ -14,8 +13,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -30,27 +28,7 @@
 </head>
 
 <body id="page-top">
-	<%
-int id = 0;
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-} catch(NumberFormatException ne) {
-	ne.printStackTrace();
-}
 
-if(id == 0) {
-	throw new Exception("Invalid Major Client");
-}
-
-String sql = "SELECT * FROM auth WHERE id=?";
-Connection con = null;
-con = database.getConnection();
-PreparedStatement ps = con.prepareStatement(sql);
-ps.setInt(1, id);
-ResultSet rs = null;
-rs = ps.executeQuery();
-
-%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -80,63 +58,49 @@ rs = ps.executeQuery();
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="col-sm-12">
-						<div class="text-center">
-							Edit Major Client <br /> <br />
-							<form action="editClient_2.jsp" method="post">
-								<%
-							if(rs.next()) {
-								
-								String sql2 = "SELECT * FROM major_client WHERE id="+rs.getInt(1);
-								Statement st = null;
-								ResultSet rs2 = null;
-								st = con.createStatement();
-								rs2 = st.executeQuery(sql2);
-								if(rs2.next()) {
-							%>
-								<table class="table table-hover table-sm">
-								<input type="hidden" name="id" value="<%=rs.getInt(1) %>" />
-									<tr>
-										<th>Major Client Name</th>
-										<td><input type="text" class="form-control" name="cName"
-											value="<%=rs2.getString(2) %>" /></td>
-									</tr>
-									<tr>
-										<th>Address</th>
-										<td><textarea class="form-control" name="addr"><%=rs2.getString(3) %></textarea>
-										</td>
-									</tr>
-									<tr>
-										<th>Email-id</th>
-										<td><input type="email" class="form-control" name="email"
-											value="<%=rs.getString(6) %>" /></td>
-									</tr>
-									<tr>
-										<th>Telephone No.</th>
-										<td><input type="number" class="form-control"
-											name="phone" value="<%=rs.getString(7) %>" /></td>
-									</tr>
-									<tr>
-										<th>Password</th>
-										<td><input type="password" class="form-control"
-											name="pwd" value="<%=rs.getString(5) %>" /></td>
-									</tr>
-									<tr>
-										<th>Confirm Password</th>
-										<td><input type="password" class="form-control"
-											name="cpwd" value="<%=rs.getString(5) %>" /></td>
-									</tr>
-								</table>
-								<%
-								}
-							}
-								%>
-								<button type="submit" class="btn btn-primary">
-									<span class="fa fa-pencil-alt"></span>&nbsp; Update Client
-								</button>
-								<br /> <br />
+
+					<!-- Content Row -->
+					<div class="row">
+
+						<!-- Content Column -->
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+						<%
+						int id = Integer.parseInt(request.getParameter("id"));
+						if(!(id>0)) {
+							throw new Exception("Invalid Department");
+						}
+						String sql = "SELECT * FROM dept WHERE id=?";
+						Connection con = null;
+						PreparedStatement ps = null;
+						con = database.getConnection();
+						ps = con.prepareStatement(sql);
+						ps.setInt(1, id);
+						ResultSet rs = null;
+						
+						rs = ps.executeQuery();
+						if(rs.next()) { %>
+						<h4>Update Department</h4>
+						<form action="updateDept.jsp" method="post">
+							<input type="hidden" name="id" value="<%=rs.getInt(1) %>"/>
+							<table>
+							<tr>
+								<td>Department Head</td>
+								<td><input type="text" name="deptHead" class="form-control" value="<%=rs.getString(4) %>"/></td>
+							</tr>
+							<tr>
+								<td>Department Name</td>
+								<td><input type="text" name="deptName" class="form-control" value="<%=rs.getString(2) %>"/></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="submit" value="Update" class="btn btn-primary"/></td>
+							</tr>
+							</table>
 							</form>
+						<%}
+						%>
 						</div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>
@@ -183,7 +147,7 @@ rs = ps.executeQuery();
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
+					<a class="btn btn-primary" href="../login.html">Logout</a>
 				</div>
 			</div>
 		</div>

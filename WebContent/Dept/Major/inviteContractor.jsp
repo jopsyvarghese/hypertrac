@@ -30,18 +30,21 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-int loggedId = 0;
-try {
-	if(session.getAttribute("loggedInUserId") == null) {
-		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
-	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-} catch(NullPointerException ne){}
-%>
+	<%
+		Helper helper = new Helper();
+		int loggedId = 0;
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -90,49 +93,80 @@ try {
 									<th>Update Status</th>
 								</tr>
 
-								<%								
-								//GET all dept ID's
-								String deptQ = "SELECT id FROM dept where mc_id="+loggedId;
-								Connection con = database.getConnection();
-	                            Statement st = null;
-	                            ResultSet rs = null;
-	                            st = con.createStatement();
-	                            rs = st.executeQuery(deptQ);
-	                            int i = 1;
-	                            ArrayList<Integer> rowValues = new ArrayList<Integer>();
-	                            while(rs.next()) {
-	                            	rowValues.add(rs.getInt(1));
-	                            }
-	                            
-	                            for(int object:rowValues) {
-								String sql = "SELECT * FROM applications WHERE id="+object;
-								ResultSet rs1 = null;
-								rs1 = st.executeQuery(sql);
-								while(rs1.next()) {
+								<%
+									//GET all dept ID's
+									String deptQ = "SELECT id FROM dept where mc_id=" + loggedId;
+									Connection con = database.getConnection();
+									Statement st = null;
+									ResultSet rs = null;
+									st = con.createStatement();
+									rs = st.executeQuery(deptQ);
+									int i = 1;
+									int appId = 0;
+									ArrayList<Integer> rowValues = new ArrayList<Integer>();
+									while (rs.next()) {
+										rowValues.add(rs.getInt(1));
+									}
+
+									for (int object : rowValues) {
+										String sql = "SELECT id FROM applications WHERE dept=" + object;
+										ResultSet rs1 = null;
+										rs1 = st.executeQuery(sql);
+										if (rs1.next()) {
+											appId = rs1.getInt(1);
 								%>
 								<tr>
-									<td><%=i %></td>
-									<td><a href="viewApplication.jsp?id=<%=rs1.getInt(1) %>"><%=rs1.getInt(1) %></a></td>
-									<td><%=helper.getDeptById(rs1.getInt(3)) %></td>
-									<td><%=rs1.getString(4) %></td>
-									<td><%=rs1.getString(5) %></td>
-									<td>15 Days</td>
-								</tr>
-								<% 
-								i++;
-								}
-								
-	                            } %>
-								<tr>
-									<td>2</td>
-									<td>AE12045</td>
-									<td><a href="sent.html">Sent</a></td>
-									<td><span class="fa fa-check-circle text-success"></span></td>
+									<td><%=i%></td>
+									<td><a href="viewApplication.jsp?id=<%=rs1.getInt(1)%>"><%=rs1.getInt(1)%></a></td>
+									<%
+										String invitationQ = "SELECT * FROM invitation WHERE app_id=" + rs1.getInt(1);
+												Statement st3 = con.createStatement();
+												ResultSet rs3 = st.executeQuery(invitationQ);
+												if (rs3.next()) {
+									%>
+									<td>
+										<% if(rs3.getInt(2) == 1){  %> <span
+										class="fa fa-check-circle text-success"></span> <% } else {%> <a
+										href="inviteUser.jsp?id=<%=appId %>"
+										class="btn btn-warning btn-sm">Invite</a> <% } %>
+									</td>
+
+									<td>
+										<% if(rs3.getInt(3) == 1){  %> <span
+										class="fa fa-check-circle text-success"></span> <% } else {%> <span
+										class="fa fa-times-circle text-danger"></span> <% } %>
+									</td>
+
+									<td>
+										<% if(rs3.getInt(4) == 1){  %> <span
+										class="fa fa-check-circle text-success"></span> <% } else {%> <span
+										class="fa fa-times-circle text-danger"></span> <% } %>
+									</td>
+
+									<td>
+										<% if(rs3.getInt(5) == 1){  %> <span
+										class="fa fa-check-circle text-success"></span> <% } else {%> <span
+										class="fa fa-times-circle text-danger"></span> <% } %>
+									</td>
+									<%
+										} else {
+											%>
+									<td><a href="inviteUser.jsp?id=<%=appId %>"
+										class="btn btn-warning btn-sm">Invite</a></td>
 									<td><span class="fa fa-times-circle text-danger"></span></td>
 									<td><span class="fa fa-times-circle text-danger"></span></td>
-									<td><a href="updateStatus.jsp"
+									<td><span class="fa fa-times-circle text-danger"></span></td>
+									<%	}
+									%>
+									<td><a href="updateStatus.jsp?id=<%=appId %>"
 										class="btn btn-info btn-sm"> Update </a></td>
 								</tr>
+								<%
+									i++;
+										}
+
+									}
+								%>
 							</table>
 						</div>
 					</div>

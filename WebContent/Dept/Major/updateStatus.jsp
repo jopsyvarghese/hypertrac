@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -24,7 +29,34 @@
 </head>
 
 <body id="page-top">
-
+<%
+	int id = 0;
+	id = Integer.parseInt(request.getParameter("id"));
+	if(id==0) {
+		throw new Exception("Invalid Application ID ");
+	}
+	String sql = "SELECT * FROM invitation WHERE app_id=?";
+	Connection con = database.getConnection();
+	PreparedStatement ps = con.prepareStatement(sql);
+	ps.setInt(1, id);
+	ResultSet rs = null;
+	rs = ps.executeQuery();
+	int docSubmit = 0;
+	int ofcVisit = 0;
+	int invitationStatus = 0;
+	int extraDocsRequired = 0;
+	String extraDocs = "";
+	String checked = "checked='checked'";
+	
+	if(rs.next()) {
+		invitationStatus = rs.getInt(2);
+		docSubmit = rs.getInt(3);
+		ofcVisit = rs.getInt(4);
+		extraDocsRequired = rs.getInt(5);
+		extraDocs = rs.getString(6);
+	}
+	
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -59,26 +91,38 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-12 mb-4">
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
 							<div class="text-center">Update</div>
-							<form action="#" method="post">
+							<form action="UpdateStatus_2.jsp" method="post">
 								<table class="table table-responsive-lg">
+									<input type="hidden" name="id" value="<%=id %>"/>
 									<tr>
-										<th>Document Submitted</th>
-										<td><input type="radio" name="docSubmit" value="1">
-											Yes <input type="radio" name="docSubmit" value="0">
-											No</td>
-									</tr>
-									<tr>
-										<th>Office Visited</th>
-										<td><input type="radio" name="ofcVisit" value="1">
-											Yes <input type="radio" name="ofcVisit" value="0"> No
+										<th>Invitation Status</th>
+										<td>
+										<input type="radio" name="invitationStatus" value="1" <% if(invitationStatus == 1) { out.print(checked); } %>> Yes
+										<input type="radio" name="invitationStatus" value="0" <% if(invitationStatus == 0) { out.print(checked); } %>> No
 										</td>
 									</tr>
 									<tr>
-										<th>Extra Docs Required?</th>
-										<td><input type="radio" name="extraDocsRequired" value="1">
-											Yes <input type="radio" name="ofcVisit" value="0"> No
+										<th>Document Submitted</th>
+										<td>
+										<input type="radio" name="docSubmit" value="1" <% if(docSubmit == 1) { out.print(checked); } %>> Yes
+										<input type="radio" name="docSubmit" value="0" <% if(docSubmit == 0) { out.print(checked); } %>> No
+										</td>
+									</tr>
+									<tr>
+										<th>Office Visited</th>
+										<td>
+										<input type="radio" name="ofcVisit" value="1" <% if(ofcVisit == 1) { out.print(checked); } %>> Yes
+										<input type="radio" name="ofcVisit" value="0" <% if(ofcVisit == 0) { out.print(checked); } %>> No
+										</td>
+									</tr>
+									<tr>
+										<th>Extra Docs Required</th>
+										<td>
+										<input type="radio" name="extraDocsRequired" value="1" <% if(extraDocsRequired == 1) { out.print(checked); } %> > Yes
+										<input type="radio" name="extraDocsRequired" value="0" <% if(extraDocsRequired == 0) { out.print(checked); } %> > No
 										</td>
 									</tr>
 									<tr>
@@ -92,6 +136,7 @@
 								</div>
 							</form>
 						</div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -31,18 +31,7 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-int loggedId = 0;
-try {
-	if(session.getAttribute("loggedInUserId") == null) {
-		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
-	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-} catch(NullPointerException ne){}
-%>
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -72,40 +61,53 @@ try {
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="text-center">Contractor's Application</div>
-					<table class="table table-responsive-lg">
-						<tr>
-							<th>Sl.No</th>
-							<th>Applicant Name/No.</th>
-							<th>Major Client Name</th>
-							<th>Submitted Date</th>
-							<th>Status</th>
-						</tr>
+
+					<div class="text-center">
 						<%
-						Connection con = database.getConnection();
-                        Statement st = null;
-                        ResultSet rs = null;
-                        st = con.createStatement();
-                        int i = 1;
-                        
-						String sql = "SELECT * FROM applications";
-						rs = st.executeQuery(sql);
-						while(rs.next()) { %>
-							<tr>
-							<td><%=i %></td>
-							<td><%=rs.getString(2) %></td>
-							<td><%=helper.getMajorClientByDeptId(rs.getInt(3)) %></td>
-							<td><%=rs.getString(5) %></td>
-							<td>View<!-- <a href="viewApp.jsp" class="btn-sm btn-primary">View</a> -->
-							</td>
-						</tr>
-						<%
-						i++;
+					Helper helper = new Helper();
+					String cName = request.getParameter("cName");
+					String addr = request.getParameter("addr");
+					String email = request.getParameter("email");
+					Long phone = Long.parseLong(request.getParameter("phone"));
+					String pwd = request.getParameter("pwd");
+					String uname = request.getParameter("uname");
+					String createdAt = helper.getDateTime().toString();
+					
+					String sql = "INSERT INTO auth(fname, lname, uname, pwd, email, mob, role, created_at, rc) VALUES (?,?,?,?,?,?,?,?,?)";
+					Connection con = null;
+					con = database.getConnection();
+					PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+					ps.setString(1, cName);
+					ps.setString(2, "");
+					ps.setString(3, uname);
+					ps.setString(4, pwd);
+					ps.setString(5, email);
+					ps.setLong(6, phone);
+					ps.setInt(7, 2);
+					ps.setString(8, createdAt);
+					ps.setString(9, "");
+					if(ps.executeUpdate() > 0) {
+					ResultSet rs = null;
+					rs = ps.getGeneratedKeys();
+					if(rs.next()) {
+						int authId = rs.getInt(1);
+						String sql2 = "INSERT INTO major_client(id, cname, addr, phone2, created_by) VALUES (?,?,?,?,?)";
+						PreparedStatement ps2 = con.prepareStatement(sql2);
+						ps2.setInt(1, authId);
+						ps2.setString(2, cName);
+						ps2.setString(3, addr);
+						ps2.setInt(4, 0);
+						ps2.setInt(5, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
+						if(ps2.executeUpdate() > 0) {
+							out.println("<h4 style='color:green'>Created Successfully</h4");
+						} else {
+							out.println("<h4 style='color:red'>Sorry! Unable to Create</h4");
 						}
-						%>
 						
-						
-					</table>
+					}
+					}
+					%>
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -134,28 +136,6 @@ try {
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

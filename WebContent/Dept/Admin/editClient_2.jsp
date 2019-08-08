@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
 <html lang="en">
 
 <head>
@@ -30,27 +28,7 @@
 </head>
 
 <body id="page-top">
-	<%
-int id = 0;
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-} catch(NumberFormatException ne) {
-	ne.printStackTrace();
-}
 
-if(id == 0) {
-	throw new Exception("Invalid Major Client");
-}
-
-String sql = "SELECT * FROM auth WHERE id=?";
-Connection con = null;
-con = database.getConnection();
-PreparedStatement ps = con.prepareStatement(sql);
-ps.setInt(1, id);
-ResultSet rs = null;
-rs = ps.executeQuery();
-
-%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -80,63 +58,49 @@ rs = ps.executeQuery();
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="col-sm-12">
-						<div class="text-center">
-							Edit Major Client <br /> <br />
-							<form action="editClient_2.jsp" method="post">
-								<%
-							if(rs.next()) {
-								
-								String sql2 = "SELECT * FROM major_client WHERE id="+rs.getInt(1);
-								Statement st = null;
-								ResultSet rs2 = null;
-								st = con.createStatement();
-								rs2 = st.executeQuery(sql2);
-								if(rs2.next()) {
-							%>
-								<table class="table table-hover table-sm">
-								<input type="hidden" name="id" value="<%=rs.getInt(1) %>" />
-									<tr>
-										<th>Major Client Name</th>
-										<td><input type="text" class="form-control" name="cName"
-											value="<%=rs2.getString(2) %>" /></td>
-									</tr>
-									<tr>
-										<th>Address</th>
-										<td><textarea class="form-control" name="addr"><%=rs2.getString(3) %></textarea>
-										</td>
-									</tr>
-									<tr>
-										<th>Email-id</th>
-										<td><input type="email" class="form-control" name="email"
-											value="<%=rs.getString(6) %>" /></td>
-									</tr>
-									<tr>
-										<th>Telephone No.</th>
-										<td><input type="number" class="form-control"
-											name="phone" value="<%=rs.getString(7) %>" /></td>
-									</tr>
-									<tr>
-										<th>Password</th>
-										<td><input type="password" class="form-control"
-											name="pwd" value="<%=rs.getString(5) %>" /></td>
-									</tr>
-									<tr>
-										<th>Confirm Password</th>
-										<td><input type="password" class="form-control"
-											name="cpwd" value="<%=rs.getString(5) %>" /></td>
-									</tr>
-								</table>
-								<%
-								}
-							}
-								%>
-								<button type="submit" class="btn btn-primary">
-									<span class="fa fa-pencil-alt"></span>&nbsp; Update Client
-								</button>
-								<br /> <br />
-							</form>
-						</div>
+					
+					<div class="text-center">
+						<%
+						int id = 0;
+						try {
+							id = Integer.parseInt(request.getParameter("id"));	
+						} catch(NumberFormatException ne) {
+							ne.printStackTrace();
+						}
+
+						if(id == 0) {
+							throw new Exception("Invalid Major Client");
+						}
+						
+						String cName = request.getParameter("cName");
+						String addr = request.getParameter("addr");
+						String email = request.getParameter("email");
+						Long phone = Long.parseLong(request.getParameter("phone")); 
+						String pwd = request.getParameter("pwd");
+						
+						String sql = "UPDATE auth SET pwd=?,email=?,mob=? WHERE id=?";
+						String sql2 = "UPDATE major_client SET cname=?, addr=? WHERE id=?";
+						Connection con = null;;
+						con = database.getConnection();
+						PreparedStatement ps = con.prepareStatement(sql);
+						ps.setString(1, pwd);
+						ps.setString(2, email);
+						ps.setLong(3, phone);
+						ps.setInt(4, id);
+						PreparedStatement ps2 = con.prepareStatement(sql2);
+						ps2.setString(1, cName);
+						ps2.setString(2, addr);
+						ps2.setInt(3, id);
+						if(ps.executeUpdate() > 0) {
+							if(ps2.executeUpdate() > 0) {
+								out.println("<h4 style='color:green'>Updated Successfully</h4>");	
+							} else {
+								out.println("<h4 style='color:red'>Sorry Partially Updated</h4>");	
+							}							
+						} else {
+							out.println("<h4 style='color:red'>Sorry Unable to Update</h4>");
+						}
+						%>
 					</div>
 
 				</div>

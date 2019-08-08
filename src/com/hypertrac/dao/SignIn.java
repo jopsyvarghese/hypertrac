@@ -30,9 +30,11 @@ public class SignIn extends HttpServlet {
 	public static final String DEFAULT_ENCODING = "UTF-8";
 	static BASE64Encoder enc = new BASE64Encoder();
 	/**
-     * @see HttpServlet#HttpServlet()
+     * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @see HttpServlet#HttpServlet()
      */
-    public SignIn() {
+    public SignIn() throws ClassNotFoundException, SQLException {
         super();
         helper = new Helper();
     }
@@ -55,7 +57,15 @@ public class SignIn extends HttpServlet {
 		}
 		Connection con = null;
 		ResultSet rs = null;
-		con = com.hypertrac.dao.database.getConnection();
+		try {
+			con = com.hypertrac.dao.database.getConnection();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ?");
 			ps.setString(1, username);

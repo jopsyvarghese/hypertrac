@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
 <html lang="en">
@@ -14,8 +14,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -30,25 +29,21 @@
 </head>
 
 <body id="page-top">
-	<%
-int id = 0;
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-} catch(NumberFormatException ne) {
-	ne.printStackTrace();
+<%
+int myId = 0;
+myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+if(!(myId > 0)) {
+	throw new Exception("You are not logged In");
 }
 
-if(id == 0) {
-	throw new Exception("Invalid Major Client");
-}
-
-String sql = "SELECT * FROM auth WHERE id=?";
+Helper helper = new Helper();
+String sql = "SELECT * FROM dept WHERE mc_id="+myId;
 Connection con = null;
 con = database.getConnection();
-PreparedStatement ps = con.prepareStatement(sql);
-ps.setInt(1, id);
+Statement st = null;
+st = con.createStatement();
 ResultSet rs = null;
-rs = ps.executeQuery();
+rs = st.executeQuery(sql);
 
 %>
 	<!-- Page Wrapper -->
@@ -80,65 +75,48 @@ rs = ps.executeQuery();
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="col-sm-12">
-						<div class="text-center">
-							Edit Major Client <br /> <br />
-							<form action="editClient_2.jsp" method="post">
-								<%
-							if(rs.next()) {
-								
-								String sql2 = "SELECT * FROM major_client WHERE id="+rs.getInt(1);
-								Statement st = null;
-								ResultSet rs2 = null;
-								st = con.createStatement();
-								rs2 = st.executeQuery(sql2);
-								if(rs2.next()) {
-							%>
-								<table class="table table-hover table-sm">
-								<input type="hidden" name="id" value="<%=rs.getInt(1) %>" />
-									<tr>
-										<th>Major Client Name</th>
-										<td><input type="text" class="form-control" name="cName"
-											value="<%=rs2.getString(2) %>" /></td>
-									</tr>
-									<tr>
-										<th>Address</th>
-										<td><textarea class="form-control" name="addr"><%=rs2.getString(3) %></textarea>
-										</td>
-									</tr>
-									<tr>
-										<th>Email-id</th>
-										<td><input type="email" class="form-control" name="email"
-											value="<%=rs.getString(6) %>" /></td>
-									</tr>
-									<tr>
-										<th>Telephone No.</th>
-										<td><input type="number" class="form-control"
-											name="phone" value="<%=rs.getString(7) %>" /></td>
-									</tr>
-									<tr>
-										<th>Password</th>
-										<td><input type="password" class="form-control"
-											name="pwd" value="<%=rs.getString(5) %>" /></td>
-									</tr>
-									<tr>
-										<th>Confirm Password</th>
-										<td><input type="password" class="form-control"
-											name="cpwd" value="<%=rs.getString(5) %>" /></td>
-									</tr>
-								</table>
-								<%
-								}
-							}
-								%>
-								<button type="submit" class="btn btn-primary">
-									<span class="fa fa-pencil-alt"></span>&nbsp; Update Client
-								</button>
-								<br /> <br />
-							</form>
-						</div>
-					</div>
 
+					<!-- Content Row -->
+					<div class="row">
+
+						<!-- Content Column -->
+						<div class="col-sm-12">
+						<div class="text-center">Departments</div>
+						<a href="addDept.jsp" class="btn btn-primary"> <span
+							class="fa fa-plus-circle"></span> Add Department
+						</a> <br />
+						<br />
+						<table class="table table-hover table-responsive-lg">
+							<tr class="table-warning">
+								<th>Sl.No</th>
+								<th>Dept. Head</th>
+								<th>Dept. Name</th>
+								<th>Operations</th>
+							</tr>
+							<%
+							int i=1;
+							while(rs.next()) {
+							%>
+							<tr>
+								<td><%=i %></td>
+								<td><%=rs.getString(4) %></td>
+								<td><%=rs.getString(2) %></td>
+								<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>" class="btn btn-primary btn-sm">
+										<span class="fa fa-pencil-alt"></span>
+								</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-danger btn-sm" onclick="return confirmDel();">
+										<span class="fa fa-trash-alt"></span>
+								</a></td>
+							</tr>
+							<%
+							i++;
+							}
+							%>
+							
+						</table>
+					</div>
+					</div>
+					
 				</div>
 				<!-- /.container-fluid -->
 
@@ -183,7 +161,7 @@ rs = ps.executeQuery();
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
+					<a class="btn btn-primary" href="../login.html">Logout</a>
 				</div>
 			</div>
 		</div>

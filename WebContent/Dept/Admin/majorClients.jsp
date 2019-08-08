@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -25,7 +29,15 @@
 </head>
 
 <body id="page-top">
-
+<%
+String sql = "SELECT * FROM auth WHERE role=2";
+Connection con = null;
+Statement st = null;
+ResultSet rs = null;
+con = database.getConnection();
+st = con.createStatement();
+String email = "";
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -72,45 +84,35 @@
 								<th>Phone</th>
 								<th>Operations</th>
 							</tr>
+							<%
+							int i = 1;
+							rs = st.executeQuery(sql);
+							
+							while(rs.next()) {
+								String sql2 = "SELECT * FROM major_client WHERE id="+rs.getInt(1);
+								email = rs.getString(6);
+								Statement st2 = con.createStatement();
+								ResultSet rs2 = st2.executeQuery(sql2);
+								if(rs2.next()) {
+							%>
+							
 							<tr>
-								<td>1</td>
-								<td>Client 1</td>
-								<td>Address 1</td>
-								<td>test@gmail.com</td>
-								<td>9876543211</td>
-								<td><a href="editClient.jsp" class="btn btn-primary btn-sm">
+								<td><%=i %></td>
+								<td><%=rs2.getString(2) %></td>
+								<td><%=rs2.getString(2) %></td>
+								<td><%=email %></td>
+								<td><%=rs2.getString(4) %></td>
+								<td><a href="editClient.jsp?id=<%=rs.getInt(1) %>" class="btn btn-primary btn-sm">
 										<span class="fa fa-pencil-alt"></span>
-								</a> &nbsp;&nbsp; <a href="deleteClient.jsp"
+								</a> &nbsp;&nbsp; <a href="deleteClient.jsp?id=<%=rs.getInt(1) %>"
 									class="btn btn-danger btn-sm" onclick="return confirmDel();">
 										<span class="fa fa-trash-alt"></span>
 								</a></td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>Client 2</td>
-								<td>Address 2</td>
-								<td>test2@gmail.com</td>
-								<td>9876543210</td>
-								<td><a href="editClient.jsp" class="btn btn-primary btn-sm">
-										<span class="fa fa-pencil-alt"></span>
-								</a> &nbsp;&nbsp; <a href="deleteClient.jsp"
-									class="btn btn-danger btn-sm" onclick="return confirmDel();">
-										<span class="fa fa-trash-alt"></span>
-								</a></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Client 3</td>
-								<td>Address 3</td>
-								<td>test3@gmail.com</td>
-								<td>9876543219</td>
-								<td><a href="editClient.jsp" class="btn btn-primary btn-sm">
-										<span class="fa fa-pencil-alt"></span>
-								</a> &nbsp;&nbsp; <a href="deleteClient.jsp"
-									class="btn btn-danger btn-sm" onclick="return confirmDel();">
-										<span class="fa fa-trash-alt"></span>
-								</a></td>
-							</tr>
+							<%
+								}
+							}
+							%>
 						</table>
 					</div>
 				</div>

@@ -23,9 +23,11 @@ public class SignUp extends HttpServlet {
 	private Helper helper;
 
 	/**
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SignUp() {
+	public SignUp() throws ClassNotFoundException, SQLException {
 		super();
 		helper = new Helper();
 	}
@@ -46,7 +48,15 @@ public class SignUp extends HttpServlet {
 //		String pwd = helper.getHashedPwd(pwd);
 		String rc = request.getParameter("rc");
 		Connection con = null;
-		con = com.hypertrac.dao.database.getConnection();
+		try {
+			con = com.hypertrac.dao.database.getConnection();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String currentTime = helper.getDateTime();
 
 		PreparedStatement ps;

@@ -80,6 +80,11 @@
 											name="phone" /></td>
 									</tr>
 									<tr>
+										<th>Username</th>
+										<td><input type="text" class="form-control" name="uname" />
+										</td>
+									</tr>
+									<tr>
 										<th>Password</th>
 										<td><input type="password" class="form-control"
 											name="pwd" /></td>

@@ -28,13 +28,6 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="dept.jsp">
-                <i class="fas fa-newspaper"></i>
-                <span>Departments</span>
-            </a>
-        </li>
-
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="applications.jsp">

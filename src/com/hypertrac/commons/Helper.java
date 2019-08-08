@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Helper {
 	Connection con;
-	public Helper() {
+	public Helper() throws ClassNotFoundException, SQLException {
 		con = com.hypertrac.dao.database.getConnection();
 	}
 
@@ -85,6 +85,25 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		if(rs.next()) {
 			return rs.getString(2);
+		}
+		return "";
+	}
+	
+	public String getMajorClientByDeptId(int id) throws SQLException {
+		String arr[] = {};
+		String sql = "SELECT * FROM dept WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			int mId =  Integer.parseInt(rs.getString(3));
+			String sql2 = "SELECT cname FROM major_client WHERE id="+mId;
+			Statement st2 = con.createStatement();
+			ResultSet rs2 = null;
+			rs2 = st2.executeQuery(sql2);
+			if(rs2.next()) {
+				return rs2.getString(1);
+			}
 		}
 		return "";
 	}
