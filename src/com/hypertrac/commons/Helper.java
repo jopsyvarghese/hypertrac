@@ -152,12 +152,23 @@ public class Helper {
 	}
 
 	public String getNameById(int id) throws SQLException {
-		String sql = "SELECT * FROM auth WHERE id="+id;
+		String sql = "SELECT fname,lname FROM auth WHERE id="+id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
 		if (rs.next()) {
-			return rs.getString(2) + " " + rs.getString(3);
+			return rs.getString(1) + " " + rs.getString(2);
+		}
+		return "";
+	}
+	
+	public String getFirstNameById(int id) throws SQLException {
+		String sql = "SELECT fname FROM auth WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getString(1);
 		}
 		return "";
 	}
@@ -283,5 +294,13 @@ public class Helper {
 		arr[4] = "Completed";
 		return arr;
 	}
-
+	
+	public ResultSet getStaffNameByDeptId(int id) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		String sql = "SELECT id,fname,lname FROM auth WHERE id=(SELECT id FROM staff WHERE dept=" + id+");";
+		rs = st.executeQuery(sql);
+		return rs;
+	}
 }

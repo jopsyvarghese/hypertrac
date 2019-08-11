@@ -53,7 +53,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="staffChat.jsp">
+            <a class="nav-link" href="userChat.jsp">
                 <i class="fas fa-fw fa-history"></i>
                 <span>Chat With Customer Staff</span></a>
         </li>

@@ -30,8 +30,7 @@ public class SignIn extends HttpServlet {
 	public static final String DEFAULT_ENCODING = "UTF-8";
 	static BASE64Encoder enc = new BASE64Encoder();
 	/**
-     * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * 
 	 * @see HttpServlet#HttpServlet()
      */
     public SignIn() throws ClassNotFoundException, SQLException {
