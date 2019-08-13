@@ -81,12 +81,14 @@ Header
 						<input type="hidden" name="role" value="0/">
 						<table>
 							<tr>
-								<td>First Name</td>
+								<td>(Company/Individual) Name</td>
 								<td><input type="text" name="fname" class="form-control" required></td>
 							</tr>
 							<tr>
-								<td>Last Name</td>
-								<td><input type="text" name="lname" class="form-control" required></td>
+								<td>Address</td>
+								<td>
+									<textarea name="addr" class="form-control" required></textarea>
+								</td>
 							</tr>
 							<tr>
 								<td>Username</td>

@@ -72,31 +72,24 @@
 							throw new Exception("Invalid Major Client");
 						}
 						
-						String cName = request.getParameter("cName");
+						String fName = request.getParameter("fName");
 						String addr = request.getParameter("addr");
 						String email = request.getParameter("email");
 						Long phone = Long.parseLong(request.getParameter("phone")); 
 						String pwd = request.getParameter("pwd");
 						
-						String sql = "UPDATE auth SET pwd=?,email=?,mob=? WHERE id=?";
-						String sql2 = "UPDATE major_client SET cname=?, addr=? WHERE id=?";
-						Connection con = null;;
+						String sql = "UPDATE auth SET pwd=?,email=?,mob=?, fname=?, addr=? WHERE id=?";
+						Connection con = null;
 						con = database.getConnection();
 						PreparedStatement ps = con.prepareStatement(sql);
 						ps.setString(1, pwd);
 						ps.setString(2, email);
 						ps.setLong(3, phone);
-						ps.setInt(4, id);
-						PreparedStatement ps2 = con.prepareStatement(sql2);
-						ps2.setString(1, cName);
-						ps2.setString(2, addr);
-						ps2.setInt(3, id);
+						ps.setString(4, fName);
+                        ps.setString(5, addr);
+						ps.setInt(6, id);
 						if(ps.executeUpdate() > 0) {
-							if(ps2.executeUpdate() > 0) {
-								out.println("<h4 style='color:green'>Updated Successfully</h4>");	
-							} else {
-								out.println("<h4 style='color:red'>Sorry Partially Updated</h4>");	
-							}							
+							out.println("<h4 style='color:green'>Updated Successfully</h4>");
 						} else {
 							out.println("<h4 style='color:red'>Sorry Unable to Update</h4>");
 						}

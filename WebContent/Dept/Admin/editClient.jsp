@@ -31,26 +31,25 @@
 
 <body id="page-top">
 	<%
-int id = 0;
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-} catch(NumberFormatException ne) {
-	ne.printStackTrace();
-}
+		int id = 0;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException ne) {
+			ne.printStackTrace();
+		}
 
-if(id == 0) {
-	throw new Exception("Invalid Major Client");
-}
+		if (id == 0) {
+			throw new Exception("Invalid Major Client");
+		}
 
-String sql = "SELECT * FROM auth WHERE id=?";
-Connection con = null;
-con = database.getConnection();
-PreparedStatement ps = con.prepareStatement(sql);
-ps.setInt(1, id);
-ResultSet rs = null;
-rs = ps.executeQuery();
-
-%>
+		String sql = "SELECT * FROM auth WHERE id=?";
+		Connection con = null;
+		con = database.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs = null;
+		rs = ps.executeQuery();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -85,51 +84,43 @@ rs = ps.executeQuery();
 							Edit Major Client <br /> <br />
 							<form action="editClient_2.jsp" method="post">
 								<%
-							if(rs.next()) {
-								
-								String sql2 = "SELECT * FROM major_client WHERE id="+rs.getInt(1);
-								Statement st = null;
-								ResultSet rs2 = null;
-								st = con.createStatement();
-								rs2 = st.executeQuery(sql2);
-								if(rs2.next()) {
-							%>
+									if (rs.next()) {
+								%>
 								<table class="table table-hover table-sm">
-								<input type="hidden" name="id" value="<%=rs.getInt(1) %>" />
+									<input type="hidden" name="id" value="<%=rs.getInt(1)%>" />
 									<tr>
 										<th>Major Client Name</th>
-										<td><input type="text" class="form-control" name="cName"
-											value="<%=rs2.getString(2) %>" /></td>
+										<td><input type="text" class="form-control" name="fName"
+											value="<%=rs.getString(2)%>" /></td>
 									</tr>
 									<tr>
 										<th>Address</th>
-										<td><textarea class="form-control" name="addr"><%=rs2.getString(3) %></textarea>
+										<td><textarea class="form-control" name="addr"><%=rs.getString(3)%></textarea>
 										</td>
 									</tr>
 									<tr>
 										<th>Email-id</th>
 										<td><input type="email" class="form-control" name="email"
-											value="<%=rs.getString(6) %>" /></td>
+											value="<%=rs.getString(6)%>" /></td>
 									</tr>
 									<tr>
 										<th>Telephone No.</th>
 										<td><input type="number" class="form-control"
-											name="phone" value="<%=rs.getString(7) %>" /></td>
+											name="phone" value="<%=rs.getString(7)%>" /></td>
 									</tr>
 									<tr>
 										<th>Password</th>
 										<td><input type="password" class="form-control"
-											name="pwd" value="<%=rs.getString(5) %>" /></td>
+											name="pwd" value="<%=rs.getString(5)%>" /></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" class="form-control"
-											name="cpwd" value="<%=rs.getString(5) %>" /></td>
+											name="cpwd" value="<%=rs.getString(5)%>" /></td>
 									</tr>
 								</table>
 								<%
-								}
-							}
+									}
 								%>
 								<button type="submit" class="btn btn-primary">
 									<span class="fa fa-pencil-alt"></span>&nbsp; Update Client

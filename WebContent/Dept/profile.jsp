@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -21,7 +23,12 @@
 </head>
 
 <body id="page-top">
+<%
+Connection con = database.getConnection();
+int myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+String sql = "SELECT ";
 
+%>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -83,24 +90,27 @@
         		<form action="updateProfile.jsp" method="post">
         			<table>
         				<tr>
-        					<td>Test</td>
-        					<td></td>
+        					<td>Company Name</td>
+        					<td><input type="text" name="cname" value="<% %>" class="form-control"/></td>
         				</tr>
         				<tr>
-        					<td></td>
-        					<td></td>
+        					<td>Company Address</td>
+        					<td>
+        						<textarea name="addr" class="form-control"><% %></textarea>
+        					</td>
         				</tr>
         				<tr>
-        					<td></td>
-        					<td></td>
+        					<td>Telephone No.</td>
+        					<td><input type="text" name="phone" value="<% %>" class="form-control"/></td>
         				</tr>
         				<tr>
-        					<td></td>
-        					<td></td>
+        					<td>Email</td>
+        					<td><input type="email" name="email" value="<% %>" class="form-control"/></td>
         				</tr>
         				<tr>
-        					<td></td>
-        					<td></td>
+        					<td colspan="2">
+        						<input type="submit" class="btn btn-primary" />
+        					</td>
         				</tr>
         			</table>
         		</form>        		

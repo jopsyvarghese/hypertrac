@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +42,7 @@ public class SignUp extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
+		String addr = request.getParameter("addr");
 		String email = request.getParameter("email");
 		Long mob = Long.parseLong(request.getParameter("mob"));
 		String uname = request.getParameter("uname");
@@ -62,9 +64,9 @@ public class SignUp extends HttpServlet {
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(
-					"INSERT INTO auth(fname, lname, uname, pwd, email, mob, role, created_at, rc) VALUES(?,?,?,?,?,?,?,?,?)");
+					"INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, fname);
-			ps.setString(2, lname);
+			ps.setString(2, addr);
 			ps.setString(3, uname);
 			ps.setString(4, pwd);
 			ps.setString(5, email);
@@ -72,6 +74,8 @@ public class SignUp extends HttpServlet {
 			ps.setInt(7, 0);
 			ps.setString(8, currentTime);
 			ps.setString(9, rc);
+			ps.setInt(10, 0);
+            ps.setInt(11, 0);
 			int i = ps.executeUpdate();
 			RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
 			request.setAttribute("status",

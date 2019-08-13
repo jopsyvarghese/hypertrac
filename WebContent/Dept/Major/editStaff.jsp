@@ -133,14 +133,9 @@
 									%>
 									<input type="hidden" name="id" value="<%=id%>"/>
 									<tr>
-										<th>First Name</th>
+										<th>Name</th>
 										<td><input type="text" name="firstName"
 											class="form-control" value="<%=rs.getString(2) %>" /></td>
-									</tr>
-									<tr>
-										<th>Last Name</th>
-										<td><input type="text" name="lastName"
-											class="form-control" value="<%=rs.getString(3) %>" /></td>
 									</tr>
 									<tr>
 										<th>User Name</th>
@@ -206,9 +201,9 @@
 											<option value="0">Select Position</option>
 										<%
 										while(rs4.next()) {
-											String selected = "selected='selected'";
+											String selected = "";
 											if(rs4.getInt(1) == rs2.getInt(3)) {
-												
+												selected = "selected='selected'";
 											}
 										%>
 											<option value="<%=rs4.getInt(1) %>" <% out.print(selected); %> ><%=rs4.getString(2) %></option>

@@ -94,11 +94,11 @@ try {
 						String pwd =  request.getParameter("pwd");					
 						con = database.getConnection();
 						
-						String sql = "INSERT INTO auth(fname, lname, uname, pwd, email, mob, role, created_at, rc)" +
-						"VALUES(?,?,?,?,?,?,?,?,?)";
+						String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by)" +
+						"VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 						PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 						ps.setString(1, firstname);
-						ps.setString(2, lastname);
+						ps.setString(2, "");
 						ps.setString(3, username);
 						ps.setString(4, pwd);
 						ps.setString(5, email);
@@ -106,6 +106,8 @@ try {
 						ps.setInt(7, 1);
 						ps.setString(8, helper.getDateTime());
 						ps.setInt(9, 0);
+						ps.setInt(10, 0);
+						ps.setInt(11, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
 						if (ps.executeUpdate() > 0) {
 							rs = ps.getGeneratedKeys();
 							if (rs.next()) {

@@ -70,7 +70,6 @@
 
 									int id = Integer.parseInt(request.getParameter("id"));
 									String firstName = request.getParameter("firstName");
-									String lastName = request.getParameter("lastName");
 									String userName = request.getParameter("userName");
 									String email = request.getParameter("email");
 									Long phone = Long.parseLong(request.getParameter("phone"));
@@ -79,16 +78,15 @@
 									int dept = Integer.parseInt(request.getParameter("dept"));
 									int position = Integer.parseInt(request.getParameter("position"));
 
-									String sql = "UPDATE auth SET fname=?,lname=?,uname=?,pwd=?,email=?,mob=? WHERE id=?";
+									String sql = "UPDATE auth SET fname=?,uname=?,pwd=?,email=?,mob=? WHERE id=?";
 									Connection con = database.getConnection();
 									PreparedStatement ps = con.prepareStatement(sql);
 									ps.setString(1, firstName);
-									ps.setString(2, lastName);
-									ps.setString(3, userName);
-									ps.setString(4, pwd);
-									ps.setString(5, email);
-									ps.setLong(6, phone);
-									ps.setInt(7, id);
+									ps.setString(2, userName);
+									ps.setString(3, pwd);
+									ps.setString(4, email);
+									ps.setLong(5, phone);
+									ps.setInt(6, id);
 									if (ps.executeUpdate() > 0) {
 										String sql2 = "UPDATE staff SET dept=?, position=? WHERE id=?";
 										PreparedStatement ps2 = con.prepareStatement(sql2);

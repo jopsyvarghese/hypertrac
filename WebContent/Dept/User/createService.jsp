@@ -68,98 +68,98 @@
 						<br /> <br />
 						<%
 							int maxFileSize = 50 * 1024;
-											int i = 0;
-																Helper help = new Helper();
-																boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-																if (!isMultipart) {
-																} else {
-															String contractorName = "";
-															String rc = "";
-															String addr = "";
-															String phone = "";
-															String phone2 = "";
-															String email = "";
-															String website = "";
-															int buzzType = 0;
-															String docName = "";
-															int majorClient = 0;
-															int subDept = 0;
-															FileItemFactory factory = new DiskFileItemFactory();
-															ServletFileUpload upload = new ServletFileUpload(factory);
-															String[] savedFileName = new String[10];
-															int lastInsertedId = 0;
-															List items = null;
-															try {
-																items = upload.parseRequest(request);
-															} catch (FileUploadException e) {
-																e.printStackTrace();
-															}
-															Iterator itr = items.iterator();
-															while (itr.hasNext()) {
-																FileItem item = (FileItem) itr.next();
-																if (item.isFormField()) {
-																	
-																	//Form Fields are Here
-																    switch(item.getFieldName()) {
-																    case "contractorName" : 
-																    	contractorName = item.getString();
-																    	break;
-																    case "rc" :
-																    	rc = item.getString();
-																    	break;
-																    case "addr":
-																    	addr = item.getString();
-																    	break;
-																    case "phone":
-																    	phone = item.getString();
-																    	break;
-																    case "phone2":
-																    	phone2 = item.getString();
-																    	break;
-																    case "email":
-																    	email = item.getString();
-																    	break;
-																    case "website":
-																    	website = item.getString();
-																    	break;
-																    case "buzzType":
-																    	buzzType = Integer.parseInt(item.getString());
-																    	break;
-																    case "docName":
-																    	docName = item.getString();
-																    	break;
-																    case "majorClient":
-																    	majorClient = Integer.parseInt(item.getString());
-																    	break;
-																    case "subDept":
-																    	subDept = Integer.parseInt(item.getString());
-																    	break;
-																    default:
-																    	break;
-																    }
-																} else {
-																	//File Uploads Here
-																	try {
-																		String itemName = item.getName();
-																		File uploads = new File(getServletContext().getInitParameter("file-upload"));
-																		
-																		/* String relativePath = "../images/service/";
-																		String realPath = getServletContext().getRealPath(relativePath);
-																		File destinationDir = new File(realPath);
-																		if(!destinationDir.exists()) {
-																			destinationDir.mkdir();
-																		} */
-																		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-																		File savedFile = new File(uploads, ""+timestamp.getTime()+itemName);
-																		//File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
-																			try {
-																				long sizeInBytes = item.getSize();
-																				
-																				if(sizeInBytes <= maxFileSize) {
-																					item.write(savedFile);
-																				} else {
-																					continue;
-																				}
+							int i = 0;
+							Helper help = new Helper();
+							boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+							if (!isMultipart) {
+							} else {
+								String contractorName = "";
+								String rc = "";
+								String addr = "";
+								String phone = "";
+								String phone2 = "";
+								String email = "";
+								String website = "";
+								int buzzType = 0;
+								String docName = "";
+								int majorClient = 0;
+								int subDept = 0;
+								FileItemFactory factory = new DiskFileItemFactory();
+								ServletFileUpload upload = new ServletFileUpload(factory);
+								String[] savedFileName = new String[10];
+								int lastInsertedId = 0;
+								List items = null;
+								try {
+									items = upload.parseRequest(request);
+								} catch (FileUploadException e) {
+									e.printStackTrace();
+								}
+								Iterator itr = items.iterator();
+								while (itr.hasNext()) {
+									FileItem item = (FileItem) itr.next();
+									if (item.isFormField()) {
+
+										//Form Fields are Here
+										switch (item.getFieldName()) {
+											case "contractorName" :
+												contractorName = item.getString();
+												break;
+											case "rc" :
+												rc = item.getString();
+												break;
+											case "addr" :
+												addr = item.getString();
+												break;
+											case "phone" :
+												phone = item.getString();
+												break;
+											case "phone2" :
+												phone2 = item.getString();
+												break;
+											case "email" :
+												email = item.getString();
+												break;
+											case "website" :
+												website = item.getString();
+												break;
+											case "buzzType" :
+												buzzType = Integer.parseInt(item.getString());
+												break;
+											case "docName" :
+												docName = item.getString();
+												break;
+											case "majorClient" :
+												majorClient = Integer.parseInt(item.getString());
+												break;
+											case "subDept" :
+												subDept = Integer.parseInt(item.getString());
+												break;
+											default :
+												break;
+										}
+									} else {
+										//File Uploads Here
+										try {
+											String itemName = item.getName();
+											File uploads = new File(getServletContext().getInitParameter("file-upload"));
+
+											/* String relativePath = "../images/service/";
+											String realPath = getServletContext().getRealPath(relativePath);
+											File destinationDir = new File(realPath);
+											if(!destinationDir.exists()) {
+												destinationDir.mkdir();
+											} */
+											Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+											File savedFile = new File(uploads, "" + timestamp.getTime() + itemName);
+											//File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
+											try {
+												long sizeInBytes = item.getSize();
+
+												if (sizeInBytes <= maxFileSize) {
+													item.write(savedFile);
+												} else {
+													continue;
+												}
 											} catch (SecurityException se) {
 												se.printStackTrace();
 											} catch (FileNotFoundException fne) {

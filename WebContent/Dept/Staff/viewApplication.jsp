@@ -134,7 +134,7 @@
 								</tr>
 								<tr>
 									<th>Name of Major Client(s)</th>
-									<td><%=helper.getMajorClient(rs1.getInt(11))%></td>
+									<td><%=helper.getNameById(rs1.getInt(11))%></td>
 								</tr>
 								<tr>
 									<th>Sub-Department</th>

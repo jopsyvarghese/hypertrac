@@ -31,7 +31,7 @@
 
 <body id="page-top">
 	<%
-		String sql = "SELECT id, cname FROM major_client";
+		String sql = "SELECT id, fname FROM auth WHERE role=2";
 		Connection con = database.getConnection();
 		Statement st = null;
 		st = con.createStatement();

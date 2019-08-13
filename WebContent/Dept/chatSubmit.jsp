@@ -24,6 +24,7 @@
 		} else {
 			response.sendRedirect("chatRoom.jsp?status=failed");
 		}
+		con.close();
 	}
 	%>
 </body>

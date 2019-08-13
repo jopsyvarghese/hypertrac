@@ -59,12 +59,12 @@ public class Helper {
 	}
 
 	public String getMajorClient(int id) throws SQLException {
-		String sql = "SELECT * FROM major_client WHERE id="+id;
+		String sql = "SELECT fname FROM auth WHERE id="+id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
 		if (rs.next()) {
-			return rs.getString(2);
+			return rs.getString(1);
 		}
 		return "";
 	}
@@ -97,7 +97,7 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		if(rs.next()) {
 			int mId =  Integer.parseInt(rs.getString(3));
-			String sql2 = "SELECT cname FROM major_client WHERE id="+mId;
+			String sql2 = "SELECT fname FROM auth WHERE id="+mId;
 			Statement st2 = con.createStatement();
 			ResultSet rs2 = null;
 			rs2 = st2.executeQuery(sql2);
@@ -152,12 +152,12 @@ public class Helper {
 	}
 
 	public String getNameById(int id) throws SQLException {
-		String sql = "SELECT fname,lname FROM auth WHERE id="+id;
+		String sql = "SELECT fname FROM auth WHERE id="+id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
 		if (rs.next()) {
-			return rs.getString(1) + " " + rs.getString(2);
+			return rs.getString(1);
 		}
 		return "";
 	}
@@ -254,7 +254,7 @@ public class Helper {
 	}
 
 	public ResultSet getMajorClients() throws SQLException {
-		String sql = "SELECT id,cname FROM major_client";
+		String sql = "SELECT id,fname FROM auth WHERE role=2";
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -262,7 +262,7 @@ public class Helper {
 	}
 
 	public ResultSet getSubDept() throws SQLException {
-		String sql = "SELECT id,cname FROM major_client";
+		String sql = "SELECT id,fname FROM auth WHERE id=2";
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -299,7 +299,7 @@ public class Helper {
 	{
 		Statement st = con.createStatement();
 		ResultSet rs = null;
-		String sql = "SELECT id,fname,lname FROM auth WHERE id=(SELECT id FROM staff WHERE dept=" + id+");";
+		String sql = "SELECT id,fname FROM auth WHERE id=(SELECT id FROM staff WHERE dept=" + id+");";
 		rs = st.executeQuery(sql);
 		return rs;
 	}

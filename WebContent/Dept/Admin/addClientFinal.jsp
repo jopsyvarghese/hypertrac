@@ -64,49 +64,44 @@
 
 					<div class="text-center">
 						<%
-					Helper helper = new Helper();
-					String cName = request.getParameter("cName");
-					String addr = request.getParameter("addr");
-					String email = request.getParameter("email");
-					Long phone = Long.parseLong(request.getParameter("phone"));
-					String pwd = request.getParameter("pwd");
-					String uname = request.getParameter("uname");
-					String createdAt = helper.getDateTime().toString();
-					
-					String sql = "INSERT INTO auth(fname, lname, uname, pwd, email, mob, role, created_at, rc) VALUES (?,?,?,?,?,?,?,?,?)";
-					Connection con = null;
-					con = database.getConnection();
-					PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-					ps.setString(1, cName);
-					ps.setString(2, "");
-					ps.setString(3, uname);
-					ps.setString(4, pwd);
-					ps.setString(5, email);
-					ps.setLong(6, phone);
-					ps.setInt(7, 2);
-					ps.setString(8, createdAt);
-					ps.setString(9, "");
-					if(ps.executeUpdate() > 0) {
-					ResultSet rs = null;
-					rs = ps.getGeneratedKeys();
-					if(rs.next()) {
-						int authId = rs.getInt(1);
-						String sql2 = "INSERT INTO major_client(id, cname, addr, phone2, created_by) VALUES (?,?,?,?,?)";
-						PreparedStatement ps2 = con.prepareStatement(sql2);
-						ps2.setInt(1, authId);
-						ps2.setString(2, cName);
-						ps2.setString(3, addr);
-						ps2.setInt(4, 0);
-						ps2.setInt(5, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
-						if(ps2.executeUpdate() > 0) {
-							out.println("<h4 style='color:green'>Created Successfully</h4");
-						} else {
-							out.println("<h4 style='color:red'>Sorry! Unable to Create</h4");
-						}
-						
-					}
-					}
-					%>
+							Helper helper = new Helper();
+							String cName = request.getParameter("cName");
+							String addr = request.getParameter("addr");
+							String email = request.getParameter("email");
+							Long phone = Long.parseLong(request.getParameter("phone"));
+							String pwd = request.getParameter("pwd");
+							String uname = request.getParameter("uname");
+							String createdAt = helper.getDateTime().toString();
+
+							String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+							Connection con = null;
+							con = database.getConnection();
+							PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+							ps.setString(1, cName);
+							ps.setString(2, "");
+							ps.setString(3, uname);
+							ps.setString(4, pwd);
+							ps.setString(5, email);
+							ps.setLong(6, phone);
+							ps.setInt(7, 2);
+							ps.setString(8, createdAt);
+							ps.setString(9, "");
+							ps.setInt(10, 0);
+							ps.setInt(11, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
+							if (ps.executeUpdate() > 0) {
+								ResultSet rs = null;
+								rs = ps.getGeneratedKeys();
+								if (rs.next()) {
+									int authId = rs.getInt(1);
+									if (authId > 0) {
+										out.println("<h4 style='color:green'>Created Successfully</h4");
+									} else {
+										out.println("<h4 style='color:red'>Sorry! Unable to Create</h4");
+									}
+								}
+							}
+							con.close();
+						%>
 					</div>
 
 				</div>
