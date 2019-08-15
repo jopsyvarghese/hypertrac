@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2019 at 06:30 PM
+-- Generation Time: Aug 15, 2019 at 07:10 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.1.25
 
@@ -230,9 +230,9 @@ CREATE TABLE `auth` (
 
 INSERT INTO `auth` (`id`, `fname`, `addr`, `uname`, `pwd`, `email`, `mob`, `role`, `created_at`, `rc`, `mob2`, `created_by`, `pwd_reset`, `reset_hash`) VALUES
 (1, 'jopsy', 'ABC Street, PSR Nagar, UT - 23389', 'jopsy', '79967c73489f12ebd4295049fa22eb89e4fdbb2e3f97da6747969df54b4d59cbdf0c7f5f2b33ef9c23ddfdc5aa2a6013b04abd3ac1e2fedc6c04fa289ded2dab', 'jopsyvarghese2@gmail.com', 7411395002, 1, '2019-06-26 18:21:51', '234100', 0, 0, 0, ''),
-(2, 'jomit', 'Personal', 'jomit', 'Jomit@123', 'jomitjose9020@gmail.com', 7411180882, 0, '2019-06-26 18:45:10', '253585', 0, 0, 0, ''),
-(3, 'Jabir', 'Loby#23, Back Street Boys Road, BBP', 'Jabir', '1f71d9321dd22607901162989db685958781906c28c5d2480022ae29a56e0e19d10058cefa52cedc585a040107394961f0f132ed8ff1d96cc239ef829d092e51', 'jopsyvarghese@gmail.com', 9995559992, 2, '2019-06-26 18:54:05', '982222', 0, 0, 0, ''),
-(4, 'Hypertrac Limited', 'I don\'t need to update my address', 'admin', '6a8eabb9447e2fd817035c282e2275d4fa21f91409dd4726eb071d35e645418192feb3b5f0c60ff836345481bcf3739e3c728e91bd97aa191f92c148be4becae', 'jopsyvarghese1@gmail.com', 9965656565, 3, '2019-06-26 19:31:48', '56DC58', 0, 0, 0, ''),
+(2, 'jomit', 'Personal', 'jomit', '835b3ebafad84afcc1c2e73f9425e3361df1b83683a79f755deb5698ec63cb0078ccb1f9e1bf5607f39e20eea2208ecf150354483b0cb5146fb9700b7876388e', 'jopsyvarghese@gmail.com', 7411180882, 0, '2019-06-26 18:45:10', '253585', 0, 0, 0, ''),
+(3, 'Jabir', 'Loby#23, Back Street Boys Road, BBP', 'Jabir', '1f71d9321dd22607901162989db685958781906c28c5d2480022ae29a56e0e19d10058cefa52cedc585a040107394961f0f132ed8ff1d96cc239ef829d092e51', 'jopsyvarghese23@gmail.com', 9995559992, 2, '2019-06-26 18:54:05', '982222', 0, 0, 0, ''),
+(4, 'Hypertrac Limited', 'I don\'t need to update my address', 'admin', '6a8eabb9447e2fd817035c282e2275d4fa21f91409dd4726eb071d35e645418192feb3b5f0c60ff836345481bcf3739e3c728e91bd97aa191f92c148be4becae', 'hypertracltd@gmail.com', 9965656565, 3, '2019-06-26 19:31:48', '56DC58', 0, 0, 0, ''),
 (5, 'Ajith', 'Kumar', 'ajith', 'Ajith@123', 'ajithkumar@gmail.com', 9876767676, 0, '2019-06-29 22:30:50', '56532E3', 0, 0, 0, ''),
 (7, 'labeesh', 'lakshmanan', 'labeesh', 'Labeesh@123', 'labeesh@gmail.com', 9876543211, 0, '2019-07-24 22:00:00', '252522', 0, 0, 0, ''),
 (14, 'Sudheesh', 'Kumar', 'sudheesh15300', 'Sudheesh@123', 'jopsyvarghesdfkhsse@gmail.com', 99832948384, 1, '2019-08-04 13:03:30', '0', 0, 0, 0, ''),
