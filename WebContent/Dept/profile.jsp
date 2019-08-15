@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
 <html lang="en">
@@ -24,9 +26,28 @@
 
 <body id="page-top">
 <%
+String cname = "";
+String addr = "";
+String mob = "";
+String email = "";
+int myId = 0;
 Connection con = database.getConnection();
-int myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-String sql = "SELECT ";
+try {
+	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(Exception e) {
+	response.sendRedirect("../logout.jsp");
+}
+String sql = "SELECT fname, addr, mob, email FROM auth WHERE id=?";
+PreparedStatement ps = con.prepareStatement(sql);
+ps.setInt(1, myId);
+ResultSet rs = null;
+rs = ps.executeQuery();
+if(rs.next()) {
+	cname = rs.getString(1);
+	addr = rs.getString(2);
+	mob = rs.getString(3);
+	email = rs.getString(4);
+}
 
 %>
   <!-- Page Wrapper -->
@@ -82,40 +103,97 @@ String sql = "SELECT ";
           </button>
 
         </nav>
+        
+<%
+if(request.getParameter("status") != null) {
+	String status = request.getParameter("status");
+	if(status.equals("success")) { %>
+	<div class="alert alert-success alert-dismissible fade show">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Success!</strong> Updated your details.
+	</div>
+	<% } else if(status.equals("failed")) { %>
+	<div class="alert alert-danger alert-dismissible fade show">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Failed!</strong> Unable to Update.
+	</div>
+	<%}
+}
+%>        
         <!-- End of Topbar -->
         <div class="row">
-        	<div class="col-sm-4"></div>
-        	<div class="col-sm-4 text-center">
+        	<div class="col-sm-1"></div>
+        	<div class="col-sm-4 text-center card">
+        		<br/>
         		<h4 class="text-info">My Profile</h4>
         		<form action="updateProfile.jsp" method="post">
         			<table>
         				<tr>
         					<td>Company Name</td>
-        					<td><input type="text" name="cname" value="<% %>" class="form-control"/></td>
+        					<td><input type="text" name="fname" value="<%=cname %>" class="form-control"/></td>
         				</tr>
         				<tr>
         					<td>Company Address</td>
         					<td>
-        						<textarea name="addr" class="form-control"><% %></textarea>
+        						<textarea name="addr" class="form-control"><%=addr %></textarea>
         					</td>
         				</tr>
         				<tr>
         					<td>Telephone No.</td>
-        					<td><input type="text" name="phone" value="<% %>" class="form-control"/></td>
+        					<td><input type="number" name="mob" value="<%=mob %>" class="form-control"/></td>
         				</tr>
         				<tr>
         					<td>Email</td>
-        					<td><input type="email" name="email" value="<% %>" class="form-control"/></td>
+        					<td><input type="email" name="email" value="<%=email %>" class="form-control"/></td>
+        				</tr>
+        				<tr>
+        					<td colspan="2">&nbsp;</td>
         				</tr>
         				<tr>
         					<td colspan="2">
-        						<input type="submit" class="btn btn-primary" />
+        						<input type="submit" class="btn btn-primary"  value="Update Profile"/>
         					</td>
+        				</tr>
+        				<tr>
+        					<td colspan="2">&nbsp;</td>
         				</tr>
         			</table>
         		</form>        		
         	</div>
-        	<div class="col-sm-4"></div>
+        	<div class="col-sm-2"></div>
+        	<div class="col-sm-4 card text-center">
+        		<form action="changePassword.jsp" method="post" onsubmit="return passwordCheck()">
+        		<br/>
+        			<h4 class="text text-info">Update Password</h4>
+        			<table>
+        				<tr>
+        					<td>Old Password</td>
+        					<td><input type="password" name="oldPwd" id="oldPwd" class="form-control"/></td>
+        				</tr>
+        				<tr>
+        					<td colspan="2">&nbsp;</td>
+        				</tr>
+        				<tr>
+        					<td>New Password</td>
+        					<td><input type="password" name="newPwd" id="newPwd" class="form-control"/></td>
+        				</tr>
+        				<tr>
+        					<td colspan="2">&nbsp;</td>
+        				</tr>
+        				<tr>
+        					<td>Confirm Password</td>
+        					<td><input type="password" name="confPwd" id="confPwd" class="form-control"/></td>
+        				</tr>
+        				<tr>
+        					<td colspan="2">&nbsp;</td>
+        				</tr>
+        				<tr>
+        					<td colspan="2"><input type="submit" class="btn btn-primary" value="Update Password"/></td>
+        				</tr>
+        			</table>
+        		</form>
+        	</div>
+        	<div class="col-sm-1"></div>
         </div>
           </div>
         </div>
@@ -144,25 +222,6 @@ String sql = "SELECT ";
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -179,7 +238,25 @@ String sql = "SELECT ";
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+<%
+con.close();
+%>
 
+<script>
+	function passwordCheck() {
+		var newPwd = $("#newPwd").val();
+		var confPwd = $("#confPwd").val();
+		if(newPwd!==confPwd) {
+			alert("Passwords Doesn't match");
+			return false;
+		}
+		if(newPwd.length < 6) {
+			alert("New Password Should be atleast 6 characters length");
+			return false;
+		}
+		return true;
+	}
+</script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 package com.hypertrac.commons;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -303,4 +304,21 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		return rs;
 	}
+	
+	public String encryptPwd(String input) 
+    { 
+        try { 
+            MessageDigest md = MessageDigest.getInstance("SHA-512"); 
+            byte[] messageDigest = md.digest(input.getBytes()); 
+            BigInteger no = new BigInteger(1, messageDigest); 
+            String hashtext = no.toString(16); 
+            while (hashtext.length() < 32) { 
+                hashtext = "0" + hashtext; 
+            } 
+            return hashtext; 
+        } 
+        catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
+        } 
+    }
 }

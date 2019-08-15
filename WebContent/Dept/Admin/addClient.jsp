@@ -59,7 +59,7 @@
 						<div class="text-center">
 							Add New Client <br />
 							<br />
-							<form action="addClientFinal.jsp" method="post">
+							<form action="addClientFinal.jsp" method="post" onsubmit="return passwordCheck()">
 								<table class="table table-hover table-sm">
 									<tr>
 										<th>Major Client Name</th>
@@ -87,12 +87,12 @@
 									<tr>
 										<th>Password</th>
 										<td><input type="password" class="form-control"
-											name="pwd" /></td>
+											name="pwd" id="pwd"/></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" class="form-control"
-											name="cpwd" /></td>
+											name="cpwd" id="cpwd"/></td>
 									</tr>
 								</table>
 								<button type="submit" class="btn btn-primary">
@@ -168,7 +168,21 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+<script>
+	function passwordCheck() {
+		var newPwd = $("#pwd").val();
+		var confPwd = $("#cpwd").val();
+		if(newPwd!==confPwd) {
+			alert("Passwords Doesn't match");
+			return false;
+		}
+		if(newPwd.length < 6) {
+			alert("New Password Should be atleast 6 characters length");
+			return false;
+		}
+		return true;
+	}
+</script>
 </body>
 
 </html>

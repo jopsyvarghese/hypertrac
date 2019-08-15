@@ -86,7 +86,7 @@
 						<div class="col-lg-8 mb-4">
 							<div class="text-center">Staff Registration</div>
 
-							<form action="addStaff_2.jsp" method="post">
+							<form action="addStaff_2.jsp" method="post" onsubmit="return passwordCheck()">
 								<table class="table">
 									<tr>
 										<th> First Name</th>
@@ -154,12 +154,12 @@
 									</tr>
 									<tr>
 										<th>Password</th>
-										<td><input type="password" name="pwd"
+										<td><input type="password" name="pwd" id="pwd"
 											class="form-control" /></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
-										<td><input type="password" name="cpwd"
+										<td><input type="password" name="cpwd" id="cpwd"
 											class="form-control" /></td>
 									</tr>
 									<tr>
@@ -246,7 +246,20 @@
 			var deptId = document.getElementById("dept").value;
 			$("#subCatData").load("subDept.jsp?dept=" + deptId);
 		}
-	</script>
+		function passwordCheck() {
+			var newPwd = $("#pwd").val();
+			var confPwd = $("#cpwd").val();
+			if(newPwd!==confPwd) {
+				alert("Passwords Doesn't match");
+				return false;
+			}
+			if(newPwd.length < 6) {
+				alert("New Password Should be atleast 6 characters length");
+				return false;
+			}
+			return true;
+		}
+</script>
 </body>
 
 </html>

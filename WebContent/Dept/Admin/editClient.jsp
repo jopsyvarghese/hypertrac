@@ -82,7 +82,7 @@
 					<div class="col-sm-12">
 						<div class="text-center">
 							Edit Major Client <br /> <br />
-							<form action="editClient_2.jsp" method="post">
+							<form action="editClient_2.jsp" method="post" onsubmit="return passwordCheck()">
 								<%
 									if (rs.next()) {
 								%>
@@ -111,12 +111,12 @@
 									<tr>
 										<th>Password</th>
 										<td><input type="password" class="form-control"
-											name="pwd" value="<%=rs.getString(5)%>" /></td>
+											name="pwd" id="pwd" value="<%-- <%=rs.getString(5)%> --%>" /></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" class="form-control"
-											name="cpwd" value="<%=rs.getString(5)%>" /></td>
+											name="cpwd" id="cpwd" value="<%-- <%=rs.getString(5)%> --%>" /></td>
 									</tr>
 								</table>
 								<%
@@ -196,7 +196,21 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+<script>
+	function passwordCheck() {
+		var newPwd = $("#pwd").val();
+		var confPwd = $("#cpwd").val();
+		if(newPwd!==confPwd) {
+			alert("Passwords Doesn't match");
+			return false;
+		}
+		if(newPwd.length < 6) {
+			alert("New Password Should be atleast 6 characters length");
+			return false;
+		}
+		return true;
+	}
+</script>
 </body>
 
 </html>

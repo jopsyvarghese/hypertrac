@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession; 
 
 import com.hypertrac.commons.Helper;
 
@@ -66,9 +66,10 @@ public class SignIn extends HttpServlet {
 			e1.printStackTrace();
 		}
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ?");
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ? AND pwd_reset=?");
 			ps.setString(1, username);
-			ps.setString(2, password);
+			ps.setString(2, helper.encryptPwd(password));
+			ps.setInt(3, 0);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				HttpSession session = request.getSession();
@@ -95,7 +96,7 @@ public class SignIn extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-
+	
+	
 
 }

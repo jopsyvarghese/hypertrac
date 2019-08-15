@@ -7,26 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4dadb8-feda-4526-a291-a33bc77ce4fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/addClientFinal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/addClientFinal.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/editClient.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/editClient.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/editClient_2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/editClient_2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/addStaff_2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/addStaff_2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/editStaff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/editStaff.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/editStaff_2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/editStaff_2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/viewApplication.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/viewApplication.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/User/chatWithStaff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/User/chatWithStaff.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/User/createService.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/User/createService.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/User/staffDept.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/User/staffDept.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/inviteUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/inviteUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/User/topbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/User/topbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/Dept/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/com/hypertrac/dao/SignUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hypertrac/dao/SignUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hypertrac (1).sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hypertrac/dao/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hypertrac/dao/SignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/signin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/signin.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,15 +31,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/hypertrac/dao/SignIn.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1100">
-              <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/Dept/User/staffDept.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
@@ -62,7 +42,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/Dept/Admin/addClientFinal.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
+            <state relative-caret-position="1628">
               <caret line="74" selection-start-line="74" selection-end-line="74" />
             </state>
           </provider>
@@ -71,17 +51,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/hypertrac/dao/SignUp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
+            <state relative-caret-position="968">
               <caret line="44" column="48" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/editStaff_2.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="283">
-              <caret line="83" column="63" lean-forward="true" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
+              <caret line="83" column="63" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/Dept/chatRoom.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="119" column="26" selection-start-line="104" selection-start-column="32" selection-end-line="119" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/inviteUser.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="117" column="34" lean-forward="true" selection-start-line="117" selection-start-column="34" selection-end-line="117" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -89,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/Dept/Admin/editClient_2.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
+            <state relative-caret-position="2090">
+              <caret line="95" column="26" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -98,7 +96,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/register.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="1936">
               <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
             </state>
           </provider>
@@ -141,6 +139,8 @@
       <find>UPDATE auth</find>
       <find>getMajorClient</find>
       <find>getSubDept</find>
+      <find>status=succe</find>
+      <find>smtp</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\jopvargh\Documents\Hypertrac\WebContent</dir>
@@ -165,6 +165,7 @@
         <option value="$PROJECT_DIR$/WebContent/Dept/Major/editStaff_2.jsp" />
         <option value="$PROJECT_DIR$/WebContent/Dept/Major/editStaff.jsp" />
         <option value="$PROJECT_DIR$/WebContent/Dept/Admin/editClient_2.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/Dept/Major/inviteUser.jsp" />
       </list>
     </option>
   </component>
@@ -339,12 +340,13 @@
       <workItem from="1561530983581" duration="5765000" />
       <workItem from="1565714980332" duration="50000" />
       <workItem from="1565715051589" duration="3000" />
-      <workItem from="1565715192983" duration="4046000" />
+      <workItem from="1565715192983" duration="4184000" />
+      <workItem from="1565849379873" duration="1590000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9864000" />
+    <option name="totallyTimeSpent" value="11592000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="-3" width="1285" height="695" extended-state="6" />
@@ -356,7 +358,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Web" order="4" side_tool="true" />
       <window_info id="Designer" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.25060827" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.2546634" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32850242" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
@@ -437,10 +439,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/addStaff_2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="109" column="107" selection-start-line="109" selection-start-column="107" selection-end-line="109" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/editStaff.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="135" column="44" selection-start-line="135" selection-start-column="44" selection-end-line="135" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/viewHistory.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2888">
+          <caret line="161" column="54" selection-start-line="161" selection-start-column="54" selection-end-line="161" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hypertrac/dao/SignIn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1100">
           <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/User/staffDept.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Admin/addClientFinal.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1628">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hypertrac/dao/SignUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="44" column="48" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Admin/editClient_2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2090">
+          <caret line="95" column="26" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1936">
+          <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -458,66 +516,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/Dept/User/staffDept.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/addStaff_2.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="109" column="107" selection-start-line="109" selection-start-column="107" selection-end-line="109" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Admin/addClientFinal.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/register.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hypertrac/dao/SignUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="44" column="48" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/editStaff.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="135" column="44" selection-start-line="135" selection-start-column="44" selection-end-line="135" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Admin/editClient_2.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/viewHistory.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2888">
-          <caret line="161" column="54" selection-start-line="161" selection-start-column="54" selection-end-line="161" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/editStaff_2.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
-          <caret line="83" column="63" lean-forward="true" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
+          <caret line="83" column="63" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/chatRoom.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="119" column="26" selection-start-line="104" selection-start-column="32" selection-end-line="119" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/Dept/Major/inviteUser.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="117" column="34" lean-forward="true" selection-start-line="117" selection-start-column="34" selection-end-line="117" selection-end-column="34" />
         </state>
       </provider>
     </entry>

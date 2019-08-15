@@ -80,7 +80,7 @@
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
 						<%
-						String to = "jopsyvarghese@gmail.com";  
+						  String to = "jopsyvarghese@gmail.com";
 					      String from = "jopsy777@gmail.com";  
 					      String host = "localhost";//or IP address  
 					      final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";

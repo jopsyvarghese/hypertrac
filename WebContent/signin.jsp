@@ -73,12 +73,33 @@ Header
 
 <div class="container">
     <div class="row">
-    <div class="col-sm-4"></div>
-        <div class="col-sm-4">
+    <div class="col-sm-3"></div>
+        <div class="col-sm-6">
             <div style="margin-top: 140px;margin-bottom: 140px;">
-                <h3 class="text-center">Sign In</h3>
+            
+            <%
+				if(request.getParameter("status") != null) {
+					String status = request.getParameter("status");
+					if(status.equals("success")) { %>
+					<div class="alert alert-success alert-dismissible fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Success!</strong> Updated your comment.
+					</div>
+					<% } else if(status.equals("failed")) { %>
+					<div class="alert alert-danger alert-dismissible fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Failed!</strong> Unable to Update.
+					</div>
+					<%}
+				}
+			%>
+            
+                <h3 class="text-center text-info">Sign In</h3>
                 <form action="SignIn" method="post" style="text-align:center">
-                    <table>
+                    <table class="table table-active">
+                    	<tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
                         <tr>
                             <td>Username</td>
                             <td><input type="text" name="uname" class="form-control"></td>
@@ -91,7 +112,8 @@ Header
                             <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="submit" value="Sign In"
+                        	<td><a href="forgotPwd.jsp"><small>Forgot Password? Click Here</small></a></td>
+                            <td><input type="submit" value="Sign In"
                                                    class="btn btn-success" /></td>
                         </tr>
                     </table>
@@ -106,7 +128,7 @@ Header
         %>
             </div>
         </div>
-        <div class="col-sm-4"></div>
+        <div class="col-sm-3"></div>
     </div>
 </div>
 

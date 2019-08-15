@@ -68,7 +68,7 @@ public class SignUp extends HttpServlet {
 			ps.setString(1, fname);
 			ps.setString(2, addr);
 			ps.setString(3, uname);
-			ps.setString(4, pwd);
+			ps.setString(4,  helper.encryptPwd(pwd));
 			ps.setString(5, email);
 			ps.setLong(6, mob);
 			ps.setInt(7, 0);

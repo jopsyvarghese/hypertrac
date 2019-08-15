@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -61,6 +62,7 @@
 					
 					<div class="text-center">
 						<%
+						Helper helper = new Helper();
 						int id = 0;
 						try {
 							id = Integer.parseInt(request.getParameter("id"));	
@@ -82,7 +84,7 @@
 						Connection con = null;
 						con = database.getConnection();
 						PreparedStatement ps = con.prepareStatement(sql);
-						ps.setString(1, pwd);
+						ps.setString(1, helper.encryptPwd(pwd));
 						ps.setString(2, email);
 						ps.setLong(3, phone);
 						ps.setString(4, fName);

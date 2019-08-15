@@ -78,9 +78,9 @@
 							con = database.getConnection();
 							PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 							ps.setString(1, cName);
-							ps.setString(2, "");
+							ps.setString(2, addr);
 							ps.setString(3, uname);
-							ps.setString(4, pwd);
+							ps.setString(4, helper.encryptPwd(pwd));
 							ps.setString(5, email);
 							ps.setLong(6, phone);
 							ps.setInt(7, 2);

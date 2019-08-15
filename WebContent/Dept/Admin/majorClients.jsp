@@ -89,19 +89,14 @@ String email = "";
 							rs = st.executeQuery(sql);
 							
 							while(rs.next()) {
-								String sql2 = "SELECT * FROM major_client WHERE id="+rs.getInt(1);
-								email = rs.getString(6);
-								Statement st2 = con.createStatement();
-								ResultSet rs2 = st2.executeQuery(sql2);
-								if(rs2.next()) {
 							%>
 							
 							<tr>
 								<td><%=i %></td>
-								<td><%=rs2.getString(2) %></td>
-								<td><%=rs2.getString(2) %></td>
-								<td><%=email %></td>
-								<td><%=rs2.getString(4) %></td>
+								<td><%=rs.getString(2) %></td>
+								<td><%=rs.getString(3) %></td>
+								<td><%=rs.getString(3) %></td>
+								<td><%=rs.getString(7) %></td>
 								<td><a href="editClient.jsp?id=<%=rs.getInt(1) %>" class="btn btn-primary btn-sm">
 										<span class="fa fa-pencil-alt"></span>
 								</a> &nbsp;&nbsp; <a href="deleteClient.jsp?id=<%=rs.getInt(1) %>"
@@ -109,8 +104,7 @@ String email = "";
 										<span class="fa fa-trash-alt"></span>
 								</a></td>
 							</tr>
-							<%
-								}
+							<%								
 							}
 							%>
 						</table>

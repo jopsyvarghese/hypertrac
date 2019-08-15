@@ -1,3 +1,27 @@
 
 R
 "WebContent/Dept/User/staffDept.jsp,1\f\1fccde5402a543227883592da9c4e90c730ab69d
+E
+WebContent/signin.jsp,8\6\86b7d9e0231bb75b53609386c1e9f2aab58f4c4c
+Q
+!src/com/hypertrac/dao/SignIn.java,9\e\9ed9892923b4fc40e5153e53e79ff485a03c3451
+S
+#src/com/hypertrac/dao/database.java,7\a\7afba7cee12ac32d43eace6b60e86dd0fdbc87d4
+T
+$WebContent/Dept/Major/addStaff_2.jsp,8\c\8c2016eb49df93f102530caab2de449a9890c04e
+S
+#WebContent/Dept/Major/editStaff.jsp,c\f\cf67d3adfab505359c60a547dc0f5bd3a690824d
+V
+&WebContent/Dept/Admin/editClient_2.jsp,1\d\1dfd9207d7cf766ce76c735b7a2bf6d4796709c4
+Q
+!src/com/hypertrac/dao/SignUp.java,2\d\2d7e10fb6ede87617979c8ef2cb0d20ee3aa3f96
+G
+WebContent/register.jsp,f\7\f7c77dbe4d02bf86891d8fd5a9f322e2dd7de8fe
+U
+%WebContent/Dept/Major/viewHistory.jsp,f\6\f6916c6e82856cc8e12bd56dc08a875113376c2a
+U
+%src/com/hypertrac/commons/Helper.java,5\5\557188f1c48a1f5516543d7a9ad5c5c3265865f1
+X
+(WebContent/Dept/Admin/addClientFinal.jsp,c\c\cc26f69ef9d89d19589fb83f993fccccf7a0b2ee
+U
+%WebContent/Dept/Major/editStaff_2.jsp,1\5\15fcdef11e20aa647424b1866c4d7af3812e2cec
