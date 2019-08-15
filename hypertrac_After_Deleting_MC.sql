@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2019 at 09:16 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Aug 15, 2019 at 06:30 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,12 +44,12 @@ CREATE TABLE `applications` (
 --
 
 INSERT INTO `applications` (`id`, `name_or_no`, `dept`, `subject`, `submitted_on`, `validity`, `status`, `app_by`) VALUES
-(1, 'AE10000', 4, 'Emigration Clearence', '2019-06-19 04:00:00', '15 Days', 0, 2),
+(1, 'AE10000', 11, 'Emigration Clearence', '2019-06-19 04:00:00', '15 Days', 0, 2),
 (2, 'AE00002', 6, 'Stolen Passport', '2019-06-25 00:19:20', '23 Days', 4, 0),
 (15, 'PSQ', 10, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 0, 1),
 (16, 'Sample Company', 2, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 1, 1),
-(17, 'RUCL', 1, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 0, 1),
-(18, 'Sample Company', 1, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 3, 1),
+(17, 'RUCL', 2, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 0, 1),
+(18, 'Sample Company', 7, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 3, 1),
 (19, 'Sample Company', 2, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 1, 2),
 (20, 'Sample Company', 1, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 2, 2),
 (21, 'Sample Company', 1, 'ID Proofs', '2019-07-29 03:00:00', '15 Days', 3, 2),
@@ -65,7 +65,9 @@ INSERT INTO `applications` (`id`, `name_or_no`, `dept`, `subject`, `submitted_on
 (31, 'Sample Company', 1, 'ID Proofs', '2019-08-03 11:00:45', '15 Days', 0, 2),
 (32, 'Sample Company', 2, 'ID Proofs', '2019-08-03 11:02:57', '15 Days', 0, 2),
 (33, 'Sample Company', 1, 'ID Proofs', '2019-08-03 11:06:13', '15 Days', 0, 2),
-(34, 'Welcome company', 4, 'ID Proofs', '2019-08-03 11:14:12', '15 Days', 0, 2);
+(34, 'Welcome company', 4, 'ID Proofs', '2019-08-03 11:14:12', '15 Days', 0, 2),
+(35, 'My personal Company', 3, 'ID Proofs', '2019-08-13 23:30:59', '15 Days', 0, 15),
+(36, 'My personal Company', 3, 'ID Proofs', '2019-08-13 23:31:32', '15 Days', 0, 15);
 
 -- --------------------------------------------------------
 
@@ -102,7 +104,10 @@ INSERT INTO `applications_comment` (`id`, `app_id`, `dept_assigned`, `comment`, 
 (18, 2, 6, 'This is now working', 3, 2, '2019-08-03 23:27:24', 2),
 (19, 15, 6, 'What is this guys? ', 1, 1, '2019-08-03 23:29:34', 3),
 (20, 15, 10, 'Department Changed', 1, 1, '2019-08-03 23:30:24', 3),
-(21, 1, 4, 'fasfd sd fsad', 3, 2, '2019-08-05 20:46:57', 3);
+(21, 1, 4, 'fasfd sd fsad', 3, 2, '2019-08-05 20:46:57', 3),
+(22, 17, 2, 'This is something complicated', 1, 1, '2019-08-13 23:21:53', 1),
+(23, 18, 7, 'a sdfsadfsa ', 1, 1, '2019-08-13 23:35:49', 1),
+(24, 1, 11, 'working or not? ', 3, 2, '2019-08-13 23:40:10', 3);
 
 -- --------------------------------------------------------
 
@@ -192,7 +197,9 @@ INSERT INTO `applications_more` (`id`, `fk_id`, `company`, `comp_addr`, `phone`,
 (18, 1, 'Sample Company', 'sdfk slajfdlj ', 30023493, 20034934, 'sal@fjdk.com', 'www.info.com', 2, 'ID Proofs', 1, 1),
 (19, 32, 'Sample Company', 'sdfk slajfdlj ', 30023493, 20034934, 'sal@fjdk.com', 'www.info.com', 2, 'ID Proofs', 2, 2),
 (20, 33, 'Sample Company', 'sdfk slajfdlj ', 30023493, 20034934, 'sal@fjdk.com', 'www.info.com', 2, 'ID Proofs', 1, 1),
-(21, 34, 'Welcome company', 'skdfjh', 30023493, 20034934, 'baljit.singh-bhayana@capgemini.com', 'www.info.com', 2, 'ID Proofs', 1, 1);
+(21, 34, 'Welcome company', 'skdfjh', 30023493, 20034934, 'baljit.singh-bhayana@capgemini.com', 'www.info.com', 2, 'ID Proofs', 1, 1),
+(22, 35, 'My personal Company', 'asdf sad fsalkdf lsakdjflks adflsdj flasjdflksjadfjlksa dfhoisd flsdfjklsja lfjlskadjfosdfalskfjsakl jflksja fasfd', 30023493, 20034934, 'jopsyvarghese@gmail.com', 'www.info.com', 2, 'ID Proofs', 3, 6),
+(23, 36, 'My personal Company', 'asdf sad fsalkdf lsakdjflks adflsdj flasjdflksjadfjlksa dfhoisd flsdfjklsja lfjlskadjfosdfalskfjsakl jflksja fasfd', 30023493, 20034934, 'jopsyvarghese@gmail.com', 'www.info.com', 2, 'ID Proofs', 3, 6);
 
 -- --------------------------------------------------------
 
@@ -203,28 +210,34 @@ INSERT INTO `applications_more` (`id`, `fk_id`, `company`, `comp_addr`, `phone`,
 CREATE TABLE `auth` (
   `id` int(11) NOT NULL,
   `fname` varchar(20) NOT NULL,
-  `lname` varchar(20) NOT NULL,
+  `addr` text NOT NULL,
   `uname` varchar(20) NOT NULL,
   `pwd` text NOT NULL,
   `email` varchar(50) NOT NULL,
   `mob` bigint(20) NOT NULL,
   `role` int(1) NOT NULL,
   `created_at` datetime NOT NULL,
-  `rc` varchar(30) NOT NULL
+  `rc` varchar(30) NOT NULL,
+  `mob2` bigint(20) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `pwd_reset` int(11) NOT NULL DEFAULT '0',
+  `reset_hash` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `auth`
 --
 
-INSERT INTO `auth` (`id`, `fname`, `lname`, `uname`, `pwd`, `email`, `mob`, `role`, `created_at`, `rc`) VALUES
-(1, 'jopsy', 'varghese', 'jopsy', 'Jopsy@123', 'jopsy@gmail.com', 7411395002, 1, '2019-06-26 18:21:51', '234100'),
-(2, 'jomit', 'jose', 'jomit', 'Jomit@123', 'jomitjose9020@gmail.com', 7411180882, 0, '2019-06-26 18:45:10', '253585'),
-(3, 'Jabir', 'Lalu', 'Jabir', 'Jabir@123', 'jabir123@gmail.com', 9995559992, 2, '2019-06-26 18:54:05', '982222'),
-(4, 'admin', 'varghese', 'admin', 'Admin@123', 'sdlfkj@gmal.com', 9965656565, 3, '2019-06-26 19:31:48', '56DC58'),
-(5, 'Ajith', 'Kumar', 'ajith', 'Ajith@123', 'ajithkumar@gmail.com', 9876767676, 0, '2019-06-29 22:30:50', '56532E3'),
-(7, 'labeesh', 'lakshmanan', 'labeesh', 'Labeesh@123', 'labeesh@gmail.com', 9876543211, 0, '2019-07-24 22:00:00', '252522'),
-(14, 'Sudheesh', 'Kumar', 'sudheesh15342', 'Sudheesh@123', 'jopsyvarghese@gmail.com', 99832948384, 1, '2019-08-04 13:03:30', '0');
+INSERT INTO `auth` (`id`, `fname`, `addr`, `uname`, `pwd`, `email`, `mob`, `role`, `created_at`, `rc`, `mob2`, `created_by`, `pwd_reset`, `reset_hash`) VALUES
+(1, 'jopsy', 'ABC Street, PSR Nagar, UT - 23389', 'jopsy', '79967c73489f12ebd4295049fa22eb89e4fdbb2e3f97da6747969df54b4d59cbdf0c7f5f2b33ef9c23ddfdc5aa2a6013b04abd3ac1e2fedc6c04fa289ded2dab', 'jopsyvarghese2@gmail.com', 7411395002, 1, '2019-06-26 18:21:51', '234100', 0, 0, 0, ''),
+(2, 'jomit', 'Personal', 'jomit', 'Jomit@123', 'jomitjose9020@gmail.com', 7411180882, 0, '2019-06-26 18:45:10', '253585', 0, 0, 0, ''),
+(3, 'Jabir', 'Loby#23, Back Street Boys Road, BBP', 'Jabir', '1f71d9321dd22607901162989db685958781906c28c5d2480022ae29a56e0e19d10058cefa52cedc585a040107394961f0f132ed8ff1d96cc239ef829d092e51', 'jopsyvarghese@gmail.com', 9995559992, 2, '2019-06-26 18:54:05', '982222', 0, 0, 0, ''),
+(4, 'Hypertrac Limited', 'I don\'t need to update my address', 'admin', '6a8eabb9447e2fd817035c282e2275d4fa21f91409dd4726eb071d35e645418192feb3b5f0c60ff836345481bcf3739e3c728e91bd97aa191f92c148be4becae', 'jopsyvarghese1@gmail.com', 9965656565, 3, '2019-06-26 19:31:48', '56DC58', 0, 0, 0, ''),
+(5, 'Ajith', 'Kumar', 'ajith', 'Ajith@123', 'ajithkumar@gmail.com', 9876767676, 0, '2019-06-29 22:30:50', '56532E3', 0, 0, 0, ''),
+(7, 'labeesh', 'lakshmanan', 'labeesh', 'Labeesh@123', 'labeesh@gmail.com', 9876543211, 0, '2019-07-24 22:00:00', '252522', 0, 0, 0, ''),
+(14, 'Sudheesh', 'Kumar', 'sudheesh15300', 'Sudheesh@123', 'jopsyvarghesdfkhsse@gmail.com', 99832948384, 1, '2019-08-04 13:03:30', '0', 0, 0, 0, ''),
+(16, 'Sams Infotech', 'sdlfjs dlfjksl dflsdj fsodjfoiw eldsjf lsdjf', 'samsinfo', '6dbcd1a99470d76a0d8bcd978d51040e1c752c054f2100bba2ee0595e9d7e6b03c81645f2245324c2fd9e489a0b8a7312030587c254bad4561a36c7762e54767', 'sandeiii@fm.com', 9384647377, 0, '2019-08-15 20:06:09', '3847234', 0, 0, 0, NULL),
+(21, 'Shaji', 'sldfjs ldfjs ldfjsldfl sldjf', 'shaji', '6f9a956a6fb27068c23d1e9d0b04db6701cec6242cf9d3e3c00705b1495a6d1435d3d0926e772b04b8af784ef1ef798eaaac7fd298c238be5961f5e1ec5bbbc5', 'hsaldsfkj@gmilad.com', 2309423, 2, '2019-08-15 21:33:28', '', 0, 4, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,7 +283,9 @@ INSERT INTO `chat` (`id`, `fk_id`, `comment`, `c_by`, `c_time`) VALUES
 (4, 5, 'I don\'t htink so', 2, '2019-08-12 00:16:48'),
 (5, 5, 'Is it so? ', 2, '2019-08-12 00:17:45'),
 (6, 5, 'sdt;sdfsd', 2, '2019-08-12 00:18:47'),
-(7, 5, 'Are you coming? ', 2, '2019-08-12 00:23:42');
+(7, 5, 'Are you coming? ', 2, '2019-08-12 00:23:42'),
+(8, 5, 'Hi Jopsy', 2, '2019-08-13 21:21:12'),
+(9, 6, 'Hi Jopsy, how are you? ', 15, '2019-08-13 23:34:35');
 
 -- --------------------------------------------------------
 
@@ -289,7 +304,8 @@ CREATE TABLE `chat_head` (
 --
 
 INSERT INTO `chat_head` (`id`, `c_by`, `c_to`) VALUES
-(5, 2, 1);
+(5, 2, 1),
+(6, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -315,7 +331,9 @@ INSERT INTO `chat_room` (`id`, `chat_by`, `comment`, `chat_on`) VALUES
 (4, 7, 'Acutally I have a doubt. Please tell me how can I make payment here? ', '2019-08-11 00:00:17'),
 (5, 2, 'Hello.. I also do have doubts', '2019-08-11 14:34:26'),
 (6, 2, 'Shall I ask? ', '2019-08-11 14:36:13'),
-(7, 2, 'Yes proceed', '2019-08-11 14:54:37');
+(7, 2, 'Yes proceed', '2019-08-11 14:54:37'),
+(8, 15, 'test', '2019-08-13 23:32:33'),
+(9, 3, 'Hello', '2019-08-15 21:48:45');
 
 -- --------------------------------------------------------
 
@@ -345,7 +363,7 @@ INSERT INTO `dept` (`id`, `dname`, `mc_id`, `dept_head`) VALUES
 (8, 'CHEVRON', 3, 'Sam Jacob'),
 (9, 'PRESIDENCY', 1, 'Sashidhar M'),
 (10, 'UK EMBASSY', 3, 'Sam Jacob'),
-(11, 'IDORL', 3, 'Sudheesh S ');
+(11, 'IDORLA', 3, 'Sudheesh Sasi');
 
 -- --------------------------------------------------------
 
@@ -392,29 +410,8 @@ INSERT INTO `invitation` (`app_id`, `status`, `docs_submitted`, `ofc_visited`, `
 (15, 0, 1, 0, 0, 'No extra docs required'),
 (16, 1, 0, 0, 0, ''),
 (17, 1, 1, 0, 0, ''),
+(20, 0, 1, 0, 0, ''),
 (34, 1, 0, 0, 1, 'New Docs required');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `major_client`
---
-
-CREATE TABLE `major_client` (
-  `id` int(11) NOT NULL,
-  `cname` varchar(50) NOT NULL,
-  `addr` varchar(500) NOT NULL,
-  `phone2` bigint(20) DEFAULT NULL,
-  `created_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `major_client`
---
-
-INSERT INTO `major_client` (`id`, `cname`, `addr`, `phone2`, `created_by`) VALUES
-(2, 'PCROB', 'Arabian Gulf Street, Dasman, Kuwait City, Kuwait', 2403377, 0),
-(3, 'IBPOLS', 'PO Box 23, Safat 13001, Kuwait City, Kuwait', 2426799, 0);
 
 -- --------------------------------------------------------
 
@@ -549,12 +546,6 @@ ALTER TABLE `invitation`
   ADD PRIMARY KEY (`app_id`);
 
 --
--- Indexes for table `major_client`
---
-ALTER TABLE `major_client`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -580,13 +571,13 @@ ALTER TABLE `support`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `applications_comment`
 --
 ALTER TABLE `applications_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `applications_img`
@@ -598,13 +589,13 @@ ALTER TABLE `applications_img`
 -- AUTO_INCREMENT for table `applications_more`
 --
 ALTER TABLE `applications_more`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `business`
@@ -616,25 +607,25 @@ ALTER TABLE `business`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `chat_head`
 --
 ALTER TABLE `chat_head`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `chat_room`
 --
 ALTER TABLE `chat_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `dept`
 --
 ALTER TABLE `dept`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `dept_sub`
