@@ -35,6 +35,13 @@
                 <span>Contractors Application</span>
             </a>
         </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="dept.jsp">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Departments</span>
+            </a>
+        </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">

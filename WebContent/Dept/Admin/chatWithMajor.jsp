@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@page import="com.hypertrac.commons.Helper"%>
-<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
 <html lang="en">
@@ -29,7 +29,14 @@
 </head>
 
 <body id="page-top">
-
+<%
+String sql = "SELECT id,fname FROM auth WHERE role=2";
+Connection con = database.getConnection();
+Statement st = null;
+ResultSet rs = null;
+st = con.createStatement();
+rs = st.executeQuery(sql);
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -60,24 +67,20 @@
 						</div>
 					</div>
 					
-					<%
-					Helper helper = new Helper();
-					int id = 0;
-					try {
-						id = Integer.parseInt(request.getParameter("id"));	
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
-					if(id<=0) {
-						throw new Exception("Invalid Data Provided");
-					}
-					String sql = "DELETE FROM dept WHERE id=?";
-					Connection con = database.getConnection();
-					PreparedStatement ps = con.prepareStatement(sql);
-					ps.setInt(1, id);
-					int j = ps.executeUpdate();
-					response.sendRedirect("dept.jsp?status=success");
-					%>
+					<div class="text-center">
+					<br/>
+						<h4 class="text-info">Chat With Major Clients</h4><br/>
+						<form action="chatWithMajor_2.jsp" method="post">
+							<select name="major" class="form-control-sm">
+								<option>Select Major Client</option>
+								<%	while(rs.next()) { %>
+									<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>	
+								<% } %>
+							</select>
+							<input type="submit" class="btn-sm btn-primary"/>
+						</form>
+						
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->

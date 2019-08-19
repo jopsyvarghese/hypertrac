@@ -1,17 +1,17 @@
 
-Lsquid:S1191"5Use classes from the Java API instead of Sun classes.(ëŞï®
-esquid:S2095E"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õî„v
-csquid:S2095H"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ĞÂé ûÿÿÿÿ
-T
-squid:S1061"9Replace this use of System.out or System.err by a logger.(ÚÊó¨üÿÿÿÿ
-Nsquid:S11356"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
-Nsquid:S1135>"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
-Nsquid:S1135A"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
-@squid:S14812")Remove this unused "salt" local variable.(ˆŸ¶×
-Osquid:S18544"8Remove this useless assignment to local variable "salt".(‹ªÛœ
-”squid:S2147@"xCombine this catch with the one at line 61, which has the same body. (sonar.java.source not set. Assuming 7 or greater.)(®¤¯îıÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+asquid:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ĞÂé ûÿÿÿÿ
 csquid:UselessImportCheck":Remove this unused import 'java.security.CryptoPrimitive'.(îŒ”ñüÿÿÿÿ
-?squid:S11487"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
-?squid:S1148?"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
-?squid:S1148B"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
-?squid:S1148_"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Jsquid:S1191"5Use classes from the Java API instead of Sun classes.(ëŞï®
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+>squid:S1481")Remove this unused "salt" local variable.(ˆŸ¶×
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÚÊó¨üÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
+Msquid:S1854"8Remove this useless assignment to local variable "salt".(‹ªÛœ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+csquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õî„v
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
+’squid:S2147"xCombine this catch with the one at line 61, which has the same body. (sonar.java.source not set. Assuming 7 or greater.)(®¤¯îıÿÿÿÿ

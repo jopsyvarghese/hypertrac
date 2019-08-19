@@ -1,73 +1,81 @@
 
-esquid:S2095?"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8ÖÒÛáÈ-
-jsquid:S2077œ"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹
-^squid:S20954"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»
-psquid:S2077a"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8ÖÒÛáÈ-
-[squid:S1197I"8Move the array designator from the variable to the type.(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-esquid:S2095U"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8ÖÒÛáÈ-
-Zsquid:S1854Q"7Remove this useless assignment to local variable "arr".(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-isquid:S20776"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹
-psquid:S2077A"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8ÖÒÛáÈ-
-Ksquid:S1481I"(Remove this unused "arr" local variable.(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-esquid:S2095a"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8ÖÒÛáÈ-
-psquid:S2077U"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8ÖÒÛáÈ-
-_squid:S2095Š"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»
-?squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-Ksquid:S1481Q"(Remove this unused "arr" local variable.(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-esquid:S2095K"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8ÖÒÛáÈ-
-„squid:S1192>"aDefine a constant instead of duplicating this literal "SELECT fname FROM auth WHERE id=" 4 times.(Åü†îşÿÿÿÿ8ÖÒÛáÈ-
-esquid:S2095_"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8ÖÒÛáÈ-
-[squid:S1197Q"8Move the array designator from the variable to the type.(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-Usquid:S1197¡"8Move the array designator from the variable to the type.(ôŞ©‘ÿÿÿÿÿ
-[squid:S1197]"8Move the array designator from the variable to the type.(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-jsquid:S2077¯"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹
-esquid:S2095A"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8ÖÒÛáÈ-
-Ksquid:S1481]"(Remove this unused "arr" local variable.(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-Jsquid:S1481L"'Remove this unused "rs" local variable.(ÀÇÄûÿÿÿÿ8ÖÒÛáÈ-
-\squid:S2259 "@A "NullPointerException" could be thrown; "md" is nullable here.( ¼Á‰ùÿÿÿÿ
-Zsquid:S1854I"7Remove this useless assignment to local variable "arr".(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-Zsquid:S1854]"7Remove this useless assignment to local variable "arr".(ÆÍ„êúÿÿÿÿ8ÖÒÛáÈ-
-_squid:S2095¬"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»
-?squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-esquid:S2095S"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8ÖÒÛáÈ-
-_squid:S2095™"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»
-^squid:S20956"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹
-ƒsquid:S1488“"fImmediately return this expression instead of assigning it to the temporary variable "formatDateTime".(îƒ¶ãşÿÿÿÿ
-psquid:S2077s"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-qsquid:S2077"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-qsquid:S2077©"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-qsquid:S2077´"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-qsquid:S2077¿"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-qsquid:S2077Ê"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-qsquid:S2077İ"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-qsquid:S2077ñ"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¡÷çáÈ-
-lsquid:S3986•"HMake sure that Week Year "YYYY" is expected here instead of Year "yyyy".(×†ö¼ıÿÿÿÿ8¡÷çáÈ-
-‚squid:S4144š"^Update this method so that its implementation is not identical to "getMajorClient" on line 61.(ÿÌîûÿÿÿÿ8¡÷çáÈ-
-‚squid:S4144¥"^Update this method so that its implementation is not identical to "getMajorClient" on line 61.(»Ö¨ùÿÿÿÿ8¡÷çáÈ-
-„squid:S4144ä"`Update this method so that its implementation is not identical to "getAllPositions" on line 209.(ê÷Û³ıÿÿÿÿ8¡÷çáÈ-
-fsquid:S2095È"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-esquid:S2095q"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095ï"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095ñ"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095æ"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095§"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095Ê"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095ú"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095İ"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095œ"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-esquid:S2095s"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095´"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095½"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-esquid:S2095g"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ù¥ì¸8¡÷çáÈ-
-jsquid:S2095e"GUse try-with-resources or close this "Statement" in a "finally" clause.(ª×¡–úÿÿÿÿ8¡÷çáÈ-
-fsquid:S2095‚"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095Ó"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095¿"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095©"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¡÷çáÈ-
-fsquid:S2095²"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-fsquid:S2095Û"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¡÷çáÈ-
-†squid:S1488~"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¡÷çáÈ-
-‡squid:S1488†"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¡÷çáÈ-
-‡squid:S1488"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¡÷çáÈ-
-‡squid:S1488–"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¡÷çáÈ-
+@squid:S1643©"Use a StringBuilder instead.(¬Ô‹úÿÿÿÿ8¢—ÏÛÉ-
+psquid:S2077$"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+psquid:S2077/"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+psquid:S2077C"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+psquid:S2077O"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+psquid:S2077a"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077Œ"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077—"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077¢"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077­"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077¸"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077Ë"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077ß"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077Š"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+qsquid:S2077"RUse a variable binding mechanism to construct this query instead of concatenation.(‹ˆÕ‹8¢—ÏÛÉ-
+[squid:S11977"8Move the array designator from the variable to the type.(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+[squid:S1197?"8Move the array designator from the variable to the type.(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+[squid:S1197K"8Move the array designator from the variable to the type.(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+\squid:S1197"8Move the array designator from the variable to the type.(ôŞ©‘ÿÿÿÿÿ8¢—ÏÛÉ-
+„squid:S1192,"aDefine a constant instead of duplicating this literal "SELECT fname FROM auth WHERE id=" 4 times.(Åü†îşÿÿÿÿ8¢—ÏÛÉ-
+Psquid:S1068"-Remove this unused "secretKey" private field.(æ´·ˆùÿÿÿÿ8¢—ÏÛÉ-
+lsquid:S3986ƒ"HMake sure that Week Year "YYYY" is expected here instead of Year "yyyy".(×†ö¼ıÿÿÿÿ8¢—ÏÛÉ-
+‚squid:S4144ˆ"^Update this method so that its implementation is not identical to "getMajorClient" on line 43.(ÿÌîûÿÿÿÿ8¢—ÏÛÉ-
+‚squid:S4144“"^Update this method so that its implementation is not identical to "getMajorClient" on line 43.(»Ö¨ùÿÿÿÿ8¢—ÏÛÉ-
+„squid:S4144Ò"`Update this method so that its implementation is not identical to "getAllPositions" on line 191.(ê÷Û³ıÿÿÿÿ8¢—ÏÛÉ-
+fsquid:S2095­"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+esquid:S2095A"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095è"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095 "GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095Ô"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095Ë"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+fsquid:S2095ğ"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095É"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095«"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+esquid:S2095-"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095—"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+esquid:S20959"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095Œ"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+esquid:S2095C"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+fsquid:S2095•"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095ø"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095İ"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095¶"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+esquid:S2095/"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+fsquid:S2095ß"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+esquid:S2095M"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+esquid:S2095a"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+fsquid:S2095š"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095‡"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+esquid:S2095U"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ù¥ì¸8¢—ÏÛÉ-
+fsquid:S2095Š"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095¢"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+esquid:S2095O"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+jsquid:S2095S"GUse try-with-resources or close this "Statement" in a "finally" clause.(ª×¡–úÿÿÿÿ8¢—ÏÛÉ-
+esquid:S2095_"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095¸"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+esquid:S2095$"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‹ˆÕ‹8¢—ÏÛÉ-
+esquid:S2095""GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+fsquid:S2095Á"GUse try-with-resources or close this "Statement" in a "finally" clause.(‹½»8¢—ÏÛÉ-
+\
+squid:S106Ä"9Replace this use of System.out or System.err by a logger.(ÑĞœ†ûÿÿÿÿ8¢—ÏÛÉ-
+\
+squid:S106Ù"9Replace this use of System.out or System.err by a logger.(Ï¢şıÿÿÿÿ8¢—ÏÛÉ-
+†squid:S1488l"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¢—ÏÛÉ-
+†squid:S1488t"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¢—ÏÛÉ-
+†squid:S1488|"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¢—ÏÛÉ-
+‡squid:S1488„"cImmediately return this expression instead of assigning it to the temporary variable "currentTime".(óÅç÷üÿÿÿÿ8¢—ÏÛÉ-
+Šsquid:S1488"fImmediately return this expression instead of assigning it to the temporary variable "formatDateTime".(îƒ¶ãşÿÿÿÿ8¢—ÏÛÉ-
+lsquid:HiddenFieldCheck¼"=Rename "secretKey" which hides the field declared at line 25.(ÃîÛ€üÿÿÿÿ8¢—ÏÛÉ-
+lsquid:HiddenFieldCheckÒ"=Rename "secretKey" which hides the field declared at line 25.(ÃîÛ€üÿÿÿÿ8¢—ÏÛÉ-
+Ksquid:S14817"(Remove this unused "arr" local variable.(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+Jsquid:S1481:"'Remove this unused "rs" local variable.(ÀÇÄûÿÿÿÿ8¢—ÏÛÉ-
+Ksquid:S1481?"(Remove this unused "arr" local variable.(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+Ksquid:S1481K"(Remove this unused "arr" local variable.(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+Tsquid:S4432¾"0Use Galois/Counter Mode (GCM/NoPadding) instead.(ø¾¢çıÿÿÿÿ8¢—ÏÛÉ-
+ksquid:S00112®"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¢—ÏÛÉ-
+Zsquid:S18547"7Remove this useless assignment to local variable "arr".(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+Zsquid:S1854?"7Remove this useless assignment to local variable "arr".(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+Zsquid:S1854K"7Remove this useless assignment to local variable "arr".(ÆÍ„êúÿÿÿÿ8¢—ÏÛÉ-
+gsquid:UselessImportCheck"7Remove this unused import 'java.security.SecureRandom'.(›éè™úÿÿÿÿ8¢—ÏÛÉ-

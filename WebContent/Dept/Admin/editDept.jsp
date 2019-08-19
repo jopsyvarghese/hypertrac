@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -25,7 +30,27 @@
 </head>
 
 <body id="page-top">
+	<%
+Connection con = null;
+ResultSet rs = null;		
+PreparedStatement ps = null;		
+Helper helper = new Helper();
+int id = 0;
+try {
+	id = Integer.parseInt(request.getParameter("id"));	
+} catch(Exception e) {
+	e.printStackTrace();
+}
+if(id == 0) {
+	throw new Exception("Invalid Data Provided");
+}
+	String sql = "SELECT * FROM dept WHERE id=?";
+	con = database.getConnection();
+	ps = con.prepareStatement(sql);
+	ps.setInt(1, id);
+	rs = ps.executeQuery();
 
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -56,29 +81,44 @@
 						</div>
 					</div>
 					<div class="text-center">
-						Add New Departments <br />
-						<br />
-						<form action="addDeptFinal.jsp" method="post">
+						Edit Departments <br /> <br />
+						<form action="editDept_2.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
+							<input type="hidden" name="id" value="<%=id %>"/>
+								<%
+								while(rs.next()) {
+									ResultSet rs2 = helper.getMajorClients();
+							%>
 								<tr>
 									<th>Major Client</th>
 									<td><select name="client" class="form-control">
 											<option value="0">Select Major Client</option>
-											<option selected>Major Client 1</option>
-											<option>Major Client 2</option>
-											<option>Major Client 3</option>
+											<%
+											String selected = "";											
+												while(rs2.next()) {
+													if(id == rs2.getInt(1)) {
+														selected = "selected='selected'";
+													}
+											%>
+											<option value="<%=rs2.getInt(1) %>" <% out.print(selected); %>><%=rs2.getString(2) %></option>
+											<%
+												}
+											%>
 									</select></td>
 								</tr>
 								<tr>
 									<th>Department Head</th>
 									<td><input type="text" name="deptHead"
-										class="form-control" value="Shanmugham Arivuvel" /></td>
+										class="form-control" value="<%=rs.getString(4) %>" /></td>
 								</tr>
 								<tr>
 									<th>Department Name</th>
 									<td><input type="text" name="deptName"
-										class="form-control" value="Department 1" /></td>
+										class="form-control" value="<%=rs.getString(2) %>" /></td>
 								</tr>
+								<%
+								}
+								%>
 							</table>
 							<br />
 							<button type="submit" class="btn btn-primary">

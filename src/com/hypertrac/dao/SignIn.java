@@ -45,15 +45,6 @@ public class SignIn extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("uname");
 		String password = request.getParameter("pwd");
-		String pwd = helper.getHashedPwd(password);
-		System.out.println(pwd);
-		byte[] salt = null;
-		try {
-			salt = Helper.getSalt();
-		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		Connection con = null;
 		ResultSet rs = null;
 		try {

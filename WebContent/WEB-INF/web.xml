@@ -10,6 +10,7 @@
       <param-name>file-upload</param-name> 
       <param-value>
          C:\tomcat9\webapps\images\service
+         <!-- /home4/hypertra/jvm/apache-tomcat-9.0.6/webapps/images -->
       </param-value> 
    </context-param>
    

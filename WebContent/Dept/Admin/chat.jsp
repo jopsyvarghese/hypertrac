@@ -65,8 +65,8 @@
 								Chat With Contractor <br />
 								<br />
 								<div style="padding: 15px 5px;">
-									<a class="btn btn-primary btn-sm" href="#">Chat Room</a> <a
-										class="btn btn-primary btn-sm" href="#">Chat with Major
+									<a class="btn btn-primary btn-sm" href="../chatRoom.jsp" target="_blank">Chat Room</a> <a
+										class="btn btn-primary btn-sm" href="chatWithMajor.jsp">Chat with Major
 										Client</a> <a class="btn btn-primary btn-sm" href="#">Chat
 										with Staff</a> <a class="btn btn-primary btn-sm" href="#">Chat
 										with Contractor</a> <a class="btn btn-primary btn-sm" href="#">Email</a>

@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -25,7 +30,26 @@
 </head>
 
 <body id="page-top">
+<%
+Connection con = null;
+Statement st = null;
+ResultSet rs = null;		
+Helper helper = new Helper();
+int myId = 0;
+try {
+	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+} catch(NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
 
+if(myId > 0) {
+	String sql = "SELECT * FROM dept";
+	con = database.getConnection();
+	st = con.createStatement();
+	rs = st.executeQuery(sql);	
+}
+
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -69,30 +93,26 @@
 								<th>Major Client</th>
 								<th>Operations</th>
 							</tr>
+							<%
+							int i = 1;
+							while(rs.next()) {
+							%>
 							<tr>
-								<td>1</td>
-								<td>Name 1</td>
-								<td>Department 1</td>
-								<td>Client 1</td>
-								<td><a href="editDept.jsp" class="btn btn-primary btn-sm">
+								<td><%=i %></td>
+								<td><%=rs.getString(4) %></td>
+								<td><%=rs.getString(2) %></td>
+								<td><%=helper.getMajorClient(rs.getInt(3)) %></td>
+								<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>" class="btn btn-primary btn-sm">
 										<span class="fa fa-pencil-alt"></span>
-								</a> &nbsp;&nbsp; <a href="deleteDept.jsp"
+								</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1) %>"
 									class="btn btn-danger btn-sm" onclick="return confirmDel();">
 										<span class="fa fa-trash-alt"></span>
 								</a></td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>Name 2</td>
-								<td>Department 2</td>
-								<td>Client 2</td>
-								<td><a href="editDept.jsp" class="btn btn-primary btn-sm">
-										<span class="fa fa-pencil-alt"></span>
-								</a> &nbsp;&nbsp; <a href="deleteDept.jsp"
-									class="btn btn-danger btn-sm" onclick="return confirmDel();">
-										<span class="fa fa-trash-alt"></span>
-								</a></td>
-							</tr>
+							<%
+								i++; }
+							%>
+							
 						</table>
 					</div>
 
@@ -101,7 +121,9 @@
 
 			</div>
 			<!-- End of Main Content -->
-
+<%
+con.close();
+%>
 			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">

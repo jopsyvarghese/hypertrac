@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -53,6 +54,7 @@
                 <div class="text-center">
                 
                 <%
+                Helper helper = new Helper();
                 Connection con = database.getConnection();
                 String comment = request.getParameter("comment");
                 int chatId = Integer.parseInt(request.getParameter("chatId"));
@@ -67,7 +69,7 @@
                 ps.setInt(3, c_by);
                 ps.setString(4, c_time);
                 ps.executeUpdate();
-                response.sendRedirect("chatWithStaff_2.jsp?staffId="+staffId);
+                response.sendRedirect("chatWithStaff_2.jsp?staffId="+ helper.encrypt(""+staffId));
                 %>
                 
                 </div>

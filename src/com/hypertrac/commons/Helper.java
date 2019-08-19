@@ -4,48 +4,29 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.KeySpec;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;  
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class Helper {
 	Connection con;
+	private String secretKey = "SJDl129734fjweojfdsfd!!!!";
+	private String salt = "AEWufodjklfu23487yewo!!!!";
+	
 	public Helper() throws ClassNotFoundException, SQLException {
 		con = com.hypertrac.dao.database.getConnection();
-	}
-
-	public String getHashedPwd(String password) {
-		byte[] salt = new byte[0];
-		try {
-			salt = getSalt();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		MessageDigest md = null;
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		md.update(salt);
-		byte[] bytes = md.digest(password.getBytes());
-		StringBuilder sb = new StringBuilder();
-		for(int i=0; i< bytes.length ;i++)
-		{
-			sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-		}
-		return sb.toString();
-	}
-
-	public static byte[] getSalt() throws NoSuchAlgorithmException
-	{
-		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
-		byte[] salt = new byte[16];
-		sr.nextBytes(salt);
-		return salt;
 	}
 
 	public String buzzType(int id) throws SQLException {
@@ -321,4 +302,48 @@ public class Helper {
             throw new RuntimeException(e); 
         } 
     }
+	
+	public String encrypt(String strToEncrypt)
+	{
+	    try
+	    {
+	        byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	        IvParameterSpec ivspec = new IvParameterSpec(iv);
+	         
+	        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+	        KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
+	        SecretKey tmp = factory.generateSecret(spec);
+	        SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
+	         
+	        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+	        cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
+	        return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+	    }
+	    catch (Exception e)
+	    {
+	        System.out.println("Error while encrypting: " + e.toString());
+	    }
+	    return null;
+	}
+	
+	public String decrypt(String strToDecrypt) {
+	    try
+	    {
+	        byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	        IvParameterSpec ivspec = new IvParameterSpec(iv);
+	         
+	        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+	        KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
+	        SecretKey tmp = factory.generateSecret(spec);
+	        SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
+	         
+	        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+	        cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
+	        return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+	    }
+	    catch (Exception e) {
+	        System.out.println("Error while decrypting: " + e.toString());
+	    }
+	    return null;
+	}
 }

@@ -25,3 +25,7 @@ X
 (WebContent/Dept/Admin/addClientFinal.jsp,c\c\cc26f69ef9d89d19589fb83f993fccccf7a0b2ee
 U
 %WebContent/Dept/Major/editStaff_2.jsp,1\5\15fcdef11e20aa647424b1866c4d7af3812e2cec
+L
+WebContent/Dept/chatRoom.jsp,4\3\436c8d56faa6d369d16232f2ba8ae0f97bce6a8b
+T
+$WebContent/Dept/Major/inviteUser.jsp,e\e\ee89ba9da5c58024069e3ed21ce2aacd642d249e

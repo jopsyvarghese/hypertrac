@@ -59,24 +59,30 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
 					<%
+					int client= Integer.parseInt(request.getParameter("client"));
+					String deptHead= request.getParameter("deptHead");
+					String deptName = request.getParameter("deptName");
+					int id = Integer.parseInt(request.getParameter("id"));
 					Helper helper = new Helper();
-					int id = 0;
-					try {
-						id = Integer.parseInt(request.getParameter("id"));	
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
 					if(id<=0) {
-						throw new Exception("Invalid Data Provided");
+						throw new Exception("Invalid Details Supplied");
 					}
-					String sql = "DELETE FROM dept WHERE id=?";
+					
+					String sql = "UPDATE dept SET dname=?,mc_id=?,dept_head=? WHERE id=?";
 					Connection con = database.getConnection();
 					PreparedStatement ps = con.prepareStatement(sql);
-					ps.setInt(1, id);
-					int j = ps.executeUpdate();
-					response.sendRedirect("dept.jsp?status=success");
+					ps.setString(1, deptName);
+					ps.setInt(2, client);
+					ps.setString(3, deptHead);
+					ps.setInt(4, id);
+					int i = ps.executeUpdate();
+					if(i > 0) {
+						response.sendRedirect("editDept.jsp?id="+id+"&status=success");						
+					} else {
+						response.sendRedirect("editDept.jsp?id="+id+"&status=failed");
+					}
+					
 					%>
 
 				</div>

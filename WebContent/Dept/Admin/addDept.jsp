@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -25,7 +30,27 @@
 </head>
 
 <body id="page-top">
+<%
+Connection con = null;
+Statement st = null;
+ResultSet rs = null;		
+Helper helper = new Helper();
+int myId = 0;
+try {
+	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+} catch(NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
 
+if(myId > 0) {
+	String sql = "SELECT * FROM auth WHERE role=2";
+	con = database.getConnection();
+	st = con.createStatement();
+	rs = st.executeQuery(sql);	
+}
+
+
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -64,9 +89,13 @@
 									<th>Major Client</th>
 									<td><select name="client" class="form-control">
 											<option value="0">Select Major Client</option>
-											<option>Major Client 1</option>
-											<option>Major Client 2</option>
-											<option>Major Client 3</option>
+											<%
+											while(rs.next()) {
+											%>
+											<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
+											<%
+											}
+											%>
 									</select></td>
 								</tr>
 								<tr>

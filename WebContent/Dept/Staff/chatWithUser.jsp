@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <%@page import="com.hypertrac.commons.Helper"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.hypertrac.dao.database"%>
+<%@page import="javax.crypto.Cipher"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.PreparedStatement"%>
 <html lang="en">
 
 <head>
@@ -14,7 +16,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>HyperTrac</title>
+<title>HyperTrac Staff</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -59,26 +61,52 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
-					<%
-					Helper helper = new Helper();
-					int id = 0;
-					try {
-						id = Integer.parseInt(request.getParameter("id"));	
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
-					if(id<=0) {
-						throw new Exception("Invalid Data Provided");
-					}
-					String sql = "DELETE FROM dept WHERE id=?";
-					Connection con = database.getConnection();
-					PreparedStatement ps = con.prepareStatement(sql);
-					ps.setInt(1, id);
-					int j = ps.executeUpdate();
-					response.sendRedirect("dept.jsp?status=success");
-					%>
+					<div class="col-sm-12">
+						<h4 class="text-info text-center">Search User To Chat</h4>
+						<form action="#" method="get">
+							<table class="table">
+								<tr>
+									<td><input type="text" name="q" class="form-control"
+										placeholder="Type a User's Name To Search" /></td>
+									<td>
+										<button class="btn btn-primary">
+											<span class="fa fa-search"></span>
+										</button>
+									</td>
+								</tr>
+							</table>
+						</form>
 
+						<br />
+						<table class="table table-hover">
+							<%
+						if(request.getParameter("q") != null) {
+							//Encrypt User ID 
+							
+							Helper helper = new Helper();
+							String user = request.getParameter("q");
+							String sql = "SELECT id,fname,addr FROM auth WHERE fname like ? ORDER BY id DESC limit 0, 10";
+							Connection con = database.getConnection();
+							PreparedStatement ps = con.prepareStatement(sql);
+							ps.setString(1, "%" + user + "%");
+							ResultSet rs = null;
+							rs = ps.executeQuery();
+							if(rs.next()) {
+							%>
+							<tr>
+								<td><%=rs.getString(2) %></td>
+								<td><%=rs.getString(3) %></td>
+								<td>
+								<a href="chatWithUser_2.jsp?q=<%=helper.encrypt(rs.getString(1)) %>">
+									Chat Now <i class="fas fa-comments"></i>
+								</a>
+								</td>
+							</tr>
+							<%}
+						}
+						%>
+						</table>
+					</div>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -105,6 +133,7 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
+
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

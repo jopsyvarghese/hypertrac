@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<%@page import="com.hypertrac.commons.Helper"%>
-<%@page import="com.mysql.cj.protocol.Resultset"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -32,7 +31,7 @@
 </head>
 
 <body id="page-top">
-	<%
+<%
 	Helper helper = new Helper();
 	Connection con = database.getConnection();
 	//int majorClient = Integer.parseInt(request.getParameter("majorClient"));
@@ -60,7 +59,10 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -72,14 +74,12 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-
-					<div class="text-center">
 					
 					<%
                 	try {
-                		staffId = Integer.parseInt(request.getParameter("staffId"));                		
+                		staffId = Integer.parseInt(request.getParameter("major"));                		
                 	} catch(NumberFormatException ne) {
-                		staffId = Integer.parseInt(helper.decrypt(request.getParameter("staffId")));
+                		staffId = Integer.parseInt(request.getParameter("major"));
                 		ne.getLocalizedMessage();
                 	}
                 	
@@ -109,13 +109,13 @@
                 		}
                 		%>
                 		
-                		<form method="post" action="chatWithStaff_3.jsp">
+                		<form method="post" action="chatWithMajor_3.jsp">
 							<textarea name="comment" class="form-control" style="width:80%;float:left;"></textarea>
 							<input type="hidden" name="chatId" value="<%=chatId %>"/>
 							<input type="hidden" name="c_by" value="<%=myId %>"/>
 							<input type="hidden" name="staffId" value="<%=staffId %>"/>
-							<input type="hidden" name="c_time" value="<%=helper.getDateTime() %>"/>
-							<input type="submit" class="btn btn-primary" style="width:15%;margin-top:10px;"/>
+							<input type="hidden" name="c_time" value="<%=helper.getDateTime() %>"/>&nbsp;
+							<input type="submit" class="btn btn-primary" style="width:10%;margin-top:10px;"/>
 						</form>
 						<br/><br/>
 						<table class="table table-hover">
@@ -144,9 +144,6 @@
                 		
                 	}
                 %>
-
-					</div>
-
 				</div>
 				<!-- /.container-fluid -->
 
@@ -173,29 +170,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

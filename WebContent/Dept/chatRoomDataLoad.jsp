@@ -5,14 +5,14 @@
 <%@page import="java.sql.Connection"%>
 
 <tr class="text-primary">
-	<th>Comment</th>
-	<th>By</th>
-	<th>On</th>
+	<th  style="width:70% !important;">Comment</th>
+	<th style="width:15% !important;">By</th>
+	<th style="width:15% !important;">On</th>
 </tr>
 
 <%
 	//Chat Room Data Loads Here
-	String sql = "SELECT * FROM chat_room ORDER BY id DESC limit 0,50";
+	String sql = "SELECT * FROM chat_room ORDER BY id DESC limit 0,10";
 	Helper helper = new Helper();
 	Connection con = database.getConnection();
 	Statement st = null;

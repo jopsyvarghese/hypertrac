@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.hypertrac.dao.database"%>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
 <html lang="en">
 
 <head>
@@ -29,7 +31,23 @@
 </head>
 
 <body id="page-top">
+<%
+Connection con = null;
+PreparedStatement ps = null;
+ResultSet rs = null;		
+Helper helper = new Helper();
+int myId = 0;
+try {
+	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+} catch(NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
 
+if(myId == 0) {
+	throw new Exception("You are not logged In");
+}
+con = database.getConnection();
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -59,24 +77,21 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
 					<%
-					Helper helper = new Helper();
-					int id = 0;
-					try {
-						id = Integer.parseInt(request.getParameter("id"));	
-					} catch(Exception e) {
-						e.printStackTrace();
+					int client = Integer.parseInt(request.getParameter("client"));
+					String deptHead = request.getParameter("deptHead");
+					String deptName = request.getParameter("deptName");
+					String sql = "INSERT INTO dept(dname, mc_id, dept_head) VALUES (?,?,?)";
+					ps = con.prepareStatement(sql);
+					ps.setString(1, deptName);
+					ps.setInt(2, client);
+					ps.setString(3, deptHead);
+					int i = ps.executeUpdate();
+					if(i > 0) {
+						response.sendRedirect("dept.jsp?status=success");
+					} else {
+						response.sendRedirect("dept.jsp?status=failed");
 					}
-					if(id<=0) {
-						throw new Exception("Invalid Data Provided");
-					}
-					String sql = "DELETE FROM dept WHERE id=?";
-					Connection con = database.getConnection();
-					PreparedStatement ps = con.prepareStatement(sql);
-					ps.setInt(1, id);
-					int j = ps.executeUpdate();
-					response.sendRedirect("dept.jsp?status=success");
 					%>
 
 				</div>

@@ -73,7 +73,7 @@
 								<h4 class="text-info">Chat With Customer Staff</h4>
 								<br />
 								<br />
-								<form action="chatWithStaff_2.jsp" method="get"
+								<form action="chatWithStaff_2.jsp" method="post"
 									onsubmit="return formCheck()">
 									<table>
 										<tr>
