@@ -13,7 +13,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>HyperTrac Application Status</title>
+
+<title>HyperTrac</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -58,13 +59,8 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-
-					<!-- Content Row -->
-					<div class="row">
-						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
-						<div class="col-lg-6 mb-4">
-							<%
+					<div class="text-center">
+					<%
 							Helper helper = new Helper();
 							int id = Integer.parseInt(request.getParameter("id"));
 							String comments = request.getParameter("comments");
@@ -106,11 +102,7 @@
 								out.println("<h4 class='text-danger'>Sorry, Unable to Update</h4>");
 							}
 						%>
-						
-						</div>
-						<div class="col-lg-3 mb-4"></div>
 					</div>
-
 				</div>
 				<!-- /.container-fluid -->
 

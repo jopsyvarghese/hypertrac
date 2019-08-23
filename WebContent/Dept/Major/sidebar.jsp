@@ -19,14 +19,6 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Applications
-        </div>
         <li class="nav-item">
             <a class="nav-link" href="dept.jsp">
                 <i class="fas fa-newspaper"></i>
@@ -49,14 +41,6 @@
             </a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Staffs
-        </div>
-
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="manageStaff.jsp">
@@ -72,13 +56,6 @@
                 <span>View History</span></a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Contractor
-        </div>
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="chatWithContractor.jsp">
@@ -91,6 +68,12 @@
             <a class="nav-link" href="inviteContractor.jsp">
                 <i class="fas fa-fw fa-handshake"></i>
                 <span>Invitation to Contractor</span></a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="manageCso.jsp">
+                <i class="fas fa-fw fa-shield-alt"></i>
+                <span>CSO</span></a>
         </li>
 
         <!-- Divider -->

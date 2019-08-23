@@ -52,10 +52,8 @@ public class Helper {
 	}
 
 	public ResultSet getDept() throws SQLException {
-		String arr[] = {};
 		String sql = "SELECT * FROM dept";
 		Statement st = con.createStatement();
-		ResultSet rs = null;
 		return st.executeQuery(sql);
 	}
 
@@ -284,6 +282,18 @@ public class Helper {
 		String sql = "SELECT id,fname FROM auth WHERE id=(SELECT id FROM staff WHERE dept=" + id+");";
 		rs = st.executeQuery(sql);
 		return rs;
+	}
+	
+	public String getStaffDeptById(int id) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		String sql = "SELECT dname FROM dept WHERE id=(SELECT dept FROM staff WHERE id=" + id+");";
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
 	}
 	
 	public String encryptPwd(String input) 

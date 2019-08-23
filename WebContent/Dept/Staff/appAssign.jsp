@@ -70,8 +70,10 @@
 							HttpSession sess = request.getSession();
 							int userId = (int) sess.getAttribute("loggedInUserId");
 							int role = (int) sess.getAttribute("loggedInUserRole");
+							int staffTo = 0;
+							staffTo = Integer.parseInt(request.getParameter("staff"));
 							String currentTime = helper.getDateTime();
-							String sql = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?";
+							String sql = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
 							Connection con = database.getConnection();
 							PreparedStatement ps = con.prepareStatement(sql);
 							ps.setInt(1, id);
@@ -81,6 +83,7 @@
 							ps.setInt(5, role);
 							ps.setString(6, currentTime);
 							ps.setInt(7, status);
+							ps.setInt(8, staffTo);
 							int i = ps.executeUpdate();
 
 							if (i > 0) {

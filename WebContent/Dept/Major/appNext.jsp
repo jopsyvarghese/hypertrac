@@ -89,7 +89,7 @@ ResultSet rs = helper.getDept();
 									</tr>
 									<tr>
 										<th>Department</th>
-										<td><select name="dept" class="form-control">
+										<td><select name="dept" id="dept" class="form-control" onchange="return getStaffsList()">
 												<option value="0">Select Department To Assign</option>
 												<%
 													while (rs.next()) {
@@ -99,6 +99,14 @@ ResultSet rs = helper.getDept();
 													}
 												%>
 										</select></td>
+									</tr>
+									<tr>
+										<th>Staff</th>
+										<td>
+											<select name="staff" class="form-control">
+												<optgroup id="staffsList">Select Staff</optgroup>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<th>Update Status</th>
@@ -187,7 +195,12 @@ ResultSet rs = helper.getDept();
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+<script>
+	function getStaffsList() {
+		var dept = document.getElementById("dept").value;
+		$("#staffsList").load("../Staff/staffsList.jsp?dept=" + dept);
+	}
+</script>
 </body>
 
 </html>

@@ -96,7 +96,7 @@ try {
 							<td><%=rs.getString(2) %></td>
 							<td><%=helper.getMajorClientByDeptId(rs.getInt(3)) %></td>
 							<td><%=rs.getString(5) %></td>
-							<td>View<!-- <a href="viewApp.jsp" class="btn-sm btn-primary">View</a> -->
+							<td><a href="viewApplication.jsp?id=<%=rs.getString(1) %>" class="btn-sm btn-primary">View</a>
 							</td>
 						</tr>
 						<%

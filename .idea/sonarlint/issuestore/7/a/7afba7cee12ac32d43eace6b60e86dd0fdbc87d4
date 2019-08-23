@@ -1,15 +1,8 @@
 
-gsquid:CommentedOutCodeLine$"<This block of commented-out lines of code should be removed.(¬³¬Žùÿÿÿÿ
-Xsquid:S1854"<Remove this useless assignment to local variable "username".(‹€î‘ÿÿÿÿÿ
-Vsquid:S1854"":Remove this useless assignment to local variable "dbName".(ÌÁœÍûÿÿÿÿ
-Dsquid:S1481 "-Remove this unused "password" local variable.(¬Ó©‹
-Ssquid:S1854 "<Remove this useless assignment to local variable "password".(¬Ó©‹
-Rsquid:UselessImportCheck"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw
-Ssquid:UselessImportCheck"/Remove this unused import 'java.sql.Statement'.(ÏÖÔø
-Isquid:S1481"-Remove this unused "username" local variable.(‹€î‘ÿÿÿÿÿ
-msquid:S2068 "V'password' detected in this expression, review this potentially hard-coded credential.(¬Ó©‹
-bsquid:CommentedOutCodeLine&"<This block of commented-out lines of code should be removed.(ÆÖµ–
-Gsquid:S1481""+Remove this unused "dbName" local variable.(ÌÁœÍûÿÿÿÿ
-jsquid:S00101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–‹ˆøÿÿÿÿ
-@squid:S2115'")Add password protection to this database.(”ß†À
 Vsquid:S1118	":Add a private constructor to hide the implicit public one.(–‹ˆøÿÿÿÿ
+Rsquid:UselessImportCheck"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw
+msquid:S2068 "V'password' detected in this expression, review this potentially hard-coded credential.(¬Ó©‹
+Csquid:S2068&" Remove this hard-coded password.(Û›Ò˜ûÿÿÿÿ8æÙëÊ-
+Ssquid:UselessImportCheck"/Remove this unused import 'java.sql.Statement'.(ÏÖÔø
+jsquid:S00101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–‹ˆøÿÿÿÿ
+nsquid:CommentedOutCodeLine'"<This block of commented-out lines of code should be removed.(Õ¢ž±øÿÿÿÿ8æÙëÊ-

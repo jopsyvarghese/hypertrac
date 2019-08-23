@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
@@ -28,7 +29,18 @@
 </head>
 
 <body id="page-top">
+	<%
+Helper helper = new Helper();
+int id = 0;		
+String email = "";		
+try {
+	id = Integer.parseInt(helper.decrypt(request.getParameter("id")));	
+	email = helper.decrypt(request.getParameter("q"));
+} catch(Exception e) {
+	e.getLocalizedMessage();
+}
 
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -61,54 +73,30 @@
 
 					<!-- Content Row -->
 					<div class="row">
-						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
-						<div class="col-lg-6 mb-4">
-							<%
-							Helper helper = new Helper();
-							int id = Integer.parseInt(request.getParameter("id"));
-							String comments = request.getParameter("comments");
-							int dept = Integer.parseInt(request.getParameter("dept"));
-							int status = 0;
-							status = Integer.parseInt(request.getParameter("status"));
-							int staffTo = 0;
-							staffTo = Integer.parseInt(request.getParameter("staff"));
-							HttpSession sess = request.getSession();
-							int userId = (int) sess.getAttribute("loggedInUserId");
-							int role = (int) sess.getAttribute("loggedInUserRole");
-							String currentTime = helper.getDateTime();
-							String sql = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
-							Connection con = database.getConnection();
-							PreparedStatement ps = con.prepareStatement(sql);
-							ps.setInt(1, id);
-							ps.setInt(2, dept);
-							ps.setString(3, comments);
-							ps.setInt(4, userId);
-							ps.setInt(5, 0);
-							ps.setString(6, currentTime);
-							ps.setInt(7, status);
-							ps.setInt(8, staffTo);
-							int i = ps.executeUpdate();
 
-							if (i > 0) {
-								String query = "UPDATE applications SET dept = ? WHERE id = ?";
-								PreparedStatement ps1 = con.prepareStatement(query);
-								ps1.setInt(1, dept);
-								ps1.setInt(2, id);
-								int j = ps1.executeUpdate();
-								if(j > 0) {
-									out.println("<h4 class='text-success'>Assigned to Department Successfully</h4>");	
-								} else {
-									out.println("<h4 class='text-danger'>Sorry! Unable to Update</h4>");
-								}
-								
-							} else {
-								out.println("<h4 class='text-danger'>Sorry, Unable to Update</h4>");
+						<!-- Content Column -->
+						<div class="col-lg-2 mb-4"></div>
+						<div class="col-lg-8 mb-4 text-center">
+							<%
+							if(id > 0) {
+							%>
+							<form action="editCso_2.jsp" method="post">
+								<table class="table table-light">
+								<input type="hidden" name="id" value="<%=id %>" />
+									<tr>
+										<td>Email ID</td>
+										<td><input type="email" name="email" value="<%=email %>" class="form-control"/></td>
+									</tr>
+									<tr>
+										<td colspan="2"><input type="submit" value="Update" class="btn btn-primary"/></td>
+									</tr>
+								</table>
+							</form>
+							<%
 							}
-						%>
-						
+							%>
 						</div>
-						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-2 mb-4"></div>
 					</div>
 
 				</div>
@@ -137,6 +125,29 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="../login.html">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

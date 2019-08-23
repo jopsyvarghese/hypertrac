@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.Statement"%>
 <html lang="en">
 
 <head>
@@ -28,7 +29,23 @@
 </head>
 
 <body id="page-top">
-
+	<%
+		int myId = 0;
+		Helper helper = new Helper();
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			response.sendRedirect("../../logout.jsp");
+		} catch (NullPointerException ne) {
+			response.sendRedirect("../../logout.jsp");
+		}
+		String sql = "SELECT * FROM cso WHERE mc_id=" + myId;
+		Statement st = null;
+		Connection con = database.getConnection();
+		st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -61,54 +78,46 @@
 
 					<!-- Content Row -->
 					<div class="row">
-						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
-						<div class="col-lg-6 mb-4">
-							<%
-							Helper helper = new Helper();
-							int id = Integer.parseInt(request.getParameter("id"));
-							String comments = request.getParameter("comments");
-							int dept = Integer.parseInt(request.getParameter("dept"));
-							int status = 0;
-							status = Integer.parseInt(request.getParameter("status"));
-							int staffTo = 0;
-							staffTo = Integer.parseInt(request.getParameter("staff"));
-							HttpSession sess = request.getSession();
-							int userId = (int) sess.getAttribute("loggedInUserId");
-							int role = (int) sess.getAttribute("loggedInUserRole");
-							String currentTime = helper.getDateTime();
-							String sql = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
-							Connection con = database.getConnection();
-							PreparedStatement ps = con.prepareStatement(sql);
-							ps.setInt(1, id);
-							ps.setInt(2, dept);
-							ps.setString(3, comments);
-							ps.setInt(4, userId);
-							ps.setInt(5, 0);
-							ps.setString(6, currentTime);
-							ps.setInt(7, status);
-							ps.setInt(8, staffTo);
-							int i = ps.executeUpdate();
 
-							if (i > 0) {
-								String query = "UPDATE applications SET dept = ? WHERE id = ?";
-								PreparedStatement ps1 = con.prepareStatement(query);
-								ps1.setInt(1, dept);
-								ps1.setInt(2, id);
-								int j = ps1.executeUpdate();
-								if(j > 0) {
-									out.println("<h4 class='text-success'>Assigned to Department Successfully</h4>");	
-								} else {
-									out.println("<h4 class='text-danger'>Sorry! Unable to Update</h4>");
-								}
-								
-							} else {
-								out.println("<h4 class='text-danger'>Sorry, Unable to Update</h4>");
-							}
-						%>
-						
+						<!-- Content Column -->
+						<div class="col-lg-6 mb-4 text-center">
+							<form action="manageCso_2.jsp" method="post">
+								<h4 class="text-info">Manage CSO</h4>
+								<table class='table table-light'>
+									<tr>
+										<th>Email ID</th>
+										<th>Action</th>
+									</tr>
+									<%
+										while (rs.next()) {
+									%>
+									<tr>
+										<td><%=rs.getString(3)%></td>
+										<td><a
+											href="editCso.jsp?id=<%=helper.encrypt("" + rs.getInt(1))%>&q=<%=helper.encrypt(rs.getString(3))%>">
+												<span class="fa fa-pen"></span>
+										</a> / <a
+											href="deleteCso.jsp?id=<%=helper.encrypt("" + rs.getInt(1))%>">
+												<span class="fa fa-trash"></span>
+										</a></td>
+									</tr>
+									<%
+										}
+									%>
+								</table>
+							</form>
 						</div>
-						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4 text-center">
+							<h4 class="text-info">Add CSO</h4>
+							<form action="addCso.jsp" method="post">
+								<table class="table table-light">
+									<td><input type="email" name="email" class="form-control"
+										placeholder="Enter new CSO Email ID" /></td>
+									<td><input type="submit" value="Add"
+										class="btn btn-primary" /></td>
+								</table>
+							</form>
+						</div>
 					</div>
 
 				</div>
@@ -137,6 +146,29 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="../login.html">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

@@ -1,14 +1,14 @@
 
-?squid:S1148U"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-Usquid:S1135;"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ßŞÆàÈ-
-›squid:S2147:"xCombine this catch with the one at line 55, which has the same body. (sonar.java.source not set. Assuming 7 or greater.)(®¤¯îıÿÿÿÿ8ßŞÆàÈ-
-Zsquid:S1854+"7Remove this useless assignment to local variable "out".(ïô†úÿÿÿÿ8ßŞÆàÈ-
-nsquid:CommentedOutCodeLine2"<This block of commented-out lines of code should be removed.(÷äáşÿÿÿÿ8ßŞÆàÈ-
-Fsquid:S1148<"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ8ßŞÆàÈ-
-Ksquid:S1481+"(Remove this unused "out" local variable.(ïô†úÿÿÿÿ8ßŞÆàÈ-
-Usquid:S11358"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ßŞÆàÈ-
 msquid:S2095B"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ëöï8ßŞÆàÈ-
+Ksquid:S1481+"(Remove this unused "out" local variable.(ïô†úÿÿÿÿ8ßŞÆàÈ-
+Fsquid:S1148<"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ8ßŞÆàÈ-
 Rsquid:UselessImportCheck"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw
+›squid:S2147:"xCombine this catch with the one at line 55, which has the same body. (sonar.java.source not set. Assuming 7 or greater.)(®¤¯îıÿÿÿÿ8ßŞÆàÈ-
+Usquid:S1135;"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ßŞÆàÈ-
+Zsquid:S1854+"7Remove this useless assignment to local variable "out".(ïô†úÿÿÿÿ8ßŞÆàÈ-
 Fsquid:S11489"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ8ßŞÆàÈ-
+nsquid:CommentedOutCodeLine2"<This block of commented-out lines of code should be removed.(÷äáşÿÿÿÿ8ßŞÆàÈ-
 _squid:UselessImportCheck
 "/Remove this unused import 'javax.mail.Session'.(’”úÿÿÿÿ8ßŞÆàÈ-
+?squid:S1148U"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Usquid:S11358"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ8ßŞÆàÈ-

@@ -110,27 +110,29 @@
 
           <div class="col-lg-6 content order-lg-1 order-2">
             <p>
-              We keep track of our clients’ needs, and harness our expertise in the service industry to address them.
-              By combining our experience and expertise, we ensure ideal environments with round-the-clock services and
-              utilities that function flawlessly.
+              HYPERTRAC helps in reducing the stress of following the update of your file thereby making individuals always going to the office premises 
+              which can lead to health problems or cause accidents as the case may be. In this case your files are being monitored remotely from the 
+              convenience of your home or office giving you actual and detailed updates of your work.
             </p>
 
             <div class="icon-box wow fadeInUp">
               <div class="icon"><i class="fa fa-shopping-bag"></i></div>
-              <h4 class="title"><a href="">Responsible Customer Support</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              <h4 class="title"><a href="">REAL TIME STATUS UPDATE</a></h4>
+              <p class="description">With HYPERTRAC, status update of documents are communicated immediately and directly to concerned contractors and 
+              clients that are registered in the platform so real time monitoring is been made live.</p>
             </div>
 
             <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
               <div class="icon"><i class="fa fa-photo"></i></div>
-              <h4 class="title"><a href="">Proper Documents Handling</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              <h4 class="title"><a href="">PROPER DOCUMENTS HANDLING</a></h4>
+              <p class="description">Business process and procedures are done digitally and remotely and so the status of documents are been handled for
+              clients to get updates instantly by monitoring it.</p>
             </div>
 
             <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
               <div class="icon"><i class="fa fa-bar-chart"></i></div>
-              <h4 class="title"><a href="">Realtime Status Update</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <h4 class="title"><a href="">WELL ORANIZED TEAM STRUCTURE</a></h4>
+              <p class="description">We've dedicated departments as well as sub-departments for all your documents handling and queries.</p>
             </div>
 
           </div>
@@ -147,10 +149,10 @@
           <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
             <h4>We will make sure that your requirements are addressed on time.</h4>
             <p>
-              Ipsum in aspernatur ut possimus sint. Quia omnis est occaecati possimus ea. Quas molestiae perspiciatis occaecati qui rerum. Deleniti quod porro sed quisquam saepe. Numquam mollitia recusandae non ad at et a.
+              We create a platform for Government Agencies, Embassies, Sea ports authorities, International Oil and Gas Companies and large conglomerates staff to be able to devote more time on their jobs so thereby addressing your files on time and with full attention.
             </p>
             <p>
-              Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
+              Everything made easy with our well organized support team.
             </p>
           </div>
         </div>
@@ -163,14 +165,14 @@
           <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
             <h4>We pass it across appropriate departments to make sure you get the best.</h4>
             <p>
-             Delectus alias ut incidunt delectus nam placeat in consequatur. Sed cupiditate quia ea quis. Voluptas nemo qui aut distinctio. Cumque fugit earum est quam officiis numquam. Ducimus corporis autem at blanditiis beatae incidunt sunt. 
+             The sole desire of HYPERTRAC is to give the best services and so our platform provides for all departments to be registered to enable your files pass through the right channels and on time. 
             </p>
-            <p>
+            <!-- <p>
               Voluptas saepe natus quidem blanditiis. Non sunt impedit voluptas mollitia beatae. Qui esse molestias. Laudantium libero nisi vitae debitis. Dolorem cupiditate est perferendis iusto.
             </p>
             <p>
               Eum quia in. Magni quas ipsum a. Quis ex voluptatem inventore sint quia modi. Numquam est aut fuga mollitia exercitationem nam accusantium provident quia.
-            </p>
+            </p> -->
           </div>
           
         </div>
@@ -192,7 +194,7 @@
           </p>
         </header>
 
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
             <div class="box">
@@ -269,7 +271,7 @@
             </div>
           </div>
 
-        </div>
+        </div> -->
 
       </div>
     </section><!-- #services -->
@@ -281,7 +283,32 @@
       <div class="container">
         <header class="section-header">
           <h3>Why choose us?</h3>
-          <p>We are the best in the industry to help you out for all your documents processing digitally.</p>
+          <strong class="text-white">HYPERTRAC retains the potential to enable any nation to climb up from her current Doing Business Index (DBI) in the world to her 
+          targeted rating.<br/>
+          We give you access to updates on your files digitally and monitoring of your files from the convenience of your office and home from anywhere in 
+          the world without stress.<br/>
+          It saves time, money for logistic purposes, the risk involved in car accident or plane crash while moving from point "A" to "B", because with" HYPERTRAC" 
+          your files can be monitored from the comfort of your home or office with your smart devices, laptops and computers thereby also reducing distractions
+           for staff of public and private institutions etc.</strong>
+           <ul class="text-white">
+           		<li>The importance of HYPERTRAC in any establishment is to have access to information from the convenience of your office or home thereby 
+           		reducing the traffic and stress of service provider from their clients visiting office on a regular basis.</li>
+           		<li>It also reduces visitors.</li>
+           		<li>It creates a more secured working environment since visitors are reduced to the minimal and monitored through the requirement and 
+           		approval of invitation letters before visitors can gain access into the clients' premises.</li>
+           		<li>It is safe to do their official assignments since contractors/vendors do not really need to visit regularly any more for follow-up
+           		 purposes thereby avoiding distraction during office hours.</li>
+           		<li>Helps in Monitoring contractors/vendors documents, files, proposals and jobs in their clients' offices without their actual 
+           		presence and disturbance but also gives them update and information that they need.</li>
+           		<li>It gives you access not only to your information but links you to other clients for further business transactions and your access is unlimited.</li>
+           		<li>With the use of HYPERTRAC, it will help in reducing corruption and fraud in our society as it has been observed that corruption is found in 
+           		every sector of the society.</li>
+           		<li>HYPERTRAC will also help to increase a nation or State Internal Generated Revenue (IGR).</li>
+           		<li>9.	Another major benefits of HYPERTRAC include the following:  it helps in reducing fraud as it is being monitored without any interference, 
+           		in the society we live today fraud is becoming the order of the day as it is found in every organization, private, corporate and Government 
+           		establishment, but with HYPERTRAC, jobs, proposals and contracts can be monitored as processes are been captured in real time thereby making 
+           		all parties satisfied at the end of the day.</li>
+           </ul>
         </header>
 
         <div class="row row-eq-height justify-content-center">
@@ -292,7 +319,7 @@
               <div class="card-body">
                 <h5 class="card-title">Safe</h5>
                 <p class="card-text">
-                  All Your documents are shared to the authorities in a safer way with proper security.
+                  With this platform you are safe as your files, proposals and contract will be monitored by you from anywhere in the world without fear and stress, providing you with updates on your files.
                 </p>
                 <a href="#" class="readmore">Read more </a>
               </div>
@@ -305,7 +332,7 @@
               <div class="card-body">
                 <h5 class="card-title">Reliable</h5>
                 <p class="card-text">
-                  We are reliable. We pursue relationships based on transparency, persistence, mutual trust and integrity with our customers and clients.
+                 We are reliable as your files will go through all appropriate channels and attended to, with you getting all the information from the platform.
                 </p>
                 <a href="#" class="readmore">Read more </a>
               </div>
@@ -318,7 +345,7 @@
               <div class="card-body">
                 <h5 class="card-title">Fast</h5>
                 <p class="card-text">
-                  We will make sure that all your data's are processed as fast as possible through our channel.
+                 	All attended files are updated immediately on the platform for you to get immediate update about them without any further delay.  
                 </p>
                 <a href="#" class="readmore">Read more </a>
               </div>
@@ -327,7 +354,7 @@
 
         </div>
 
-        <div class="row counters">
+        <!-- <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
             <span data-toggle="counter-up">274</span>
@@ -349,7 +376,7 @@
             <p>Hard Workers</p>
           </div>
   
-        </div>
+        </div> -->
 
       </div>
     </section>
@@ -430,7 +457,7 @@
       <div class="container">
         <div class="section-header">
           <h3>Team</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+          <p>Meet the super humans who handle our team well.</p>
         </div>
 
         <div class="row">
@@ -622,7 +649,7 @@
     <!--==========================
       Contact Section
     ============================-->
-    <section id="contact">
+    <!-- <section id="contact">
       <div class="container-fluid">
 
         <div class="section-header">
@@ -683,7 +710,7 @@
         </div>
 
       </div>
-    </section><!-- #contact -->
+    </section> --><!-- #contact -->
 
   </main>
 
@@ -697,7 +724,9 @@
 
           <div class="col-lg-4 col-md-6 footer-info">
             <h3>HyperTrac</h3>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+            <p>HYPERTRAC helps in reducing the stress of following the update of your file thereby making individuals always going to the office premises 
+            which can lead to health problems or cause accidents as the case may be. In this case your files are being monitored remotely from the 
+            convenience of your home or office giving you actual and detailed updates of your work.</p>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
@@ -714,11 +743,11 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
+              HyperTrac Limited <br>
+              Kuje Road, Kuje-Amuwo, Kuje  535022<br>
+              Nigeria <br>
               <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Email:</strong> info@hypertrac.online<br>
             </p>
 
             <div class="social-links">
@@ -733,7 +762,7 @@
 
           <div class="col-lg-3 col-md-6 footer-newsletter">
             <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
+            <p>Subscribe to our news letter for all the latest updates.</p>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit"  value="Subscribe">
             </form>

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="javax.mail.internet.MimeMessage.RecipientType"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -34,15 +36,26 @@
 </head>
 
 <body id="page-top">
-<%
-	int id = Integer.parseInt(request.getParameter("id"));
-	String sql = "SELECT * FROM applications WHERE id=?";
-	Connection con = database.getConnection();
-	PreparedStatement ps = con.prepareStatement(sql);
-	ps.setInt(1, id);
-	ResultSet rs = ps.executeQuery();
-	int app_by = 0;
-%>
+	<%
+		int id = Integer.parseInt(request.getParameter("id"));
+		String sql = "SELECT * FROM applications WHERE id=?";
+		Helper helper = new Helper();
+		Connection con = database.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		int app_by = 0;
+		int myId = 0;
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch(NumberFormatException ne) {
+			response.sendRedirect("../../logout.jsp");
+		}
+		String sql2 = "SELECT * FROM cso WHERE mc_id=?";
+		PreparedStatement ps2 = con.prepareStatement(sql2);
+		ps2.setInt(1, myId);
+		ResultSet rsCso = ps2.executeQuery();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -77,63 +90,121 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
-						<div class="col-lg-6 mb-4">
-						<%
-						  String to = "jopsyvarghese@gmail.com";
-					      String from = "jopsy777@gmail.com";  
-					      String host = "localhost";//or IP address  
-					      final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-					      Properties props = System.getProperties();
-					      props.setProperty("mail.smtp.host", "smtp.gmail.com");
-					      props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
-					      props.setProperty("mail.smtp.socketFactory.fallback", "false");
-					      props.setProperty("mail.smtp.port", "465");
-					      props.setProperty("mail.smtp.socketFactory.port", "465");
-					      props.put("mail.smtp.auth", "true");
-					      props.put("mail.debug", "true");
-					      props.put("mail.store.protocol", "pop3");
-					      props.put("mail.transport.protocol", "smtp");
-					      final String username = "hypertracltd@gmail.com";//
-					      final String password = "hyper.123";
-					      try{
-					      Session sessionObj = Session.getInstance(props, 
-					                           new Authenticator(){
-					                              protected PasswordAuthentication getPasswordAuthentication() {
-					                                 return new PasswordAuthentication(username, password);
-					                              }});
+						<div class="col-lg-2 mb-3"></div>
+						<div class="col-lg-8 mb-6">
+							<%
+								if (request.getParameter("dept") == null) {
+							%>
+							<form action="#" method="post">
+								<input type="hidden" name="id" value="<%=id%>" />
+								<table class="table">
 
-					    // -- Create a new message --
-					      Message msg = new MimeMessage(sessionObj);
-					      if(rs.next()){
-					    	  String sql2 = "SELECT email FROM auth WHERE id = "+rs.getInt(8);
-					    	  Statement st = con.createStatement();
-					    	  ResultSet rs2 = st.executeQuery(sql2);
-					    	  
-					   // -- Set the FROM and TO fields --
-					      msg.setFrom(new InternetAddress("hypertracltd@gmail.com"));
-					      if(rs2.next()){
-					    	  msg.setRecipients(Message.RecipientType.TO, 
-				                       InternetAddress.parse(rs2.getString(1),false));  
-				    	  } else {
-				    		  throw new Exception("Invalid Email ID");
-				    	  }
-					      
-					    	  msg.setSubject("HyperTrac: Invitation Against Your Application");
-					    	  msg.setContent("<h4>"+rs.getString(4)+"</h4>"+
-					    			  "<i>Requesting you to visit our office for further processing of your application</i><br/>" +
-					    			  "Application ID: "+id
-					    			  , "text/html");
-					      }
-					      
-					      msg.setSentDate(new Date());
-					      Transport.send(msg);
-					      out.println("<h4>Email Invitation Sent Successfully</h4>");
-					   }catch (MessagingException e){ System.out.println("Erreur d'envoi, cause: " + e);}
-						%>
-						
+									<tr>
+										<td>Department To Visit</td>
+										<td>
+										<select name="dept" class="form-control">
+											<option value="0">Select Any Department</option>
+											<%
+											ResultSet rsDept = helper.getDept();
+											while(rsDept.next()) { %>
+												<option value="<%=rsDept.getInt(1) %>"><%=rsDept.getString(2) %></option>
+											<% } %>
+										</select>
+										</td>
+									</tr>
+									<tr>
+										<td>Message</td>
+										<td><textarea name="message" class="form-control" rows=10></textarea></td>
+									</tr>
+									<tr>
+										<td>CSO Email</td>
+										<td><select name="cso" class="form-control">
+											<%	while(rsCso.next()) { %>
+												<option value="<%=rsCso.getString(3) %>"><%=rsCso.getString(3) %></option>	
+											<% }	%>
+										</select></td>
+									</tr>
+									<tr>
+										<td colspan="2"><input type="submit"
+											class="btn btn-primary" /></td>
+									</tr>
+								</table>
+							</form>
+							<%
+								} else {
+									int dept = Integer.parseInt(request.getParameter("dept"));
+									String csoEmail = request.getParameter("cso");
+									String message = request.getParameter("message");
+									
+									String host = "localhost";//or IP address  
+									final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+									Properties props = System.getProperties();
+									props.setProperty("mail.smtp.host", "smtp.gmail.com");
+									props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+									props.setProperty("mail.smtp.socketFactory.fallback", "false");
+									props.setProperty("mail.smtp.port", "465");
+									props.setProperty("mail.smtp.socketFactory.port", "465");
+									props.put("mail.smtp.auth", "true");
+									props.put("mail.debug", "true");
+									props.put("mail.store.protocol", "pop3");
+									props.put("mail.transport.protocol", "smtp");
+									final String username = "hypertracltd@gmail.com";//
+									final String password = "hyper.123";
+									try {
+										Session sessionObj = Session.getInstance(props, new Authenticator() {
+											protected PasswordAuthentication getPasswordAuthentication() {
+												return new PasswordAuthentication(username, password);
+											}
+										});
+
+										// -- Create a new message --
+										Message msg = new MimeMessage(sessionObj);
+										if (rs.next()) {
+											String sqlEmail = "SELECT email FROM applications_more WHERE fk_id = " + id;
+											Statement st = con.createStatement();
+											ResultSet rs2 = st.executeQuery(sqlEmail);
+
+											// -- Set the FROM and TO fields --
+											msg.setFrom(new InternetAddress("hypertracltd@gmail.com"));
+											if (rs2.next()) {
+												msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(rs2.getString(1), false));
+											} else {
+												throw new Exception("Invalid Email ID");
+											}
+
+											msg.setSubject("HyperTrac: Invitation Against Your Application");
+											msg.setContent("<h2 style='color:darkblue'>" + rs.getString(4) + "</h2><br/>"
+													+ "<h3 style='color:orange'>For Application ID: " + id + "</h3><br/>"
+													+ "<h4>"+message+"</h4><br/>", "text/html");
+											/* msg.addRecipient(RecipientType.BCC, new InternetAddress(
+										            "your@email.com")); */
+											msg.addRecipient(RecipientType.CC, new InternetAddress(
+										            csoEmail));
+										}
+										
+										msg.setSentDate(new Date());
+										Transport.send(msg);
+										String sqlInv = "UPDATE invitation SET invite_by=?,for_dept=?,extra_docs=? WHERE app_id=?";
+										PreparedStatement psInv = con.prepareStatement(sqlInv); 
+										psInv.setInt(1, myId);
+										psInv.setInt(2, dept);
+										psInv.setString(3, message);
+										psInv.setInt(4, id);
+										int j = psInv.executeUpdate();
+										if(j > 0) {
+											out.println("<h5 class='text-success'>Email Invitation Sent Successfully and Details Updated</h4>");
+										} else {
+											out.println("<h5 class='text-warning'>Email Invitation Sent Successfully, Details Not Updated</h4>");
+										}
+
+									} catch (MessagingException e) {
+										System.out.println("Erreur d'envoi, cause: " + e);
+									}
+								}
+							%>
+
 						</div>
-						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-2 mb-4"></div>
 					</div>
 
 				</div>

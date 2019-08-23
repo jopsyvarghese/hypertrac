@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -26,6 +30,12 @@
 
 <body id="page-top">
 
+
+<%
+Helper helper = new Helper();
+Connection con = database.getConnection();
+ResultSet rs = helper.getDept();
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -60,85 +70,66 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-12 mb-4">
-							<h4 class="text-center">STATUS</h4>
-							<hr />
-							<div class="card-header bg-white">
-								<div class="row">
-
-									<div class="col-sm-2">
-										<small>Status</small>
-									</div>
-									<div class="col-sm-8">
-										<small>Details</small>
-									</div>
-									<div class="col-sm-2">
-										<small>Last Updated</small>
-									</div>
-									<hr />
-
-
-									<div class="col-sm-2">
-										<small> <strong
-											class="rounded-pill bg-primary text-white"
-											style="padding: 2px 4px;"> Acknowledged </strong>
-										</small>
-									</div>
-									<div class="col-sm-8">
-										<small> Department 1 / Receiver: Sanal Kumar
-											(Asst.Engineer) / sanalkumar@gmail.com </small>
-									</div>
-									<div class="col-sm-2">
-										<small>25 May 2019</small>
-									</div>
-									<div class="col-sm-5"></div>
-									<div class="col-sm-2">
-										<span class="fa fa-angle-down"></span>
-									</div>
-									<div class="col-sm-5"></div>
-
-
-
-									<div class="col-sm-2">
-										<small> <strong
-											class="rounded-pill bg-warning text-white"
-											style="padding: 2px 4px;"> Processing </strong>
-										</small>
-									</div>
-									<div class="col-sm-8">
-										<small> Department 5 / Receiver: Sam Jacob (Asst.CMO)
-											/ samjacob@gmail.com </small>
-									</div>
-									<div class="col-sm-2">
-										<small>01 June 2019</small>
-									</div>
-									<div class="col-sm-5"></div>
-									<div class="col-sm-2">
-										<span class="fa fa-angle-down"></span>
-									</div>
-									<div class="col-sm-5"></div>
-
-
-
-
-									<div class="col-sm-2">
-										<small> <strong
-											class="rounded-pill bg-success text-white"
-											style="padding: 2px 4px;"> Completed </strong>
-										</small>
-									</div>
-									<div class="col-sm-8">
-										<small> Department 5 / Receiver: Sam Jacob (Asst.CMO)
-											/ samjacob@gmail.com </small>
-									</div>
-									<div class="col-sm-2">
-										<small>03 June 2019</small>
-									</div>
-
-
-								</div>
-							</div>
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+							<form action="appAssign.jsp" method="post">
+								<table class="table">
+								<%
+										String appId = "";
+										String id = "";
+										id = request.getParameter("id");
+										appId = request.getParameter("appId");
+									%>
+									<tr>
+										<th>Application Name/No</th>
+										<td><%=appId %> <input type="hidden" name="id"
+											value="<%=id%>" /></td>
+									</tr>
+									<tr>
+										<th>Comments</th>
+										<td><textarea class="form-control" name="comments"></textarea>
+										</td>
+									</tr>
+									<tr>
+										<th>Department</th>
+										<td><select name="dept" id="dept" class="form-control" onchange="return getStaffsList()">
+												<option value="0">Select Department To Assign</option>
+												<%
+													while (rs.next()) {
+												%>
+												<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
+												<%
+													}
+												%>
+										</select></td>
+									</tr>
+									<tr>
+										<th>Staff</th>
+										<td>
+											<select name="staff" class="form-control">
+												<optgroup id="staffsList">Select Staff</optgroup>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th>Update Status</th>
+										<td><select name="status" class="form-control">
+										<%
+										String stat[] = helper.getAppStatus();
+										for (int k=0; k<stat.length; k++) {
+										%>
+											<option value="<%=k %>"><%=stat[k] %></option>
+										<% } %>
+										</select></td>
+									</tr>
+									<tr>
+										<td colspan="2" class="text-center"><input type="submit"
+											value="Assign Now" class="btn btn-danger" /></td>
+									</tr>
+								</table>
+							</form>
 						</div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>
@@ -185,11 +176,12 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
+					<a class="btn btn-primary" href="../login.html">Logout</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>
@@ -207,7 +199,12 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+<script>
+	function getStaffsList() {
+		var dept = document.getElementById("dept").value;
+		$("#staffsList").load("../Staff/staffsList.jsp?dept=" + dept);
+	}
+</script>
 </body>
 
 </html>
