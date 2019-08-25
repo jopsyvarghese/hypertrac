@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
@@ -11,8 +15,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -25,14 +28,20 @@
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+
 <body id="page-top">
-	<%
-		Helper helper = new Helper();
-		int id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		String rc = helper.getRc(id);
-		ResultSet rs = helper.getBuzzType();
-		ResultSet majorClients = helper.getMajorClients();
-	%>
+<%
+Helper helper = new Helper();
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -47,7 +56,10 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -60,89 +72,44 @@
 						</div>
 					</div>
 
-					<div class="text-center">
-						<h4>Apply For New Service</h4>
-						<br />
-						<form action="createService.jsp" method="post"
-							enctype="multipart/form-data">
-							<table class="table table-hover">
-								<tbody>
-									<tr>
-										<td>Company (Contractor) Name</td>
-										<td><input type="text" class="form-control" name="contractorName" /></td>
-									</tr>
-									<tr>
-										<td>RC Number</td>
-										<td><input type="text" class="form-control" name="rc"
-											value="<%=rc%>" readonly="readonly" /></td>
-									</tr>
-									<tr>
-										<td>Company Address</td>
-										<td><textarea class="form-control" name="addr"></textarea></td>
-									</tr>
-									<tr>
-										<td>Telephone No.</td>
-										<td><input type="number" class="form-control" name="phone" /></td>
-									</tr>
-									<tr>
-										<td>Telephone No.</td>
-										<td><input type="number" class="form-control" name="phone2" /></td>
-									</tr>
-									<tr>
-										<td>Email-id</td>
-										<td><input type="email" class="form-control" name="email" /></td>
-									</tr>
-									<tr>
-										<td>Website</td>
-										<td><input type="text" class="form-control" name="website" /></td>
-									</tr>
-									<tr>
-										<td>Type of Business</td>
-										<td><select name="buzzType" class="form-control">
-												<%
-													while (rs.next()) {
-												%>
-												<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
-												<%
-													}
-												%>
-										</select>
-									</tr>
-									<tr>
-										<td>Document Name/Subject/ID</td>
-										<td><input type="text" class="form-control" name="docName" /></td>
-									</tr>
-									<tr>
-										<td>Name of Major client(s)</td>
-										<td><select name="majorClient" class="form-control"
-											onchange="loadSub()" id="majorClient">
-												<option value="0">Select Major Client</option>
-												<%
-													while (majorClients.next()) {
-												%>
-												<option value="<%=majorClients.getInt(1)%>"><%=majorClients.getString(2)%></option>
-												<%
-													}
-												%>
-										</select></td>
-									</tr>
-									<tr>
-										<td>Sub-Department</td>
-										<td><select name="subDept" class="form-control">
-												<option value="0">Select Sub-Department</option>
-												<optgroup label="" id="subCatData"></optgroup>
-										</select></td>
-									</tr>
-									<tr>
-										<td>Upload Scanned Documents :</td>
-										<td><input type="file" class="form-control" name="file"
-											multiple="multiple" /></td>
-									</tr>
-								</tbody>
-							</table>
-							<input type="submit" class="btn btn-success" />
-						</form>
-						<br /> <br />
+					<!-- Content Row -->
+					<div class="row">
+
+						<!-- Content Column -->
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+						<%
+						int id = 0;
+						id = Integer.parseInt(request.getParameter("id"));
+						String sql = "SELECT * FROM staff WHERE id="+id+" AND mc_id="+loggedId;
+						Connection con = database.getConnection();
+						Statement st = null;
+						st = con.createStatement();
+						ResultSet rs = null;
+						rs = st.executeQuery(sql);
+						if(!rs.next()) {
+							out.println("<h4 style='color:red'>Staff Doesn't Belong to Your Team</h4>");
+						} else { 
+							String sql2 = "DELETE FROM staff WHERE id=?;";
+							PreparedStatement ps2 = con.prepareStatement(sql2);
+							ps2.setInt(1, id);
+							if(ps2.executeUpdate() > 0){
+								String sql3 = "DELETE FROM auth WHERE id=?";
+								PreparedStatement ps3 = con.prepareStatement(sql3);
+								ps3.setInt(1, id);
+								if(ps3.executeUpdate() > 0){
+									out.println("<h4 style='color:green'>Deleted Staff Successfully</h4>");	
+								} else {
+									out.println("<h4 style='color:red'>Sorry! Unable to Delete Staff</h4>");
+								}
+								
+							} else {
+								out.println("<h4 style='color:red'>Sorry! Unable to Delete Staff</h4>");
+							}
+							
+						} %>
+						</div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>
@@ -211,12 +178,7 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-	<script>
-		function loadSub() {
-			var deptId = document.getElementById("majorClient").value;
-			$("#subCatData").load("subDept.jsp?dept=" + deptId);
-		}
-	</script>
+
 </body>
 
 </html>

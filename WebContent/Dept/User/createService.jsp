@@ -141,17 +141,18 @@
 										//File Uploads Here
 										try {
 											String itemName = item.getName();
-											File uploads = new File(getServletContext().getInitParameter("file-upload"));
+											//File uploads = new File(getServletContext().getInitParameter("file-upload"));
 
-											/* String relativePath = "../images/service/";
+											String relativePath = "uploads/";
 											String realPath = getServletContext().getRealPath(relativePath);
 											File destinationDir = new File(realPath);
 											if(!destinationDir.exists()) {
 												destinationDir.mkdir();
-											} */
+											}
+											
 											Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-											File savedFile = new File(uploads, "" + timestamp.getTime() + itemName);
-											//File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
+											//File savedFile = new File(realPath, itemName);
+											File savedFile = new File(realPath, ""+timestamp.getTime()+itemName);
 											try {
 												long sizeInBytes = item.getSize();
 

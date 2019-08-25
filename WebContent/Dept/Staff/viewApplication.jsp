@@ -39,6 +39,7 @@
 		Connection con = database.getConnection();
 		ResultSet imgRs = helper.getImagesByFKey(id);
 		ResultSet imgRs1 = helper.getImagesByFKey(id);
+		File uploads = new File(getServletContext().getInitParameter("file-upload"));
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -179,7 +180,7 @@
 											}
 									%>
 									<div class="carousel-item <%=status%>">
-										<img src="../../../images/service/<% out.print(""+imgRs1.getString(1));%>"
+										<img src="../../uploads/<% out.print(imgRs1.getString(1));%>"
 											alt="Documents Image" class="img-fluid">
 									</div>
 									<%

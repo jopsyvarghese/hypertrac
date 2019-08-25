@@ -27,12 +27,36 @@
                 <span>Major Clients</span>
             </a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="staffs.jsp">
+                <i class="fas fa-truck-loading"></i>
+                <span>Staff Portal</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="contractors.jsp">
+                <i class="fas fa-truck-loading"></i>
+                <span>Contractors Portal</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="individuals.jsp">
+                <i class="fas fa-truck-loading"></i>
+                <span>Individuals Portal</span>
+            </a>
+        </li>
+        
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="applications.jsp">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Contractors Application</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="individualsApplications.jsp">
+                <i class="fas fa-truck-loading"></i>
+                <span>Individuals Application</span>
             </a>
         </li>
         

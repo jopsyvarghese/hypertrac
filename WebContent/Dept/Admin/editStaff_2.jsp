@@ -1,11 +1,8 @@
 <!DOCTYPE html>
+<%@page import="com.sun.java.swing.plaf.motif.resources.motif"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -16,8 +13,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -32,21 +28,7 @@
 </head>
 
 <body id="page-top">
-	<%
-		Helper helper = new Helper();
-		int loggedId = 0;
-		try {
-			if (session.getAttribute("loggedInUserId") == null) {
-	%>
-	<script>
-		window.location = "../../logout.jsp"
-	</script>
-	<%
-		}
-			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		} catch (NullPointerException ne) {
-		}
-	%>
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -76,49 +58,52 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="text-center">Contractor's Application</div>
-					<table class="table table-responsive-lg">
-						<tr class="table-warning">
-							<th>Sl.No</th>
-							<th>Applicant Name/No.</th>
-							<th>Major Client Name</th>
-							<th>Submitted Date</th>
-							<th>Status</th>
-						</tr>
-						<%
-							Connection con = database.getConnection();
-							Statement st = null;
-							ResultSet rs = null;
-							ResultSet rs2 = null;
-							st = con.createStatement();
-							int i = 1;
-							String sql = "SELECT id FROM auth WHERE role=0";
 
-							rs = st.executeQuery(sql);
-							while (rs.next()) {
-								String sql2 = "SELECT * FROM applications WHERE app_by=?";
-								PreparedStatement ps = con.prepareStatement(sql2);
-								ps.setInt(1, rs.getInt(1));
-								rs2 = ps.executeQuery();
-								while (rs2.next()) {
-						%>
-						<tr>
-							<td><%=i%></td>
-							<td><%=rs2.getString(2)%></td>
-							<td><%=helper.getMajorClientByDeptId(rs2.getInt(3))%></td>
-							<td><%=rs2.getString(5)%></td>
-							<td><a href="viewApplication.jsp?id=<%=rs2.getString(1)%>"
-								class="btn-sm btn-primary">View</a></td>
-						</tr>
-						<%
-						i++;
-							}
-							}
-							con.close();
-						%>
+					<!-- Content Row -->
+					<div class="row">
 
+						<!-- Content Column -->
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+							<%
+								try {
 
-					</table>
+									int id = Integer.parseInt(request.getParameter("id"));
+									String firstName = request.getParameter("firstName");
+									String userName = request.getParameter("userName");
+									String email = request.getParameter("email");
+									Long phone = Long.parseLong(request.getParameter("phone"));
+									String pwd = request.getParameter("pwd");
+
+									int dept = Integer.parseInt(request.getParameter("dept"));
+									int position = Integer.parseInt(request.getParameter("position"));
+
+									String sql = "UPDATE auth SET fname=?,uname=?,pwd=?,email=?,mob=? WHERE id=?";
+									Connection con = database.getConnection();
+									PreparedStatement ps = con.prepareStatement(sql);
+									ps.setString(1, firstName);
+									ps.setString(2, userName);
+									ps.setString(3, pwd);
+									ps.setString(4, email);
+									ps.setLong(5, phone);
+									ps.setInt(6, id);
+									if (ps.executeUpdate() > 0) {
+										String sql2 = "UPDATE staff SET dept=?, position=? WHERE id=?";
+										PreparedStatement ps2 = con.prepareStatement(sql2);
+										ps2.setInt(1, dept);
+										ps2.setInt(2, position);
+										ps2.setInt(3, id);
+										if (ps2.executeUpdate() > 0) {
+											out.println("<h4 style='color:green'>Updated Successfully</h4>");
+										}
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							%>
+						</div>
+						<div class="col-lg-3 mb-4"></div>
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -164,7 +149,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
+					<a class="btn btn-primary" href="../login.html">Logout</a>
 				</div>
 			</div>
 		</div>

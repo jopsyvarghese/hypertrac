@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.hypertrac.dao.database"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.PreparedStatement"%>
 <html lang="en">
 
 <head>
@@ -32,7 +31,7 @@
 </head>
 
 <body id="page-top">
-	<%
+<%
 		Helper helper = new Helper();
 		int loggedId = 0;
 		try {
@@ -46,6 +45,8 @@
 			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 		} catch (NullPointerException ne) {
 		}
+
+		Connection con = database.getConnection();
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -76,49 +77,30 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="text-center">Contractor's Application</div>
-					<table class="table table-responsive-lg">
-						<tr class="table-warning">
-							<th>Sl.No</th>
-							<th>Applicant Name/No.</th>
-							<th>Major Client Name</th>
-							<th>Submitted Date</th>
-							<th>Status</th>
-						</tr>
+					
+					<div class="text-center">
 						<%
-							Connection con = database.getConnection();
-							Statement st = null;
-							ResultSet rs = null;
-							ResultSet rs2 = null;
-							st = con.createStatement();
-							int i = 1;
-							String sql = "SELECT id FROM auth WHERE role=0";
-
-							rs = st.executeQuery(sql);
-							while (rs.next()) {
-								String sql2 = "SELECT * FROM applications WHERE app_by=?";
-								PreparedStatement ps = con.prepareStatement(sql2);
-								ps.setInt(1, rs.getInt(1));
-								rs2 = ps.executeQuery();
-								while (rs2.next()) {
-						%>
-						<tr>
-							<td><%=i%></td>
-							<td><%=rs2.getString(2)%></td>
-							<td><%=helper.getMajorClientByDeptId(rs2.getInt(3))%></td>
-							<td><%=rs2.getString(5)%></td>
-							<td><a href="viewApplication.jsp?id=<%=rs2.getString(1)%>"
-								class="btn-sm btn-primary">View</a></td>
-						</tr>
-						<%
-						i++;
+						int id = 0;
+						try {
+							id = Integer.parseInt(request.getParameter("id"));
+						} catch(NumberFormatException ne) {
+							System.out.println(ne);
+						}
+						String redirect = request.getParameter("redirect");
+							
+						if(id > 0) {
+							String sql2 = "DELETE FROM auth WHERE id=?";
+							PreparedStatement ps = con.prepareStatement(sql2);
+							ps.setInt(1, id);
+							int i = ps.executeUpdate();
+							if(i > 0) {
+								response.sendRedirect(redirect+"?status=success");
+							} else {
+								response.sendRedirect(redirect+"?status=failed");
 							}
-							}
-							con.close();
+						}
 						%>
-
-
-					</table>
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -146,29 +128,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

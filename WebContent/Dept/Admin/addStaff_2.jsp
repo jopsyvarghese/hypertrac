@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -11,8 +15,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -25,14 +28,19 @@
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+
 <body id="page-top">
-	<%
-		Helper helper = new Helper();
-		int id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		String rc = helper.getRc(id);
-		ResultSet rs = helper.getBuzzType();
-		ResultSet majorClients = helper.getMajorClients();
-	%>
+<%
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -47,7 +55,10 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -60,89 +71,68 @@
 						</div>
 					</div>
 
-					<div class="text-center">
-						<h4>Apply For New Service</h4>
-						<br />
-						<form action="createService.jsp" method="post"
-							enctype="multipart/form-data">
-							<table class="table table-hover">
-								<tbody>
-									<tr>
-										<td>Company (Contractor) Name</td>
-										<td><input type="text" class="form-control" name="contractorName" /></td>
-									</tr>
-									<tr>
-										<td>RC Number</td>
-										<td><input type="text" class="form-control" name="rc"
-											value="<%=rc%>" readonly="readonly" /></td>
-									</tr>
-									<tr>
-										<td>Company Address</td>
-										<td><textarea class="form-control" name="addr"></textarea></td>
-									</tr>
-									<tr>
-										<td>Telephone No.</td>
-										<td><input type="number" class="form-control" name="phone" /></td>
-									</tr>
-									<tr>
-										<td>Telephone No.</td>
-										<td><input type="number" class="form-control" name="phone2" /></td>
-									</tr>
-									<tr>
-										<td>Email-id</td>
-										<td><input type="email" class="form-control" name="email" /></td>
-									</tr>
-									<tr>
-										<td>Website</td>
-										<td><input type="text" class="form-control" name="website" /></td>
-									</tr>
-									<tr>
-										<td>Type of Business</td>
-										<td><select name="buzzType" class="form-control">
-												<%
-													while (rs.next()) {
-												%>
-												<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
-												<%
-													}
-												%>
-										</select>
-									</tr>
-									<tr>
-										<td>Document Name/Subject/ID</td>
-										<td><input type="text" class="form-control" name="docName" /></td>
-									</tr>
-									<tr>
-										<td>Name of Major client(s)</td>
-										<td><select name="majorClient" class="form-control"
-											onchange="loadSub()" id="majorClient">
-												<option value="0">Select Major Client</option>
-												<%
-													while (majorClients.next()) {
-												%>
-												<option value="<%=majorClients.getInt(1)%>"><%=majorClients.getString(2)%></option>
-												<%
-													}
-												%>
-										</select></td>
-									</tr>
-									<tr>
-										<td>Sub-Department</td>
-										<td><select name="subDept" class="form-control">
-												<option value="0">Select Sub-Department</option>
-												<optgroup label="" id="subCatData"></optgroup>
-										</select></td>
-									</tr>
-									<tr>
-										<td>Upload Scanned Documents :</td>
-										<td><input type="file" class="form-control" name="file"
-											multiple="multiple" /></td>
-									</tr>
-								</tbody>
-							</table>
-							<input type="submit" class="btn btn-success" />
-						</form>
-						<br /> <br />
+					<!-- Content Row -->
+					<div class="row">
+
+						<!-- Content Column -->
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+						<%
+						Helper helper = new Helper();
+						Connection con = null;
+						int lastInsertedId = 0;
+						ResultSet rs = null;
+						String firstname = request.getParameter("firstName");
+						String lastname = request.getParameter("lastName");
+						int random = (int)(Math.random() * 50000 + 1);
+						String username = request.getParameter("userName")+random;
+						int dept = Integer.parseInt(request.getParameter("dept"));
+						int subDept = Integer.parseInt(request.getParameter("subDept"));
+						int position = Integer.parseInt(request.getParameter("position"));
+						String email =  request.getParameter("email");
+						Long phone =  Long.parseLong(request.getParameter("phone"));
+						String pwd =  request.getParameter("pwd");					
+						con = database.getConnection();
+						
+						String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by)" +
+						"VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+						PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+						ps.setString(1, firstname);
+						ps.setString(2, "");
+						ps.setString(3, username);
+						ps.setString(4, pwd);
+						ps.setString(5, email);
+						ps.setLong(6, phone);
+						ps.setInt(7, 1);
+						ps.setString(8, helper.getDateTime());
+						ps.setInt(9, 0);
+						ps.setInt(10, 0);
+						ps.setInt(11, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
+						if (ps.executeUpdate() > 0) {
+							rs = ps.getGeneratedKeys();
+							if (rs.next()) {
+								lastInsertedId = rs.getInt(1);
+								String sql2 = "INSERT INTO staff(id, dept, position, sub_dept_id, mc_id) VALUES (?,?,?,?,?)";
+								PreparedStatement ps2 = con.prepareStatement(sql2);
+								ps2.setInt(1, lastInsertedId);
+								ps2.setInt(2, dept);
+								ps2.setInt(3, position);
+								ps2.setInt(4, subDept);
+								ps2.setInt(5, loggedId);
+								if(ps2.executeUpdate() != 0){
+									out.println("<h4 style='color:green;'>Staff Created Successfully</h4>");	
+								}
+							} else {
+								out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+							}
+						} else {
+							out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+						}
+						%>
+						
+						
+						</div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>
@@ -211,12 +201,7 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-	<script>
-		function loadSub() {
-			var deptId = document.getElementById("majorClient").value;
-			$("#subCatData").load("subDept.jsp?dept=" + deptId);
-		}
-	</script>
+
 </body>
 
 </html>

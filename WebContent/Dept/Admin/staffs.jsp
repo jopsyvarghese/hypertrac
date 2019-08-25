@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
@@ -32,21 +30,18 @@
 </head>
 
 <body id="page-top">
-	<%
-		Helper helper = new Helper();
-		int loggedId = 0;
-		try {
-			if (session.getAttribute("loggedInUserId") == null) {
-	%>
-	<script>
-		window.location = "../../logout.jsp"
-	</script>
-	<%
-		}
-			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		} catch (NullPointerException ne) {
-		}
-	%>
+<%
+Helper helper = new Helper();
+int loggedId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {
+		%>
+		<script>window.location="../../logout.jsp"</script>
+		<%
+	}
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+} catch(NullPointerException ne){}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -76,50 +71,64 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="text-center">Contractor's Application</div>
-					<table class="table table-responsive-lg">
-						<tr class="table-warning">
-							<th>Sl.No</th>
-							<th>Applicant Name/No.</th>
-							<th>Major Client Name</th>
-							<th>Submitted Date</th>
-							<th>Status</th>
-						</tr>
-						<%
-							Connection con = database.getConnection();
-							Statement st = null;
-							ResultSet rs = null;
-							ResultSet rs2 = null;
-							st = con.createStatement();
-							int i = 1;
-							String sql = "SELECT id FROM auth WHERE role=0";
-
-							rs = st.executeQuery(sql);
-							while (rs.next()) {
-								String sql2 = "SELECT * FROM applications WHERE app_by=?";
-								PreparedStatement ps = con.prepareStatement(sql2);
-								ps.setInt(1, rs.getInt(1));
-								rs2 = ps.executeQuery();
-								while (rs2.next()) {
-						%>
-						<tr>
-							<td><%=i%></td>
-							<td><%=rs2.getString(2)%></td>
-							<td><%=helper.getMajorClientByDeptId(rs2.getInt(3))%></td>
-							<td><%=rs2.getString(5)%></td>
-							<td><a href="viewApplication.jsp?id=<%=rs2.getString(1)%>"
-								class="btn-sm btn-primary">View</a></td>
-						</tr>
-						<%
-						i++;
-							}
-							}
-							con.close();
-						%>
-
-
-					</table>
-
+					<div class="text-center">
+						<a href="addStaff.jsp" class="btn btn-primary btn-sm"> <span
+									class="fa fa-plus-circle"></span> New Staff
+								</a>
+						<br/><br/>
+						
+						<table class="table table-hover table-bordered">
+								<tr class="table-warning">
+									<th>Sl.No</th>
+									<th>Staff Name</th>
+									<th>Department</th>
+									<th>Position</th>
+									<th>Email</th>
+									<th>Phone No.</th>
+									<th>Operation</th>
+								</tr>
+								<%
+								String deptQ = "SELECT * FROM staff";
+								Connection con = database.getConnection();
+	                            Statement st = null;
+	                            ResultSet rs = null;
+	                            st = con.createStatement();
+	                            rs = st.executeQuery(deptQ);
+	                            int i = 1;
+	                            int staffId = 0;
+	                            String email = "";
+	                            String mobile = "";
+	                            String name = "";
+	                            String deptName = "";
+	                            String position = "";
+	                            while(rs.next()) {
+		                            staffId = rs.getInt(1);
+		                            email = helper.getEmailById(staffId);
+									mobile = helper.getPhoneById(staffId);
+									name = helper.getNameById(staffId);
+									deptName = helper.getDeptById(rs.getInt(2));
+									position = helper.getPositionById(rs.getInt(3));
+									%>
+									<tr>
+										<td><%=i %></td>
+										<td><%=name %></td>
+										<td><%=deptName %></td>
+										<td><%=position %></td>
+										<td><%=email %></td>
+										<td><%=mobile %></td>
+										<td><a href="editStaff.jsp?id=<%=staffId %>"><span class="fa fa-pen"></span></a>
+											&nbsp;&nbsp; <a href="deleteStaff.jsp?id=<%=staffId %>"
+											onclick="return confirmDelete();"><span
+												class="fa fa-trash-alt"></span></a></td>
+									</tr>
+								<%
+								i++;
+	                            }
+								%>
+								
+							</table>
+					</div>
+									
 				</div>
 				<!-- /.container-fluid -->
 
@@ -146,29 +155,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

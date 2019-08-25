@@ -744,9 +744,11 @@
             <h4>Contact Us</h4>
             <p>
               HyperTrac Limited <br>
-              Kuje Road, Kuje-Amuwo, Kuje  535022<br>
-              Nigeria <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
+              CS-5 heavenly plaza<br>
+			  Civil line road<br> 
+			  Kakkanad,<br>
+			  Cochin-21 <br>
+              <strong>Phone:</strong> +91 81053 94675<br>
               <strong>Email:</strong> info@hypertrac.online<br>
             </p>
 

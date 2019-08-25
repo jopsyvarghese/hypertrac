@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
@@ -46,6 +44,13 @@
 			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 		} catch (NullPointerException ne) {
 		}
+
+		Connection con = database.getConnection();
+		String sql = "SELECT * FROM auth WHERE role = 4";
+		Statement st = null;
+		st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -76,49 +81,46 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="text-center">Contractor's Application</div>
-					<table class="table table-responsive-lg">
-						<tr class="table-warning">
-							<th>Sl.No</th>
-							<th>Applicant Name/No.</th>
-							<th>Major Client Name</th>
-							<th>Submitted Date</th>
-							<th>Status</th>
-						</tr>
-						<%
-							Connection con = database.getConnection();
-							Statement st = null;
-							ResultSet rs = null;
-							ResultSet rs2 = null;
-							st = con.createStatement();
-							int i = 1;
-							String sql = "SELECT id FROM auth WHERE role=0";
 
-							rs = st.executeQuery(sql);
-							while (rs.next()) {
-								String sql2 = "SELECT * FROM applications WHERE app_by=?";
-								PreparedStatement ps = con.prepareStatement(sql2);
-								ps.setInt(1, rs.getInt(1));
-								rs2 = ps.executeQuery();
-								while (rs2.next()) {
-						%>
-						<tr>
-							<td><%=i%></td>
-							<td><%=rs2.getString(2)%></td>
-							<td><%=helper.getMajorClientByDeptId(rs2.getInt(3))%></td>
-							<td><%=rs2.getString(5)%></td>
-							<td><a href="viewApplication.jsp?id=<%=rs2.getString(1)%>"
-								class="btn-sm btn-primary">View</a></td>
-						</tr>
-						<%
-						i++;
-							}
-							}
-							con.close();
-						%>
+					<div class="text-center">
+						<!-- <a href="createContractor.jsp" class="btn btn-primary">Create
+							Contractor <span class="fa fa-plus-circle"></span>
+						</a> -->
+						<h3 class="text-info">Individuals Portal</h3>
+						<br />
 
-
-					</table>
+						<table class="table table-hover table-bordered">
+							<tr class="table-warning">
+								<th>Sl.No</th>
+								<th>Name</th>
+								<th>Address</th>
+								<th>Email</th>
+								<th>Phone No.</th>
+								<th>Operation</th>
+							</tr>
+							<%
+								int i = 1;
+								while (rs.next()) {
+							%>
+							<form action="deleteContractor.jsp" method="get">
+							<input type="hidden" name="id" value="<%=rs.getInt(1) %>" />
+							<input type="hidden" name="redirect" value="individuals.jsp" />
+							<tr>
+								<td><%=i%></td>
+								<td><%=rs.getString(2)%></td>
+								<td><%=rs.getString(3)%></td>
+								<td><%=rs.getString(6)%></td>
+								<td><%=rs.getString(7)%></td>
+								<td><button class="btn btn-primary btn-sm" onclick="return Confirm();"><span
+										class="fa fa-trash"></span></button></td>
+							</tr>
+							</form>
+							<%
+								i++;
+								}
+							%>
+						</table>
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -147,29 +149,6 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -186,7 +165,16 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+<script>
+	function Confirm() {
+		var r = confirm("Are you sure you want to delete this user? ");
+		if (r == true) {
+		  return true;
+		} else {
+		  return false;
+		}
+	}
+</script>
 </body>
 
 </html>
