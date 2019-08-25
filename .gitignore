@@ -44,8 +44,8 @@
 #
 # -----------------------------------------------------------------
 
-com.hypertrac.dao.*
-com.hypertrac.dao.database.java
+# com.hypertrac.dao.*
+# com.hypertrac.dao.database.java
 
 
 # ignore all files starting with . or ~
