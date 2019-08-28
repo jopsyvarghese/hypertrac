@@ -73,46 +73,58 @@ Header
 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
 				<div style="margin-top: 100px; margin-bottom: 100px;">
 					<h3 class="text-center">Register Now</h3>
 					<form action="SignUp" method="post" style="text-align: center">
-						<input type="hidden" name="role" value="0/">
 						<table>
 							<tr>
+								<td>Registering As</td>
+								<td><select name="role" class="form-control">
+										<option value="0">Contractor (Company)</option>
+										<option value="4">Individual</option>
+								</select></td>
+							</tr>
+							<tr>
 								<td>(Company/Individual) Name</td>
-								<td><input type="text" name="fname" class="form-control" required></td>
+								<td><input type="text" name="fname" class="form-control"
+									required></td>
 							</tr>
 							<tr>
 								<td>Address</td>
-								<td>
-									<textarea name="addr" class="form-control" required></textarea>
+								<td><textarea name="addr" class="form-control" required></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>Username</td>
-								<td><input type="text" name="uname" class="form-control" required></td>
+								<td><input type="text" name="uname" class="form-control"
+									required></td>
 							</tr>
 							<tr>
 								<td>Password</td>
-								<td><input type="password" name="pwd" class="form-control" required></td>
+								<td><input type="password" name="pwd" class="form-control"
+									required></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
-								<td><input type="password" name="cpwd" class="form-control" required></td>
+								<td><input type="password" name="cpwd" class="form-control"
+									required></td>
 							</tr>
 							<tr>
 								<td>Email</td>
-								<td><input type="email" name="email" class="form-control" required></td>
+								<td><input type="email" name="email" class="form-control"
+									required></td>
 							</tr>
 							<tr>
 								<td>Mobile</td>
-								<td><input type="number" name="mob" class="form-control" required></td>
+								<td><input type="number" name="mob" class="form-control"
+									required></td>
 							</tr>
 							<tr>
 								<td>RC Number</td>
-								<td><input type="text" name="rc" class="form-control" required></td>
+								<td><input type="text" name="rc" class="form-control"
+									required></td>
 							</tr>
 							<tr>
 								<td colspan="2">&nbsp;</td>
@@ -134,7 +146,7 @@ Header
 					%>
 				</div>
 			</div>
-			<div class="col-sm-4"></div>
+			<div class="col-sm-3"></div>
 		</div>
 	</div>
 

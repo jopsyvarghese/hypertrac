@@ -47,7 +47,10 @@ public class SignUp extends HttpServlet {
 		Long mob = Long.parseLong(request.getParameter("mob"));
 		String uname = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
-//		String pwd = helper.getHashedPwd(pwd);
+		int role = 0;
+		try {
+			role = Integer.parseInt(request.getParameter("role"));	
+		} catch(NumberFormatException ne) {}
 		String rc = request.getParameter("rc");
 		Connection con = null;
 		try {
@@ -71,7 +74,7 @@ public class SignUp extends HttpServlet {
 			ps.setString(4,  helper.encryptPwd(pwd));
 			ps.setString(5, email);
 			ps.setLong(6, mob);
-			ps.setInt(7, 0);
+			ps.setInt(7, role);
 			ps.setString(8, currentTime);
 			ps.setString(9, rc);
 			ps.setInt(10, 0);
