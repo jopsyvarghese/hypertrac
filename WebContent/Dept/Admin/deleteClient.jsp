@@ -78,9 +78,9 @@
 					PreparedStatement ps = con.prepareStatement(sql);
 					ps.setInt(1, id);
 					if(ps.executeUpdate() > 0) {
-						out.println("<h4 style='color:green'>Deleted Major Client Successfully</h4>");
+						response.sendRedirect("majorClients.jsp?status=success");
 					} else {
-						out.println("<h4 style='color:red'>Sorry! Unable to Delete</h4>");
+						response.sendRedirect("majorClients.jsp?status=failed");
 					}
 					%>
 					</div>

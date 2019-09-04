@@ -120,13 +120,15 @@ try {
 								ps2.setInt(4, subDept);
 								ps2.setInt(5, loggedId);
 								if(ps2.executeUpdate() != 0){
-									out.println("<h4 style='color:green;'>Staff Created Successfully</h4>");	
+									response.sendRedirect("staffs.jsp?status=success");
+								} else {
+									response.sendRedirect("staffs.jsp?status=failed");
 								}
 							} else {
-								out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+								response.sendRedirect("staffs.jsp?status=failed");
 							}
 						} else {
-							out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+							response.sendRedirect("staffs.jsp?status=failed");
 						}
 						%>
 						

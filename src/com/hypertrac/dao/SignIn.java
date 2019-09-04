@@ -67,6 +67,7 @@ public class SignIn extends HttpServlet {
 				session.setAttribute("loggedInUserId", rs.getInt(1));
 				session.setAttribute("loggedInUserName", rs.getString(2));
 				session.setAttribute("loggedInUserRole", rs.getInt(8));
+				session.setAttribute("myImg", rs.getString(15));
 				int role = rs.getInt(8);
 				if (role == 0 ) {
 					response.sendRedirect("Dept/User");
@@ -76,6 +77,8 @@ public class SignIn extends HttpServlet {
 					response.sendRedirect("Dept/Major");
 				}else if(role == 3) {
 					response.sendRedirect("Dept/Admin");
+				} else if(role == 4) {
+					response.sendRedirect("Dept/User");
 				}
 			} else {
 				out.println("Invalid Credentials");

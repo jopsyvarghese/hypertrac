@@ -69,7 +69,7 @@ ResultSet rs = helper.getDept();
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-							<form action="appAssign.jsp" method="post">
+							<form action="appAssign.jsp" method="post" enctype="multipart/form-data">
 								<table class="table">
 								<%
 										String appId = "";
@@ -118,6 +118,12 @@ ResultSet rs = helper.getDept();
 											<option value="<%=k %>"><%=stat[k] %></option>
 										<% } %>
 										</select></td>
+									</tr>
+									<tr>
+										<th>Upload Document</th>
+										<td>
+											<input type="file" name="file" class="form-control" />
+										</td>
 									</tr>
 									<tr>
 										<td colspan="2" class="text-center"><input type="submit"

@@ -49,12 +49,12 @@
 			</div></li>
 
 		<!-- Nav Item - Alerts -->
-		<li class="nav-item dropdown no-arrow mx-1"><a
+		<!-- <li class="nav-item dropdown no-arrow mx-1"><a
 			class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
+			aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> Counter - Alerts
 				<span class="badge badge-danger badge-counter">3+</span>
-		</a> <!-- Dropdown - Alerts -->
+		</a> Dropdown - Alerts
 			<div
 				class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="alertsDropdown">
@@ -93,15 +93,15 @@
 					</div>
 				</a> <a class="dropdown-item text-center small text-gray-500" href="#">Show
 					All Alerts</a>
-			</div></li>
+			</div></li> -->
 
 		<!-- Nav Item - Messages -->
-		<li class="nav-item dropdown no-arrow mx-1"><a
+		<!-- <li class="nav-item dropdown no-arrow mx-1"><a
 			class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i> <!-- Counter - Messages -->
+			aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i> Counter - Messages
 				<span class="badge badge-danger badge-counter">7</span>
-		</a> <!-- Dropdown - Messages -->
+		</a> Dropdown - Messages
 			<div
 				class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="messagesDropdown">
@@ -153,11 +153,12 @@
 					</div>
 				</a> <a class="dropdown-item text-center small text-gray-500" href="#">Read
 					More Messages</a>
-			</div></li>
+			</div></li> -->
 
 		<div class="topbar-divider d-none d-sm-block"></div>
 <%
 String myId = "";
+String myImg = "";
 try {
 	if(session.getAttribute("loggedInUserName") == null) {
 		%>
@@ -165,6 +166,7 @@ try {
 		<%
 	}
 	myId = session.getAttribute("loggedInUserName").toString();	
+	myImg = session.getAttribute("myImg").toString();
 } catch(NullPointerException ne){}
 %>
 		<!-- Nav Item - User Information -->
@@ -173,6 +175,7 @@ try {
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false"> <span
 				class="mr-2 d-none d-lg-inline text-gray-600 small"> <strong><%=myId %></strong>
+				<img class="img-profile rounded-circle" src="../../../../images/service/<%=myImg %>">
 			</span>
 		</a> <!-- Dropdown - User Information -->
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

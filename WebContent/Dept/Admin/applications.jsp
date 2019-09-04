@@ -76,7 +76,10 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="text-center">Contractor's Application</div>
+					<div class="text-center">
+						<h3 class="text-info">Contractor's Application</h3>
+					</div>
+					<br />
 					<table class="table table-responsive-lg">
 						<tr class="table-warning">
 							<th>Sl.No</th>
@@ -111,8 +114,8 @@
 								class="btn-sm btn-primary">View</a></td>
 						</tr>
 						<%
-						i++;
-							}
+							i++;
+								}
 							}
 							con.close();
 						%>

@@ -63,42 +63,51 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-3 mb-4">
+							<small class="pull-left"> <a href="dept.jsp"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small><br />
+						</div>
 						<div class="col-lg-6 mb-4">
-						<%
-						int id = Integer.parseInt(request.getParameter("id"));
-						if(!(id>0)) {
-							throw new Exception("Invalid Department");
-						}
-						String sql = "SELECT * FROM dept WHERE id=?";
-						Connection con = null;
-						PreparedStatement ps = null;
-						con = database.getConnection();
-						ps = con.prepareStatement(sql);
-						ps.setInt(1, id);
-						ResultSet rs = null;
-						
-						rs = ps.executeQuery();
-						if(rs.next()) { %>
-						<h4>Update Department</h4>
-						<form action="updateDept.jsp" method="post">
-							<input type="hidden" name="id" value="<%=rs.getInt(1) %>"/>
-							<table>
-							<tr>
-								<td>Department Head</td>
-								<td><input type="text" name="deptHead" class="form-control" value="<%=rs.getString(4) %>"/></td>
-							</tr>
-							<tr>
-								<td>Department Name</td>
-								<td><input type="text" name="deptName" class="form-control" value="<%=rs.getString(2) %>"/></td>
-							</tr>
-							<tr>
-								<td colspan="2"><input type="submit" value="Update" class="btn btn-primary"/></td>
-							</tr>
-							</table>
+							<%
+								int id = Integer.parseInt(request.getParameter("id"));
+								if (!(id > 0)) {
+									throw new Exception("Invalid Department");
+								}
+								String sql = "SELECT * FROM dept WHERE id=?";
+								Connection con = null;
+								PreparedStatement ps = null;
+								con = database.getConnection();
+								ps = con.prepareStatement(sql);
+								ps.setInt(1, id);
+								ResultSet rs = null;
+
+								rs = ps.executeQuery();
+								if (rs.next()) {
+							%>
+							<h4>Update Department</h4>
+							<form action="updateDept.jsp" method="post">
+								<input type="hidden" name="id" value="<%=rs.getInt(1)%>" />
+								<table>
+									<tr>
+										<td>Department Head</td>
+										<td><input type="text" name="deptHead"
+											class="form-control" value="<%=rs.getString(4)%>" /></td>
+									</tr>
+									<tr>
+										<td>Department Name</td>
+										<td><input type="text" name="deptName"
+											class="form-control" value="<%=rs.getString(2)%>" /></td>
+									</tr>
+									<tr>
+										<td colspan="2"><input type="submit" value="Update"
+											class="btn btn-primary" /></td>
+									</tr>
+								</table>
 							</form>
-						<%}
-						%>
+							<%
+								}
+							%>
 						</div>
 						<div class="col-lg-3 mb-4"></div>
 					</div>

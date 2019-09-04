@@ -89,55 +89,63 @@ The Modal
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-
-					<div class="card">
+					<%
+						int userType = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
+						String display = "";
+						if (userType == 4) {
+							display = "display:none;";
+						}
+					%>
+					<div class="card" style="<%out.print(display);%>">
 						<div class="text-center">
-						<br/>
+							<br />
 							<h4 class="text-info">Please make your payment</h4>
-							<strong>with any of the
-								following options <i>Monthly, Quarterly, Half-Yearly, Yearly</i>
-							</strong> <br /> <br />
-							<form action="/action_page.php">
-							
-							<table class="table table-hover">
-								<tr>
-									<td>Full Name</td>
-									<td><input type="text" class="form-control" id="name"></td>
-								</tr>
-								<tr>
-									<td>Transaction Type</td>
-									<td>
-										<select name="txnType" class="form-control">
-											<option value="0">Monthly($2 USD)</option>
-											<option value="0">Quarterly($6 USD)</option>
-											<option value="0">Half Yearly($12 USD)</option>
-											<option value="0">Yearly($24 USD)</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td>Message (Optional)</td>
-									<td><input type="text" class="form-control" id="msg"></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td><input type="text" class="form-control" id="name"></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td><input type="text" class="form-control" id="name"></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td><text-area class="form-control" name="addr"></text-area></td>
-								</tr>
-								<tr>
-									<td colspan="2">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									</td>
-								</tr>
-							</table>								
-							</form>
+							<!-- <strong>with any of the following options <i>Monthly,
+									Quarterly, Half-Yearly, Yearly</i>
+							</strong>  -->
+							<br /> <a href="paymentProceed.jsp"
+								class="btn btn-primary btn-sm"><i class="fas fa-dollar-sign"></i>
+								Pay Now <i class="fas fa-wallet"></i></a><br />
+							<br />
+							<!-- <form action="paymentProceed.jsp" method="post">
+
+								<table class="table table-hover">
+									<tr>
+										<td>Full Name</td>
+										<td><input type="text" class="form-control" id="name"></td>
+									</tr>
+									<tr>
+										<td>Transaction Type</td>
+										<td><select name="txnType" class="form-control">
+												<option value="0">Monthly($5 USD)</option>
+												<option value="0">Quarterly($6 USD)</option>
+												<option value="0">Half Yearly($12 USD)</option>
+												<option value="0">Yearly($24 USD)</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td>Message (Optional)</td>
+										<td><input type="text" class="form-control" id="msg"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="text" class="form-control" id="name"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="text" class="form-control" id="name"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><text-area class="form-control" name="addr"></text-area></td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</td>
+									</tr>
+								</table> 
+							</form>-->
 						</div>
 					</div>
 

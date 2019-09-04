@@ -77,11 +77,11 @@ Header
 			<div class="col-sm-6">
 				<div style="margin-top: 100px; margin-bottom: 100px;">
 					<h3 class="text-center">Register Now</h3>
-					<form action="SignUp" method="post" style="text-align: center">
+					<form action="SignUp" method="post" style="text-align: center" onsubmit="return validate()">
 						<table>
 							<tr>
 								<td>Registering As</td>
-								<td><select name="role" class="form-control">
+								<td><select name="role" class="form-control" id="role">
 										<option value="0">Contractor (Company)</option>
 										<option value="4">Individual</option>
 								</select></td>
@@ -103,12 +103,12 @@ Header
 							</tr>
 							<tr>
 								<td>Password</td>
-								<td><input type="password" name="pwd" class="form-control"
+								<td><input type="password" name="pwd" id="pwd" class="form-control"
 									required></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
-								<td><input type="password" name="cpwd" class="form-control"
+								<td><input type="password" name="cpwd" id="cpwd" class="form-control"
 									required></td>
 							</tr>
 							<tr>
@@ -123,8 +123,9 @@ Header
 							</tr>
 							<tr>
 								<td>RC Number</td>
-								<td><input type="text" name="rc" class="form-control"
-									required></td>
+								<td><input type="text" name="rc" id="rc" class="form-control"
+									placeholder="Optional for Individuals">
+									</td>
 							</tr>
 							<tr>
 								<td colspan="2">&nbsp;</td>
@@ -241,6 +242,24 @@ Footer
 
 	<!-- Template Main Javascript File -->
 	<script src="js/main.js"></script>
-
+<script>
+ function validate() {
+	 var role = document.getElementById("role").value;
+	 var rc = document.getElementById("rc").value;
+	 var pwd = document.getElementById("pwd").value;
+	 var cpwd = document.getElementById("cpwd").value;
+	 if(pwd != cpwd) {
+		 alert("Passwords doesn't match");
+		 return false; 
+	 } if (role == "0" && rc.length > 2) {
+		 return true;
+	 } else if(role == "0" && rc.length <= 2){
+		 alert("Please provide your correct RC Number");
+		 return false;
+	 }
+	 return true;
+	 
+ }
+</script>
 </body>
 </html>

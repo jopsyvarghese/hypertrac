@@ -94,7 +94,9 @@
 										ps2.setInt(2, position);
 										ps2.setInt(3, id);
 										if (ps2.executeUpdate() > 0) {
-											out.println("<h4 style='color:green'>Updated Successfully</h4>");
+											response.sendRedirect("staffs.jsp?status=success");
+										} else {
+											response.sendRedirect("staffs.jsp?status=failed");
 										}
 									}
 								} catch (Exception e) {

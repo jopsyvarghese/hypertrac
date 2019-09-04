@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.Timestamp"%>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*"%>
+<%@ page import="javax.servlet.http.*"%>
+<%@ page import="org.apache.commons.fileupload.*"%>
+<%@ page import="org.apache.commons.fileupload.disk.*"%>
+<%@ page import="org.apache.commons.fileupload.servlet.*"%>
+<%@ page import="org.apache.commons.io.output.*"%>
 <html lang="en">
 
 <head>
@@ -61,7 +74,94 @@
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-							<h4 style="color:green">Updated Successfully</h4>
+							<%
+								int maxFileSize = 2000 * 1024;
+								int i = 0;
+								Helper help = new Helper();
+								boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+								if (!isMultipart) {
+								} else {
+									int id = 0;
+									FileItemFactory factory = new DiskFileItemFactory();
+									ServletFileUpload upload = new ServletFileUpload(factory);
+									String[] savedFileName = new String[10];
+									int lastInsertedId = 0;
+									List<FileItem> items = null;
+									try {
+										items = upload.parseRequest(request);
+									} catch (FileUploadException e) {
+										e.printStackTrace();
+									}
+									Iterator itr = items.iterator();
+									while (itr.hasNext()) {
+										FileItem item = (FileItem) itr.next();
+										if (item.isFormField()) {
+											id = Integer.parseInt(item.getString());
+											System.out.println("Field NAME: " + item.getFieldName() + " AND VALUE IS: " + item.getString());
+										} else {
+											//File Uploads Here
+											try {
+												String itemName = item.getName();
+												File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
+
+												//String relativePath = "uploads/";
+												//String realPath = getServletContext().getRealPath(relativePath);
+												/* String realPath = getServletContext().getRealPath("uploads");
+												File destinationDir = new File(realPath); */
+												if (!destinationDir.exists()) {
+													destinationDir.mkdir();
+												}
+												Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+												//File savedFile = new File(realPath, itemName);
+												//File savedFile = new File(realPath, ""+timestamp.getTime()+itemName);
+												File savedFile = new File(destinationDir, "" + timestamp.getTime() + itemName);
+												try {
+													long sizeInBytes = item.getSize();
+													if (sizeInBytes <= maxFileSize) {
+														item.write(savedFile);
+													} else {
+														continue;
+													}
+												} catch (SecurityException se) {
+													se.printStackTrace();
+												} catch (FileNotFoundException fne) {
+													fne.printStackTrace();
+												}
+												savedFileName[i] = savedFile.getName();
+												i++;
+
+											} catch (Exception e) {
+												e.printStackTrace();
+											}
+										}
+									}
+
+									// Storing uploaded image details
+									int status = 0;
+									for (int j = 0; j < savedFileName.length; j++) {
+										if (savedFileName[j] == null || savedFileName[j] == "") {
+											continue;
+										}
+										System.out.println("ID IS: " + id);
+										Connection con = database.getConnection();
+										String sql = "INSERT INTO applications_img(fk_id, img_path, updated_at) VALUES(?,?,?)";
+										PreparedStatement ps = con.prepareStatement(sql);
+										ps.setInt(1, id);
+										ps.setString(2, savedFileName[j]);
+										ps.setString(3, help.getLocalDateTime());
+										if (ps.executeUpdate() > 0) {
+											status += 1;
+										}
+									}
+
+									if (status > 0) {
+										response.sendRedirect("history.jsp?status=success");
+									} else {
+										response.sendRedirect("history.jsp?status=failed");
+									}
+
+								}
+							%>
 						</div>
 						<div class="col-lg-3 mb-4"></div>
 					</div>
@@ -92,29 +192,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

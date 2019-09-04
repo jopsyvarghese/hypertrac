@@ -71,9 +71,11 @@
 
 					<!-- Content Row -->
 					<div class="row">
-
 						<!-- Content Column -->
 						<div class="col-lg-9 mb-4">
+						<small class="pull-left"> <a href="applications.jsp"><i
+								class="fa fa-arrow-left" aria-hidden="true"></i></a>
+						</small><br/><br/>
 							<%
 								String appId = "";
 								String query = "SELECT * FROM applications WHERE id=?";
@@ -176,7 +178,8 @@
 											}
 									%>
 									<div class="carousel-item <%=status%>">
-										<img src="../../uploads/<% out.print(""+imgRs1.getString(1));%>"
+										<img
+											src="../../uploads/<%out.print("" + imgRs1.getString(1));%>"
 											alt="Documents Image" class="img-fluid">
 									</div>
 									<%
@@ -197,12 +200,14 @@
 								<a href="appNext.jsp?id=<%=id%>&appId=<%=appId%>"
 									class="btn btn-danger">Next >></a>
 							</div>
-							
-							<br/><br/>
+
+							<br />
+							<br />
 							<div class="text-center">
-							<a href="appCommentsHistory.jsp?id=<%=id %>" target="_blank" class="text text-primary">
-							<span class="fa fa-walking"></span> Journey / <span class="fa fa-comment"></span> Comments
-							</a>
+								<a href="appCommentsHistory.jsp?id=<%=id%>" target="_blank"
+									class="text text-primary"> <span class="fa fa-walking"></span>
+									Journey / <span class="fa fa-comment"></span> Comments
+								</a>
 							</div>
 						</div>
 					</div>

@@ -30,27 +30,25 @@
 </head>
 
 <body id="page-top">
-<%
-Connection con = null;
-Statement st = null;
-ResultSet rs = null;		
-Helper helper = new Helper();
-int myId = 0;
-try {
-	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-} catch(NumberFormatException ne) {
-	response.sendRedirect("../../logout.jsp");
-}
+	<%
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		Helper helper = new Helper();
+		int myId = 0;
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			response.sendRedirect("../../logout.jsp");
+		}
 
-if(myId > 0) {
-	String sql = "SELECT * FROM auth WHERE role=2";
-	con = database.getConnection();
-	st = con.createStatement();
-	rs = st.executeQuery(sql);	
-}
-
-
-%>
+		if (myId > 0) {
+			String sql = "SELECT * FROM auth WHERE role=2";
+			con = database.getConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -80,8 +78,13 @@ if(myId > 0) {
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
+
+					<small class="pull-left"> <a href="dept.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small>
+
 					<div class="text-center">
-						Add New Departments <br />
+						<h3 class="text-info">Add New Departments</h3>
 						<br />
 						<form action="addDeptFinal.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
@@ -90,11 +93,11 @@ if(myId > 0) {
 									<td><select name="client" class="form-control">
 											<option value="0">Select Major Client</option>
 											<%
-											while(rs.next()) {
+												while (rs.next()) {
 											%>
-											<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
+											<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
 											<%
-											}
+												}
 											%>
 									</select></td>
 								</tr>

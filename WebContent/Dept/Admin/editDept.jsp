@@ -80,6 +80,11 @@ if(id == 0) {
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
+					
+					<small class="pull-left"> <a href="dept.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small>
+					
 					<div class="text-center">
 						Edit Departments <br /> <br />
 						<form action="editDept_2.jsp" method="post">

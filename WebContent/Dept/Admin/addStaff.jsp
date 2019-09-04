@@ -29,25 +29,28 @@
 </head>
 
 <body id="page-top">
-<%
-	int loggedId = 0;
-	try {
-		if(session.getAttribute("loggedInUserId") == null) {
-			%>
-			<script>window.location="../../logout.jsp"</script>
-			<%
+	<%
+		int loggedId = 0;
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
 		}
-		loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-	} catch(NullPointerException ne){}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
 
-	Helper helper = new Helper();
-	Connection con = database.getConnection();
-	Statement st = null;
-	st = con.createStatement();
-	String sql = "SELECT id, dname FROM dept";
-	ResultSet rs = st.executeQuery(sql);
-	ResultSet rs1 = helper.getAllPositions();
-%>
+		Helper helper = new Helper();
+		Connection con = database.getConnection();
+		Statement st = null;
+		st = con.createStatement();
+		String sql = "SELECT id, dname FROM dept";
+		ResultSet rs = st.executeQuery(sql);
+		ResultSet rs1 = helper.getAllPositions();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -80,16 +83,24 @@
 
 					<!-- Content Row -->
 					<div class="row">
-
 						<!-- Content Column -->
-						<div class="col-lg-2 mb-4"></div>
+						<div class="col-lg-2 mb-4">
+							<small class="pull-left"> <a href="staffs.jsp"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small>
+						</div>
 						<div class="col-lg-8 mb-4">
-							<div class="text-center">Staff Registration</div>
 
-							<form action="addStaff_2.jsp" method="post" onsubmit="return passwordCheck()">
+							<div class="text-center">
+								<h3 class="text-info">Staff Registration</h3>
+								<br />
+							</div>
+
+							<form action="addStaff_2.jsp" method="post"
+								onsubmit="return passwordCheck()">
 								<table class="table">
 									<tr>
-										<th> First Name</th>
+										<th>First Name</th>
 										<td><input type="text" name="firstName"
 											class="form-control" /></td>
 									</tr>
@@ -105,42 +116,40 @@
 									</tr>
 									<tr>
 										<th>Department</th>
-										<td>
-										<select name="dept" id="dept" class="form-control" onchange="return loadSub()">
-											<option value="0">Select Department</option>
-											<%
-												while (rs.next()) {
-											%>
-											<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
-											<%
-												}
-											%>
-										</select>
-										</td>
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="return loadSub()">
+												<option value="0">Select Department</option>
+												<%
+													while (rs.next()) {
+												%>
+												<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
+												<%
+													}
+												%>
+										</select></td>
 									</tr>
-									
+
 									<tr>
 										<th>Sub Department</th>
-										<td>
-											<select name="subDept" class="form-control">
+										<td><select name="subDept" class="form-control">
 												<option value="0">Select Sub Department</option>
 												<optgroup label="" id="subCatData"></optgroup>
-											</select>
-										</td>
+										</select></td>
 									</tr>
-									
+
 									<tr>
 										<th>Position</th>
-										<td>
-											<select name="position" class="form-control">
+										<td><select name="position" class="form-control">
 												<option value="0">Select Position</option>
 												<%
-												while(rs1.next()) { %>
-													<option value="<%=rs1.getInt(1) %>"><%=rs1.getString(2) %></option>
-												<% } %>
-												
-											</select>
-										</td>
+													while (rs1.next()) {
+												%>
+												<option value="<%=rs1.getInt(1)%>"><%=rs1.getString(2)%></option>
+												<%
+													}
+												%>
+
+										</select></td>
 									</tr>
 									<tr>
 										<th>Email</th>
@@ -249,17 +258,17 @@
 		function passwordCheck() {
 			var newPwd = $("#pwd").val();
 			var confPwd = $("#cpwd").val();
-			if(newPwd!==confPwd) {
+			if (newPwd !== confPwd) {
 				alert("Passwords Doesn't match");
 				return false;
 			}
-			if(newPwd.length < 6) {
+			if (newPwd.length < 6) {
 				alert("New Password Should be atleast 6 characters length");
 				return false;
 			}
 			return true;
 		}
-</script>
+	</script>
 </body>
 
 </html>

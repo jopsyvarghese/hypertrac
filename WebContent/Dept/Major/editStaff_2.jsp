@@ -73,20 +73,17 @@
 									String userName = request.getParameter("userName");
 									String email = request.getParameter("email");
 									Long phone = Long.parseLong(request.getParameter("phone"));
-									String pwd = request.getParameter("pwd");
-
 									int dept = Integer.parseInt(request.getParameter("dept"));
 									int position = Integer.parseInt(request.getParameter("position"));
 
-									String sql = "UPDATE auth SET fname=?,uname=?,pwd=?,email=?,mob=? WHERE id=?";
+									String sql = "UPDATE auth SET fname=?,uname=?,email=?,mob=? WHERE id=?";
 									Connection con = database.getConnection();
 									PreparedStatement ps = con.prepareStatement(sql);
 									ps.setString(1, firstName);
 									ps.setString(2, userName);
-									ps.setString(3, pwd);
-									ps.setString(4, email);
-									ps.setLong(5, phone);
-									ps.setInt(6, id);
+									ps.setString(3, email);
+									ps.setLong(4, phone);
+									ps.setInt(5, id);
 									if (ps.executeUpdate() > 0) {
 										String sql2 = "UPDATE staff SET dept=?, position=? WHERE id=?";
 										PreparedStatement ps2 = con.prepareStatement(sql2);
@@ -94,7 +91,9 @@
 										ps2.setInt(2, position);
 										ps2.setInt(3, id);
 										if (ps2.executeUpdate() > 0) {
-											out.println("<h4 style='color:green'>Updated Successfully</h4>");
+											response.sendRedirect("editStaff.jsp?id="+id+"&status=success");
+										} else {
+											response.sendRedirect("editStaff.jsp?id="+id+"&status=failed");
 										}
 									}
 								} catch (Exception e) {

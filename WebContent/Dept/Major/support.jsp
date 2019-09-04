@@ -64,7 +64,7 @@
 							<div class="text-center">
 								Support
 
-								<form action="#" method="post">
+								<form action="supportMajor.jsp" method="post">
 									<table class="table">
 										<tr>
 											<td><input type="text" name="subject"

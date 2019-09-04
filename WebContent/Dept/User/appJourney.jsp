@@ -31,7 +31,11 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+int appId = 0;
+appId = Integer.parseInt(request.getParameter("id"));
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -59,7 +63,12 @@
 						</div>
 					</div>
 
+					<small class="pull-left"> <a href="appStatus.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small>
+					
 					<div class="text-center">
+					<a href="../attachments.jsp?id=<%=helper.encrypt(""+appId) %>" class="text-primary" target="_blank"><strong>View Attachment <span class="fa fa-paperclip"></span></strong></a><br/><br/>
 						<table class="table">
 							<tr>
 								<th>Department Assigned</th>
@@ -69,41 +78,42 @@
 							</tr>
 
 							<%
-                String sql1 = "SELECT * FROM applications_comment WHERE app_id=?";
-                Connection con = database.getConnection();
-                PreparedStatement ps = con.prepareStatement(sql1);
-                int appId = Integer.parseInt(request.getParameter("id"));
-                ps.setInt(1, appId);
-                ResultSet rs = ps.executeQuery();
-                Helper helper = new Helper();
-                if (rs.next() == false) {
-                	String sql2 = "SELECT status FROM applications WHERE id="+appId;
-                	Statement st = con.createStatement();
-                	ResultSet rs2 = st.executeQuery(sql2);
-                	if (rs2.next()) { %>
+								String sql1 = "SELECT * FROM applications_comment WHERE app_id=?";
+								Connection con = database.getConnection();
+								PreparedStatement ps = con.prepareStatement(sql1);
+								ps.setInt(1, appId);
+								ResultSet rs = ps.executeQuery();
+								if (rs.next() == false) {
+									String sql2 = "SELECT status FROM applications WHERE id=" + appId;
+									Statement st = con.createStatement();
+									ResultSet rs2 = st.executeQuery(sql2);
+									if (rs2.next()) {
+							%>
 							<tr>
-								<td><strong class="rounded bg-secondary text-white">&nbsp;New / Open &nbsp;
-								</strong></td>
+								<td><strong class="rounded bg-secondary text-white">&nbsp;New
+										/ Open &nbsp; </strong></td>
 								<td><i>No Comments yet</i></td>
 								<td><i>No Details yet</i></td>
 								<td><i>Not Assigned yet</i></td>
 							</tr>
-							<% } else {
-								out.println("<strong style='color:red'>No Records Found</strong>");
-							}
-                } else {
-                while(rs.next()) { %>
+							<%
+								} else {
+										out.println("<strong style='color:red'>No Records Found</strong>");
+									}
+								} else {
+									while (rs.next()) {
+							%>
 							<tr>
-								<td><strong class="rounded bg-warning text-white">&nbsp;<%=helper.getDeptById(rs.getInt(3)) %>&nbsp;
+								<td><strong class="rounded bg-warning text-white">&nbsp;<%=helper.getDeptById(rs.getInt(3))%>&nbsp;
 								</strong></td>
-								<td><%=rs.getString(4) %></td>
-								<td><%=helper.getNameById(rs.getInt(5)) %></td>
-								<td><%=helper.getRoleById(rs.getInt(6)) %></td>
+								<td><%=rs.getString(4)%></td>
+								<td><%=helper.getNameById(rs.getInt(5))%></td>
+								<td><%=helper.getRoleById(rs.getInt(6))%></td>
 							</tr>
 							<%
-                }
-                }
-                %>
+								}
+								}
+							%>
 						</table>
 					</div>
 

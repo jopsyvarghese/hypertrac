@@ -7,7 +7,15 @@
                     <i class="fas fa-walking"></i>
                 </small>
             </div>
-            <div class="sidebar-brand-text mx-3">Us<sup>er</sup></div>
+            <%
+            	int userType = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());            	           	
+            	if(userType == 0) { %>
+            		<div class="sidebar-brand-text mx-3">Contra<sup>ctor</sup></div>
+            	<%} else { %>
+            		<div class="sidebar-brand-text mx-3">Us<sup>er</sup></div>
+            	<%}
+            %>
+            
         </a>
 
         <!-- Divider -->

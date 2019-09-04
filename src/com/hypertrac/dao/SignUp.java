@@ -47,6 +47,7 @@ public class SignUp extends HttpServlet {
 		Long mob = Long.parseLong(request.getParameter("mob"));
 		String uname = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
+		String proPic = "";
 		int role = 0;
 		try {
 			role = Integer.parseInt(request.getParameter("role"));	
@@ -67,7 +68,7 @@ public class SignUp extends HttpServlet {
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(
-					"INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+					"INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by, pro_pic) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, fname);
 			ps.setString(2, addr);
 			ps.setString(3, uname);
@@ -79,6 +80,7 @@ public class SignUp extends HttpServlet {
 			ps.setString(9, rc);
 			ps.setInt(10, 0);
             ps.setInt(11, 0);
+            ps.setString(12, proPic);
 			int i = ps.executeUpdate();
 			RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
 			request.setAttribute("status",

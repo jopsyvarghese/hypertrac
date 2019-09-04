@@ -39,14 +39,16 @@
 		con = database.getConnection();
 		int loggedId = 0;
 		try {
-			if(session.getAttribute("loggedInUserId") == null) {
-				%>
-				<script>window.location="../../logout.jsp"</script>
-				<%
-			}
-			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-		} catch(NullPointerException ne){}
-
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -106,9 +108,13 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-2 mb-4"></div>
+						<div class="col-lg-2 mb-4">
+							<small class="pull-left"> <a href="manageStaff.jsp"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small>
+						</div>
 						<div class="col-lg-8 mb-4">
-							<div class="text-center">Edit Staff</div>
+							<h3 class="text-center text-info">Edit Staff</h3>
 							<%
 								String sql = "SELECT * FROM auth WHERE id=?";
 								String sql2 = "SELECT * FROM staff WHERE id=?";
@@ -131,36 +137,26 @@
 									<%
 										if (rs.next()) {
 									%>
-									<input type="hidden" name="id" value="<%=id%>"/>
+									<input type="hidden" name="id" value="<%=id%>" />
 									<tr>
 										<th>Name</th>
 										<td><input type="text" name="firstName"
-											class="form-control" value="<%=rs.getString(2) %>" /></td>
+											class="form-control" value="<%=rs.getString(2)%>" /></td>
 									</tr>
 									<tr>
 										<th>User Name</th>
 										<td><input type="text" name="userName"
-											class="form-control" value="<%=rs.getString(4) %>" /></td>
+											class="form-control" value="<%=rs.getString(4)%>" /></td>
 									</tr>
 									<tr>
 										<th>Email</th>
 										<td><input type="email" name="email" class="form-control"
-											value="<%=rs.getString(6) %>" /></td>
+											value="<%=rs.getString(6)%>" /></td>
 									</tr>
 									<tr>
 										<th>Phone</th>
 										<td><input type="number" name="phone"
-											class="form-control" value="<%=rs.getString(7) %>" /></td>
-									</tr>
-									<tr>
-										<th>Password</th>
-										<td><input type="password" name="pwd"
-											class="form-control" value="<%=rs.getString(5) %>" /></td>
-									</tr>
-									<tr>
-										<th>Confirm Password</th>
-										<td><input type="password" name="cpwd"
-											class="form-control" value="<%=rs.getString(5) %>" /></td>
+											class="form-control" value="<%=rs.getString(7)%>" /></td>
 									</tr>
 									<%
 										}
@@ -171,22 +167,21 @@
 
 									<tr>
 										<th>Department</th>
-										<td>
-										<select name="dept" class="form-control">
-											<option value="0">Select Department</option>
-											<%
-												while (rs3.next()) {
-													String selected = "";
-													if(rs3.getInt(1) == rs2.getInt(2)) {
-														selected = "selected='selected'";
+										<td><select name="dept" class="form-control">
+												<option value="0">Select Department</option>
+												<%
+													while (rs3.next()) {
+															String selected = "";
+															if (rs3.getInt(1) == rs2.getInt(2)) {
+																selected = "selected='selected'";
+															}
+												%>
+												<option value="<%=rs3.getInt(1)%>"
+													<%out.print(selected);%>><%=rs3.getString(2)%></option>
+												<%
 													}
-											%>
-											<option value="<%=rs3.getInt(1)%>" <% out.print(selected);  %> ><%=rs3.getString(2) %></option>
-											<%
-												}
-											%>
-										</select>
-										<%-- <input type="text" name="dept" class="form-control"
+												%>
+										</select> <%-- <input type="text" name="dept" class="form-control"
 											value="<%=helper.getDeptById(rs2.getInt(2)) %>" /> --%></td>
 									</tr>
 									<!-- <tr>
@@ -196,20 +191,21 @@
 									</tr> -->
 									<tr>
 										<th>Position</th>
-										<td>
-										<select name="position" class="form-control">
-											<option value="0">Select Position</option>
-										<%
-										while(rs4.next()) {
-											String selected = "";
-											if(rs4.getInt(1) == rs2.getInt(3)) {
-												selected = "selected='selected'";
-											}
-										%>
-											<option value="<%=rs4.getInt(1) %>" <% out.print(selected); %> ><%=rs4.getString(2) %></option>
-										<%}%>
-										</select>
-										<%-- <input type="text" name="position"
+										<td><select name="position" class="form-control">
+												<option value="0">Select Position</option>
+												<%
+													while (rs4.next()) {
+															String selected = "";
+															if (rs4.getInt(1) == rs2.getInt(3)) {
+																selected = "selected='selected'";
+															}
+												%>
+												<option value="<%=rs4.getInt(1)%>"
+													<%out.print(selected);%>><%=rs4.getString(2)%></option>
+												<%
+													}
+												%>
+										</select> <%-- <input type="text" name="position"
 											class="form-control" value="<%=helper.getPositionById(rs2.getInt(3)) %>" /></td> --%>
 									</tr>
 									<%
@@ -255,28 +251,6 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

@@ -73,7 +73,10 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-							<h4 class="text-center">STATUS</h4>
+							<small class="pull-left"> <a href="appStatus.jsp"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small>
+							<h3 class="text-center text-info">STATUS</h3>
 							<hr />
 							<div class="card-header bg-white">
 								<div class="row">
@@ -89,13 +92,13 @@
 									</div>
 									<hr />
 									<%
-									String appQ = "SELECT * FROM applications WHERE id="+id;
-									ResultSet rsQ = null;
-									String pDate = "";
-									rsQ = st.executeQuery(appQ);
-									if(rsQ.next()) {
-										pDate = rsQ.getString(5);
-									}
+										String appQ = "SELECT * FROM applications WHERE id=" + id;
+										ResultSet rsQ = null;
+										String pDate = "";
+										rsQ = st.executeQuery(appQ);
+										if (rsQ.next()) {
+											pDate = rsQ.getString(5);
+										}
 										//Get All Changes of this application
 										String statQ = "SELECT * FROM applications_comment WHERE app_id=" + id;
 										ResultSet rs = null;
@@ -106,24 +109,27 @@
 									<div class="col-sm-2">
 										<small> <strong
 											class="rounded-pill bg-primary text-white"
-											style="padding: 2px 4px;"><%=appStatus[rs.getInt(8)] %> </strong>
+											style="padding: 2px 4px;"><%=appStatus[rs.getInt(8)]%>
+										</strong>
 										</small>
 									</div>
 									<div class="col-sm-8">
-										<small> <%=helper.getDeptById(rs.getInt(3)) %> / Receiver: <%=helper.getNameById(rs.getInt(5)) %>
-											(<%=helper.getRoleById(rs.getInt(6)) %>) / <%=helper.getEmailById(rs.getInt(5)) %> </small>
+										<small> <%=helper.getDeptById(rs.getInt(3))%> /
+											Receiver: <%=helper.getNameById(rs.getInt(5))%> (<%=helper.getRoleById(rs.getInt(6))%>)
+											/ <%=helper.getEmailById(rs.getInt(5))%>
+										</small>
 									</div>
 									<div class="col-sm-2">
-										<small><%=rs.getString(7) %></small>
+										<small><%=rs.getString(7)%></small>
 									</div>
-									
+
 									<!-- Down Arrow  -->
 									<div class="col-sm-5"></div>
 									<div class="col-sm-2">
 										<span class="fa fa-angle-down"></span>
 									</div>
 									<div class="col-sm-5"></div>
-									
+
 									<%
 										}
 									%>

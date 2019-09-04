@@ -39,14 +39,16 @@
 		con = database.getConnection();
 		int loggedId = 0;
 		try {
-			if(session.getAttribute("loggedInUserId") == null) {
-				%>
-				<script>window.location="../../logout.jsp"</script>
-				<%
-			}
-			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-		} catch(NullPointerException ne){}
-
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -106,7 +108,11 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-2 mb-4"></div>
+						<div class="col-lg-2 mb-4">
+							<small class="pull-left"> <a href="staffs.jsp"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small>
+						</div>
 						<div class="col-lg-8 mb-4">
 							<div class="text-center">Edit Staff</div>
 							<%
@@ -130,36 +136,36 @@
 									<%
 										if (rs.next()) {
 									%>
-									<input type="hidden" name="id" value="<%=id%>"/>
+									<input type="hidden" name="id" value="<%=id%>" />
 									<tr>
 										<th>Name</th>
 										<td><input type="text" name="firstName"
-											class="form-control" value="<%=rs.getString(2) %>" /></td>
+											class="form-control" value="<%=rs.getString(2)%>" /></td>
 									</tr>
 									<tr>
 										<th>User Name</th>
 										<td><input type="text" name="userName"
-											class="form-control" value="<%=rs.getString(4) %>" /></td>
+											class="form-control" value="<%=rs.getString(4)%>" /></td>
 									</tr>
 									<tr>
 										<th>Email</th>
 										<td><input type="email" name="email" class="form-control"
-											value="<%=rs.getString(6) %>" /></td>
+											value="<%=rs.getString(6)%>" /></td>
 									</tr>
 									<tr>
 										<th>Phone</th>
 										<td><input type="number" name="phone"
-											class="form-control" value="<%=rs.getString(7) %>" /></td>
+											class="form-control" value="<%=rs.getString(7)%>" /></td>
 									</tr>
 									<tr>
 										<th>Password</th>
 										<td><input type="password" name="pwd"
-											class="form-control" value="<%=rs.getString(5) %>" /></td>
+											class="form-control" value="<%=rs.getString(5)%>" /></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" name="cpwd"
-											class="form-control" value="<%=rs.getString(5) %>" /></td>
+											class="form-control" value="<%=rs.getString(5)%>" /></td>
 									</tr>
 									<%
 										}
@@ -170,22 +176,21 @@
 
 									<tr>
 										<th>Department</th>
-										<td>
-										<select name="dept" class="form-control">
-											<option value="0">Select Department</option>
-											<%
-												while (rs3.next()) {
-													String selected = "";
-													if(rs3.getInt(1) == rs2.getInt(2)) {
-														selected = "selected='selected'";
+										<td><select name="dept" class="form-control">
+												<option value="0">Select Department</option>
+												<%
+													while (rs3.next()) {
+															String selected = "";
+															if (rs3.getInt(1) == rs2.getInt(2)) {
+																selected = "selected='selected'";
+															}
+												%>
+												<option value="<%=rs3.getInt(1)%>"
+													<%out.print(selected);%>><%=rs3.getString(2)%></option>
+												<%
 													}
-											%>
-											<option value="<%=rs3.getInt(1)%>" <% out.print(selected);  %> ><%=rs3.getString(2) %></option>
-											<%
-												}
-											%>
-										</select>
-										<%-- <input type="text" name="dept" class="form-control"
+												%>
+										</select> <%-- <input type="text" name="dept" class="form-control"
 											value="<%=helper.getDeptById(rs2.getInt(2)) %>" /> --%></td>
 									</tr>
 									<!-- <tr>
@@ -195,20 +200,21 @@
 									</tr> -->
 									<tr>
 										<th>Position</th>
-										<td>
-										<select name="position" class="form-control">
-											<option value="0">Select Position</option>
-										<%
-										while(rs4.next()) {
-											String selected = "";
-											if(rs4.getInt(1) == rs2.getInt(3)) {
-												selected = "selected='selected'";
-											}
-										%>
-											<option value="<%=rs4.getInt(1) %>" <% out.print(selected); %> ><%=rs4.getString(2) %></option>
-										<%}%>
-										</select>
-										<%-- <input type="text" name="position"
+										<td><select name="position" class="form-control">
+												<option value="0">Select Position</option>
+												<%
+													while (rs4.next()) {
+															String selected = "";
+															if (rs4.getInt(1) == rs2.getInt(3)) {
+																selected = "selected='selected'";
+															}
+												%>
+												<option value="<%=rs4.getInt(1)%>"
+													<%out.print(selected);%>><%=rs4.getString(2)%></option>
+												<%
+													}
+												%>
+										</select> <%-- <input type="text" name="position"
 											class="form-control" value="<%=helper.getPositionById(rs2.getInt(3)) %>" /></td> --%>
 									</tr>
 									<%

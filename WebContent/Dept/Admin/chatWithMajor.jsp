@@ -29,14 +29,14 @@
 </head>
 
 <body id="page-top">
-<%
-String sql = "SELECT id,fname FROM auth WHERE role=2";
-Connection con = database.getConnection();
-Statement st = null;
-ResultSet rs = null;
-st = con.createStatement();
-rs = st.executeQuery(sql);
-%>
+	<%
+		String sql = "SELECT id,fname FROM auth WHERE role=2";
+		Connection con = database.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
+		st = con.createStatement();
+		rs = st.executeQuery(sql);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -66,20 +66,28 @@ rs = st.executeQuery(sql);
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
+					<small class="pull-left"> <a href="chat.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small>
+
 					<div class="text-center">
-					<br/>
-						<h4 class="text-info">Chat With Major Clients</h4><br/>
+						<br />
+						<h4 class="text-info">Chat With Major Clients</h4>
+						<br />
 						<form action="chatWithMajor_2.jsp" method="post">
 							<select name="major" class="form-control-sm">
 								<option>Select Major Client</option>
-								<%	while(rs.next()) { %>
-									<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>	
-								<% } %>
-							</select>
-							<input type="submit" class="btn-sm btn-primary"/>
+								<%
+									while (rs.next()) {
+								%>
+								<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
+								<%
+									}
+								%>
+							</select> <input type="submit" class="btn-sm btn-primary" />
 						</form>
-						
+
 					</div>
 
 				</div>

@@ -55,8 +55,13 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
+
+					<small class="pull-left"> <a href="invitation.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small>
+
 					<div class="text-center">
-						Invitation Letter <br />
+						<h3 class="text-info">Invitation Letter</h3>
 						<br />
 
 						<textarea rows="8" name="letterData" class="form-control"

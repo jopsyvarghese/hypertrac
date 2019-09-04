@@ -60,31 +60,33 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-						<div class="text-center">
-						Add New Departments <br />
-						<br />
-						<form action="addDeptFinal.jsp" method="post">
-							<table class="table table-hover table-responsive-lg">
-								<tr>
-									<th>Department Head</th>
-									<td><input type="text" name="deptHead"
-										class="form-control" required/></td>
-								</tr>
-								<tr>
-									<th>Department Name</th>
-									<td><input type="text" name="deptName"
-										class="form-control" required/></td>
-								</tr>
-							</table>
-							<br />
-							<button type="submit" class="btn btn-primary">
-								<span class="fa fa-plus-circle"></span> &nbsp;Add
-							</button>
-						</form>
-					</div>
+							<small class="pull-left"> <a href="dept.jsp"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small><br/>
+							<div class="text-center">
+								Add New Departments <br /> <br />
+								<form action="addDeptFinal.jsp" method="post">
+									<table class="table table-hover table-responsive-lg">
+										<tr>
+											<th>Department Head</th>
+											<td><input type="text" name="deptHead"
+												class="form-control" required /></td>
+										</tr>
+										<tr>
+											<th>Department Name</th>
+											<td><input type="text" name="deptName"
+												class="form-control" required /></td>
+										</tr>
+									</table>
+									<br />
+									<button type="submit" class="btn btn-primary">
+										<span class="fa fa-plus-circle"></span> &nbsp;Add
+									</button>
+								</form>
+							</div>
 						</div>
 					</div>
-					
+
 				</div>
 				<!-- /.container-fluid -->
 

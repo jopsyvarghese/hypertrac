@@ -56,8 +56,11 @@
 						</div>
 					</div>
 					<div class="col-sm-12">
+						<small class="pull-left">
+							<a href="majorClients.jsp"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+						</small>
 						<div class="text-center">
-							Add New Client <br />
+							<h3 class="text-info">Add New Client </h3><br />
 							<br />
 							<form action="addClientFinal.jsp" method="post" onsubmit="return passwordCheck()">
 								<table class="table table-hover table-sm">

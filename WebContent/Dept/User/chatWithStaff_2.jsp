@@ -33,19 +33,24 @@
 
 <body id="page-top">
 	<%
-	Helper helper = new Helper();
-	Connection con = database.getConnection();
-	//int majorClient = Integer.parseInt(request.getParameter("majorClient"));
-	//int staffs = Integer.parseInt(request.getParameter("staffs"));
-	int chatId = 0;
-	int staffId = 0;
-	int myId = 0;
-    		if(session.getAttribute("loggedInUserId") != null) {
-    			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-    		}
-    if(myId == 0) { %>
-	<script>winodw.location.href="../../logout.jsp";</script>
-	<% } %>
+		Helper helper = new Helper();
+		Connection con = database.getConnection();
+		//int majorClient = Integer.parseInt(request.getParameter("majorClient"));
+		//int staffs = Integer.parseInt(request.getParameter("staffs"));
+		int chatId = 0;
+		int staffId = 0;
+		int myId = 0;
+		if (session.getAttribute("loggedInUserId") != null) {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		}
+		if (myId == 0) {
+	%>
+	<script>
+		winodw.location.href = "../../logout.jsp";
+	</script>
+	<%
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -73,77 +78,85 @@
 						</div>
 					</div>
 
+					<small class="pull-left"> <a href="userChat.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small><br/>
+
 					<div class="text-center">
-					
-					<%
-                	try {
-                		staffId = Integer.parseInt(request.getParameter("staffId"));                		
-                	} catch(NumberFormatException ne) {
-                		staffId = Integer.parseInt(helper.decrypt(request.getParameter("staffId")));
-                		ne.getLocalizedMessage();
-                	}
-                	
-                	if(staffId > 0 ) {
-                		String sql = "SELECT id FROM chat_head WHERE (c_by = ? OR c_to = ?) AND (c_by = ? OR c_to = ?) ORDER BY id DESC";
-                		PreparedStatement ps = con.prepareStatement(sql);
-                		ps.setInt(1, myId);
-                		ps.setInt(2, myId);
-                		ps.setInt(3, staffId);
-                		ps.setInt(4, staffId);
-                		ResultSet rs = null;
-                		ps.executeQuery();
-                		rs = ps.executeQuery();	
-                		                		
-                		if(rs.next()) {
-                			chatId = rs.getInt(1);
-                		} else {
-                			String sql2 = "INSERT INTO chat_head(c_by,c_to) VALUES(?,?)";
-                			PreparedStatement ps2 = con.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
-                			ps2.setInt(1, myId);
-                			ps2.setInt(2, staffId);
-                			ps2.executeUpdate();
-                			ResultSet rs2 = ps2.getGeneratedKeys();
-                	        if (rs2.next()){
-                	            chatId=rs2.getInt(1);
-                	        }
-                		}
-                		%>
-                		
-                		<form method="post" action="chatWithStaff_3.jsp">
-							<textarea name="comment" class="form-control" style="width:80%;float:left;"></textarea>
-							<input type="hidden" name="chatId" value="<%=chatId %>"/>
-							<input type="hidden" name="c_by" value="<%=myId %>"/>
-							<input type="hidden" name="staffId" value="<%=staffId %>"/>
-							<input type="hidden" name="c_time" value="<%=helper.getDateTime() %>"/>
-							<input type="submit" class="btn btn-primary" style="width:15%;margin-top:10px;"/>
+
+						<%
+							try {
+								staffId = Integer.parseInt(request.getParameter("staffId"));
+							} catch (NumberFormatException ne) {
+								staffId = Integer.parseInt(helper.decrypt(request.getParameter("staffId")));
+								ne.getLocalizedMessage();
+							}
+
+							if (staffId > 0) {
+								String sql = "SELECT id FROM chat_head WHERE (c_by = ? OR c_to = ?) AND (c_by = ? OR c_to = ?) ORDER BY id DESC";
+								PreparedStatement ps = con.prepareStatement(sql);
+								ps.setInt(1, myId);
+								ps.setInt(2, myId);
+								ps.setInt(3, staffId);
+								ps.setInt(4, staffId);
+								ResultSet rs = null;
+								ps.executeQuery();
+								rs = ps.executeQuery();
+
+								if (rs.next()) {
+									chatId = rs.getInt(1);
+								} else {
+									String sql2 = "INSERT INTO chat_head(c_by,c_to) VALUES(?,?)";
+									PreparedStatement ps2 = con.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+									ps2.setInt(1, myId);
+									ps2.setInt(2, staffId);
+									ps2.executeUpdate();
+									ResultSet rs2 = ps2.getGeneratedKeys();
+									if (rs2.next()) {
+										chatId = rs2.getInt(1);
+									}
+								}
+						%>
+
+						<form method="post" action="chatWithStaff_3.jsp">
+							<textarea name="comment" class="form-control"
+								style="width: 80%; float: left;"></textarea>
+							<input type="hidden" name="chatId" value="<%=chatId%>" /> <input
+								type="hidden" name="c_by" value="<%=myId%>" /> <input
+								type="hidden" name="staffId" value="<%=staffId%>" /> <input
+								type="hidden" name="c_time" value="<%=helper.getDateTime()%>" />
+							<input type="submit" class="btn btn-primary"
+								style="width: 15%; margin-top: 10px;" />
 						</form>
-						<br/><br/>
+						<br />
+						<br />
 						<table class="table table-hover">
-						<tr>
-							<th>Comment</th>
-							<th>By</th>
-							<th>On</th>
-						</tr>
+							<tr>
+								<th>Comment</th>
+								<th>By</th>
+								<th>On</th>
+							</tr>
 							<%
-                		if(chatId > 0) {
-                			String sql3 = "SELECT * FROM chat WHERE fk_id="+chatId+" ORDER BY id DESC";
-                			Statement st = con.createStatement();
-                			ResultSet rs3 = null;
-                			rs3 = st.executeQuery(sql3);
-                			while(rs3.next()) { %>
-                			<tr>
-                				<td><%=rs3.getString(3) %></td>
-                				<td><%=helper.getNameById(rs3.getInt(4)) %></td>
-                				<td><%=rs3.getString(5) %></td>
-                			</tr>
-							<%}
-                		}
-                		%>
+								if (chatId > 0) {
+										String sql3 = "SELECT * FROM chat WHERE fk_id=" + chatId + " ORDER BY id DESC";
+										Statement st = con.createStatement();
+										ResultSet rs3 = null;
+										rs3 = st.executeQuery(sql3);
+										while (rs3.next()) {
+							%>
+							<tr>
+								<td><%=rs3.getString(3)%></td>
+								<td><%=helper.getNameById(rs3.getInt(4))%></td>
+								<td><%=rs3.getString(5)%></td>
+							</tr>
+							<%
+								}
+									}
+							%>
 						</table>
 						<%
-                		
-                	}
-                %>
+							}
+						%>
 
 					</div>
 

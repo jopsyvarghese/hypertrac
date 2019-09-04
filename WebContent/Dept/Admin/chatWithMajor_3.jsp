@@ -76,7 +76,7 @@
 		                ps.setInt(3, c_by);
 		                ps.setString(4, c_time);
 		                ps.executeUpdate();
-		                response.sendRedirect("chatWithStaff_2.jsp?staffId="+ helper.encrypt(""+staffId));
+		                response.sendRedirect("chatWithMajor_2.jsp?major="+staffId);
 		                %>
 
 				</div>

@@ -80,9 +80,13 @@
 						</div>
 					</div>
 					<div class="col-sm-12">
+						<small class="pull-left"> <a href="majorClients.jsp"><i
+								class="fa fa-arrow-left" aria-hidden="true"></i></a>
+						</small>
 						<div class="text-center">
-							Edit Major Client <br /> <br />
-							<form action="editClient_2.jsp" method="post" onsubmit="return passwordCheck()">
+						<h3 class="text-info">Edit Major Client </h3><br/>
+							<form action="editClient_2.jsp" method="post"
+								onsubmit="return passwordCheck()">
 								<%
 									if (rs.next()) {
 								%>
@@ -196,21 +200,21 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-<script>
-	function passwordCheck() {
-		var newPwd = $("#pwd").val();
-		var confPwd = $("#cpwd").val();
-		if(newPwd!==confPwd) {
-			alert("Passwords Doesn't match");
-			return false;
+	<script>
+		function passwordCheck() {
+			var newPwd = $("#pwd").val();
+			var confPwd = $("#cpwd").val();
+			if (newPwd !== confPwd) {
+				alert("Passwords Doesn't match");
+				return false;
+			}
+			if (newPwd.length < 6) {
+				alert("New Password Should be atleast 6 characters length");
+				return false;
+			}
+			return true;
 		}
-		if(newPwd.length < 6) {
-			alert("New Password Should be atleast 6 characters length");
-			return false;
-		}
-		return true;
-	}
-</script>
+	</script>
 </body>
 
 </html>

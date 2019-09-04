@@ -1,8 +1,17 @@
 <!DOCTYPE html>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.Timestamp"%>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*"%>
+<%@ page import="javax.servlet.http.*"%>
+<%@ page import="org.apache.commons.fileupload.*"%>
+<%@ page import="org.apache.commons.fileupload.disk.*"%>
+<%@ page import="org.apache.commons.fileupload.servlet.*"%>
+<%@ page import="org.apache.commons.io.output.*"%>
 <html lang="en">
 
 <head>
@@ -61,47 +70,141 @@
 					</div>
 					<div class="text-center">
 					<%
-							Helper helper = new Helper();
-							int id = Integer.parseInt(request.getParameter("id"));
-							String comments = request.getParameter("comments");
-							int dept = Integer.parseInt(request.getParameter("dept"));
-							int status = 0;
-							status = Integer.parseInt(request.getParameter("status"));
-							int staffTo = 0;
-							staffTo = Integer.parseInt(request.getParameter("staff"));
-							HttpSession sess = request.getSession();
-							int userId = (int) sess.getAttribute("loggedInUserId");
-							int role = (int) sess.getAttribute("loggedInUserRole");
-							String currentTime = helper.getDateTime();
-							String sql = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
-							Connection con = database.getConnection();
-							PreparedStatement ps = con.prepareStatement(sql);
-							ps.setInt(1, id);
-							ps.setInt(2, dept);
-							ps.setString(3, comments);
-							ps.setInt(4, userId);
-							ps.setInt(5, 0);
-							ps.setString(6, currentTime);
-							ps.setInt(7, status);
-							ps.setInt(8, staffTo);
-							int i = ps.executeUpdate();
+								int maxFileSize = 2000 * 1024;
+								int i = 0;
+								int myId = 0;
 
-							if (i > 0) {
-								String query = "UPDATE applications SET dept = ? WHERE id = ?";
-								PreparedStatement ps1 = con.prepareStatement(query);
-								ps1.setInt(1, dept);
-								ps1.setInt(2, id);
-								int j = ps1.executeUpdate();
-								if(j > 0) {
-									out.println("<h4 class='text-success'>Assigned to Department Successfully</h4>");	
-								} else {
-									out.println("<h4 class='text-danger'>Sorry! Unable to Update</h4>");
+								Helper helper = new Helper();
+								int id = 0;
+								String comments = "";
+								int dept = 0;
+								int status = 0;
+								HttpSession sess = request.getSession();
+								int userId = (int) sess.getAttribute("loggedInUserId");
+								int role = (int) sess.getAttribute("loggedInUserRole");
+								int staffTo = 0;
+								String currentTime = helper.getDateTime();
+
+								try {
+									myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+								} catch (NumberFormatException ne) {
+									ne.printStackTrace();
 								}
-								
-							} else {
-								out.println("<h4 class='text-danger'>Sorry, Unable to Update</h4>");
-							}
-						%>
+								if (myId == 0) {
+									response.sendRedirect("../../logout.jsp");
+								}
+
+								boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+								if (!isMultipart) {
+								} else {
+
+									FileItemFactory factory = new DiskFileItemFactory();
+									ServletFileUpload upload = new ServletFileUpload(factory);
+									String[] savedFileName = new String[10];
+									int lastInsertedId = 0;
+									List<FileItem> items = null;
+									try {
+										items = upload.parseRequest(request);
+									} catch (FileUploadException e) {
+										e.printStackTrace();
+									}
+									Iterator itr = items.iterator();
+									while (itr.hasNext()) {
+										FileItem item = (FileItem) itr.next();
+										if (item.isFormField()) {
+											//Form Fields are Here
+											switch (item.getFieldName()) {
+											case "id":
+												id = Integer.parseInt(item.getString());
+												break;
+											case "comments":
+												comments = item.getString();
+												break;
+											case "dept":
+												dept = Integer.parseInt(item.getString());
+												break;
+											case "status":
+												status = Integer.parseInt(item.getString());
+												break;
+											case "staff":
+												staffTo = Integer.parseInt(item.getString());
+												break;
+											default:
+												break;
+											}
+										} else {
+											//File Uploads Here
+											try {
+												String itemName = item.getName();
+												File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
+												if (!destinationDir.exists()) {
+													destinationDir.mkdir();
+												}
+												Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+												File savedFile = new File(destinationDir, "" + timestamp.getTime() + itemName);
+												try {
+													long sizeInBytes = item.getSize();
+													if (sizeInBytes <= maxFileSize) {
+														item.write(savedFile);
+													} else {
+														continue;
+													}
+												} catch (SecurityException se) {
+													se.printStackTrace();
+												} catch (FileNotFoundException fne) {
+													fne.printStackTrace();
+												}
+												savedFileName[i] = savedFile.getName();
+												i++;
+
+											} catch (Exception e) {
+												e.printStackTrace();
+											}
+										}
+									}
+									Connection con = database.getConnection();
+									String sql = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
+									PreparedStatement ps = con.prepareStatement(sql);
+									ps.setInt(1, id);
+									ps.setInt(2, dept);
+									ps.setString(3, comments);
+									ps.setInt(4, userId);
+									ps.setInt(5, role);
+									ps.setString(6, currentTime);
+									ps.setInt(7, status);
+									ps.setInt(8, staffTo);
+									int count = ps.executeUpdate();
+
+									if (count > 0) {
+										String query = "UPDATE applications SET dept = ? WHERE id = ?";
+										PreparedStatement ps1 = con.prepareStatement(query);
+										ps1.setInt(1, dept);
+										ps1.setInt(2, id);
+										int count2 = ps1.executeUpdate();
+										if (count2 > 0) {
+											for (int j = 0; j < savedFileName.length; j++) {
+												if (savedFileName[j] == null || savedFileName[j] == "") {
+													continue;
+												}
+												String sql3 = "INSERT INTO applications_img(fk_id, img_path, updated_at, uploaded_by) VALUES(?,?,?,?)";
+												PreparedStatement ps3 = con.prepareStatement(sql3);
+												ps3.setInt(1, id);
+												ps3.setString(2, savedFileName[j]);
+												ps3.setString(3, helper.getLocalDateTime());
+												ps3.setInt(4, myId);
+												if (ps3.executeUpdate() > 0) {
+													status += 1;
+												}
+											}
+											response.sendRedirect("viewApplication.jsp?id=" + id + "&status=success");
+										} else {
+											response.sendRedirect("viewApplication.jsp?id=" + id + "&status=failed");
+										}
+									} else {
+										response.sendRedirect("viewApplication.jsp?id=" + id + "&status=failed");
+									}
+								}
+							%>
 					</div>
 				</div>
 				<!-- /.container-fluid -->

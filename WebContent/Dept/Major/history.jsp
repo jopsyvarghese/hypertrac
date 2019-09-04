@@ -65,7 +65,7 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-							<div class="text-center">View History</div>
+							<h3 class="text-center text-info">View History</h3>
 							<table class="table">
 								<tr>
 									<th>Sl. No</th>

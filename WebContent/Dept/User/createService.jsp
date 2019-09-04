@@ -67,8 +67,18 @@
 					<div class="text-center">
 						<br /> <br />
 						<%
-							int maxFileSize = 50 * 1024;
+							int maxFileSize = 2000 * 1024;
 							int i = 0;
+							int myId = 0;
+							
+							try {
+								myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+							} catch(NumberFormatException ne) {
+								ne.printStackTrace();
+							}
+							if(myId == 0) {
+								response.sendRedirect("../../logout.jsp");
+							}
 							Helper help = new Helper();
 							boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 							if (!isMultipart) {
@@ -88,7 +98,7 @@
 								ServletFileUpload upload = new ServletFileUpload(factory);
 								String[] savedFileName = new String[10];
 								int lastInsertedId = 0;
-								List items = null;
+								List<FileItem> items = null;
 								try {
 									items = upload.parseRequest(request);
 								} catch (FileUploadException e) {
@@ -143,19 +153,20 @@
 											String itemName = item.getName();
 											//File uploads = new File(getServletContext().getInitParameter("file-upload"));
 
-											String relativePath = "uploads/";
-											String realPath = getServletContext().getRealPath(relativePath);
-											File destinationDir = new File(realPath);
+											//String relativePath = "uploads/";
+											//String realPath = getServletContext().getRealPath(relativePath);
+											/* String realPath = getServletContext().getRealPath("uploads");
+											File destinationDir = new File(realPath); */
+											File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
 											if(!destinationDir.exists()) {
 												destinationDir.mkdir();
 											}
-											
 											Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 											//File savedFile = new File(realPath, itemName);
-											File savedFile = new File(realPath, ""+timestamp.getTime()+itemName);
+											//File savedFile = new File(realPath, ""+timestamp.getTime()+itemName);
+											File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
 											try {
 												long sizeInBytes = item.getSize();
-
 												if (sizeInBytes <= maxFileSize) {
 													item.write(savedFile);
 												} else {
@@ -213,16 +224,17 @@
 												if (savedFileName[j] == null || savedFileName[j] == "") {
 													continue;
 												}
-												String sql3 = "INSERT INTO applications_img(fk_id, img_path, updated_at) VALUES(?,?,?)";
+												String sql3 = "INSERT INTO applications_img(fk_id, img_path, updated_at, uploaded_by) VALUES(?,?,?,?)";
 												PreparedStatement ps3 = con.prepareStatement(sql3);
 												ps3.setInt(1, lastInsertedId);
 												ps3.setString(2, savedFileName[j]);
 												ps3.setString(3, help.getLocalDateTime());
+												ps3.setInt(4,myId);
 												if (ps3.executeUpdate() > 0) {
 													status += 1;
 												}
 											}
-
+											out.println(status+": \n\n");
 											if (status > 0) {
 												out.println(
 														"<h4 style='color:green;'>Applied Successfully. Your Reference Number Is: <strong>"

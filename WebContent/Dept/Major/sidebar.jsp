@@ -60,7 +60,7 @@
         <li class="nav-item">
             <a class="nav-link" href="chatWithContractor.jsp">
                 <i class="fas fa-fw fa-comment"></i>
-                <span>Chat with Contractor</span></a>
+                <span>Chat</span></a>
         </li>
 
         <!-- Nav Item - Tables -->

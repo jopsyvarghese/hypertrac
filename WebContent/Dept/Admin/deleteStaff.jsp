@@ -97,14 +97,14 @@ try {
 								String sql3 = "DELETE FROM auth WHERE id=?";
 								PreparedStatement ps3 = con.prepareStatement(sql3);
 								ps3.setInt(1, id);
-								if(ps3.executeUpdate() > 0){
-									out.println("<h4 style='color:green'>Deleted Staff Successfully</h4>");	
+								if(ps3.executeUpdate() > 0) {
+									response.sendRedirect("staffs.jsp?status=success");
 								} else {
-									out.println("<h4 style='color:red'>Sorry! Unable to Delete Staff</h4>");
+									response.sendRedirect("staffs.jsp?status=failed");
 								}
 								
 							} else {
-								out.println("<h4 style='color:red'>Sorry! Unable to Delete Staff</h4>");
+								response.sendRedirect("staffs.jsp?status=failed");
 							}
 							
 						} %>

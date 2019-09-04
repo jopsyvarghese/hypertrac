@@ -77,6 +77,9 @@ try {
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<div class="text-center">
+							
+							<h3 class="text-info"> Manage Staff </h3><br />
+							
 								<a href="addStaff.jsp" class="btn btn-primary btn-sm"> <span
 									class="fa fa-plus-circle"></span> New Staff
 								</a>

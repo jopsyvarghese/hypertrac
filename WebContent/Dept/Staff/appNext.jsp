@@ -30,11 +30,15 @@
 </head>
 
 <body id="page-top">
-<%
-	Helper helper = new Helper();
-	Connection con = database.getConnection();
-	ResultSet rs = helper.getDept();
-%>
+	<%
+		Helper helper = new Helper();
+		Connection con = database.getConnection();
+		ResultSet rs = helper.getDept();
+		String appId = "";
+		String id = "";
+		id = request.getParameter("id");
+		appId = request.getParameter("appId");
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -70,16 +74,15 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-3 mb-4">
+							<small class="pull-left"> <a href="viewApplication.jsp?id=<%=id %>"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small>
+						</div>
 						<div class="col-lg-6 mb-4">
-							<form action="appAssign.jsp" method="post">
+							<form action="appAssign.jsp" method="post" enctype="multipart/form-data">
 								<table class="table">
-									<%
-										String appId = "";
-										String id = "";
-										id = request.getParameter("id");
-										appId = request.getParameter("appId");
-									%>
+
 									<tr>
 										<th>Application Name/No</th>
 										<td><%=appId%> <input type="hidden" name="id"
@@ -92,7 +95,8 @@
 									</tr>
 									<tr>
 										<th>Department</th>
-										<td><select name="dept" id="dept" class="form-control" onchange="return getStaffsList()">
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="return getStaffsList()">
 												<option value="0">Select Department To Assign</option>
 												<%
 													while (rs.next()) {
@@ -105,22 +109,29 @@
 									</tr>
 									<tr>
 										<th>Staff</th>
-										<td>
-											<select name="staff" class="form-control">
-												<optgroup id="staffsList">Select Staff</optgroup>
-											</select>
-										</td>
+										<td><select name="staff" class="form-control">
+												<optgroup id="staffsList">Select Staff
+												</optgroup>
+										</select></td>
 									</tr>
 									<tr>
 										<th>Update Status</th>
 										<td><select name="status" class="form-control">
-										<%
-										String stat[] = helper.getAppStatus();
-										for (int k=0; k<stat.length; k++) {
-										%>
-											<option value="<%=k %>"><%=stat[k] %></option>
-										<% } %>
+												<%
+													String stat[] = helper.getAppStatus();
+													for (int k = 0; k < stat.length; k++) {
+												%>
+												<option value="<%=k%>"><%=stat[k]%></option>
+												<%
+													}
+												%>
 										</select></td>
+									</tr>
+									<tr>
+										<th>Upload Document</th>
+										<td>
+											<input type="file" name="file" class="form-control" />
+										</td>
 									</tr>
 									<tr>
 										<td colspan="2" class="text-center"><input type="submit"
@@ -174,12 +185,12 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-<script>
-	function getStaffsList() {
-		var dept = document.getElementById("dept").value;
-		$("#staffsList").load("staffsList.jsp?dept=" + dept);
-	}
-</script>
+	<script>
+		function getStaffsList() {
+			var dept = document.getElementById("dept").value;
+			$("#staffsList").load("staffsList.jsp?dept=" + dept);
+		}
+	</script>
 </body>
 
 </html>

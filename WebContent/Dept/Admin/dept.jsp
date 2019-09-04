@@ -80,7 +80,9 @@ if(myId > 0) {
 						</div>
 					</div>
 					<div class="col-sm-12">
-						<div class="text-center">Departments</div>
+						<div class="text-center">
+						<h3 class="text-info"> Departments</h3><br />
+						</div>
 						<a href="addDept.jsp" class="btn btn-primary"> <span
 							class="fa fa-plus-circle"></span> Add Department
 						</a> <br />

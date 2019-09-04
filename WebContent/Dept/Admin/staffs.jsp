@@ -30,18 +30,21 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-int loggedId = 0;
-try {
-	if(session.getAttribute("loggedInUserId") == null) {
-		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
-	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-} catch(NullPointerException ne){}
-%>
+	<%
+		Helper helper = new Helper();
+		int loggedId = 0;
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -73,62 +76,67 @@ try {
 					</div>
 					<div class="text-center">
 						<a href="addStaff.jsp" class="btn btn-primary btn-sm"> <span
-									class="fa fa-plus-circle"></span> New Staff
-								</a>
-						<br/><br/>
-						
+							class="fa fa-plus-circle"></span> New Staff
+						</a> <br />
+						<br />
+
 						<table class="table table-hover table-bordered">
-								<tr class="table-warning">
-									<th>Sl.No</th>
-									<th>Staff Name</th>
-									<th>Department</th>
-									<th>Position</th>
-									<th>Email</th>
-									<th>Phone No.</th>
-									<th>Operation</th>
-								</tr>
-								<%
+							<tr class="table-warning">
+								<th>Sl.No</th>
+								<th>Staff Name</th>
+								<th>Major Client</th>
+								<th>Department</th>
+								<th>Position</th>
+								<th>Email</th>
+								<th>Phone No.</th>
+								<th>Operation</th>
+							</tr>
+							<%
 								String deptQ = "SELECT * FROM staff";
 								Connection con = database.getConnection();
-	                            Statement st = null;
-	                            ResultSet rs = null;
-	                            st = con.createStatement();
-	                            rs = st.executeQuery(deptQ);
-	                            int i = 1;
-	                            int staffId = 0;
-	                            String email = "";
-	                            String mobile = "";
-	                            String name = "";
-	                            String deptName = "";
-	                            String position = "";
-	                            while(rs.next()) {
-		                            staffId = rs.getInt(1);
-		                            email = helper.getEmailById(staffId);
+								Statement st = null;
+								ResultSet rs = null;
+								st = con.createStatement();
+								rs = st.executeQuery(deptQ);
+								int i = 1;
+								int staffId = 0;
+								String email = "";
+								String mobile = "";
+								String name = "";
+								String deptName = "";
+								String position = "";
+								String majorClient = "";
+								while (rs.next()) {
+									staffId = rs.getInt(1);
+									email = helper.getEmailById(staffId);
 									mobile = helper.getPhoneById(staffId);
 									name = helper.getNameById(staffId);
 									deptName = helper.getDeptById(rs.getInt(2));
 									position = helper.getPositionById(rs.getInt(3));
-									%>
-									<tr>
-										<td><%=i %></td>
-										<td><%=name %></td>
-										<td><%=deptName %></td>
-										<td><%=position %></td>
-										<td><%=email %></td>
-										<td><%=mobile %></td>
-										<td><a href="editStaff.jsp?id=<%=staffId %>"><span class="fa fa-pen"></span></a>
-											&nbsp;&nbsp; <a href="deleteStaff.jsp?id=<%=staffId %>"
-											onclick="return confirmDelete();"><span
-												class="fa fa-trash-alt"></span></a></td>
-									</tr>
-								<%
+									majorClient = helper.getMajorClient(rs.getInt(5));
+							%>
+							<tr>
+								<td><%=i%></td>
+								<td><%=name%></td>
+								<td><%=majorClient%></td>
+								<td><%=deptName%></td>
+								<td><%=position%></td>
+								<td><%=email%></td>
+								<td><%=mobile%></td>
+								<td><a href="editStaff.jsp?id=<%=staffId%>"><span
+										class="fa fa-pen"></span></a> &nbsp;&nbsp; <a
+									href="deleteStaff.jsp?id=<%=staffId%>"
+									onclick="return confirmDel();"><span
+										class="fa fa-trash-alt"></span></a></td>
+							</tr>
+							<%
 								i++;
-	                            }
-								%>
-								
-							</table>
+								}
+							%>
+
+						</table>
 					</div>
-									
+
 				</div>
 				<!-- /.container-fluid -->
 
@@ -172,7 +180,8 @@ try {
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	
+	<script src="../js/common/common.js"></script>
 </body>
 
 </html>

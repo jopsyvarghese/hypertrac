@@ -94,9 +94,9 @@
 								if (rs.next()) {
 									int authId = rs.getInt(1);
 									if (authId > 0) {
-										out.println("<h4 style='color:green'>Created Successfully</h4");
+										response.sendRedirect("majorClients.jsp?status=success");
 									} else {
-										out.println("<h4 style='color:red'>Sorry! Unable to Create</h4");
+										response.sendRedirect("majorClients.jsp?status=failed");
 									}
 								}
 							}

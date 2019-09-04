@@ -77,6 +77,9 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-9 mb-4">
+							<small class="pull-left"> <a href="individualsApplications.jsp"><i
+									class="fa fa-arrow-left" aria-hidden="true"></i></a>
+							</small><br/>
 							<%
 								String appId = "";
 								String query = "SELECT * FROM applications WHERE id=?";
@@ -179,7 +182,8 @@
 											}
 									%>
 									<div class="carousel-item <%=status%>">
-										<img src="../../uploads/<% out.print(""+imgRs1.getString(1));%>"
+										<img
+											src="../../uploads/<%out.print("" + imgRs1.getString(1));%>"
 											alt="Documents Image" class="img-fluid">
 									</div>
 									<%
@@ -200,58 +204,59 @@
 								<a href="appNext.jsp?id=<%=id%>&appId=<%=appId%>"
 									class="btn btn-danger">Next >></a>
 							</div>
-							<br/><br/>
+							<br />
+							<br />
 							<div class="text-center">
-							<a href="appCommentsHistory.jsp?id=<%=id %>" target="_blank" class="text text-primary">
-							<span class="fa fa-walking"></span> Journey / <span class="fa fa-comment"></span> Comments
-							</a>
+								<a href="appCommentsHistory.jsp?id=<%=id%>" target="_blank"
+									class="text text-primary"> <span class="fa fa-walking"></span>
+									Journey / <span class="fa fa-comment"></span> Comments
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 
-			<!-- End of Main Content -->
+				<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Preatech 2019</span>
+				<!-- Footer -->
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright &copy; Preatech 2019</span>
+						</div>
 					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
+				</footer>
+				<!-- End of Footer -->
+
+			</div>
+			<!-- End of Content Wrapper -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Page Wrapper -->
 
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
 
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="../vendor/jquery/jquery.min.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap core JavaScript-->
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+		<!-- Core plugin JavaScript-->
+		<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="../js/sb-admin-2.min.js"></script>
+		<!-- Custom scripts for all pages-->
+		<script src="../js/sb-admin-2.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script src="../vendor/chart.js/Chart.min.js"></script>
+		<!-- Page level plugins -->
+		<script src="../vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="../js/demo/chart-area-demo.js"></script>
-	<script src="../js/demo/chart-pie-demo.js"></script>
-
+		<!-- Page level custom scripts -->
+		<script src="../js/demo/chart-area-demo.js"></script>
+		<script src="../js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>

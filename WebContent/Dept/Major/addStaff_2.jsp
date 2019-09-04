@@ -119,14 +119,16 @@ try {
 								ps2.setInt(3, position);
 								ps2.setInt(4, subDept);
 								ps2.setInt(5, loggedId);
-								if(ps2.executeUpdate() != 0){
-									out.println("<h4 style='color:green;'>Staff Created Successfully</h4>");	
+								if(ps2.executeUpdate() != 0) {
+									response.sendRedirect("manageStaff.jsp?status=success");
+								} else {
+									response.sendRedirect("manageStaff.jsp?status=failed");
 								}
 							} else {
-								out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+								response.sendRedirect("manageStaff.jsp?status=failed");
 							}
 						} else {
-							out.println("<h4 style='color:red'>Staff Creation Failed</h4>");
+							response.sendRedirect("manageStaff.jsp?status=failed");
 						}
 						%>
 						

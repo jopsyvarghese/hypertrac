@@ -12,7 +12,8 @@ import java.sql.Statement;
 import java.time.LocalDateTime;  
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
-
+import java.util.Date;
+import java.sql.Timestamp;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -355,5 +356,15 @@ public class Helper {
 	        System.out.println("Error while decrypting: " + e.toString());
 	    }
 	    return null;
+	}
+	
+	public String getGTTxnKey() {
+		return "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F";
+	}
+	
+	public Long getTimeStamp() {
+		Date date= new Date();
+		long time = date.getTime();
+		return time;
 	}
 }

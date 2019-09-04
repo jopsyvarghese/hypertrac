@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<%@page import="java.security.NoSuchAlgorithmException"%>
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.MessageDigest"%>
+<%@page import="java.util.Properties"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.util.*"%>
+<%@page import="javax.mail.*"%>
+<%@page import="javax.mail.internet.*"%>
+<%@page import="javax.activation.*"%>
 <html lang="en">
 
 <head>
@@ -49,10 +62,44 @@
                     <div class="text-center"><img src="../../img/logo.png" style="width:150px;height:40px;"/></div>
                 </div>
                 <div class="text-center">
-                <%
-                
-                %>
-                </div>
+						<%
+							String subject = request.getParameter("subject");
+							String content = request.getParameter("content");
+							int userId = (int) session.getAttribute("loggedInUserId");
+
+							String host = "localhost";//or IP address  
+							final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+							Properties props = System.getProperties();
+							props.setProperty("mail.smtp.host", "smtp.gmail.com");
+							props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+							props.setProperty("mail.smtp.socketFactory.fallback", "false");
+							props.setProperty("mail.smtp.port", "465");
+							props.setProperty("mail.smtp.socketFactory.port", "465");
+							props.put("mail.smtp.auth", "true");
+							props.put("mail.debug", "true");
+							props.put("mail.store.protocol", "pop3");
+							props.put("mail.transport.protocol", "smtp");
+							final String username = "hypertracltd@gmail.com";//
+							final String password = "hyper.123";
+							try {
+								Session sessionObj = Session.getInstance(props, new Authenticator() {
+									protected PasswordAuthentication getPasswordAuthentication() {
+										return new PasswordAuthentication(username, password);
+									}
+								});
+								Message msg = new MimeMessage(sessionObj);
+
+								msg.setSubject("HyperTrac: Staff Query");
+								msg.setContent("<h4>" + subject + "</h4>" + "<h3>" + content + "</h3>", "text/html");
+								msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("jopsy777@gmail.com", false));
+								msg.setSentDate(new Date());
+								Transport.send(msg);
+								out.println("<h4 class='text-success'>Email Sent</h4>");
+							} catch (Exception e) {
+								System.out.println(e);
+							}
+						%>
+					</div>
             </div>
             <!-- /.container-fluid -->
 
