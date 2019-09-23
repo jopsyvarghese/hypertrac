@@ -23,13 +23,13 @@
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="majorClients.jsp">
-                <i class="fas fa-truck-loading"></i>
+                <i class="fas fa-user-md"></i>
                 <span>Major Clients</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="staffs.jsp">
-                <i class="fas fa-truck-loading"></i>
+                <i class="fa fa-user-circle"></i>
                 <span>Staff Portal</span>
             </a>
         </li>
@@ -41,28 +41,35 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="individuals.jsp">
-                <i class="fas fa-truck-loading"></i>
+                <i class="fa fa-user"></i>
                 <span>Individuals Portal</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="enableOrDisable.jsp">
+                <i class="fas fa-toggle-on"></i>
+                <span>Enable / Disable</span>
             </a>
         </li>
         
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="applications.jsp">
-                <i class="fas fa-fw fa-user"></i>
+                <i class="fa fa-newspaper"></i>
                 <span>Contractors Application</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="individualsApplications.jsp">
-                <i class="fas fa-truck-loading"></i>
+                <i class="fa fa-newspaper"></i>
                 <span>Individuals Application</span>
             </a>
         </li>
         
         <li class="nav-item">
             <a class="nav-link" href="dept.jsp">
-                <i class="fas fa-fw fa-user"></i>
+                <i class="fa fa-columns"></i>
                 <span>Departments</span>
             </a>
         </li>
