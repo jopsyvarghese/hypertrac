@@ -57,10 +57,11 @@ public class SignIn extends HttpServlet {
 			e1.printStackTrace();
 		}
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ? AND pwd_reset=?");
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ? AND pwd_reset=? AND status=?");
 			ps.setString(1, username);
 			ps.setString(2, helper.encryptPwd(password));
 			ps.setInt(3, 0);
+			ps.setInt(4, 1);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				HttpSession session = request.getSession();
@@ -83,7 +84,11 @@ public class SignIn extends HttpServlet {
 			} else {
 				out.println("Invalid Credentials");
 				RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
-				request.setAttribute("status", "<strong class='text-danger'>Invalid Credentials, Please Try Again...</strong><br/>");
+				request.setAttribute("status", "<center><strong class='text-danger'>"
+						+ "Invalid Credentials / Account Disabled</strong><br/>"
+						+ "<small style='color:blue;font-weight:bold'>"
+						+ "Please do Re-Try / Forgot Password / Contact Administrator"
+						+ "</small></center>");
 				rd.forward(request, response);
 			}
 		} catch (SQLException e) {

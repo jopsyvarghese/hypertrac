@@ -45,14 +45,6 @@
                 <span>Individuals Portal</span>
             </a>
         </li>
-        
-        <li class="nav-item">
-            <a class="nav-link" href="enableOrDisable.jsp">
-                <i class="fas fa-toggle-on"></i>
-                <span>Enable / Disable</span>
-            </a>
-        </li>
-        
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="applications.jsp">

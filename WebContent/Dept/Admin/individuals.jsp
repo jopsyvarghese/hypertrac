@@ -111,7 +111,22 @@
 								<td><%=rs.getString(3)%></td>
 								<td><%=rs.getString(6)%></td>
 								<td><%=rs.getString(7)%></td>
-								<td><button class="btn btn-primary btn-sm" onclick="return Confirm();"><span
+								<td>
+								<%
+								//Check Status
+								int status = rs.getInt(16);
+								String btnColor = "btn-outline-danger";
+								String toggleStatus = "fa-toggle-off";
+								if(status == 1) {
+									btnColor = "btn-outline-success";
+									toggleStatus = "fa-toggle-on";
+								}
+								%>
+								<a href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/individuals.jsp"
+									class="btn <%=btnColor %> btn-sm">
+										<i class="fas <%=toggleStatus %>"></i>
+								</a>
+								<button class="btn btn-outline-danger btn-sm" onclick="return Confirm();"><span
 										class="fa fa-trash"></span></button></td>
 							</tr>
 							</form>
