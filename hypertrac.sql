@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2019 at 08:42 AM
+-- Generation Time: Sep 24, 2019 at 08:19 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.1.25
 
@@ -365,15 +365,16 @@ CREATE TABLE `auth` (
 --
 
 INSERT INTO `auth` (`id`, `fname`, `addr`, `uname`, `pwd`, `email`, `mob`, `role`, `created_at`, `rc`, `mob2`, `created_by`, `pwd_reset`, `reset_hash`, `pro_pic`, `status`) VALUES
-(1, 'jopsy varghese', 'ABC Street, PSR Nagar, UT - 23389', 'jopsy', '79967c73489f12ebd4295049fa22eb89e4fdbb2e3f97da6747969df54b4d59cbdf0c7f5f2b33ef9c23ddfdc5aa2a6013b04abd3ac1e2fedc6c04fa289ded2dab', 'jopsyvarghese@gmail.com', 7411395003, 1, '2019-06-26 18:21:51', '234100', 0, 0, 0, '', '1567443820535pp.jpg', 0),
-(2, 'jomit', 'Personal', 'jomit', '835b3ebafad84afcc1c2e73f9425e3361df1b83683a79f755deb5698ec63cb0078ccb1f9e1bf5607f39e20eea2208ecf150354483b0cb5146fb9700b7876388e', 'jopsyvasdfrghese@gmail.com', 7411180882, 0, '2019-06-26 18:45:10', '253585', 0, 0, 0, '', '1567358626452maxresdefault.jpg', 0),
-(3, 'Jabir', 'Loby#23, Back Street Boys Road, BBP', 'Jabir', '1f71d9321dd22607901162989db685958781906c28c5d2480022ae29a56e0e19d10058cefa52cedc585a040107394961f0f132ed8ff1d96cc239ef829d092e51', 'jopsyvarghese23@gmail.com', 9995559992, 2, '2019-06-26 18:54:05', '982222', 0, 0, 0, '', '', 0),
-(4, 'Hypertrac Limited', 'I don\'t need to update my address', 'admin', '6a8eabb9447e2fd817035c282e2275d4fa21f91409dd4726eb071d35e645418192feb3b5f0c60ff836345481bcf3739e3c728e91bd97aa191f92c148be4becae', 'hypertracltd@gmail.com', 9965656565, 3, '2019-06-26 19:31:48', '56DC58', 0, 0, 0, '', '', 0),
-(7, 'labeesh', 'lakshmanan', 'labeesh', 'Labeesh@123', 'labeesh@gmail.com', 9876543211, 0, '2019-07-24 22:00:00', '252522', 0, 0, 0, '', '', 0),
-(14, 'Sudheesh', 'Kumar', 'sudheesh15300', 'Sudheesh@123', 'jopsyvarghesdfkhsse@gmail.com', 99832948384, 1, '2019-08-04 13:03:30', '0', 0, 0, 0, '', '', 0),
-(16, 'Sams Infotech', 'sdlfjs dlfjksl dflsdj fsodjfoiw eldsjf lsdjf', 'samsinfo', '6dbcd1a99470d76a0d8bcd978d51040e1c752c054f2100bba2ee0595e9d7e6b03c81645f2245324c2fd9e489a0b8a7312030587c254bad4561a36c7762e54767', 'sandeiii@fm.com', 9384647377, 4, '2019-08-15 20:06:09', '3847234', 0, 0, 0, NULL, '', 0),
+(1, 'jopsy varghese', 'ABC Street, PSR Nagar, UT - 23389', 'jopsy', '79967c73489f12ebd4295049fa22eb89e4fdbb2e3f97da6747969df54b4d59cbdf0c7f5f2b33ef9c23ddfdc5aa2a6013b04abd3ac1e2fedc6c04fa289ded2dab', 'jopsyvarghese@gmail.com', 7411395003, 1, '2019-06-26 18:21:51', '234100', 0, 0, 0, '', '1567443820535pp.jpg', 1),
+(2, 'jomit', 'Personal', 'jomit', '835b3ebafad84afcc1c2e73f9425e3361df1b83683a79f755deb5698ec63cb0078ccb1f9e1bf5607f39e20eea2208ecf150354483b0cb5146fb9700b7876388e', 'jopsyvasdfrghese@gmail.com', 7411180882, 0, '2019-06-26 18:45:10', '253585', 0, 0, 0, '', '1567358626452maxresdefault.jpg', 1),
+(3, 'Jabir', 'Loby#23, Back Street Boys Road, BBP', 'Jabir', '1f71d9321dd22607901162989db685958781906c28c5d2480022ae29a56e0e19d10058cefa52cedc585a040107394961f0f132ed8ff1d96cc239ef829d092e51', 'jopsyvarghese23@gmail.com', 9995559992, 2, '2019-06-26 18:54:05', '982222', 0, 0, 0, '', '', 1),
+(4, 'Hypertrac Limited', 'I don\'t need to update my address', 'admin', '6a8eabb9447e2fd817035c282e2275d4fa21f91409dd4726eb071d35e645418192feb3b5f0c60ff836345481bcf3739e3c728e91bd97aa191f92c148be4becae', 'hypertracltd@gmail.com', 9965656565, 3, '2019-06-26 19:31:48', '56DC58', 0, 0, 0, '', '', 1),
+(7, 'labeesh', 'lakshmanan', 'labeesh', 'Labeesh@123', 'labeesh@gmail.com', 9876543211, 0, '2019-07-24 22:00:00', '252522', 0, 0, 0, '', '', 1),
+(14, 'Sudheesh', 'Kumar', 'sudheesh15300', 'Sudheesh@123', 'jopsyvarghesdfkhsse@gmail.com', 99832948384, 1, '2019-08-04 13:03:30', '0', 0, 0, 0, '', '', 1),
+(16, 'Sams Infotech', 'sdlfjs dlfjksl dflsdj fsodjfoiw eldsjf lsdjf', 'samsinfo', '6dbcd1a99470d76a0d8bcd978d51040e1c752c054f2100bba2ee0595e9d7e6b03c81645f2245324c2fd9e489a0b8a7312030587c254bad4561a36c7762e54767', 'sandeiii@fm.com', 9384647377, 4, '2019-08-15 20:06:09', '3847234', 0, 0, 0, NULL, '', 1),
 (21, 'Shaji', 'Abc House PQE Street, Konni', 'shaji', '79967c73489f12ebd4295049fa22eb89e4fdbb2e3f97da6747969df54b4d59cbdf0c7f5f2b33ef9c23ddfdc5aa2a6013b04abd3ac1e2fedc6c04fa289ded2dab', 'hsaldsfkj@gmilad.com', 2309424, 2, '2019-08-15 21:33:28', '', 0, 4, 0, NULL, '', 0),
-(38, 'josena', 'jessy joseph', 'josena', '79967c73489f12ebd4295049fa22eb89e4fdbb2e3f97da6747969df54b4d59cbdf0c7f5f2b33ef9c23ddfdc5aa2a6013b04abd3ac1e2fedc6c04fa289ded2dab', 'josenajopsy@gmail.com', 7411180883, 4, '2019-09-02 11:04:00', '', 0, 0, 0, NULL, '', 0);
+(38, 'josena', 'jessy joseph', 'josena', '79967c73489f12ebd4295049fa22eb89e4fdbb2e3f97da6747969df54b4d59cbdf0c7f5f2b33ef9c23ddfdc5aa2a6013b04abd3ac1e2fedc6c04fa289ded2dab', 'josenajopsy@gmail.com', 7411180883, 4, '2019-09-02 11:04:00', '', 0, 0, 0, NULL, '', 0),
+(39, 'sam', '', 'samjaboc19597', 'Sam@123', 'sam@gmai.ddoe', 9823436738, 1, '2019-09-23 14:20:15', '0', 0, 4, 0, NULL, '', 1);
 
 -- --------------------------------------------------------
 
@@ -668,8 +669,7 @@ CREATE TABLE `staff` (
 INSERT INTO `staff` (`id`, `dept`, `position`, `sub_dept_id`, `mc_id`) VALUES
 (1, 1, 1, 1, 3),
 (14, 6, 1, 5, 3),
-(22, 5, 2, 1, 4),
-(31, 1, 1, 1, 4);
+(39, 1, 1, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -826,7 +826,7 @@ ALTER TABLE `applications_more`
 -- AUTO_INCREMENT for table `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `business`
