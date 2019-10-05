@@ -140,10 +140,10 @@
  			btnColor = "btn-outline-success";
  			toggleStatus = "fa-toggle-on";
  		}
- %> <%-- <a href="../enableDisable.jsp?id=<%=staffId%>&redirect=Admin/staffs.jsp"
+ %>  <a href="../enableDisable.jsp?id=<%=staffId%>&redirect=Admin/staffs.jsp"
 										class="btn <%=btnColor%> btn-sm"> <i
 											class="fas <%=toggleStatus%>"></i>
-									</a> --%>
+									</a>
 									<a
 										href="deleteStaff.jsp?id=<%=staffId%>"
 										onclick="return confirmDel();"
