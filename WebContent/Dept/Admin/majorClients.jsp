@@ -110,10 +110,10 @@ String email = "";
 									toggleStatus = "fa-toggle-on";
 								}
 								%>
-								<%-- <a href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/majorClients.jsp"
+								<a href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/majorClients.jsp"
 									class="btn <%=btnColor %> btn-sm">
 										<i class="fas <%=toggleStatus %>"></i>
-								</a> --%>
+								</a>
 								<a href="deleteClient.jsp?id=<%=rs.getInt(1) %>"
 									class="btn btn-outline-danger btn-sm" onclick="return confirmDel();">
 										<span class="fa fa-trash-alt"></span>
