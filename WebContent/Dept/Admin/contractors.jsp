@@ -122,10 +122,10 @@
 									toggleStatus = "fa-toggle-on";
 								}
 								%>
-								<%-- <a href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/contractors.jsp"
+								<a href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/contractors.jsp"
 									class="btn <%=btnColor %> btn-sm">
 										<i class="fas <%=toggleStatus %>"></i>
-								</a> --%>
+								</a>
 								<button class="btn btn-outline-danger btn-sm" onclick="return Confirm();"><span
 										class="fa fa-trash"></span></button></td>
 							</tr>
