@@ -183,7 +183,7 @@
 									%>
 									<div class="carousel-item <%=status%>">
 										<img
-											src="../../uploads/<%out.print("" + imgRs1.getString(1));%>"
+											src="../../images/service/<%out.print("" + imgRs1.getString(1));%>"
 											alt="Documents Image" class="img-fluid">
 									</div>
 									<%
@@ -210,7 +210,8 @@
 								<a href="appCommentsHistory.jsp?id=<%=id%>" target="_blank"
 									class="text text-primary"> <span class="fa fa-walking"></span>
 									Journey / <span class="fa fa-comment"></span> Comments
-								</a>
+								</a><br/><br/><br/>
+								<a href="../attachments.jsp?id=<%=id%>" class="text-warning" target="_blank"><span class="fa fa-paperclip"></span> Attachments</a>
 							</div>
 						</div>
 					</div>

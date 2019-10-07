@@ -46,8 +46,7 @@
 								<h3 class="text-info">Attachments List</h3>
 								<%
 									Connection con = database.getConnection();
-									Helper helper = new Helper();
-									String idStr = helper.decrypt(request.getParameter("id"));
+									String idStr = request.getParameter("id");
 									int id = 0;
 									try {
 										id = Integer.parseInt(idStr);
@@ -63,7 +62,7 @@
 										while (rs.next()) {
 								%>
 								<strong>
-									<a href="../../../images/service/<%=rs.getString(3)%>"
+									<a href="../images/service/<%=rs.getString(3)%>"
 										download>
 										<%
 											out.println(rs.getString(3));

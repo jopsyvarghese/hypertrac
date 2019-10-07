@@ -92,7 +92,7 @@
 		}
 		String imgUrl = "../img/img_avatar.png";
 		if(imgName.length() > 0) {
-			imgUrl =  "file/" + imgName;
+			imgUrl =  "../images/service/" + imgName;
 		}
 		
 		

@@ -136,7 +136,9 @@
 											//File Uploads Here
 											try {
 												String itemName = item.getName();
-												File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
+												//File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
+												String realPath = getServletContext().getRealPath("images/service");
+												File destinationDir = new File(realPath);
 												if (!destinationDir.exists()) {
 													destinationDir.mkdir();
 												}

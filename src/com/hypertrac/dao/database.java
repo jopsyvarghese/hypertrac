@@ -35,8 +35,8 @@ public class database {
 
 		String dbHost="jdbc:mysql://mysql3000.mochahost.com:3306/"+dbName+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection(dbHost,username, password);
-//		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hypertrac","root", "");
+//		con = DriverManager.getConnection(dbHost,username, password);
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hypertrac","root", "");
 //		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/admin_hypertrac","hypertrac_user7", "H7Yp$60$3r_432");
 		return con;
 	}

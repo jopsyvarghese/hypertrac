@@ -44,7 +44,7 @@ String hashtext = "";
        // Add preceding 0s to make it 32 bit 
        while (hashtext.length() < 32) { 
            hashtext = "0" + hashtext; 
-       } 
+       }
      } catch (NoSuchAlgorithmException e) { 
             throw new RuntimeException(e); 
         } 
@@ -76,7 +76,7 @@ if(rs.next()) {
 	
   msg.setSubject("HyperTrac: Reset Your Password");
   msg.setContent("<h4>Confidential: Your New Password</h4>"+
-		  "Please click below Link to Update your Password<br/> <h3><a href='http://hypertrac.biz/Dept/resetPwd.jsp?q="+hashtext+"&email="+email+"'>Reset Password</a></h3>"
+		  "Please click below Link to Update your Password<br/> <h3><a href='http://hypertrac.online/Dept/resetPwd.jsp?q="+hashtext+"&email="+email+"'>Reset Password</a></h3>"
 		  , "text/html");
   msg.setRecipients(Message.RecipientType.TO, 
                     InternetAddress.parse(email,false));
