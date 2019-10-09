@@ -114,7 +114,7 @@
 										deptName = helper.getDeptById(rs.getInt(2));
 										position = helper.getPositionById(rs.getInt(3));
 										majorClient = helper.getMajorClient(rs.getInt(5));
-										String stQry = "SELECT status FROM auth WHERE id=" + staffId;
+										String stQry = "SELECT state FROM auth WHERE id=" + staffId;
 										Statement st2 = null;
 										st2 = con.createStatement();
 										ResultSet rs2 = st2.executeQuery(stQry);

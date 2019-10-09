@@ -6,7 +6,7 @@
 int id = Integer.parseInt(request.getParameter("id"));
 String redirect = request.getParameter("redirect");
 int status = 0;
-String sql = "SELECT status FROM auth WHERE id=?";
+String sql = "SELECT state FROM auth WHERE id=?";
 Connection con = database.getConnection();
 PreparedStatement ps = con.prepareStatement(sql);
 ps.setInt(1, id);
@@ -26,7 +26,7 @@ try {
 } catch(NullPointerException ne){}
 
 if (loggedId > 0) {
-	String query = "UPDATE auth SET status=? WHERE id=?";
+	String query = "UPDATE auth SET state=? WHERE id=?";
 	PreparedStatement ps2 = con.prepareStatement(query);
 	ps2.setInt(1, status);
 	ps2.setInt(2, id);

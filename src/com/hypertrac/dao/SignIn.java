@@ -57,7 +57,7 @@ public class SignIn extends HttpServlet {
 			e1.printStackTrace();
 		}
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ? AND pwd_reset=? AND status=?");
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ? AND pwd_reset=? AND state=?");
 			ps.setString(1, username);
 			ps.setString(2, helper.encryptPwd(password));
 			ps.setInt(3, 0);
