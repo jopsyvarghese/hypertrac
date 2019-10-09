@@ -4,9 +4,11 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
+<%@ page trimDirectiveWhitespaces="true" %>
 <%
 	int dept = Integer.parseInt(request.getParameter("dept"));
-	String csv = "";
+	String csv = "App ID" + "," + "Dept" + "," + "Assigned" + "," + "Comment" + "," + "By" + "," + "On" + ","
+			+ "Status" + "\r\n";
 	Connection con = database.getConnection();
 	PreparedStatement ps = null;
 	String sql = "";
@@ -22,7 +24,7 @@
 	ps.setInt(1, dept);
 	ResultSet rs = ps.executeQuery();
 	if (dept == 0 || dept == 4) {
-		csv += "App ID" + "," + "Name/No" + "," + "Subject" + "," + "Submitted On" + "," + "Status" + "\r\n";
+		csv = "App ID" + "," + "Name/No" + "," + "Subject" + "," + "Submitted On" + "," + "Status" + "\r\n";
 
 		while (rs.next()) {
 			int userId = rs.getInt(1);
@@ -37,10 +39,7 @@
 			}
 		}
 	} else {
-		csv += "App ID" + "," + "Dept" + "," + "Assigned" + "," + "Comment" + "," + "By" + "," + "On" + ","
-				+ "Status" + "\r\n";
 		while (rs.next()) {
-
 			csv += rs.getInt(2) + "," + helper.getDeptById(rs.getInt(3)) + "," + rs.getString(4) + ","
 					+ helper.getNameById(rs.getInt(5)) + "," + rs.getString(7) + "," + stat[rs.getInt(8)]
 					+ "\r\n";
@@ -48,7 +47,8 @@
 		}
 	}
 	response.reset();
-	response.setHeader("Content-type", "text/csv");
+	response.setHeader("Content-Encoding", "UTF-8");
+	response.setContentType("text/csv; charset=UTF-8");
 	response.setHeader("Content-disposition", "inline; filename=HypertracReport.csv");
 	out.print(csv);
 	con.close();
