@@ -99,7 +99,7 @@
 
 				<header class="section-header">
 					<h3>How it Works</h3>
-					<p style="font-weight:bold">We are pleased to bring to you for
+					<p style="font-weight:bold" class="box-red">We are pleased to bring to you for
 						procurement , installation and use, an automated solution,
 						"HYPERTRAC" software that synchronizes both individual and
 						corporate business transactions on a single platform, and makes it
@@ -109,11 +109,12 @@
 						contractors from physically following up of Documents, Files,
 						Proposals and Business Transactions.</p>
 				</header>
+				<p>&nbsp;</p>
 
 				<div class="row about-container">
 
 					<div class="col-lg-6 content order-lg-1 order-2">
-						<p class="box-blue-left">"HYPERTRAC" is an international
+						<p class="box-blue">"HYPERTRAC" is an international
 							patent licensed software that synchronizes both individuals and
 							corporate Business transactions on a single platform, it is meant
 							for easy access and monitoring of Information concerning business
@@ -149,7 +150,7 @@
 					</div>
 					<div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
 						<h4>BENEFITS OF HYPERTRAC</h4>
-						<p class="box-yellow-right">This Solution would improve the ease of doing business
+						<p class="box-yellow">This Solution would improve the ease of doing business
 							within any country, state, organization and by extension improve
 							the rating on the World Ease of Doing Business Index (DBI). If
 							files and documents can be acted upon from anywhere in the world
@@ -203,7 +204,7 @@
 					<div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
 						<h4>You may ask how can you trust HYPERTRAC with your Data
 							and how secure is HYPERTRAC ?</h4>
-						<p class="box-blue-left">
+						<p class="box-blue">
 							Apart from the backing of data in the cloud with very reputable
 							Internet Service Providers (ISPs) not all HYPERTRAC staff will
 							have access to certain levels of information uploaded unless
