@@ -80,7 +80,7 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-							<div class="text-center">Invitation to Contractor</div>
+							<h3><div class="text-center text-info">Invitation to Contractor/Individual</div></h3><br/>
 							<table
 								class="table table-hover table-responsive-lg table-bordered">
 								<tr class="table-warning">
@@ -111,15 +111,16 @@
 									for (int object : rowValues) {
 										String sql = "SELECT id FROM applications WHERE dept=" + object;
 										ResultSet rs1 = null;
-										rs1 = st.executeQuery(sql);
-										if (rs1.next()) {
+										Statement st1 = con.createStatement();
+										rs1 = st1.executeQuery(sql);
+										while (rs1.next()) {
 											appId = rs1.getInt(1);
 								%>
 								<tr>
 									<td><%=i%></td>
-									<td><a href="viewApplication.jsp?id=<%=rs1.getInt(1)%>"><%=rs1.getInt(1)%></a></td>
+									<td><a href="viewApplication.jsp?id=<%=appId%>"><%=appId%></a></td>
 									<%
-										String invitationQ = "SELECT * FROM invitation WHERE app_id=" + rs1.getInt(1);
+										String invitationQ = "SELECT * FROM invitation WHERE app_id=" + appId;
 												Statement st3 = con.createStatement();
 												ResultSet rs3 = st.executeQuery(invitationQ);
 												if (rs3.next()) {

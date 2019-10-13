@@ -12,20 +12,25 @@
 		<description>Location to store uploaded file</description>
 		<param-name>file-upload</param-name>
 		<param-value>
-		/images/service
-        <!-- /var/lib/tomcat8/webapps/images/service -->
-        <!-- C:\tomcat9\webapps\images\service -->
-      </param-value>
+      		/var/lib/tomcat8/webapps/ROOT/images/service
+   </param-value>
 	</context-param>
-
+	
 	<servlet>
 		<servlet-name>fileServlet</servlet-name>
 		<servlet-class>com.hypertrac.commons.FileServlet</servlet-class>
+		<init-param>
+			<param-name>basePath</param-name>
+			<param-value>
+				<!-- C:/tomcat9/webapps/images/service -->
+				/var/lib/tomcat8/webapps/ROOT/images/service
+				<!-- /var/lib/tomcat8/webapps/images/service -->
+			</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>fileServlet</servlet-name>
-		<!-- <url-pattern>/tomcat9/webapps/images/service/*</url-pattern> -->
-		<url-pattern>/file/*</url-pattern>
+		<url-pattern>/files/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>

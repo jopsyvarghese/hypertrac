@@ -184,7 +184,7 @@
 											}
 									%>
 									<div class="carousel-item <%=status%>">
-										<img src="../../images/service/<% out.print(imgRs1.getString(1)); %>"
+										<img src="../../files/<% out.print(imgRs1.getString(1)); %>"
 											alt="Documents Image" class="img-fluid">
 									</div>
 									<%

@@ -30,6 +30,9 @@
   	.member > .img-fluid {
   		max-height:400px !important;
   	}
+  	.social {
+  		display:none !important;
+  	}
   </style>
 <!-- =======================================================
     Theme Name: HyperTrac
@@ -73,8 +76,8 @@
         </div>
 
         <div class="row">
-
-		<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
             <div class="member">
               <img src="img/testimonial-2.jpg" class="img-fluid" alt="">
               <div class="member-info">
@@ -91,8 +94,8 @@
               </div>
             </div>
           </div>
-
-		<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 	            <div class="member">
 	              <img src="img/team-2.jpg" class="img-fluid" alt="">
 	              <div class="member-info">
@@ -109,8 +112,8 @@
 	              </div>
 	            </div>
 	          </div>
-
-		<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
             <div class="member">
               <img src="img/testimonial-1.jpg" class="img-fluid" alt="">
               <div class="member-info">
@@ -127,8 +130,8 @@
               </div>
             </div>
           </div>
-
-		<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
             <div class="member">
               <img src="img/team-4.jpg" class="img-fluid" alt="">
               <div class="member-info">
@@ -146,8 +149,8 @@
             </div>
           </div>
 
-
-          <div class="col-lg-4 col-md-6 wow fadeInUp">
+		  <div class="col-lg-1"></div>
+          <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="member">
               <img src="img/team-1.jpg" class="img-fluid" alt="">
               <div class="member-info">
@@ -165,8 +168,8 @@
             </div>
           </div>
 
-
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+		  <div class="col-lg-1"></div>
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
             <div class="member">
               <img src="img/team-3.jpg" class="img-fluid" alt="">
               <div class="member-info">

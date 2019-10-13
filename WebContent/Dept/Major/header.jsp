@@ -74,7 +74,7 @@
 		aria-expanded="false"> <span
 			class="mr-2 d-none d-lg-inline text-gray-600 small"><%=myId%>
 				<img class="img-profile rounded-circle"
-				src="../../images/service/<%=myImg%>"></span>
+				src="../../files/<%=myImg%>"></span>
 				<span class="myProfile">Logout</span>
 	</a> <!-- Dropdown - User Information -->
 		<div

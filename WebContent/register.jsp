@@ -56,7 +56,7 @@ Header
 
 			<nav class="main-nav float-right d-none d-lg-block">
 				<ul>
-					<li class="active"><a href="#intro">Home</a></li>
+					<li class="active"><a href="index.jsp">Home</a></li>
 					<li class="drop-down"><a href="">My Account</a>
 						<ul>
 							<li><a href="signin.jsp">Login</a></li>
@@ -77,7 +77,8 @@ Header
 			<div class="col-sm-6">
 				<div style="margin-top: 100px; margin-bottom: 100px;">
 					<h3 class="text-center">Register Now</h3>
-					<form action="SignUp" method="post" style="text-align: center" onsubmit="return validate()">
+					<form action="SignUp" method="post" style="text-align: center"
+						onsubmit="return validate()">
 						<table>
 							<tr>
 								<td>Registering As</td>
@@ -103,13 +104,13 @@ Header
 							</tr>
 							<tr>
 								<td>Password</td>
-								<td><input type="password" name="pwd" id="pwd" class="form-control"
-									required></td>
+								<td><input type="password" name="pwd" id="pwd"
+									class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
-								<td><input type="password" name="cpwd" id="cpwd" class="form-control"
-									required></td>
+								<td><input type="password" name="cpwd" id="cpwd"
+									class="form-control" required></td>
 							</tr>
 							<tr>
 								<td>Email</td>
@@ -123,9 +124,9 @@ Header
 							</tr>
 							<tr>
 								<td>RC Number</td>
-								<td><input type="text" name="rc" id="rc" class="form-control"
-									placeholder="Optional for Individuals">
-									</td>
+								<td><input type="text" name="rc" id="rc"
+									class="form-control" placeholder="Optional for Individuals">
+								</td>
 							</tr>
 							<tr>
 								<td colspan="2">&nbsp;</td>
@@ -161,15 +162,24 @@ Footer
 
 					<div class="col-lg-4 col-md-6 footer-info">
 						<h3>HyperTrac</h3>
-						<p>Cras fermentum odio eu feugiat lide par naso tierra. Justo
-							eget nada terra videa magna derita valies darta donna mare
-							fermentum iaculis eu non diam phasellus. Scelerisque felis
-							imperdiet proin fermentum leo. Amet volutpat consequat mauris
-							nunc congue.</p>
+						<p>HYPERTRAC helps in reducing the stress of following the
+							update of your file thereby making individuals always going to
+							the office premises which can lead to health problems or cause
+							accidents as the case may be. In this case your files are being
+							monitored remotely from the convenience of your home or office
+							giving you actual and detailed updates of your work.</p>
+						<div class="footer-newsletter">
+							<small>Subscribe to our news letter for latest updates</small>
+							<form action="newsLetter.jsp" method="post">
+								<input type="email" name="email" required
+									placeholder="Type Your Email ID..."><input
+									type="submit" value="Subscribe">
+							</form>
+						</div>
 					</div>
 
-					<div class="col-lg-2 col-md-6 footer-links">
-						<h4>Useful Links</h4>
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Useful Link</h4>
 						<ul>
 							<li><a href="#">Home</a></li>
 							<li><a href="#">About us</a></li>
@@ -179,12 +189,17 @@ Footer
 						</ul>
 					</div>
 
-					<div class="col-lg-3 col-md-6 footer-contact">
+					<div class="col-lg-5 col-md-6 footer-contact">
 						<h4>Contact Us</h4>
 						<p>
-							A108 Adam Street <br> New York, NY 535022<br> United
-							States <br> <strong>Phone:</strong> +1 5589 55488 55<br>
-							<strong>Email:</strong> info@example.com<br>
+							<small><strong>Nigeria</strong>: House 2,"E" close, Kado
+								estate, FCT-Abuja.Nigeria. </small><br /> <small><strong>UK</strong>:
+								Flat 1, Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill,
+								London.</small><br /> <small><strong>India</strong>: Flat 1,
+								Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill, London.</small><br />
+							<small><strong>Phone: +234 9019 2202 02 / +234
+									7088 2200 22</strong></small><br> <small><strong>Email:
+									info@hypertrac.online</strong></small><br />
 						</p>
 
 						<div class="social-links">
@@ -195,17 +210,6 @@ Footer
 							<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
 						</div>
 
-					</div>
-
-					<div class="col-lg-3 col-md-6 footer-newsletter">
-						<h4>Our Newsletter</h4>
-						<p>Tamen quem nulla quae legam multos aute sint culpa legam
-							noster magna veniam enim veniam illum dolore legam minim quorum
-							culpa amet magna export quem marada parida nodela caramase seza.</p>
-						<form action="" method="post">
-							<input type="email" name="email"><input type="submit"
-								value="Subscribe">
-						</form>
 					</div>
 
 				</div>
@@ -242,24 +246,25 @@ Footer
 
 	<!-- Template Main Javascript File -->
 	<script src="js/main.js"></script>
-<script>
- function validate() {
-	 var role = document.getElementById("role").value;
-	 var rc = document.getElementById("rc").value;
-	 var pwd = document.getElementById("pwd").value;
-	 var cpwd = document.getElementById("cpwd").value;
-	 if(pwd != cpwd) {
-		 alert("Passwords doesn't match");
-		 return false; 
-	 } if (role == "0" && rc.length > 2) {
-		 return true;
-	 } else if(role == "0" && rc.length <= 2){
-		 alert("Please provide your correct RC Number");
-		 return false;
-	 }
-	 return true;
-	 
- }
-</script>
+	<script>
+		function validate() {
+			var role = document.getElementById("role").value;
+			var rc = document.getElementById("rc").value;
+			var pwd = document.getElementById("pwd").value;
+			var cpwd = document.getElementById("cpwd").value;
+			if (pwd != cpwd) {
+				alert("Passwords doesn't match");
+				return false;
+			}
+			if (role == "0" && rc.length > 2) {
+				return true;
+			} else if (role == "0" && rc.length <= 2) {
+				alert("Please provide your correct RC Number");
+				return false;
+			}
+			return true;
+
+		}
+	</script>
 </body>
 </html>

@@ -29,6 +29,14 @@
                 <span>Applications</span>
             </a>
         </li>
+        
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="newApplication.jsp">
+                <i class="fa fa-plus-circle"></i>
+                <span>New Application</span>
+            </a>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">

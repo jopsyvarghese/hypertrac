@@ -92,7 +92,7 @@
 		}
 		String imgUrl = "../img/img_avatar.png";
 		if(imgName.length() > 0) {
-			imgUrl =  "../images/service/" + imgName;
+			imgUrl =  "../files/" + imgName;
 		}
 		
 		
@@ -229,7 +229,7 @@
 						</form>
 					</div>
 
-					<div class="col-sm-4 propic">
+					<div class="col-sm-4 propic" style="min-height:200px;">
 						<form action="changePic.jsp" method="post"
 							enctype="multipart/form-data">
 							<!-- Profile Pic -->

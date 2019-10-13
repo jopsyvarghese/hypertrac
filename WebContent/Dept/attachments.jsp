@@ -62,7 +62,7 @@
 										while (rs.next()) {
 								%>
 								<strong>
-									<a href="../images/service/<%=rs.getString(3)%>"
+									<a href="../files/<%=rs.getString(3)%>"
 										download>
 										<%
 											out.println(rs.getString(3));

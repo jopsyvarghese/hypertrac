@@ -99,6 +99,8 @@
 								}
 
 								boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+								ServletContext context = pageContext.getServletContext();
+								String filePath = context.getInitParameter("file-upload");
 								if (!isMultipart) {
 								} else {
 
@@ -140,9 +142,7 @@
 											//File Uploads Here
 											try {
 												String itemName = item.getName();
-												//File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
-												String realPath = getServletContext().getRealPath("images/service");
-												File destinationDir = new File(realPath);
+												File destinationDir = new File(filePath);
 												if (!destinationDir.exists()) {
 													destinationDir.mkdir();
 												}

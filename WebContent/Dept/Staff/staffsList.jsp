@@ -4,14 +4,22 @@
 <%@page import="java.sql.Connection"%>
 <%
 int dept = Integer.parseInt(request.getParameter("dept"));
-String sql = "SELECT id, fname FROM auth WHERE id=(SELECT id FROM staff WHERE dept=?)";
 Connection con = database.getConnection();
-PreparedStatement ps = con.prepareStatement(sql);
-ps.setInt(1, dept);
 ResultSet rs = null;
-rs = ps.executeQuery();
-while(rs.next()) { %>
-	<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
-<% } 
+String query = "SELECT id FROM staff WHERE dept=?";
+PreparedStatement pst = con.prepareStatement(query); 
+pst.setInt(1, dept);
+ResultSet rst = pst.executeQuery();
+int staffId = 0;
+while(rst.next()) {
+	staffId = rst.getInt(1);
+	String sql = "SELECT id, fname FROM auth WHERE id=?";
+	PreparedStatement ps = con.prepareStatement(sql);
+	ps.setInt(1, staffId);
+	rs = ps.executeQuery();
+	while(rs.next()) { %>
+		<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
+	<% } 
+}
 con.close();
 %>

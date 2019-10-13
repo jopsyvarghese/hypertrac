@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.net.URLDecoder"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -124,6 +125,8 @@
 							int maxFileSize = 2000 * 1024;
 							String savedFileName = "";
 							boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+							ServletContext context = pageContext.getServletContext();
+							String filePath = context.getInitParameter("file-upload");
 							if (!isMultipart) {
 							} else {
 								FileItemFactory factory = new DiskFileItemFactory();
@@ -143,9 +146,7 @@
 										//File Uploads Here
 										try {
 											String itemName = item.getName();
-											//File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
-											String realPath = getServletContext().getRealPath("images/service");
-											File destinationDir = new File(realPath);
+											File destinationDir = new File(filePath);
 											if (!destinationDir.exists()) {
 												destinationDir.mkdir();
 											}
@@ -159,13 +160,18 @@
 													continue;
 												}
 											} catch (SecurityException se) {
+												out.println(se.getMessage());
 												se.printStackTrace();
 											} catch (FileNotFoundException fne) {
+												out.println(fne.getMessage());
 												fne.printStackTrace();
+											} catch (Exception ee) {
+												out.println(ee.getMessage());
+												ee.printStackTrace();
 											}
 											savedFileName = savedFile.getName();
-
 										} catch (Exception e) {
+											out.println(e.getMessage());
 											e.printStackTrace();
 										}
 									}

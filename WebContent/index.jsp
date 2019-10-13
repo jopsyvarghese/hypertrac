@@ -29,6 +29,26 @@
 
 <!-- Main Stylesheet File -->
 <link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+<style>
+.more-info ul, #about ul {
+	list-style: none;
+	font-weight: 500;
+	font-style: italic;
+}
+
+.more-info, #intro, #about {
+	font-size: 14px;
+}
+
+.more-info {
+	/* background-color: #00428a;
+	padding:10px; */
+	font-size: 12px;
+	font-weight: bold;
+}
+</style>
 <!-- =======================================================
     Theme Name: HyperTrac
     Theme URL: http://www.preatech.com/HyperTrac-bootstrap-business-template/
@@ -75,11 +95,11 @@
 
 			<div class="intro-info">
 				<h2>
-					We provide<br>
-					<span>Service</span><br>for all your Applications!
+					We provide<br> <span>Service</span><br>for all your
+					Applications!
 				</h2>
 				<div>
-					<a href="aboutUs.jsp" class="btn-get-started scrollto">Get
+					<a href="register.jsp" class="btn-get-started scrollto">Get
 						Started</a> <a href="services.jsp" class="btn-services scrollto">Our
 						Services</a>
 				</div>
@@ -99,23 +119,23 @@
 
 				<header class="section-header">
 					<h3>How it Works</h3>
-					<p style="font-weight:bold" class="box-red">We are pleased to bring to you for
-						procurement , installation and use, an automated solution,
-						"HYPERTRAC" software that synchronizes both individual and
-						corporate business transactions on a single platform, and makes it
-						easy and convenient to access and monitor Information concerning
-						business transactions. The objective of "HYPERTRAC" is to reduce
-						the traffic and stress of service providers, clients and
-						contractors from physically following up of Documents, Files,
-						Proposals and Business Transactions.</p>
+					<p>We are pleased to bring to you for procurement ,
+						installation and use, an automated solution, "HYPERTRAC" software
+						that synchronizes both individual and corporate business
+						transactions on a single platform, and makes it easy and
+						convenient to access and monitor Information concerning business
+						transactions. The objective of "HYPERTRAC" is to reduce the
+						traffic and stress of service providers, clients and contractors
+						from physically following up of Documents, Files, Proposals and
+						Business Transactions.</p>
 				</header>
 				<p>&nbsp;</p>
 
 				<div class="row about-container">
 
 					<div class="col-lg-6 content order-lg-1 order-2">
-						<p class="box-blue">"HYPERTRAC" is an international
-							patent licensed software that synchronizes both individuals and
+						<p class="more-info">"HYPERTRAC" is an international patent
+							licensed software that synchronizes both individuals and
 							corporate Business transactions on a single platform, it is meant
 							for easy access and monitoring of Information concerning business
 							transactions within an organization helping with workflow
@@ -150,7 +170,7 @@
 					</div>
 					<div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
 						<h4>BENEFITS OF HYPERTRAC</h4>
-						<p class="box-yellow">This Solution would improve the ease of doing business
+						<p>This Solution would improve the ease of doing business
 							within any country, state, organization and by extension improve
 							the rating on the World Ease of Doing Business Index (DBI). If
 							files and documents can be acted upon from anywhere in the world
@@ -160,38 +180,46 @@
 							contractors, vendors and individuals will be able to know and get
 							real-time updates of the status of their files from their own
 							portal on the HYPERTRAC platform.</p>
-						<strong><small> <strong>Benefits</strong>
-								<ol>
-									<li>Makes the work of your staff easier</li>
-									<li>Work is done faster as technology enables it.</li>
-									<li>Gives the higher Superior officers easier access to
-										official records thereby enabling them  monitor the status of
-										any file/job from anywhere in the world. This makes for
-										flexibility and reduction in stress.</li>
-									<li>Makes your organization a reference point in the
-										league of both locally and internationally.
-										<ul>
-											<li>Makes your organization a flagship institution
-												amongst others</li>
-											<li>Better positioned to serve your clients.</li>
-											<li>Potential for getting a higher rating for Ease of
-												Doing Business Index with your government and international
-												organizations</li>
-											<li>Reduces waste,  time, money and other input like
-												equipment and paper</li>
-											<li>Reduction in overall cost of doing business</li>
-											<li>More efficiency and openness in government business</li>
-											<li>Your organization will not be limited by time and
-												space</li>
-											<li>It will enable your organization to quickly respond
-												to inquiries</li>
-											<li>It further keys into the anti-corruption project in
-												your country</li>
-											<li>Makes your organization and government even more
-												transparent.</li>
-										</ul>
-									</li>
-								</ol>
+					</div>
+					<div class="col-lg-12 wow fadeInUp pt-5 pt-lg-0">
+						<strong>Benefit</strong>
+						<ul>
+							<li><span class="fa fa-thumbs-up text-info"></span>&nbsp;Makes
+								the work of your staff easier</li>
+							<li><span class="fa fa-thumbs-up text-info"></span>&nbsp;Work
+								is done faster as technology enables it.</li>
+							<li><span class="fa fa-thumbs-up text-info"></span>&nbsp;Gives
+								the higher Superior officers easier access to official records
+								thereby enabling them  monitor the status of any file/job from
+								anywhere in the world. This makes for flexibility and reduction
+								in stress.</li>
+							<li><span class="fa fa-thumbs-up text-info"></span>&nbsp;Makes
+								your organization a reference point in the league of both
+								locally and internationally.
+								<ul>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Makes
+										your organization a flagship institution amongst others</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Better
+										positioned to serve your clients.</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Potential
+										for getting a higher rating for Ease of Doing Business Index
+										with your government and international organizations</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Reduces
+										waste, time, money and other input like equipment and paper</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Reduction
+										in overall cost of doing business</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;More
+										efficiency and openness in government business</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Your
+										organization will not be limited by time and space</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;It
+										will enable your organization to quickly respond to inquiries</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;It
+										further keys into the anti-corruption project in your country</li>
+									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Makes
+										your organization and government even more transparent.</li>
+								</ul></li>
+						</ul>
 						</small> </strong>
 					</div>
 				</div>
@@ -204,15 +232,25 @@
 					<div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
 						<h4>You may ask how can you trust HYPERTRAC with your Data
 							and how secure is HYPERTRAC ?</h4>
-						<p class="box-blue">
-							Apart from the backing of data in the cloud with very reputable
-							Internet Service Providers (ISPs) not all HYPERTRAC staff will
-							have access to certain levels of information uploaded unless
-							upgraded and authorized to do so.<br /> Our strong belief is that
-							 HYPERTRAC is a  solution that is required by every organization
-							as it is an advanced technology which helps to build or foster
-							relationship between clients and contractors for their mutual
-							benefit.
+						<p>
+							Our approach is in compliance with global secure software
+							standards<br />
+						<ul>
+							<li><span class="fa fa-check text-info"></span>&nbsp;We are
+								a world-class Cyber Security and Infrastructure Provider.</li>
+							<li><span class="fa fa-check text-info"></span>&nbsp;We
+								adopt Cloud Services for scalability and session security.</li>
+							<li><span class="fa fa-check text-info"></span>&nbsp;SSL
+								v3.0 / TLS for online data transmission security</li>
+							<li><span class="fa fa-check text-info"></span>&nbsp;Offer
+								to sign Non-Disclosure Agreement.</li>
+							<li><span class="fa fa-check text-info"></span>&nbsp;Our
+								Policies and Standards address just about every concern.</li>
+							<li><span class="fa fa-check text-info"></span>&nbsp;Audit
+								trail and Activity trail of all your official activities.</li>
+							<li><span class="fa fa-check text-info"></span>&nbsp;Mobile
+								Security available and many more security services</li>
+						</ul>
 						</p>
 					</div>
 

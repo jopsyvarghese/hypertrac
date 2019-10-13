@@ -81,6 +81,8 @@
 							}
 							Helper help = new Helper();
 							boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+							ServletContext context = pageContext.getServletContext();
+							String filePath = context.getInitParameter("file-upload");
 							if (!isMultipart) {
 							} else {
 								String contractorName = "";
@@ -151,19 +153,11 @@
 										//File Uploads Here
 										try {
 											String itemName = item.getName();
-											//File uploads = new File(getServletContext().getInitParameter("file-upload"));
-
-											//String relativePath = "uploads/";
-											//String realPath = getServletContext().getRealPath(relativePath);
-											String realPath = getServletContext().getRealPath("images/service");
-											File destinationDir = new File(realPath);
-											//File destinationDir = new File(getServletContext().getInitParameter("file-upload"));
+											File destinationDir = new File(filePath);
 											if(!destinationDir.exists()) {
 												destinationDir.mkdir();
 											}
 											Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-											//File savedFile = new File(realPath, itemName);
-											//File savedFile = new File(realPath, ""+timestamp.getTime()+itemName);
 											File savedFile = new File(destinationDir, ""+timestamp.getTime()+itemName);
 											try {
 												long sizeInBytes = item.getSize();
@@ -234,7 +228,6 @@
 													status += 1;
 												}
 											}
-											out.println(status+": \n\n");
 											if (status > 0) {
 												out.println(
 														"<h4 style='color:green;'>Applied Successfully. Your Reference Number Is: <strong>"

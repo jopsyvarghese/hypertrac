@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -21,11 +26,18 @@
 
 <!-- Custom styles for this template-->
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-
+<link rel="stylesheet"
+	href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
 <body id="page-top">
-
+	<%
+		Helper helper = new Helper();
+		Connection con = database.getConnection();
+		String sql = "SELECT * FROM applications ORDER BY id DESC LIMIT 0,50";
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -60,33 +72,42 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-							<div class="text-center">Invitation to Contractor</div>
+							<h3>
+								<div class="text-center text-info">Invitation to
+									Contractor</div>
+							</h3>
 							<table
 								class="table table-hover table-responsive-lg table-bordered">
 								<tr class="table-warning">
 									<th>Sl. No</th>
 									<th>Application ID</th>
+									<th>Company Name</th>
 									<th>Department Name</th>
+									<th>Subject</th>
 									<th>Submitted Date</th>
 									<th>Invitation Status</th>
+									<!-- <th>View</th> -->
 								</tr>
-
+								<%
+									String stat[] = helper.getAppStatus();
+									int i = 1;
+									while (rs.next()) {
+								%>
 								<tr>
-									<td>1</td>
-									<td>AE12005</td>
-									<td>Dept 1</td>
-									<td>05 Mar 2019</td>
-									<td><a href="viewInvitation.jsp"
-										class="btn btn-info btn-sm"> View More </a></td>
+									<td><%=i%></td>
+									<td><%=rs.getInt(1)%></td>
+									<td><%=rs.getString(2)%></td>
+									<td><%=helper.getDeptById(rs.getInt(3))%></td>
+									<td><%=rs.getString(4)%></td>
+									<td><%=rs.getString(5)%></td>
+									<td><%=stat[rs.getInt(7)]%></td>
+									<%-- <td><a href="viewInvitation.jsp?id=<%=rs.getInt(1)%>"
+										class="btn btn-default btn-sm"> <span class="fa fa-eye"></span></a></td> --%>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>AE12005</td>
-									<td>Dept 2</td>
-									<td>05 Mar 2019</td>
-									<td><a href="viewInvitation.jsp"
-										class="btn btn-info btn-sm"> View More </a></td>
-								</tr>
+								<%
+									i++;
+									}
+								%>
 							</table>
 						</div>
 					</div>

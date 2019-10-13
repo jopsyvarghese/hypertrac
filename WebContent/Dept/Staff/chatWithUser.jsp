@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.sql.ResultSet"%>
@@ -31,7 +32,13 @@
 </head>
 
 <body id="page-top">
-
+<%
+Connection con = database.getConnection();
+		
+		String dataQ = "SELECT fname FROM auth WHERE role=0 OR role=4";
+		Statement st = con.createStatement();
+		ResultSet dataR = st.executeQuery(dataQ);
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -66,8 +73,17 @@
 						<form action="#" method="get">
 							<table class="table">
 								<tr>
-									<td><input type="text" name="q" class="form-control"
-										placeholder="Type a User's Name To Search" /></td>
+									<td>
+									<input list="users" name="q" class="form-control"
+									placeholder="Type a User's Name To Search">
+									  <datalist id="users">
+									  <%
+									  	while(dataR.next()) {
+									  %>
+									    <option value="<%=dataR.getString(1) %>">
+									    <% } %>
+									  </datalist>
+									</td>
 									<td>
 										<button class="btn btn-primary">
 											<span class="fa fa-search"></span>
@@ -85,13 +101,12 @@
 							
 							Helper helper = new Helper();
 							String user = request.getParameter("q");
-							String sql = "SELECT id,fname,addr FROM auth WHERE fname like ? ORDER BY id DESC limit 0, 10";
-							Connection con = database.getConnection();
+							String sql = "SELECT id,fname,addr FROM auth WHERE (role=0 OR role=4) AND fname like ? ORDER BY id DESC limit 0, 10";
 							PreparedStatement ps = con.prepareStatement(sql);
 							ps.setString(1, "%" + user + "%");
 							ResultSet rs = null;
 							rs = ps.executeQuery();
-							if(rs.next()) {
+							while(rs.next()) {
 							%>
 							<tr>
 								<td><%=rs.getString(2) %></td>
