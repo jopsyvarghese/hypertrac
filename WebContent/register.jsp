@@ -38,7 +38,7 @@
       ======================================================= -->
 </head>
 
-<body>
+<body onload="onLoadFunc()">
 
 	<!--==========================
 Header
@@ -82,7 +82,8 @@ Header
 						<table>
 							<tr>
 								<td>Registering As</td>
-								<td><select name="role" class="form-control" id="role">
+								<td><select name="role" class="form-control" id="role" onchange="checkRc()">
+										<option value="">Please Select Type</option>
 										<option value="0">Contractor (Company)</option>
 										<option value="4">Individual</option>
 								</select></td>
@@ -128,7 +129,12 @@ Header
 								<td><input type="number" name="mob" class="form-control"
 									required></td>
 							</tr>
-							<tr>
+							<tr id="dobTr">
+								<td>Date Of Birth</td>
+								<td><input type="text" name="dob" class="form-control"
+									placeholder="dd/mm/yyyy"></td>
+							</tr>
+							<tr id="rcTr">
 								<td>RC Number</td>
 								<td><input type="text" name="rc" id="rc"
 									class="form-control" placeholder="Optional for Individuals">
@@ -293,7 +299,20 @@ Footer
 		}
 		function sleep(ms) {
 			  return new Promise(resolve => setTimeout(resolve, ms));
+		}
+		function checkRc() {
+			var role = document.getElementById("role").value;
+			if (role == 4) {
+				document.getElementById("rcTr").style.visibility = "collapse";
+				document.getElementById("dobTr").style.visibility = "visible";
+			} if (role == 0) {
+				document.getElementById("rcTr").style.visibility = "visible";
+				document.getElementById("dobTr").style.visibility = "collapse";
 			}
+		}
+		function onLoadFunc() {
+			document.getElementById("dobTr").style.display="collapse";
+		}
 	</script>
 </body>
 </html>
