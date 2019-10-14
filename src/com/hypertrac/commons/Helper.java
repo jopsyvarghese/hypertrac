@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;  
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -276,13 +277,19 @@ public class Helper {
 		return arr;
 	}
 	
-	public ResultSet getStaffNameByDeptId(int id) throws SQLException
+	public ArrayList<Integer> getStaffNameByDeptId(int id) throws SQLException
 	{
 		Statement st = con.createStatement();
 		ResultSet rs = null;
-		String sql = "SELECT id,fname FROM auth WHERE id=(SELECT id FROM staff WHERE dept=" + id+");";
-		rs = st.executeQuery(sql);
-		return rs;
+		ResultSet rs2 = null;
+		String query = "SELECT id FROM staff WHERE dept=" + id;
+		rs2 = st.executeQuery(query);
+		ArrayList<Integer> staffIds = new ArrayList<Integer>();
+        while(rs2.next()) {
+         	staffIds.add(rs2.getInt(1));
+        }
+			
+		return staffIds;
 	}
 	
 	public String getStaffDeptById(int id) throws SQLException

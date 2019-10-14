@@ -12,7 +12,8 @@
 		<description>Location to store uploaded file</description>
 		<param-name>file-upload</param-name>
 		<param-value>
-      		/var/lib/tomcat8/webapps/ROOT/images/service
+		C:/tomcat9/webapps/images/service
+      		<!-- /var/lib/tomcat8/webapps/ROOT/images/service -->
    </param-value>
 	</context-param>
 	
@@ -22,9 +23,8 @@
 		<init-param>
 			<param-name>basePath</param-name>
 			<param-value>
-				<!-- C:/tomcat9/webapps/images/service -->
-				/var/lib/tomcat8/webapps/ROOT/images/service
-				<!-- /var/lib/tomcat8/webapps/images/service -->
+				C:/tomcat9/webapps/images/service
+				<!-- /var/lib/tomcat8/webapps/ROOT/images/service -->
 			</param-value>
 		</init-param>
 	</servlet>

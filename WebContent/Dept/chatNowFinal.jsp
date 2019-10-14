@@ -18,5 +18,5 @@
 	ps.setInt(3, c_by);
 	ps.setString(4, c_time);
 	ps.executeUpdate();
-	response.sendRedirect("chatWithUser_2.jsp?q=" + hashId);
+	response.sendRedirect("chatNow.jsp?q=" + hashId);
 %>
