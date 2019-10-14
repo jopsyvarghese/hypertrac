@@ -26,6 +26,8 @@
 <link href="lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="css/font-awesome-4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <!-- Main Stylesheet File -->
 <link href="css/style.css" rel="stylesheet">
@@ -110,7 +112,21 @@ Header
 							</tr>
 							<tr>
 								<td>Password</td>
-								<td><input type="password" name="pwd" class="form-control"></td>
+								<td>
+									<div class="input-container">
+										</i> <input class="form-control"
+											type="password" name="pwd" id="myPassword" style="width:85%;float:left;">
+											<i class="fa fa-eye icon btn btn-default btn-sm" style="margin-top:5px;"
+											onclick="mouseoverPass();"></i>
+
+										<!-- <div class="form-group has-feedback">
+											<input class="form-control" style="position: relative;"
+												name="pwd" type="password" id="myPassword"><span
+												style="position: absolute; right: 8px; top: 60px; z-index: 999"
+												class="fa fa-lock form-control-feedback"
+												onkeydown="mouseoverPass();" onkeyup="mouseoutPass();"></span>
+										</div> -->
+								</td>
 							</tr>
 							<tr>
 								<td colspan="2">&nbsp;</td>
@@ -230,6 +246,20 @@ Footer
 
 	<!-- Template Main Javascript File -->
 	<script src="js/main.js"></script>
-
+	<script>
+		async function mouseoverPass(obj) {
+			var x = document.getElementById("myPassword");
+			  if (x.type === "password") {
+			    x.type = "text";
+			    await sleep(1000);
+			    x.type = "password";
+			  } else {
+			    x.type = "password";
+			  }
+		}
+		function sleep(ms) {
+			  return new Promise(resolve => setTimeout(resolve, ms));
+			}
+	</script>
 </body>
 </html>

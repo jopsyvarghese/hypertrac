@@ -105,12 +105,18 @@ Header
 							<tr>
 								<td>Password</td>
 								<td><input type="password" name="pwd" id="pwd"
-									class="form-control" required></td>
+									class="form-control" required
+									style="width: 85%; float: left;"><i
+									class="fa fa-eye icon btn btn-default btn-sm"
+									style="margin-top: 5px;" onclick="mouseoverPass();"></i></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
 								<td><input type="password" name="cpwd" id="cpwd"
-									class="form-control" required></td>
+									class="form-control" required
+									style="width: 85%; float: left;"><i
+									class="fa fa-eye icon btn btn-default btn-sm"
+									style="margin-top: 5px;" onclick="mouseoverPass2();"></i></td>
 							</tr>
 							<tr>
 								<td>Email</td>
@@ -265,6 +271,29 @@ Footer
 			return true;
 
 		}
+		async function mouseoverPass(obj) {
+			var x = document.getElementById("pwd");
+			  if (x.type === "password") {
+			    x.type = "text";
+			    await sleep(1000);
+			    x.type = "password";
+			  } else {
+			    x.type = "password";
+			  }
+		}
+		async function mouseoverPass2(obj) {
+			var x = document.getElementById("cpwd");
+			  if (x.type === "password") {
+			    x.type = "text";
+			    await sleep(1000);
+			    x.type = "password";
+			  } else {
+			    x.type = "password";
+			  }
+		}
+		function sleep(ms) {
+			  return new Promise(resolve => setTimeout(resolve, ms));
+			}
 	</script>
 </body>
 </html>
