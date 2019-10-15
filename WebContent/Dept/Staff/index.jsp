@@ -57,7 +57,16 @@
                 <!-- Content Row -->
 
                 <div class="row">
-
+					
+					<div class="col-md-1 col-lg-1"></div>
+						<div class="col-md-10 col-lg-10">
+							<div class="alert alert-success alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<small><%@include file="../lastLoggedIn.jsp"%></small>
+							</div>
+						</div>
+						<div class="col-md-1 col-lg-1"></div>
+					
                     <!-- Area Chart -->
                     <div class="col-xl-8 col-lg-7">
                         <div class="card shadow mb-4">

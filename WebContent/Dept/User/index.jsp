@@ -26,43 +26,6 @@
 
 <body id="page-top">
 
-
-	<!-- Payment Modal  -->
-	<!-- <script src="../vendor/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-    $(window).on('load',function(){
-        $('#myModal').modal('show');
-    });
-</script>
-
-The Modal
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      Modal Header
-      <div class="modal-header">
-        <h4 class="modal-title">Please Pay your Bill</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      Modal body
-      <div class="modal-body">
-        You can pay your bill in monthly / quarterly / half yearly / Yearly by clicking on the below link
-      </div>
-
-      Modal footer
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-</div> -->
-
-	<!-- Payment Modal  -->
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -88,6 +51,17 @@ The Modal
 						<div class="text-center">
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-1 col-lg-1"></div>
+						<div class="col-md-10 col-lg-10">
+							<div class="alert alert-success alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<small><%@include file="../lastLoggedIn.jsp"%></small>
+							</div>
+						</div>
+						<div class="col-md-1 col-lg-1"></div>
 					</div>
 					<%
 						int userType = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
