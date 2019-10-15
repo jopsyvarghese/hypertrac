@@ -20,7 +20,7 @@ ps.setInt(1, myId);
 rs = ps.executeQuery();
 if (rs.next()) {
 	inTime = rs.getString(1);
-	outTime = rs.getString(1);
+	outTime = rs.getString(2);
 }
 con.close();
 String loggedData = "";

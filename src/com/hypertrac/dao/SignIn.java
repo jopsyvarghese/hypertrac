@@ -70,6 +70,30 @@ public class SignIn extends HttpServlet {
 				session.setAttribute("loggedInUserRole", rs.getInt(8));
 				session.setAttribute("myImg", rs.getString(15));
 				int role = rs.getInt(8);
+
+				//Store Logged In Details
+				int id = 0;
+				ResultSet rsLog = null;
+				id = Integer.parseInt(""+rs.getInt(1));
+				String sqlLog = "SELECT in_time FROM login_logs WHERE id=?";
+				PreparedStatement psLog = con.prepareStatement(sqlLog);
+				psLog.setInt(1, id);
+				rsLog = ps.executeQuery();
+				if (rsLog.next()) {
+					String query = "UPDATE login_logs SET in_time=? WHERE id=?";
+					PreparedStatement pst = con.prepareStatement(query);
+					pst.setString(1, helper.getDateTime());
+					pst.setInt(2, id);
+					pst.executeUpdate();
+				} else {
+					String query = "INSERT INTO login_logs(id, in_time, out_time) VALUES (?,?,?)";
+					PreparedStatement pst = con.prepareStatement(query);
+					pst.setInt(1, id);
+					pst.setString(2, helper.getDateTime());
+					pst.setString(3, helper.getDateTime());
+					pst.executeUpdate();
+				}				
+				
 				if (role == 0 ) {
 					response.sendRedirect("Dept/User");
 				} else if(role == 1) {
