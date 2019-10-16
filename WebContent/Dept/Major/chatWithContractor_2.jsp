@@ -81,8 +81,8 @@
 					</div>
 					<small class="pull-left"> <a href="chatWithContractor.jsp"><i
 							class="fa fa-arrow-left" aria-hidden="true"></i></a>
-					</small><br/>
-					
+					</small><br />
+
 					<%
 						try {
 							staffId = Integer.parseInt(request.getParameter("contractor"));
@@ -127,8 +127,7 @@
 						<input type="submit" class="btn btn-primary"
 							style="width: 10%; margin-top: 10px;" />
 					</form>
-					<br />
-					<br />
+					<br /> <br />
 					<table class="table table-hover">
 						<tr>
 							<th>Comment</th>

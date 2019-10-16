@@ -114,10 +114,11 @@
 								<textarea name="comment" class="form-control"
 									style="width: 80%; float: left;"></textarea>
 								<input type="hidden" name="chatId" value="<%=chatId%>" /> <input
-									type="hidden" name="c_by" value="<%=myId%>" />
-									<input type="hidden" name="hashId" value="<%=request.getParameter("q") %>" />
-									<input	type="hidden" name="staffId" value="<%=staffId%>" />
-									<input	type="hidden" name="c_time" value="<%=helper.getDateTime()%>" />&nbsp;
+									type="hidden" name="c_by" value="<%=myId%>" /> <input
+									type="hidden" name="hashId"
+									value="<%=request.getParameter("q") %>" /> <input
+									type="hidden" name="staffId" value="<%=staffId%>" /> <input
+									type="hidden" name="c_time" value="<%=helper.getDateTime()%>" />&nbsp;
 								<input type="submit" class="btn btn-primary"
 									style="width: 10%; margin-top: 10px;" value="Add" />
 							</form>

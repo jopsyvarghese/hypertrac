@@ -128,19 +128,47 @@ h1, h2, h3, h4, h5, h6 {
 100%
 {
 -webkit-transform
-:
- 
-rotate
-(360deg);
 
-    
+
+
+
+:
+
+
+ 
+
+
+rotate
+
+
+
+
+(360
+deg
+
+
+);
 transform
-:
- 
-rotate
-(360deg);
 
-  
+
+
+
+:
+
+
+ 
+
+
+rotate
+
+
+
+
+(360
+deg
+
+
+);
 }
 }
 @
@@ -152,19 +180,47 @@ keyframes animate-preloader { 0% {
 100%
 {
 -webkit-transform
-:
- 
-rotate
-(360deg);
 
-    
+
+
+
+:
+
+
+ 
+
+
+rotate
+
+
+
+
+(360
+deg
+
+
+);
 transform
-:
- 
-rotate
-(360deg);
 
-  
+
+
+
+:
+
+
+ 
+
+
+rotate
+
+
+
+
+(360
+deg
+
+
+);
 }
 }
 
@@ -204,7 +260,7 @@ rotate
 #header .logo img {
 	padding: 0;
 	margin: -50px 0;
-	max-height: 72px;
+	max-height: 65px;
 }
 
 .main-pages {

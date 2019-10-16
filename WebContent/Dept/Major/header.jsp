@@ -60,8 +60,7 @@
  		}
  	}
  	if (totalMessages > 0) {
- %> <span
-				class="badge badge-danger badge-counter"><%=totalMessages%></span>
+ %> <span class="badge badge-danger badge-counter"><%=totalMessages%></span>
 				<%
 					}
 				%> </span>

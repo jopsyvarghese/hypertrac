@@ -25,7 +25,9 @@
 </head>
 
 <body id="page-top">
-
+<%
+session.setAttribute("reportGenerateDept", 3);
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -60,8 +62,7 @@
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 						<a href="../generateReport.jsp"
-							class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-							target="_blank"><i
+							class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 						<br />
 					</div>

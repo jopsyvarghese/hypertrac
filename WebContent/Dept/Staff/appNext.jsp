@@ -75,12 +75,14 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4">
-							<small class="pull-left"> <a href="viewApplication.jsp?id=<%=id %>"><i
+							<small class="pull-left"> <a
+								href="viewApplication.jsp?id=<%=id %>"><i
 									class="fa fa-arrow-left" aria-hidden="true"></i></a>
 							</small>
 						</div>
 						<div class="col-lg-6 mb-4">
-							<form action="appAssign.jsp" method="post" enctype="multipart/form-data">
+							<form action="appAssign.jsp" method="post"
+								enctype="multipart/form-data">
 								<table class="table">
 
 									<tr>
@@ -129,8 +131,7 @@
 									</tr>
 									<tr>
 										<th>Upload Document</th>
-										<td>
-											<input type="file" name="file" class="form-control" />
+										<td><input type="file" name="file" class="form-control" />
 										</td>
 									</tr>
 									<tr>

@@ -33,17 +33,18 @@
 <link href="css/style.css" rel="stylesheet">
 
 <style>
-#about > ul, #why-us > ul{
+#about>ul, #why-us>ul {
 	list-style: none;
 	font-weight: 600;
 	font-style: italic;
 }
 
-#about{
+#about {
 	font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
 	margin: 1% 15%;
 }
-#why-us{
+
+#why-us {
 	font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
 }
 </style>
@@ -91,9 +92,9 @@
 
 				<header class="section-header">
 					<h3>Services</h3>
-					We provide services for different government and
-						non-government related needs, Please go through the below descriptions which will help you
-						to know more about us.
+					We provide services for different government and non-government
+					related needs, Please go through the below descriptions which will
+					help you to know more about us.
 				</header>
 			</div>
 		</section>
@@ -187,15 +188,15 @@
 							from the convenience of your office or home thereby reducing the
 							traffic and stress of service provider from their clients
 							visiting office on a regular basis.</li>
-						<li><span class="fa fa-thumbs-up"></span>&nbsp;It also reduces
-							visitors.</li>
-						<li><span class="fa fa-thumbs-up"></span>&nbsp;It creates a more
-							secured working environment since visitors are reduced to the
-							minimal and monitored through the requirement and approval of
+						<li><span class="fa fa-thumbs-up"></span>&nbsp;It also
+							reduces visitors.</li>
+						<li><span class="fa fa-thumbs-up"></span>&nbsp;It creates a
+							more secured working environment since visitors are reduced to
+							the minimal and monitored through the requirement and approval of
 							invitation letters before visitors can gain access into the
 							clients' premises.</li>
-						<li><span class="fa fa-thumbs-up"></span>&nbsp;It is safe to do
-							their official assignments since contractors/vendors do not
+						<li><span class="fa fa-thumbs-up"></span>&nbsp;It is safe to
+							do their official assignments since contractors/vendors do not
 							really need to visit regularly any more for follow-up purposes
 							thereby avoiding distraction during office hours.</li>
 						<li><span class="fa fa-thumbs-up"></span>&nbsp;Helps in
@@ -207,10 +208,10 @@
 							access not only to your information but links you to other
 							clients for further business transactions and your access is
 							unlimited.</li>
-						<li><span class="fa fa-thumbs-up"></span>&nbsp;With the use of
-							HYPERTRAC, it will help in reducing corruption and fraud in our
-							society as it has been observed that corruption is found in every
-							sector of the society.</li>
+						<li><span class="fa fa-thumbs-up"></span>&nbsp;With the use
+							of HYPERTRAC, it will help in reducing corruption and fraud in
+							our society as it has been observed that corruption is found in
+							every sector of the society.</li>
 						<li><span class="fa fa-thumbs-up"></span>&nbsp;HYPERTRAC will
 							also help to increase a nation or State Internal Generated
 							Revenue (IGR).</li>

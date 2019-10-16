@@ -75,8 +75,8 @@
 						<div class="col-lg-2 mb-4"></div>
 						<div class="col-lg-8 mb-4">
 							<div class="text-center">
-								
-						<%
+
+								<%
 							String subject = request.getParameter("subject");
 							String content = request.getParameter("content");
 							int userId = (int) session.getAttribute("loggedInUserId");
@@ -113,7 +113,7 @@
 								System.out.println(e);
 							}
 						%>
-					
+
 							</div>
 						</div>
 						<div class="col-lg-2 mb-4"></div>

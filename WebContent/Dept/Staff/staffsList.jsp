@@ -18,8 +18,8 @@ while(rst.next()) {
 	ps.setInt(1, staffId);
 	rs = ps.executeQuery();
 	while(rs.next()) { %>
-		<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
-	<% } 
+<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
+<% } 
 }
 con.close();
 %>

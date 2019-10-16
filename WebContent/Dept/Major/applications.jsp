@@ -32,14 +32,14 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 Helper helper = new Helper();
 int loggedId = 0;
 try {
 	if(session.getAttribute("loggedInUserId") == null) {
 		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
+	<script>window.location="../../logout.jsp"</script>
+	<%
 	}
 	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
 } catch(NullPointerException ne){}
@@ -79,8 +79,7 @@ try {
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4 text-center">
-							<strong>Applications</strong> <br />
-							<br />
+							<strong>Applications</strong> <br /> <br />
 							<table class="table table-responsive-lg table-bordered">
 								<tr class="table-warning">
 									<th>Sl. No</th>

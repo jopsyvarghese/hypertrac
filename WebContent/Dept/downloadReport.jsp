@@ -4,7 +4,7 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%
 	int dept = Integer.parseInt(request.getParameter("dept"));
 	String csv = "App ID" + "," + "Dept" + "," + "Assigned" + "," + "Comment" + "," + "By" + "," + "On" + ","

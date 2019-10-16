@@ -77,9 +77,10 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-9 mb-4">
-							<small class="pull-left"> <a href="individualsApplications.jsp"><i
+							<small class="pull-left"> <a
+								href="individualsApplications.jsp"><i
 									class="fa fa-arrow-left" aria-hidden="true"></i></a>
-							</small><br/>
+							</small><br />
 							<%
 								String appId = "";
 								String query = "SELECT * FROM applications WHERE id=?";
@@ -204,14 +205,14 @@
 								<a href="appNext.jsp?id=<%=id%>&appId=<%=appId%>"
 									class="btn btn-danger">Next >></a>
 							</div>
-							<br />
-							<br />
+							<br /> <br />
 							<div class="text-center">
 								<a href="appCommentsHistory.jsp?id=<%=id%>" target="_blank"
 									class="text text-primary"> <span class="fa fa-walking"></span>
 									Journey / <span class="fa fa-comment"></span> Comments
-								</a><br/><br/><br/>
-								<a href="../attachments.jsp?id=<%=id%>" class="text-warning" target="_blank"><span class="fa fa-paperclip"></span> Attachments</a>
+								</a><br /> <br /> <br /> <a href="../attachments.jsp?id=<%=id%>"
+									class="text-warning" target="_blank"><span
+									class="fa fa-paperclip"></span> Attachments</a>
 							</div>
 						</div>
 					</div>

@@ -59,7 +59,7 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
 					<div class="text-center">
 						<%
 						Helper helper = new Helper();

@@ -85,14 +85,14 @@
                             int i = 1;
                             while(rs.next()) {
                             %>
-                            <tr>
-                                <td><%=i %></td>
-                                <td><a href="viewHistory.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(1) %></a></td>
-                                <td><%=rs.getString(4) %></td>
-                                <td><%=rs.getString(5) %></td>
-                                <td><%=consta.getConstant(rs.getInt(7)) %></td>
-                            </tr>
-                            <% i++; } %>
+								<tr>
+									<td><%=i %></td>
+									<td><a href="viewHistory.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(1) %></a></td>
+									<td><%=rs.getString(4) %></td>
+									<td><%=rs.getString(5) %></td>
+									<td><%=consta.getConstant(rs.getInt(7)) %></td>
+								</tr>
+								<% i++; } %>
 							</table>
 						</div>
 					</div>

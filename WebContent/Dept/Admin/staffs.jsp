@@ -132,7 +132,7 @@
 									<td><%=mobile%></td>
 									<td><a href="editStaff.jsp?id=<%=staffId%>"
 										class="btn btn-outline-primary btn-sm"><span
-											class="fa fa-pen"></span></a><%
+											class="fa fa-pen"></span></a> <%
  	//Check Status
  		String btnColor = "btn-outline-danger";
  		String toggleStatus = "fa-toggle-off";
@@ -140,16 +140,14 @@
  			btnColor = "btn-outline-success";
  			toggleStatus = "fa-toggle-on";
  		}
- %>  <a href="../enableDisable.jsp?id=<%=staffId%>&redirect=Admin/staffs.jsp"
+ %> <a
+										href="../enableDisable.jsp?id=<%=staffId%>&redirect=Admin/staffs.jsp"
 										class="btn <%=btnColor%> btn-sm"> <i
 											class="fas <%=toggleStatus%>"></i>
-									</a>
-									<a
-										href="deleteStaff.jsp?id=<%=staffId%>"
+									</a> <a href="deleteStaff.jsp?id=<%=staffId%>"
 										onclick="return confirmDel();"
 										class="btn btn-outline-danger btn-sm"><span
-											class="fa fa-trash-alt"></span></a>
-									</td>
+											class="fa fa-trash-alt"></span></a></td>
 								</tr>
 								<%
 									i++;

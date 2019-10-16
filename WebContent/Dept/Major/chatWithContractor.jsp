@@ -29,7 +29,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 String sql = "SELECT id,fname FROM auth WHERE role=0";
 Connection con = database.getConnection();
 Statement st = null;
@@ -66,24 +66,24 @@ rs = st.executeQuery(sql);
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
 					<small class="pull-left"> <a href="chat.jsp"><i
 							class="fa fa-arrow-left" aria-hidden="true"></i></a>
 					</small>
-					
+
 					<div class="text-center">
-					<br/>
-						<h4 class="text-info">Chat With Contractor</h4><br/>
+						<br />
+						<h4 class="text-info">Chat With Contractor</h4>
+						<br />
 						<form action="chatWithContractor_2.jsp" method="post">
 							<select name="contractor" class="form-control-sm">
 								<option>Select Contractor</option>
 								<%	while(rs.next()) { %>
-									<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>	
+								<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
 								<% } %>
-							</select>
-							<input type="submit" class="btn-sm btn-primary"/>
+							</select> <input type="submit" class="btn-sm btn-primary" />
 						</form>
-						
+
 					</div>
 
 				</div>

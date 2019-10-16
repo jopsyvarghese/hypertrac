@@ -118,7 +118,8 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<small><i class="fas fa-walking"></i></small>
@@ -229,7 +230,7 @@
 						</form>
 					</div>
 
-					<div class="col-sm-4 propic" style="min-height:200px;">
+					<div class="col-sm-4 propic" style="min-height: 200px;">
 						<form action="changePic.jsp" method="post"
 							enctype="multipart/form-data">
 							<!-- Profile Pic -->
@@ -239,10 +240,12 @@
 								<div class="middle">
 									<div class="text">
 
-										<label class="btn btn-sm btn-info"><span class="fas fa-upload"></span><input
-											type="file" name="file" hidden>
-										</label>
-										<button class="btn btn-sm btn-primary">Upload <span class="fa fa-plus-circle"></span></button>
+										<label class="btn btn-sm btn-info"><span
+											class="fas fa-upload"></span><input type="file" name="file"
+											hidden> </label>
+										<button class="btn btn-sm btn-primary">
+											Upload <span class="fa fa-plus-circle"></span>
+										</button>
 									</div>
 
 								</div>

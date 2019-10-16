@@ -54,9 +54,9 @@
 					</div>
 
 					<div class="text-center">
-						<a href="../chatRoom.jsp" target="_blank" class="btn btn-primary">Chat Room</a>
-						<a href="chatWithStaff.jsp" class="btn btn-primary">Chat With Customer Staff</a>
-						<a href="email.jsp" class="btn btn-primary">Email</a>
+						<a href="../chatRoom.jsp" target="_blank" class="btn btn-primary">Chat
+							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
+							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
 					</div>
 
 				</div>

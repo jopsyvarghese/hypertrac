@@ -59,11 +59,9 @@
 			</a>
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
-			<li class="nav-item active">
-            <a class="nav-link" href="../logout.jsp">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Logout</span></a>
-        	</li>
+			<li class="nav-item active"><a class="nav-link"
+				href="../logout.jsp"> <i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Logout</span></a></li>
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 			<!-- Divider -->
@@ -134,10 +132,10 @@
 										<tr>
 											<td><textarea class="form-control" name="comment"></textarea>
 											</td>
-											<td><button
-													class="btn btn-primary btn-sm" style="margin-top:20px;">
-													Add <span class="fa fa-plus-circle"></span></button>
-											</td>
+											<td><button class="btn btn-primary btn-sm"
+													style="margin-top: 20px;">
+													Add <span class="fa fa-plus-circle"></span>
+												</button></td>
 										</tr>
 										<tr>
 

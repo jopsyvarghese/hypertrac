@@ -29,7 +29,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 String sql = "SELECT * FROM auth WHERE role=2";
 Connection con = null;
 Statement st = null;
@@ -68,13 +68,13 @@ String email = "";
 						</div>
 					</div>
 					<div class="text-center">
-						<h3 class="text-info">Major Clients </h3><br />
+						<h3 class="text-info">Major Clients</h3>
+						<br />
 					</div>
 					<div class="col-sm-12">
 						<a href="addClient.jsp" class="btn btn-primary btn-sm"> <span
 							class="fa fa-plus-circle"></span> Add New Client
-						</a> <br />
-						<br />
+						</a> <br /> <br />
 						<table class="table-hover table-responsive">
 							<tr class="table-warning">
 								<th>Sl.No</th>
@@ -90,17 +90,17 @@ String email = "";
 							
 							while(rs.next()) {
 							%>
-							
+
 							<tr>
 								<td><%=i %></td>
 								<td><%=rs.getString(2) %></td>
 								<td><%=rs.getString(3) %></td>
 								<td><%=rs.getString(3) %></td>
 								<td><%=rs.getString(7) %></td>
-								<td><a href="editClient.jsp?id=<%=rs.getInt(1) %>" class="btn btn-outline-primary btn-sm">
-										<span class="fa fa-pencil-alt"></span>
-								</a> 
-								<%
+								<td><a href="editClient.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-outline-primary btn-sm"> <span
+										class="fa fa-pencil-alt"></span>
+								</a> <%
 								//Check Status
 								int status = rs.getInt(16);
 								String btnColor = "btn-outline-danger";
@@ -109,17 +109,15 @@ String email = "";
 									btnColor = "btn-outline-success";
 									toggleStatus = "fa-toggle-on";
 								}
-								%>
-								<a href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/majorClients.jsp"
-									class="btn <%=btnColor %> btn-sm">
-										<i class="fas <%=toggleStatus %>"></i>
-								</a>
-								<a href="deleteClient.jsp?id=<%=rs.getInt(1) %>"
-									class="btn btn-outline-danger btn-sm" onclick="return confirmDel();">
-										<span class="fa fa-trash-alt"></span>
-								</a>
-								
-								</td>
+								%> <a
+									href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/majorClients.jsp"
+									class="btn <%=btnColor %> btn-sm"> <i
+										class="fas <%=toggleStatus %>"></i>
+								</a> <a href="deleteClient.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-outline-danger btn-sm"
+									onclick="return confirmDel();"> <span
+										class="fa fa-trash-alt"></span>
+								</a></td>
 							</tr>
 							<%								
 							}

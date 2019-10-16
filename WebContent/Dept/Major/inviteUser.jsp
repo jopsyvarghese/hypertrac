@@ -101,16 +101,14 @@
 
 									<tr>
 										<td>Department To Visit</td>
-										<td>
-										<select name="dept" class="form-control">
-											<option value="0">Select Any Department</option>
-											<%
+										<td><select name="dept" class="form-control">
+												<option value="0">Select Any Department</option>
+												<%
 											ResultSet rsDept = helper.getDept();
 											while(rsDept.next()) { %>
 												<option value="<%=rsDept.getInt(1) %>"><%=rsDept.getString(2) %></option>
-											<% } %>
-										</select>
-										</td>
+												<% } %>
+										</select></td>
 									</tr>
 									<tr>
 										<td>Message</td>
@@ -119,9 +117,9 @@
 									<tr>
 										<td>CSO Email</td>
 										<td><select name="cso" class="form-control">
-											<%	while(rsCso.next()) { %>
-												<option value="<%=rsCso.getString(3) %>"><%=rsCso.getString(3) %></option>	
-											<% }	%>
+												<%	while(rsCso.next()) { %>
+												<option value="<%=rsCso.getString(3) %>"><%=rsCso.getString(3) %></option>
+												<% }	%>
 										</select></td>
 									</tr>
 									<tr>

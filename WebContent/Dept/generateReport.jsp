@@ -68,6 +68,15 @@
 
 <body id="page-top">
 	<%
+		int generateDeptId = Integer.parseInt(session.getAttribute("reportGenerateDept").toString());
+		String redirectUrl = "";
+		if (generateDeptId == 1) {
+			redirectUrl = "Staff/";
+		} else if (generateDeptId == 2) {
+			redirectUrl = "Major/";
+		} else if (generateDeptId == 3) {
+			redirectUrl = "Admin/";
+		}
 		String cname = "";
 		String addr = "";
 		String mob = "";
@@ -79,7 +88,7 @@
 		} catch (Exception e) {
 			response.sendRedirect("../logout.jsp");
 		}
-		
+
 		String imgName = "";
 		String imgQry = "SELECT pro_pic FROM auth WHERE id=?";
 		PreparedStatement pImg = con.prepareStatement(imgQry);
@@ -91,12 +100,10 @@
 			imgName = rsImg.getString(1);
 		}
 		String imgUrl = "../img/img_avatar.png";
-		if(imgName.length() > 0) {
-			imgUrl =  "../images/service/" + imgName;
+		if (imgName.length() > 0) {
+			imgUrl = "../images/service/" + imgName;
 		}
-		
-		
-		
+
 		String sql = "SELECT fname, addr, mob, email FROM auth WHERE id=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, myId);
@@ -118,7 +125,8 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<small><i class="fas fa-walking"></i></small>
@@ -191,27 +199,45 @@
 				<!-- End of Topbar -->
 				<div class="row">
 					<div class="col-sm-2 text-center">
-						<br />
-						
+						<br /> <a href="<%=redirectUrl%>" class="btn btn-primary btn-sm">Back
+							To Dashboard</a>
 					</div>
 
 					<div class="col-sm-8 text-center card">
-							<!-- Profile Pic -->
-							<div class="container">
-								<h2 class="text-primary">Generate Report</h2>
-								<form action="generateReportFinal.jsp" method="post">
-									<p>
-									<br/>
-										Select Department <select name="dept" class="form-control-sm">
-											<option value="0">Contractor</option>
-											<option value="1">Staff</option>
-											<option value="2">Major Client</option>
-											<option value="4">User</option>
-										</select> <br/><br/>
-										<input type="submit" class="btn btn-primary" value="Generate" />
-									</p>
-								</form>
-							</div>
+						<!-- Profile Pic -->
+						<div class="container">
+							<h2 class="text-primary">Generate Report</h2>
+							<form action="generateReportFinal.jsp" method="post">
+								<p>
+									<br /> Select Department <select name="dept"
+										class="form-control-sm">
+										<%
+											if (generateDeptId == 1) {
+										%>
+										<option value="0">Contractor</option>
+										<option value="4">User</option>
+										<%
+											} else if (generateDeptId == 2) {
+										%>
+										<option value="0">Contractor</option>
+										<option value="1">Staff</option>
+										<option value="4">User</option>
+										<%
+											} else if (generateDeptId == 3) {
+										%>
+										<option value="0">Contractor</option>
+										<option value="1">Staff</option>
+										<option value="2">Major Client</option>
+										<option value="4">User</option>
+										<%
+											}
+										%>
+
+									</select> <br /> <br /> <input type="submit" class="btn btn-primary"
+										value="Generate" />
+								</p>
+							</form>
+						</div>
 					</div>
 
 					<div class="col-sm-2 text-center"></div>

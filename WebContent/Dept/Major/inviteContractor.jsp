@@ -80,7 +80,11 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-							<h3><div class="text-center text-info">Invitation to Contractor/Individual</div></h3><br/>
+							<h3>
+								<div class="text-center text-info">Invitation to
+									Contractor/Individual</div>
+							</h3>
+							<br />
 							<table
 								class="table table-hover table-responsive-lg table-bordered">
 								<tr class="table-warning">

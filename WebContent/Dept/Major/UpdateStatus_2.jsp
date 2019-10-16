@@ -68,7 +68,7 @@
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-						<%
+							<%
 						int id = 0;
 						int invitationStatus = 0;
 						int docSubmit = 0;

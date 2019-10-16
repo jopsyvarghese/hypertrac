@@ -56,14 +56,8 @@
 						</div>
 					</div>
 					<div class="text-center">
-						Mail <br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br /> <small>To be decided...</small>
+						Mail <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+						<small>To be decided...</small>
 					</div>
 
 				</div>

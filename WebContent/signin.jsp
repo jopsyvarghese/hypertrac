@@ -111,31 +111,23 @@ Header
 								<td><input type="text" name="uname" class="form-control"></td>
 							</tr>
 							<tr>
-								<td>Password</td>
+								<td>Passwords</td>
 								<td>
 									<div class="input-container">
-										</i> <input class="form-control"
-											type="password" name="pwd" id="myPassword" style="width:85%;float:left;">
-											<i class="fa fa-eye icon btn btn-default btn-sm" style="margin-top:5px;"
-											onclick="mouseoverPass();"></i>
-
-										<!-- <div class="form-group has-feedback">
-											<input class="form-control" style="position: relative;"
-												name="pwd" type="password" id="myPassword"><span
-												style="position: absolute; right: 8px; top: 60px; z-index: 999"
-												class="fa fa-lock form-control-feedback"
-												onkeydown="mouseoverPass();" onkeyup="mouseoutPass();"></span>
-										</div> -->
+										</i> <input class="form-control" type="password" name="pwd"
+											id="myPassword" style="width: 85%; float: left;"><a
+											class="form-control"><i class="fa fa-eye"
+											style="width: 4%;" onclick="mouseoverPass();"></i></a>
 								</td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td colspan="2">&nbsp;</td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td><a href="forgotPwd.jsp"><small>Forgot
-											Password? Click Here</small></a></td>
+											Password?Click Here</small></a></td>
 								<td><input type="submit" value="Sign In"
-									class="btn btn-success" /></td>
+									class="btn btn-success btn-sm" /></td>
 							</tr>
 						</table>
 					</form>

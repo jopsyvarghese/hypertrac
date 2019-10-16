@@ -59,7 +59,7 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
 					<%
 					Helper helper = new Helper();
 					int id = 0;

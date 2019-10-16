@@ -50,19 +50,24 @@ String val = "cc8cbcba8ba975d887e90c5e76aef155c63c9f365127e4a038775f658550ad2d5f
 Html Form Code
 <html>
 <body onload="document.submit2gtpay_form.submit()">
-<form name="submit2gtpay_form" action="https://ibank.gtbank.com/GTPay/Tranx.aspx" target="_self" method="post">
-<input type="hidden" name="gtpay_mert_id" value="<%=gtpay_mert_id %>" />
-<input type="hidden" name="gtpay_tranx_id" value="<%=gtpay_tranx_id %>" />
-<input type="hidden" name="gtpay_tranx_amt" value="<%=gtpay_tranx_amt %>" />
-<input type="hidden" name="gtpay_tranx_curr" value="<%=gtpay_tranx_curr %>" />
-<input type="hidden" name="gtpay_cust_id" value="<%=gtpay_cust_id %>" />
-<input type="hidden" name="gtpay_cust_name" value="<%=gtpay_cust_name %>" />
-<input type="hidden" name="gtpay_tranx_memo" value="<%=gtpay_tranx_memo %>" />
-<input type="hidden" name="gtpay_echo_data" value="<%=gtpay_echo_data %>" />
-<input type="hidden" name="gtpay_gway_name" value="webpay" />
-<input type="hidden" name="gtpay_hash" value="<%=val %>" />
-<input type="hidden" name="gtpay_tranx_noti_url" value="<%=gtpay_tranx_noti_url %>" />
-<input type="hidden" name="gtpay_echo_data" value="<%=gtpay_echo_data %>">
-</form>
+	<form name="submit2gtpay_form"
+		action="https://ibank.gtbank.com/GTPay/Tranx.aspx" target="_self"
+		method="post">
+		<input type="hidden" name="gtpay_mert_id" value="<%=gtpay_mert_id %>" />
+		<input type="hidden" name="gtpay_tranx_id"
+			value="<%=gtpay_tranx_id %>" /> <input type="hidden"
+			name="gtpay_tranx_amt" value="<%=gtpay_tranx_amt %>" /> <input
+			type="hidden" name="gtpay_tranx_curr" value="<%=gtpay_tranx_curr %>" />
+		<input type="hidden" name="gtpay_cust_id" value="<%=gtpay_cust_id %>" />
+		<input type="hidden" name="gtpay_cust_name"
+			value="<%=gtpay_cust_name %>" /> <input type="hidden"
+			name="gtpay_tranx_memo" value="<%=gtpay_tranx_memo %>" /> <input
+			type="hidden" name="gtpay_echo_data" value="<%=gtpay_echo_data %>" />
+		<input type="hidden" name="gtpay_gway_name" value="webpay" /> <input
+			type="hidden" name="gtpay_hash" value="<%=val %>" /> <input
+			type="hidden" name="gtpay_tranx_noti_url"
+			value="<%=gtpay_tranx_noti_url %>" /> <input type="hidden"
+			name="gtpay_echo_data" value="<%=gtpay_echo_data %>">
+	</form>
 </body>
 </html>

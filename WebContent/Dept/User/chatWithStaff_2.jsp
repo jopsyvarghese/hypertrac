@@ -80,7 +80,7 @@
 
 					<small class="pull-left"> <a href="userChat.jsp"><i
 							class="fa fa-arrow-left" aria-hidden="true"></i></a>
-					</small><br/>
+					</small><br />
 
 					<div class="text-center">
 
@@ -128,8 +128,7 @@
 							<input type="submit" class="btn btn-primary"
 								style="width: 15%; margin-top: 10px;" />
 						</form>
-						<br />
-						<br />
+						<br /> <br />
 						<table class="table table-hover">
 							<tr>
 								<th>Comment</th>

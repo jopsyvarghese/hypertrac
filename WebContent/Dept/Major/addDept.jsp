@@ -62,7 +62,7 @@
 						<div class="col-lg-12 mb-4">
 							<small class="pull-left"> <a href="dept.jsp"><i
 									class="fa fa-arrow-left" aria-hidden="true"></i></a>
-							</small><br/>
+							</small><br />
 							<div class="text-center">
 								Add New Departments <br /> <br />
 								<form action="addDeptFinal.jsp" method="post">

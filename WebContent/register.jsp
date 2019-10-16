@@ -82,7 +82,8 @@ Header
 						<table>
 							<tr>
 								<td>Registering As</td>
-								<td><select name="role" class="form-control" id="role" onchange="checkRc()">
+								<td><select name="role" class="form-control" id="role"
+									onchange="checkRc()">
 										<option value="">Please Select Type</option>
 										<option value="0">Contractor (Company)</option>
 										<option value="4">Individual</option>
@@ -106,18 +107,16 @@ Header
 							<tr>
 								<td>Password</td>
 								<td><input type="password" name="pwd" id="pwd"
-									class="form-control" required
-									style="width: 85%; float: left;"><i
-									class="fa fa-eye icon btn btn-default btn-sm"
-									style="margin-top: 5px;" onclick="mouseoverPass();"></i></td>
+									class="form-control" required style="width: 85%; float: left;"><a
+									class="form-control"><i class="fa fa-eye"
+										style="width: 4%;" onclick="mouseoverPass();"></i></a></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
 								<td><input type="password" name="cpwd" id="cpwd"
-									class="form-control" required
-									style="width: 85%; float: left;"><i
-									class="fa fa-eye icon btn btn-default btn-sm"
-									style="margin-top: 5px;" onclick="mouseoverPass2();"></i></td>
+									class="form-control" required style="width: 85%; float: left;"><a
+									class="form-control"><i class="fa fa-eye"
+										style="width: 4%;" onclick="mouseoverPass2();"></i></a></td>
 							</tr>
 							<tr>
 								<td>Email</td>

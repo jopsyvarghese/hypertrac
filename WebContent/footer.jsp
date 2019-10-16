@@ -13,8 +13,9 @@
 				<div class="footer-newsletter">
 					<small>Subscribe to our news letter for latest updates</small>
 					<form action="newsLetter.jsp" method="post">
-						<input type="email" name="email" required placeholder="Type Your Email ID..."><input
-							type="submit" value="Subscribe">
+						<input type="email" name="email" required
+							placeholder="Type Your Email ID..."><input type="submit"
+							value="Subscribe">
 					</form>
 				</div>
 			</div>
@@ -36,10 +37,9 @@
 					<small><strong>Nigeria</strong>: House 2,"E" close, Kado
 						estate, FCT-Abuja.Nigeria. </small><br /> <small><strong>UK</strong>:
 						Flat 1, Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill,
-						London.</small><br /> <small><strong>India</strong>: Flat 1,
-						Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill, London.</small><br />
-					<small><strong>Phone: +234 9019 2202 02 / +234
-							7088 2200 22</strong></small><br> <small><strong>Email:
+						London.</small><br /> <small><strong>India</strong>: CS-5
+						heavenly plaza, Civil line road Kakkanad,Cochin-21.</small><br /> <small><strong>Phone:
+							+234 9019 2202 02 / +234 7088 2200 22</strong></small><br> <small><strong>Email:
 							info@hypertrac.online</strong></small><br />
 				</p>
 

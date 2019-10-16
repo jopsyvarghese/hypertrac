@@ -30,7 +30,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 Connection con = null;
 Statement st = null;
 ResultSet rs = null;		
@@ -81,12 +81,12 @@ if(myId > 0) {
 					</div>
 					<div class="col-sm-12">
 						<div class="text-center">
-						<h3 class="text-info"> Departments</h3><br />
+							<h3 class="text-info">Departments</h3>
+							<br />
 						</div>
 						<a href="addDept.jsp" class="btn btn-primary"> <span
 							class="fa fa-plus-circle"></span> Add Department
-						</a> <br />
-						<br />
+						</a> <br /> <br />
 						<table class="table table-hover table-responsive-lg">
 							<tr class="table-warning">
 								<th>Sl.No</th>
@@ -104,8 +104,9 @@ if(myId > 0) {
 								<td><%=rs.getString(4) %></td>
 								<td><%=rs.getString(2) %></td>
 								<td><%=helper.getMajorClient(rs.getInt(3)) %></td>
-								<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>" class="btn btn-primary btn-sm">
-										<span class="fa fa-pencil-alt"></span>
+								<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-primary btn-sm"> <span
+										class="fa fa-pencil-alt"></span>
 								</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1) %>"
 									class="btn btn-danger btn-sm" onclick="return confirmDel();">
 										<span class="fa fa-trash-alt"></span>
@@ -114,7 +115,7 @@ if(myId > 0) {
 							<%
 								i++; }
 							%>
-							
+
 						</table>
 					</div>
 
@@ -123,7 +124,7 @@ if(myId > 0) {
 
 			</div>
 			<!-- End of Main Content -->
-<%
+			<%
 con.close();
 %>
 			<!-- Footer -->

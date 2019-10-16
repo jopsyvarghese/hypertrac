@@ -19,8 +19,8 @@ int loggedId = 0;
 try {
 	if(session.getAttribute("loggedInUserId") == null) {
 		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
+<script>window.location="../../logout.jsp"</script>
+<%
 	}
 	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
 } catch(NullPointerException ne){}

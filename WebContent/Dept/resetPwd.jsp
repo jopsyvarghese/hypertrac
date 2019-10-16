@@ -60,7 +60,7 @@
 			</a>
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
-			
+
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 			<!-- Divider -->
@@ -94,10 +94,10 @@
 					</div>
 
 					<div class="text-center">
-					<div class="row">
+						<div class="row">
 							<div class="col-sm-3"></div>
 							<div class="col-sm-6">
-							<%
+								<%
 							String hash = request.getParameter("q");
 							String email = request.getParameter("email");
 							String sql = "SELECT id FROM auth WHERE email=? AND reset_hash=?";
@@ -113,30 +113,35 @@
 							}
 							if(id > 0) { %>
 								<h4 class="text-info text-center">Reset Password</h4>
-								<form action="resetPwd_2.jsp" method="post" onsubmit="return validatePwd()">
-								<input type="hidden" name="id" value="<%=id%>"/>
+								<form action="resetPwd_2.jsp" method="post"
+									onsubmit="return validatePwd()">
+									<input type="hidden" name="id" value="<%=id%>" />
 									<table class="table">
 										<tr>
 											<td>New Password</td>
-											<td><input type="password" name="pwd" id="pwd" class="form-control"/></td>
+											<td><input type="password" name="pwd" id="pwd"
+												class="form-control" /></td>
 										</tr>
 										<tr>
 											<td>Confirm Password</td>
-											<td><input type="password" name="cpwd" id="cpwd" class="form-control"/></td>
+											<td><input type="password" name="cpwd" id="cpwd"
+												class="form-control" /></td>
 										</tr>
 										<tr>
-											<td colspan="2"><input type="submit" class="btn btn-primary" value="Update" /></td>
+											<td colspan="2"><input type="submit"
+												class="btn btn-primary" value="Update" /></td>
 										</tr>
 									</table>
 								</form>
-							<% } else { %> 
-								<h4 class="text-danger" style="margin-top: 100px;">Request Expired / Invalid Details Supplied</h4>
-							<%} %>
-							
-							
-								
-								
-								
+								<% } else { %>
+								<h4 class="text-danger" style="margin-top: 100px;">Request
+									Expired / Invalid Details Supplied</h4>
+								<%} %>
+
+
+
+
+
 							</div>
 							<div class="col-sm-3"></div>
 						</div>

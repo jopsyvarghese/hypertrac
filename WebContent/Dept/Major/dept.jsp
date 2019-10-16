@@ -29,7 +29,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 int myId = 0;
 myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 if(!(myId > 0)) {
@@ -81,42 +81,42 @@ rs = st.executeQuery(sql);
 
 						<!-- Content Column -->
 						<div class="col-sm-12">
-						<div class="text-center">Departments</div>
-						<a href="addDept.jsp" class="btn btn-primary"> <span
-							class="fa fa-plus-circle"></span> Add Department
-						</a> <br />
-						<br />
-						<table class="table table-hover table-responsive-lg">
-							<tr class="table-warning">
-								<th>Sl.No</th>
-								<th>Dept. Head</th>
-								<th>Dept. Name</th>
-								<th>Operations</th>
-							</tr>
-							<%
+							<div class="text-center">Departments</div>
+							<a href="addDept.jsp" class="btn btn-primary"> <span
+								class="fa fa-plus-circle"></span> Add Department
+							</a> <br /> <br />
+							<table class="table table-hover table-responsive-lg">
+								<tr class="table-warning">
+									<th>Sl.No</th>
+									<th>Dept. Head</th>
+									<th>Dept. Name</th>
+									<th>Operations</th>
+								</tr>
+								<%
 							int i=1;
 							while(rs.next()) {
 							%>
-							<tr>
-								<td><%=i %></td>
-								<td><%=rs.getString(4) %></td>
-								<td><%=rs.getString(2) %></td>
-								<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>" class="btn btn-primary btn-sm">
-										<span class="fa fa-pencil-alt"></span>
-								</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1) %>"
-									class="btn btn-danger btn-sm" onclick="return confirmDel();">
-										<span class="fa fa-trash-alt"></span>
-								</a></td>
-							</tr>
-							<%
+								<tr>
+									<td><%=i %></td>
+									<td><%=rs.getString(4) %></td>
+									<td><%=rs.getString(2) %></td>
+									<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>"
+										class="btn btn-primary btn-sm"> <span
+											class="fa fa-pencil-alt"></span>
+									</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1) %>"
+										class="btn btn-danger btn-sm" onclick="return confirmDel();">
+											<span class="fa fa-trash-alt"></span>
+									</a></td>
+								</tr>
+								<%
 							i++;
 							}
 							%>
-							
-						</table>
+
+							</table>
+						</div>
 					</div>
-					</div>
-					
+
 				</div>
 				<!-- /.container-fluid -->
 

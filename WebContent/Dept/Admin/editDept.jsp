@@ -80,16 +80,16 @@ if(id == 0) {
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
 					<small class="pull-left"> <a href="dept.jsp"><i
 							class="fa fa-arrow-left" aria-hidden="true"></i></a>
 					</small>
-					
+
 					<div class="text-center">
 						Edit Departments <br /> <br />
 						<form action="editDept_2.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
-							<input type="hidden" name="id" value="<%=id %>"/>
+								<input type="hidden" name="id" value="<%=id %>" />
 								<%
 								while(rs.next()) {
 									ResultSet rs2 = helper.getMajorClients();
@@ -105,7 +105,8 @@ if(id == 0) {
 														selected = "selected='selected'";
 													}
 											%>
-											<option value="<%=rs2.getInt(1) %>" <% out.print(selected); %>><%=rs2.getString(2) %></option>
+											<option value="<%=rs2.getInt(1) %>"
+												<% out.print(selected); %>><%=rs2.getString(2) %></option>
 											<%
 												}
 											%>

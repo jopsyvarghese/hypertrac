@@ -103,16 +103,16 @@
 								while (rs.next()) {
 							%>
 							<form action="deleteContractor.jsp" method="get">
-							<input type="hidden" name="id" value="<%=rs.getInt(1) %>" />
-							<input type="hidden" name="redirect" value="individuals.jsp" />
-							<tr>
-								<td><%=i%></td>
-								<td><%=rs.getString(2)%></td>
-								<td><%=rs.getString(3)%></td>
-								<td><%=rs.getString(6)%></td>
-								<td><%=rs.getString(7)%></td>
-								<td>
-								<%
+								<input type="hidden" name="id" value="<%=rs.getInt(1) %>" /> <input
+									type="hidden" name="redirect" value="individuals.jsp" />
+								<tr>
+									<td><%=i%></td>
+									<td><%=rs.getString(2)%></td>
+									<td><%=rs.getString(3)%></td>
+									<td><%=rs.getString(6)%></td>
+									<td><%=rs.getString(7)%></td>
+									<td>
+										<%
 								//Check Status
 								int status = rs.getInt(16);
 								String btnColor = "btn-outline-danger";
@@ -121,14 +121,17 @@
 									btnColor = "btn-outline-success";
 									toggleStatus = "fa-toggle-on";
 								}
-								%>
-								<a href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/individuals.jsp"
-									class="btn <%=btnColor %> btn-sm">
-										<i class="fas <%=toggleStatus %>"></i>
-								</a>
-								<button class="btn btn-outline-danger btn-sm" onclick="return Confirm();"><span
-										class="fa fa-trash"></span></button></td>
-							</tr>
+								%> <a
+										href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/individuals.jsp"
+										class="btn <%=btnColor %> btn-sm"> <i
+											class="fas <%=toggleStatus %>"></i>
+									</a>
+										<button class="btn btn-outline-danger btn-sm"
+											onclick="return Confirm();">
+											<span class="fa fa-trash"></span>
+										</button>
+									</td>
+								</tr>
 							</form>
 							<%
 								i++;
@@ -180,7 +183,7 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-<script>
+	<script>
 	function Confirm() {
 		var r = confirm("Are you sure you want to delete this user? ");
 		if (r == true) {

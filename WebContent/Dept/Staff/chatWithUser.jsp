@@ -32,7 +32,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 Connection con = database.getConnection();
 		
 		String dataQ = "SELECT fname FROM auth WHERE role=0 OR role=4";
@@ -73,17 +73,16 @@ Connection con = database.getConnection();
 						<form action="#" method="get">
 							<table class="table">
 								<tr>
-									<td>
-									<input list="users" name="q" class="form-control"
-									placeholder="Type a User's Name To Search">
-									  <datalist id="users">
-									  <%
+									<td><input list="users" name="q" class="form-control"
+										placeholder="Type a User's Name To Search"> <datalist
+											id="users">
+											<%
 									  	while(dataR.next()) {
 									  %>
-									    <option value="<%=dataR.getString(1) %>">
-									    <% } %>
-									  </datalist>
-									</td>
+											<option value="<%=dataR.getString(1) %>">
+												<% } %>
+											
+										</datalist></td>
 									<td>
 										<button class="btn btn-primary">
 											<span class="fa fa-search"></span>
@@ -111,11 +110,10 @@ Connection con = database.getConnection();
 							<tr>
 								<td><%=rs.getString(2) %></td>
 								<td><%=rs.getString(3) %></td>
-								<td>
-								<a href="chatWithUser_2.jsp?q=<%=helper.encrypt(rs.getString(1)) %>">
-									Chat Now <i class="fas fa-comments"></i>
-								</a>
-								</td>
+								<td><a
+									href="chatWithUser_2.jsp?q=<%=helper.encrypt(rs.getString(1)) %>">
+										Chat Now <i class="fas fa-comments"></i>
+								</a></td>
 							</tr>
 							<%}
 						}

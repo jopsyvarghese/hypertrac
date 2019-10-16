@@ -61,8 +61,7 @@
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<div class="text-center">
-								Invitation Letter ( Contractor,CSO and Super Admin ) <br />
-								<br />
+								Invitation Letter ( Contractor,CSO and Super Admin ) <br /> <br />
 								<form action="#" method="post">
 									<textarea class="form-control"
 										placeholder="Type the letter Content" rows="8"></textarea>

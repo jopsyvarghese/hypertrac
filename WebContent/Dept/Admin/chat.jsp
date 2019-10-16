@@ -62,14 +62,18 @@
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<div class="text-center">
-							<h3 class="text-info"> Chat With Contractor</h3><br />
+								<h3 class="text-info">Chat With Contractor</h3>
+								<br />
 								<div style="padding: 15px 5px;">
-									<a class="btn btn-primary btn-sm" href="../chatRoom.jsp" target="_blank">Chat Room</a> <a
-										class="btn btn-primary btn-sm" href="chatWithMajor.jsp">Chat with Major
-										Client</a> <a class="btn btn-primary btn-sm" href="chatWithStaff.jsp">Chat
-										with Staff</a> <a class="btn btn-primary btn-sm" href="chatWithContractor.jsp">Chat
-										with Contractor</a> <a class="btn btn-primary btn-sm" href="chatWithUser.jsp">Chat
-										with User</a> <a class="btn btn-primary btn-sm" href="#">Email</a>
+									<a class="btn btn-primary btn-sm" href="../chatRoom.jsp"
+										target="_blank">Chat Room</a> <a
+										class="btn btn-primary btn-sm" href="chatWithMajor.jsp">Chat
+										with Major Client</a> <a class="btn btn-primary btn-sm"
+										href="chatWithStaff.jsp">Chat with Staff</a> <a
+										class="btn btn-primary btn-sm" href="chatWithContractor.jsp">Chat
+										with Contractor</a> <a class="btn btn-primary btn-sm"
+										href="chatWithUser.jsp">Chat with User</a> <a
+										class="btn btn-primary btn-sm" href="#">Email</a>
 								</div>
 							</div>
 						</div>

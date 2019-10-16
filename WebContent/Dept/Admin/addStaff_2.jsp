@@ -30,13 +30,13 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 int loggedId = 0;
 try {
 	if(session.getAttribute("loggedInUserId") == null) {
 		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
+	<script>window.location="../../logout.jsp"</script>
+	<%
 	}
 	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
 } catch(NullPointerException ne){}
@@ -77,7 +77,7 @@ try {
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-						<%
+							<%
 						Helper helper = new Helper();
 						Connection con = null;
 						int lastInsertedId = 0;
@@ -131,8 +131,8 @@ try {
 							response.sendRedirect("staffs.jsp?status=failed");
 						}
 						%>
-						
-						
+
+
 						</div>
 						<div class="col-lg-3 mb-4"></div>
 					</div>

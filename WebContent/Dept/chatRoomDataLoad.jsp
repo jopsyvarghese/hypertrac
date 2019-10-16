@@ -5,9 +5,9 @@
 <%@page import="java.sql.Connection"%>
 
 <tr class="text-primary">
-	<th  style="width:70% !important;">Comment</th>
-	<th style="width:15% !important;">By</th>
-	<th style="width:15% !important;">On</th>
+	<th style="width: 70% !important;">Comment</th>
+	<th style="width: 15% !important;">By</th>
+	<th style="width: 15% !important;">On</th>
 </tr>
 
 <%
@@ -21,17 +21,12 @@
 	rs = st.executeQuery(sql);
 	while(rs.next()) {
 %>
-	<tr>
-		<td><%=rs.getString(3) %></td>
-		<td>
-			<small>
-				<strong><%=helper.getFirstNameById(rs.getInt(2)) %></strong>
-			</small>
-		</td>
-		<td>
-			<small><%=rs.getString(4) %></small>
-		</td>
-	</tr>
+<tr>
+	<td><%=rs.getString(3) %></td>
+	<td><small> <strong><%=helper.getFirstNameById(rs.getInt(2)) %></strong>
+	</small></td>
+	<td><small><%=rs.getString(4) %></small></td>
+</tr>
 <%
 	}
 	con.close();

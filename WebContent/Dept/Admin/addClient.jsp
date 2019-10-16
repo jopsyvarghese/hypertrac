@@ -56,13 +56,14 @@
 						</div>
 					</div>
 					<div class="col-sm-12">
-						<small class="pull-left">
-							<a href="majorClients.jsp"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+						<small class="pull-left"> <a href="majorClients.jsp"><i
+								class="fa fa-arrow-left" aria-hidden="true"></i></a>
 						</small>
 						<div class="text-center">
-							<h3 class="text-info">Add New Client </h3><br />
-							<br />
-							<form action="addClientFinal.jsp" method="post" onsubmit="return passwordCheck()">
+							<h3 class="text-info">Add New Client</h3>
+							<br /> <br />
+							<form action="addClientFinal.jsp" method="post"
+								onsubmit="return passwordCheck()">
 								<table class="table table-hover table-sm">
 									<tr>
 										<th>Major Client Name</th>
@@ -90,12 +91,12 @@
 									<tr>
 										<th>Password</th>
 										<td><input type="password" class="form-control"
-											name="pwd" id="pwd"/></td>
+											name="pwd" id="pwd" /></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" class="form-control"
-											name="cpwd" id="cpwd"/></td>
+											name="cpwd" id="cpwd" /></td>
 									</tr>
 								</table>
 								<button type="submit" class="btn btn-primary">
@@ -171,7 +172,7 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-<script>
+	<script>
 	function passwordCheck() {
 		var newPwd = $("#pwd").val();
 		var confPwd = $("#cpwd").val();

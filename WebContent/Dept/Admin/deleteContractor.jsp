@@ -31,7 +31,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 		Helper helper = new Helper();
 		int loggedId = 0;
 		try {
@@ -77,7 +77,7 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
 					<div class="text-center">
 						<%
 						int id = 0;

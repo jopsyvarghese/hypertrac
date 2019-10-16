@@ -176,8 +176,7 @@
 																selected = "selected='selected'";
 															}
 												%>
-												<option value="<%=rs3.getInt(1)%>"
-													<%out.print(selected);%>><%=rs3.getString(2)%></option>
+												<option value="<%=rs3.getInt(1)%>" <%out.print(selected);%>><%=rs3.getString(2)%></option>
 												<%
 													}
 												%>
@@ -200,8 +199,7 @@
 																selected = "selected='selected'";
 															}
 												%>
-												<option value="<%=rs4.getInt(1)%>"
-													<%out.print(selected);%>><%=rs4.getString(2)%></option>
+												<option value="<%=rs4.getInt(1)%>" <%out.print(selected);%>><%=rs4.getString(2)%></option>
 												<%
 													}
 												%>

@@ -64,7 +64,7 @@
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-						<%
+							<%
 						int id = 0;
 						id = Integer.parseInt(request.getParameter("id"));
 						if(!(id>0)) {
@@ -94,11 +94,11 @@
 							out.println("<h4 style='color:red'>Sorry! Unable to Update</h4>");
 						}
 						%>
-						
+
 						</div>
 						<div class="col-lg-3 mb-4"></div>
 					</div>
-				
+
 				</div>
 				<!-- /.container-fluid -->
 

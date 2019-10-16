@@ -31,7 +31,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 Helper helper = new Helper();
 int appId = 0;
 appId = Integer.parseInt(request.getParameter("id"));
@@ -66,9 +66,12 @@ appId = Integer.parseInt(request.getParameter("id"));
 					<small class="pull-left"> <a href="appStatus.jsp"><i
 							class="fa fa-arrow-left" aria-hidden="true"></i></a>
 					</small>
-					
+
 					<div class="text-center">
-					<a href="../attachments.jsp?id=<%=helper.encrypt(""+appId) %>" class="text-primary" target="_blank"><strong>View Attachment <span class="fa fa-paperclip"></span></strong></a><br/><br/>
+						<a href="../attachments.jsp?id=<%=helper.encrypt(""+appId) %>"
+							class="text-primary" target="_blank"><strong>View
+								Attachment <span class="fa fa-paperclip"></span>
+						</strong></a><br /> <br />
 						<table class="table">
 							<tr>
 								<th>Department Assigned</th>

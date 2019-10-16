@@ -61,14 +61,12 @@
 										rs = ps.executeQuery();
 										while (rs.next()) {
 								%>
-								<strong>
-									<a href="../files/<%=rs.getString(3)%>"
-										download>
-										<%
+								<strong> <a href="../files/<%=rs.getString(3)%>"
+									download> <%
 											out.println(rs.getString(3));
 										%>
-									</a>
-								</strong><br/>
+								</a>
+								</strong><br />
 								<%
 									}
 									}

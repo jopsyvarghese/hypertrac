@@ -71,8 +71,7 @@
 							<div class="col-sm-3"></div>
 							<div class="col-sm-6">
 								<h4 class="text-info">Chat With Customer Staff</h4>
-								<br />
-								<br />
+								<br /> <br />
 								<form action="chatWithStaff_2.jsp" method="post"
 									onsubmit="return formCheck()">
 									<table>
@@ -90,15 +89,16 @@
 										</tr>
 										<tr>
 											<td>Sub Department</td>
-											<td><select name="sdf" id="staffs"
-												class="form-control" onchange="return getStaffName()">
+											<td><select name="sdf" id="staffs" class="form-control"
+												onchange="return getStaffName()">
 													<optgroup id="staffTeam">
 														</option>
 											</select></td>
 										</tr>
 										<tr>
 											<td>Staff Name</td>
-											<td><select name="staffId" id="staffId" class="form-control">
+											<td><select name="staffId" id="staffId"
+												class="form-control">
 													<optgroup id="staffName"></optgroup>
 											</select></td>
 										</tr>

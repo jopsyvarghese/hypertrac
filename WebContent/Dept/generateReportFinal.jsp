@@ -68,9 +68,18 @@
 </head>
 
 <body id="page-top">
-<%
-int dept = Integer.parseInt(request.getParameter("dept"));
-%>
+	<%
+		int dept = Integer.parseInt(request.getParameter("dept"));
+		int generateDeptId = Integer.parseInt(session.getAttribute("reportGenerateDept").toString());
+		String redirectUrl = "";
+		if (generateDeptId == 1) {
+			redirectUrl = "Staff/";
+		} else if (generateDeptId == 2) {
+			redirectUrl = "Major/";
+		} else if (generateDeptId == 3) {
+			redirectUrl = "Admin/";
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -123,10 +132,10 @@ int dept = Integer.parseInt(request.getParameter("dept"));
 				<nav
 					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 					<form action="downloadReport.jsp" method="post">
-						<input type="hidden" name="dept" value="<%=dept %>" />
-						<input type="submit" value="Download Report" class="btn btn-primary"/>
+						<input type="hidden" name="dept" value="<%=dept%>" /> <input
+							type="submit" value="Download Report" class="btn btn-primary" />
 					</form>
-					
+
 					<!-- Sidebar Toggle (Topbar) -->
 					<button id="sidebarToggleTop"
 						class="btn btn-link d-md-none rounded-circle mr-3">
@@ -157,8 +166,12 @@ int dept = Integer.parseInt(request.getParameter("dept"));
 				%>
 				<!-- End of Topbar -->
 				<div class="row">
-
+					<div class="col-sm-3">
+						&nbsp;<a href="<%=redirectUrl %>" class="btn btn-primary btn-sm">Back
+							To Dashboard</a>
+					</div>
 					<div class="col-sm-12 text-center card">
+						<br />
 						<%
 							Connection con = database.getConnection();
 							PreparedStatement ps = null;

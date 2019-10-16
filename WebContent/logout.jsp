@@ -3,7 +3,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+	<%
 int id = 0;
 Connection con = database.getConnection();
 ResultSet rs = null;
@@ -27,7 +28,6 @@ if (rs.next()) {
 	pst.setString(1, helper.getDateTime());
 	pst.setInt(2, id);
 	pst.executeUpdate();
-	System.out.println(query + "=>" +helper.getDateTime());
 } else {
 	String query = "INSERT INTO login_logs(id, in_time, out_time) VALUES (?,?,?)";
 	PreparedStatement pst = con.prepareStatement(query);

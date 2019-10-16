@@ -52,7 +52,7 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-md-1 col-lg-1"></div>
 						<div class="col-md-10 col-lg-10">
@@ -79,8 +79,7 @@
 							</strong>  -->
 							<br /> <a href="paymentProceed.jsp"
 								class="btn btn-primary btn-sm"><i class="fas fa-dollar-sign"></i>
-								Pay Now <i class="fas fa-wallet"></i></a><br />
-							<br />
+								Pay Now <i class="fas fa-wallet"></i></a><br /> <br />
 							<!-- <form action="paymentProceed.jsp" method="post">
 
 								<table class="table table-hover">

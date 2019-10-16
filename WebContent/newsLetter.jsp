@@ -72,10 +72,7 @@
   ============================-->
 	<section id="about" class="clearfix">
 		<div class="container text-center">
-			<br />
-			<br />
-			<br />
-			<br />
+			<br /> <br /> <br /> <br />
 			<%
 				String email = request.getParameter("email");
 				Connection con = database.getConnection();
@@ -93,8 +90,8 @@
 			<%
 				} else {
 			%>
-			<strong class="text-info">The Email ID you've
-				provided is already subscribed to our newsletter or it cannot be added</strong>
+			<strong class="text-info">The Email ID you've provided is
+				already subscribed to our newsletter or it cannot be added</strong>
 			<%
 				}
 			%>

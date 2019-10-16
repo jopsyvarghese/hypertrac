@@ -84,7 +84,8 @@
 								class="fa fa-arrow-left" aria-hidden="true"></i></a>
 						</small>
 						<div class="text-center">
-						<h3 class="text-info">Edit Major Client </h3><br/>
+							<h3 class="text-info">Edit Major Client</h3>
+							<br />
 							<form action="editClient_2.jsp" method="post"
 								onsubmit="return passwordCheck()">
 								<%

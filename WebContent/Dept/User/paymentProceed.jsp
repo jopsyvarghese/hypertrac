@@ -34,20 +34,24 @@
 	String finalHash = helper.encryptPwd(stringToHash);
 %>
 <body onload="document.submit2gtpay_form.submit()">
-	<form name="submit2gtpay_form" action="http://gtweb.gtbank.com//GTPay/Tranx.aspx" target="_self" method="post">
-		<input type="hidden" name="gtpay_mert_id" value="<%=mertId %>" />
-		<input type="hidden" name="gtpay_tranx_id" value="<%=txnId %>" />
-		<input type="hidden" name="gtpay_tranx_amt" value="<%=txnAmount %>" />
-		<input type="hidden" name="gtpay_tranx_curr" value="<%=txnCurrency %>" />
-		<input type="hidden" name="gtpay_cust_id" value="<%=custId %>" />
-		<input type="hidden" name="gtpay_cust_name" value="<%=fname %>" />
-		<input type="hidden" name="gtpay_tranx_memo" value="" />
-		<input type="hidden" name="gtpay_echo_data" value="<% out.print(myId+";"+fname); %>" />
-		<input type="hidden" name="gtpay_gway_name" value="webpay" />
-		<input type="hidden" name="gtpay_hash" value="<%=finalHash %>" />
-		<input type="hidden" name="gtpay_tranx_noti_url" value="<%=redirectUrl %>" />
-		<input type="hidden" name="gtpay_echo_data" value="<% out.print(myId+";"+fname); %>">
-</form>
+	<form name="submit2gtpay_form"
+		action="http://gtweb.gtbank.com//GTPay/Tranx.aspx" target="_self"
+		method="post">
+		<input type="hidden" name="gtpay_mert_id" value="<%=mertId %>" /> <input
+			type="hidden" name="gtpay_tranx_id" value="<%=txnId %>" /> <input
+			type="hidden" name="gtpay_tranx_amt" value="<%=txnAmount %>" /> <input
+			type="hidden" name="gtpay_tranx_curr" value="<%=txnCurrency %>" /> <input
+			type="hidden" name="gtpay_cust_id" value="<%=custId %>" /> <input
+			type="hidden" name="gtpay_cust_name" value="<%=fname %>" /> <input
+			type="hidden" name="gtpay_tranx_memo" value="" /> <input
+			type="hidden" name="gtpay_echo_data"
+			value="<% out.print(myId+";"+fname); %>" /> <input type="hidden"
+			name="gtpay_gway_name" value="webpay" /> <input type="hidden"
+			name="gtpay_hash" value="<%=finalHash %>" /> <input type="hidden"
+			name="gtpay_tranx_noti_url" value="<%=redirectUrl %>" /> <input
+			type="hidden" name="gtpay_echo_data"
+			value="<% out.print(myId+";"+fname); %>">
+	</form>
 </body>
 
 </html>

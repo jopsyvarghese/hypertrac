@@ -24,7 +24,7 @@ if(myId > 0) {
 		response.sendRedirect("profile.jsp?status=failed");
 	}
 } else { %>
-	<script>window.location.href="../logout.jsp"</script>
+<script>window.location.href="../logout.jsp"</script>
 <%
 }
 con.close();

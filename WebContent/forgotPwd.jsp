@@ -76,28 +76,29 @@ Header
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 				<div style="margin-top: 140px; margin-bottom: 140px;">
-				
-				<%
+
+					<%
 					if (request.getParameter("status") != null) {
 						String status = request.getParameter("status");
 						if (status.equals("success")) {
 				%>
-				<div class="alert alert-success alert-dismissible fade show">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<strong>Success!</strong> Please check your email.
-				</div>
-				<%
+					<div class="alert alert-success alert-dismissible fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Success!</strong> Please check your email.
+					</div>
+					<%
 					} else if (status.equals("failed")) {
 				%>
-				<div class="alert alert-danger alert-dismissible fade show">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<strong>Failed!</strong> Email ID Not Registered / Not able to Send Email.
-				</div>
-				<%
+					<div class="alert alert-danger alert-dismissible fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Failed!</strong> Email ID Not Registered / Not able to
+						Send Email.
+					</div>
+					<%
 					}
 					}
 				%>
-				
+
 					<h3 class="text-center text-info">Forgot Password?</h3>
 					<form action="forgotPwd_2.jsp" method="post">
 						<table class="table">

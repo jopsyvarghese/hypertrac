@@ -72,14 +72,14 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					
+
 					<small class="pull-left"> <a href="applications.jsp"><i
-								class="fa fa-arrow-left" aria-hidden="true"></i></a>
-						</small><br/><br/>
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small><br /> <br />
 
 					<!-- Content Row -->
 					<div class="row">
-						
+
 						<!-- Content Column -->
 						<div class="col-lg-9 mb-4">
 							<%
@@ -205,15 +205,14 @@
 								<a href="appNext.jsp?id=<%=id%>&appId=<%=appId%>"
 									class="btn btn-danger">Next >></a>
 							</div>
-							<br />
-							<br />
+							<br /> <br />
 							<div class="text-center">
 								<a href="appCommentsHistory.jsp?id=<%=id%>" target="_blank"
 									class="text text-success"> <span class="fa fa-walking"></span>
 									Journey / <span class="fa fa-comment"></span> Comments
-								</a> <br/><br/><br/>
-								
-								<a href="../attachments.jsp?id=<%=id%>" class="text-warning" target="_blank"><span class="fa fa-paperclip"></span> Attachments</a>
+								</a> <br /> <br /> <br /> <a href="../attachments.jsp?id=<%=id%>"
+									class="text-warning" target="_blank"><span
+									class="fa fa-paperclip"></span> Attachments</a>
 							</div>
 						</div>
 					</div>

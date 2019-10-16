@@ -64,7 +64,7 @@
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-						<%
+							<%
 						Connection con = null;
 						con = database.getConnection();
 						String deptHead = request.getParameter("deptHead");
@@ -86,8 +86,8 @@
 							out.println("<h4 style='color:red'>Sorry! Unable to Create</h4>");
 						}
 						%>
-						
-						
+
+
 						</div>
 						<div class="col-lg-3 mb-4"></div>
 					</div>

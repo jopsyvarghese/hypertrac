@@ -16,7 +16,7 @@
       		<!-- /var/lib/tomcat8/webapps/ROOT/images/service -->
    </param-value>
 	</context-param>
-	
+
 	<servlet>
 		<servlet-name>fileServlet</servlet-name>
 		<servlet-class>com.hypertrac.commons.FileServlet</servlet-class>

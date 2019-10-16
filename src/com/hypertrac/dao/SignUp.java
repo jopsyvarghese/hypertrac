@@ -85,8 +85,7 @@ public class SignUp extends HttpServlet {
             ps.setString(13, dob);
 			int i = ps.executeUpdate();
 			RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
-			request.setAttribute("status",
-					"<strong class='text-success'>Registration Successful! Account will be activated in 24 Hrs.</strong>");
+			request.setAttribute("status", "<strong class='text-success'>Registration Successful! Account will be activated in 24 Hrs.</strong>");
 			rd.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

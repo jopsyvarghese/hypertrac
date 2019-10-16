@@ -69,7 +69,8 @@
 								<tbody>
 									<tr>
 										<td>Company (Contractor) Name</td>
-										<td><input type="text" class="form-control" name="contractorName" /></td>
+										<td><input type="text" class="form-control"
+											name="contractorName" /></td>
 									</tr>
 									<tr>
 										<td>RC Number</td>
@@ -82,11 +83,13 @@
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
-										<td><input type="number" class="form-control" name="phone" /></td>
+										<td><input type="number" class="form-control"
+											name="phone" /></td>
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
-										<td><input type="number" class="form-control" name="phone2" /></td>
+										<td><input type="number" class="form-control"
+											name="phone2" /></td>
 									</tr>
 									<tr>
 										<td>Email-id</td>
@@ -94,7 +97,8 @@
 									</tr>
 									<tr>
 										<td>Website</td>
-										<td><input type="text" class="form-control" name="website" /></td>
+										<td><input type="text" class="form-control"
+											name="website" /></td>
 									</tr>
 									<tr>
 										<td>Type of Business</td>
@@ -110,7 +114,8 @@
 									</tr>
 									<tr>
 										<td>Document Name/Subject/ID</td>
-										<td><input type="text" class="form-control" name="docName" /></td>
+										<td><input type="text" class="form-control"
+											name="docName" /></td>
 									</tr>
 									<tr>
 										<td>Name of Major client(s)</td>

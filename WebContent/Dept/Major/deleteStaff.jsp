@@ -30,14 +30,14 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 Helper helper = new Helper();
 int loggedId = 0;
 try {
 	if(session.getAttribute("loggedInUserId") == null) {
 		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
+	<script>window.location="../../logout.jsp"</script>
+	<%
 	}
 	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
 } catch(NullPointerException ne){}
@@ -78,7 +78,7 @@ try {
 						<!-- Content Column -->
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
-						<%
+							<%
 						int id = 0;
 						id = Integer.parseInt(request.getParameter("id"));
 						String sql = "SELECT * FROM staff WHERE id="+id+" AND mc_id="+loggedId;

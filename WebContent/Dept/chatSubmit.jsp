@@ -3,7 +3,9 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html>
-<head><title>Chat Submit</title></head>
+<head>
+<title>Chat Submit</title>
+</head>
 <body>
 	<%
 	Helper helper = new Helper();

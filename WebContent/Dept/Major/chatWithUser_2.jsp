@@ -31,7 +31,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 	Helper helper = new Helper();
 	Connection con = database.getConnection();
 	//int majorClient = Integer.parseInt(request.getParameter("majorClient"));
@@ -76,7 +76,7 @@
 					</div>
 					<small class="pull-left"> <a href="chatWithContractor.jsp"><i
 							class="fa fa-arrow-left" aria-hidden="true"></i></a>
-					</small><br/>
+					</small><br />
 					<%
                 	try {
                 		staffId = Integer.parseInt(request.getParameter("user"));                		
@@ -110,39 +110,41 @@
                 	        }
                 		}
                 		%>
-                		
-                		<form method="post" action="chatWithUser_3.jsp">
-							<textarea name="comment" class="form-control" style="width:80%;float:left;"></textarea>
-							<input type="hidden" name="chatId" value="<%=chatId %>"/>
-							<input type="hidden" name="c_by" value="<%=myId %>"/>
-							<input type="hidden" name="staffId" value="<%=staffId %>"/>
-							<input type="hidden" name="c_time" value="<%=helper.getDateTime() %>"/>&nbsp;
-							<input type="submit" class="btn btn-primary" style="width:10%;margin-top:10px;"/>
-						</form>
-						<br/><br/>
-						<table class="table table-hover">
+
+					<form method="post" action="chatWithUser_3.jsp">
+						<textarea name="comment" class="form-control"
+							style="width: 80%; float: left;"></textarea>
+						<input type="hidden" name="chatId" value="<%=chatId %>" /> <input
+							type="hidden" name="c_by" value="<%=myId %>" /> <input
+							type="hidden" name="staffId" value="<%=staffId %>" /> <input
+							type="hidden" name="c_time" value="<%=helper.getDateTime() %>" />&nbsp;
+						<input type="submit" class="btn btn-primary"
+							style="width: 10%; margin-top: 10px;" />
+					</form>
+					<br /> <br />
+					<table class="table table-hover">
 						<tr>
 							<th>Comment</th>
 							<th>By</th>
 							<th>On</th>
 						</tr>
-							<%
+						<%
                 		if(chatId > 0) {
                 			String sql3 = "SELECT * FROM chat WHERE fk_id="+chatId+" ORDER BY id DESC";
                 			Statement st = con.createStatement();
                 			ResultSet rs3 = null;
                 			rs3 = st.executeQuery(sql3);
                 			while(rs3.next()) { %>
-                			<tr>
-                				<td><%=rs3.getString(3) %></td>
-                				<td><%=helper.getNameById(rs3.getInt(4)) %></td>
-                				<td><%=rs3.getString(5) %></td>
-                			</tr>
-							<%}
+						<tr>
+							<td><%=rs3.getString(3) %></td>
+							<td><%=helper.getNameById(rs3.getInt(4)) %></td>
+							<td><%=rs3.getString(5) %></td>
+						</tr>
+						<%}
                 		}
                 		%>
-						</table>
-						<%
+					</table>
+					<%
                 		
                 	}
                 %>

@@ -29,14 +29,14 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 Helper helper = new Helper();
 int loggedId = 0;
 try {
 	if(session.getAttribute("loggedInUserId") == null) {
 		%>
-		<script>window.location="../../logout.jsp"</script>
-		<%
+	<script>window.location="../../logout.jsp"</script>
+	<%
 	}
 	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
 } catch(NullPointerException ne){}
@@ -77,11 +77,10 @@ try {
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<div class="text-center">
-							
-							<h3 class="text-info"> Manage Staff </h3><br />
-							
-								<a href="addStaff.jsp" class="btn btn-primary btn-sm"> <span
-									class="fa fa-plus-circle"></span> New Staff
+
+								<h3 class="text-info">Manage Staff</h3>
+								<br /> <a href="addStaff.jsp" class="btn btn-primary btn-sm">
+									<span class="fa fa-plus-circle"></span> New Staff
 								</a>
 							</div>
 							<br />
@@ -117,23 +116,24 @@ try {
 									deptName = helper.getDeptById(rs.getInt(2));
 									position = helper.getPositionById(rs.getInt(3));
 									%>
-									<tr>
-										<td><%=i %></td>
-										<td><%=name %></td>
-										<td><%=deptName %></td>
-										<td><%=position %></td>
-										<td><%=email %></td>
-										<td><%=mobile %></td>
-										<td><a href="editStaff.jsp?id=<%=staffId %>"><span class="fa fa-pen"></span></a>
-											&nbsp;&nbsp; <a href="deleteStaff.jsp?id=<%=staffId %>"
-											onclick="return confirmDelete();"><span
-												class="fa fa-trash-alt"></span></a></td>
-									</tr>
+								<tr>
+									<td><%=i %></td>
+									<td><%=name %></td>
+									<td><%=deptName %></td>
+									<td><%=position %></td>
+									<td><%=email %></td>
+									<td><%=mobile %></td>
+									<td><a href="editStaff.jsp?id=<%=staffId %>"><span
+											class="fa fa-pen"></span></a> &nbsp;&nbsp; <a
+										href="deleteStaff.jsp?id=<%=staffId %>"
+										onclick="return confirmDelete();"><span
+											class="fa fa-trash-alt"></span></a></td>
+								</tr>
 								<%
 								i++;
 	                            }
 								%>
-								
+
 							</table>
 						</div>
 					</div>

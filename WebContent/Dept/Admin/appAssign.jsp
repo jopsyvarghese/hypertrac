@@ -69,7 +69,7 @@
 						</div>
 					</div>
 					<div class="text-center">
-					<%
+						<%
 								int maxFileSize = 2000 * 1024;
 								int i = 0;
 								int myId = 0;

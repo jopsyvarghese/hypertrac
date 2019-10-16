@@ -29,7 +29,7 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 	int id = 0;
 	id = Integer.parseInt(request.getParameter("id"));
 	if(id==0) {
@@ -96,34 +96,38 @@
 							<div class="text-center">Update</div>
 							<form action="UpdateStatus_2.jsp" method="post">
 								<table class="table table-responsive-lg">
-									<input type="hidden" name="id" value="<%=id %>"/>
+									<input type="hidden" name="id" value="<%=id %>" />
 									<tr>
 										<th>Invitation Status</th>
-										<td>
-										<input type="radio" name="invitationStatus" value="1" <% if(invitationStatus == 1) { out.print(checked); } %>> Yes
-										<input type="radio" name="invitationStatus" value="0" <% if(invitationStatus == 0) { out.print(checked); } %>> No
-										</td>
+										<td><input type="radio" name="invitationStatus" value="1"
+											<% if(invitationStatus == 1) { out.print(checked); } %>>
+											Yes <input type="radio" name="invitationStatus" value="0"
+											<% if(invitationStatus == 0) { out.print(checked); } %>>
+											No</td>
 									</tr>
 									<tr>
 										<th>Document Submitted</th>
-										<td>
-										<input type="radio" name="docSubmit" value="1" <% if(docSubmit == 1) { out.print(checked); } %>> Yes
-										<input type="radio" name="docSubmit" value="0" <% if(docSubmit == 0) { out.print(checked); } %>> No
+										<td><input type="radio" name="docSubmit" value="1"
+											<% if(docSubmit == 1) { out.print(checked); } %>> Yes
+											<input type="radio" name="docSubmit" value="0"
+											<% if(docSubmit == 0) { out.print(checked); } %>> No
 										</td>
 									</tr>
 									<tr>
 										<th>Office Visited</th>
-										<td>
-										<input type="radio" name="ofcVisit" value="1" <% if(ofcVisit == 1) { out.print(checked); } %>> Yes
-										<input type="radio" name="ofcVisit" value="0" <% if(ofcVisit == 0) { out.print(checked); } %>> No
-										</td>
+										<td><input type="radio" name="ofcVisit" value="1"
+											<% if(ofcVisit == 1) { out.print(checked); } %>> Yes
+											<input type="radio" name="ofcVisit" value="0"
+											<% if(ofcVisit == 0) { out.print(checked); } %>> No</td>
 									</tr>
 									<tr>
 										<th>Extra Docs Required</th>
-										<td>
-										<input type="radio" name="extraDocsRequired" value="1" <% if(extraDocsRequired == 1) { out.print(checked); } %> > Yes
-										<input type="radio" name="extraDocsRequired" value="0" <% if(extraDocsRequired == 0) { out.print(checked); } %> > No
-										</td>
+										<td><input type="radio" name="extraDocsRequired"
+											value="1"
+											<% if(extraDocsRequired == 1) { out.print(checked); } %>>
+											Yes <input type="radio" name="extraDocsRequired" value="0"
+											<% if(extraDocsRequired == 0) { out.print(checked); } %>>
+											No</td>
 									</tr>
 									<tr>
 										<th>Extra Documents Required</th>

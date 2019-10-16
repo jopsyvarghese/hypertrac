@@ -82,13 +82,15 @@ try {
 							%>
 							<form action="editCso_2.jsp" method="post">
 								<table class="table table-light">
-								<input type="hidden" name="id" value="<%=id %>" />
+									<input type="hidden" name="id" value="<%=id %>" />
 									<tr>
 										<td>Email ID</td>
-										<td><input type="email" name="email" value="<%=email %>" class="form-control"/></td>
+										<td><input type="email" name="email" value="<%=email %>"
+											class="form-control" /></td>
 									</tr>
 									<tr>
-										<td colspan="2"><input type="submit" value="Update" class="btn btn-primary"/></td>
+										<td colspan="2"><input type="submit" value="Update"
+											class="btn btn-primary" /></td>
 									</tr>
 								</table>
 							</form>

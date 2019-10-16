@@ -281,12 +281,11 @@ public class Helper {
 	{
 		Statement st = con.createStatement();
 		ResultSet rs = null;
-		ResultSet rs2 = null;
 		String query = "SELECT id FROM staff WHERE dept=" + id;
-		rs2 = st.executeQuery(query);
+		rs = st.executeQuery(query);
 		ArrayList<Integer> staffIds = new ArrayList<Integer>();
-        while(rs2.next()) {
-         	staffIds.add(rs2.getInt(1));
+        while(rs.next()) {
+         	staffIds.add(rs.getInt(1));
         }
 			
 		return staffIds;

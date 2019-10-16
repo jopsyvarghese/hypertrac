@@ -86,7 +86,10 @@
 					<div class="row">
 						<div class="col-md-5 info">
 							<i class="ion-ios-location-outline"></i>
-							<p><strong>Nigeria:</strong> House 2, "E" close, Kado estate, FCT-Abuja.Nigeria.</p>
+							<p>
+								<strong>Nigeria:</strong> House 2, "E" close, Kado estate,
+								FCT-Abuja.Nigeria.
+							</p>
 						</div>
 						<div class="col-md-3 info">
 							<i class="ion-ios-email-outline"></i>
@@ -96,24 +99,30 @@
 							<i class="ion-ios-telephone-outline"></i>
 							<p>+234 9019 2202 02 / +234 7088 2200 22</p>
 						</div>
-						
-						
+
+
 						<div class="col-md-5 info">
 							<i class="ion-ios-location-outline"></i>
-							<p><strong>UK:</strong> Flat 1, Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill, London.</p>
+							<p>
+								<strong>UK:</strong> Flat 1, Burnell House, High Trees Bus-Stop,
+								SW2-3PF, Tulse Hill, London.
+							</p>
 						</div>
 						<div class="col-md-3 info">
 							<!-- <i class="ion-ios-email-outline"></i>
 							<p>info@hypertrac.online</p> -->
 						</div>
 						<div class="col-md-4 info">
-							<!-- <i class="ion-ios-telephone-outline"></i>
-							<p>+234 9019 2202 02 / +234 7088 2200 22</p> -->
+							<i class="ion-ios-telephone-outline"></i>
+							<p>+44 7956 674946</p>
 						</div>
-						
+
 						<div class="col-md-5 info">
 							<i class="ion-ios-location-outline"></i>
-							<p><strong>India:</strong> CS-5 heavenly plaza, Civil line road Kakkanad,Cochin-21</p>
+							<p>
+								<strong>India:</strong> CS-5 heavenly plaza, Civil line road
+								Kakkanad,Cochin-21
+							</p>
 						</div>
 						<div class="col-md-3 info">
 							<!-- <i class="ion-ios-email-outline"></i>
@@ -188,7 +197,7 @@
 	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 	<script src="lib/isotope/isotope.pkgd.min.js"></script>
 	<script src="lib/lightbox/js/lightbox.min.js"></script>
-	
+
 	<!-- Template Main Javascript File -->
 	<script src="js/main.js"></script>
 
