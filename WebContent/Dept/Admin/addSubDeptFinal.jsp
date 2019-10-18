@@ -1,5 +1,10 @@
 <!DOCTYPE html>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
 <html lang="en">
 
 <head>
@@ -26,8 +31,22 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
+Connection con = null;
+PreparedStatement ps = null;
+ResultSet rs = null;		
 Helper helper = new Helper();
+int myId = 0;
+try {
+	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+} catch(NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
+
+if(myId == 0) {
+	throw new Exception("You are not logged In");
+}
+con = database.getConnection();
 %>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -43,7 +62,10 @@ Helper helper = new Helper();
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -55,12 +77,20 @@ Helper helper = new Helper();
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-
-					<div class="text-center">
-						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4") %>" class="btn btn-primary">Chat
-							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
-							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
-					</div>
+					<%
+					String subDept = request.getParameter("subDept");
+					String dept = request.getParameter("dept");
+					String sql = "INSERT INTO dept_sub(dept_id, sname) VALUES (?,?)";
+					ps = con.prepareStatement(sql);
+					ps.setString(1, dept);
+					ps.setString(2, subDept);
+					int i = ps.executeUpdate();
+					if(i > 0) {
+						response.sendRedirect("subDept.jsp?status=success");
+					} else {
+						response.sendRedirect("subDept.jsp?status=failed");
+					}
+					%>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -88,29 +118,6 @@ Helper helper = new Helper();
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

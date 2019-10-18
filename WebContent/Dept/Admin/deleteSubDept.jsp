@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -26,9 +29,7 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-%>
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -43,7 +44,10 @@ Helper helper = new Helper();
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -56,11 +60,24 @@ Helper helper = new Helper();
 						</div>
 					</div>
 
-					<div class="text-center">
-						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4") %>" class="btn btn-primary">Chat
-							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
-							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
-					</div>
+					<%
+					Helper helper = new Helper();
+					int id = 0;
+					try {
+						id = Integer.parseInt(request.getParameter("id"));	
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+					if(id<=0) {
+						throw new Exception("Invalid Data Provided");
+					}
+					String sql = "DELETE FROM dept_sub WHERE id=?";
+					Connection con = database.getConnection();
+					PreparedStatement ps = con.prepareStatement(sql);
+					ps.setInt(1, id);
+					int j = ps.executeUpdate();
+					response.sendRedirect("subDept.jsp?status=success");
+					%>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -88,29 +105,6 @@ Helper helper = new Helper();
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

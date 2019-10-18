@@ -35,11 +35,13 @@
 				<h4>Contact Us</h4>
 				<p>
 					<small><strong>Nigeria</strong>: House 2,"E" close, Kado
-						estate, FCT-Abuja.Nigeria. </small><br /> <small><strong>UK</strong>:
+						estate, FCT-Abuja.Nigeria. </small><br /> <span class="fa fa-phone"></span>
+					+234 9019 2202 02 / +234 7088 2200 22<br /> <small><strong>UK</strong>:
 						Flat 1, Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill,
-						London.</small><br /> <small><strong>India</strong>: CS-5
-						heavenly plaza, Civil line road Kakkanad,Cochin-21.</small><br /> <small><strong>Phone:
-							+234 9019 2202 02 / +234 7088 2200 22</strong></small><br> <small><strong>Email:
+						London.</small><br /> <span class="fa fa-phone"></span> +44 7956 674946<br />
+					<small><strong>India</strong>: CS-5 heavenly plaza, Civil
+						line road Kakkanad,Cochin-21.</small></strong><br /> <span class="fa fa-phone"></span>
+					+91 8105394675 <br /> <small><strong>Email:
 							info@hypertrac.online</strong></small><br />
 				</p>
 

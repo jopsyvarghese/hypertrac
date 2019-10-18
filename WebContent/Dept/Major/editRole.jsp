@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
@@ -10,8 +14,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -26,8 +29,17 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
 Helper helper = new Helper();
+int id = 0;		
+String role = "";		
+try {
+	id = Integer.parseInt(request.getParameter("id"));	
+	role = request.getParameter("q");
+} catch(Exception e) {
+	e.getLocalizedMessage();
+}
+
 %>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -43,7 +55,10 @@ Helper helper = new Helper();
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -56,10 +71,34 @@ Helper helper = new Helper();
 						</div>
 					</div>
 
-					<div class="text-center">
-						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4") %>" class="btn btn-primary">Chat
-							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
-							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
+					<!-- Content Row -->
+					<div class="row">
+
+						<!-- Content Column -->
+						<div class="col-lg-2 mb-4"></div>
+						<div class="col-lg-8 mb-4 text-center">
+							<%
+							if(id > 0) {
+							%>
+							<form action="editRole_2.jsp" method="post">
+								<table class="table table-light">
+									<input type="hidden" name="id" value="<%=id %>" />
+									<tr>
+										<td>Role</td>
+										<td><input type="text" name="role" value="<%=role %>"
+											class="form-control" /></td>
+									</tr>
+									<tr>
+										<td colspan="2"><input type="submit" value="Update"
+											class="btn btn-primary" /></td>
+									</tr>
+								</table>
+							</form>
+							<%
+							}
+							%>
+						</div>
+						<div class="col-lg-2 mb-4"></div>
 					</div>
 
 				</div>

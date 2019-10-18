@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.dao.database"%>
@@ -73,13 +74,36 @@
 		String mob = "";
 		String email = "";
 		int myId = 0;
+		Helper helper = new Helper();
+		String redirect = "";
+		int q = -1;
+		try {
+			q = Integer.parseInt(helper.decrypt(request.getParameter("q")));
+		} catch (Exception e) {
+		}
+
+		if (q < 0) {
+			out.println(
+					"<h3 class='text-danger text-center'>Sorry! Some error occured.Please contact Administrator</h3>");
+		} else if (q == 1) {
+			redirect = "Staff/";
+		} else if (q == 2) {
+			redirect = "Major/";
+		} else if (q == 3) {
+			redirect = "Admin/";
+		} else if ((q == 4) || (q == 0)) {
+			redirect = "User/";
+		} else {
+			throw new Exception("You are not authorized to view this page");
+		}
+
 		Connection con = database.getConnection();
 		try {
 			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 		} catch (Exception e) {
 			response.sendRedirect("../logout.jsp");
 		}
-		
+
 		String imgName = "";
 		String imgQry = "SELECT pro_pic FROM auth WHERE id=?";
 		PreparedStatement pImg = con.prepareStatement(imgQry);
@@ -91,12 +115,10 @@
 			imgName = rsImg.getString(1);
 		}
 		String imgUrl = "../img/img_avatar.png";
-		if(imgName.length() > 0) {
-			imgUrl =  "../files/" + imgName;
+		if (imgName.length() > 0) {
+			imgUrl = "../files/" + imgName;
 		}
-		
-		
-		
+
 		String sql = "SELECT fname, addr, mob, email FROM auth WHERE id=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, myId);
@@ -169,6 +191,7 @@
 
 				</nav>
 
+
 				<%
 					if (request.getParameter("status") != null) {
 						String status = request.getParameter("status");
@@ -189,8 +212,15 @@
 					}
 					}
 				%>
+
 				<!-- End of Topbar -->
 				<div class="row">
+
+					<br />
+					<div class="col-sm-12">
+						&nbsp;&nbsp;<a href="<%=redirect%>" class="text-primary"><span
+							class="fa fa-arrow-left"></span></a>
+					</div>
 					<div class="col-sm-4 text-center card">
 						<br />
 						<h4 class="text-info">My Profile</h4>
@@ -235,7 +265,7 @@
 							enctype="multipart/form-data">
 							<!-- Profile Pic -->
 							<div class="container">
-								<img src="<%=imgUrl %>" alt="Profile Pic"
+								<img src="<%=imgUrl%>" alt="Profile Pic"
 									class="image rounded-circle" style="width: 100%">
 								<div class="middle">
 									<div class="text">

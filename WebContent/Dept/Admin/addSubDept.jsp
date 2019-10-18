@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -26,9 +30,25 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-%>
+	<%
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		Helper helper = new Helper();
+		int myId = 0;
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			response.sendRedirect("../../logout.jsp");
+		}
+
+		if (myId > 0) {
+			String sql = "SELECT * FROM auth WHERE role=2";
+			con = database.getConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -43,7 +63,10 @@ Helper helper = new Helper();
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -56,10 +79,46 @@ Helper helper = new Helper();
 						</div>
 					</div>
 
+					<small class="pull-left"> <a href="dept.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small>
+
 					<div class="text-center">
-						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4") %>" class="btn btn-primary">Chat
-							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
-							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
+						<h3 class="text-info">Add Sub Department</h3>
+						<br />
+						<form action="addSubDeptFinal.jsp" method="post">
+							<table class="table table-hover table-responsive-lg">
+								<tr>
+									<th>Major Client</th>
+									<td><select name="client" class="form-control" id="client"
+										onchange="loadDepartment()">
+											<option value="0">Select Major Client</option>
+											<%
+												while (rs.next()) {
+											%>
+											<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
+											<%
+												}
+											%>
+									</select></td>
+								</tr>
+								<tr>
+									<th>Department</th>
+									<td><select name="dept" class="form-control">
+											<optgroup id="department"></optgroup>
+									</select></td>
+								</tr>
+								<tr>
+									<th>Sub Department</th>
+									<td><input type="text" name="subDept" class="form-control" />
+									</td>
+								</tr>
+							</table>
+							<br />
+							<button type="submit" class="btn btn-primary">
+								<span class="fa fa-plus-circle"></span> &nbsp;Add
+							</button>
+						</form>
 					</div>
 
 				</div>
@@ -106,7 +165,7 @@ Helper helper = new Helper();
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
+					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -128,7 +187,12 @@ Helper helper = new Helper();
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script>
+		function loadDepartment() {
+			var x = document.getElementById("client").value;
+			$("#department").load("../loadDept.jsp?id=" + x);
+		}
+	</script>
 </body>
 
 </html>

@@ -19,9 +19,21 @@
 		Connection con = database.getConnection();
 		int loggedInId = 0;
 		try {
-			loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
+		} else {
+				loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+			}
+		} catch (NullPointerException ne) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
 		}
 		if (loggedInId == 0) {
 			response.sendRedirect("../../logout.jsp");
@@ -144,7 +156,7 @@
 			<div
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="../profile.jsp" target="_blank">
+				<a class="dropdown-item" href="../profile.jsp?q=<%=helper.encrypt("3") %>">
 					<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
 					<div class="dropdown-divider"></div> <a class="dropdown-item"
 					href="../../logout.jsp"> <i

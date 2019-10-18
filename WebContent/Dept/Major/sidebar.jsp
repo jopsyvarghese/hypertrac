@@ -39,14 +39,18 @@
 	<li class="nav-item"><a class="nav-link" href="manageStaff.jsp">
 			<i class="fas fa-fw fa-user"></i> <span>Manage Staff</span>
 	</a></li>
-
+	
+	<li class="nav-item"><a class="nav-link" href="manageRoles.jsp">
+			<i class="fas fa-fw fa-user"></i> <span>Manage Roles</span>
+	</a></li>
+	
 	<!-- Nav Item - Charts -->
 	<li class="nav-item"><a class="nav-link" href="history.jsp"> <i
 			class="fas fa-fw fa-history"></i> <span>View History</span></a></li>
 
 	<!-- Nav Item - Charts -->
 	<li class="nav-item"><a class="nav-link"
-		href="chatWithContractor.jsp"> <i class="fas fa-fw fa-comment"></i>
+		href="chat.jsp"> <i class="fas fa-fw fa-comment"></i>
 			<span>Chat</span></a></li>
 
 	<!-- Nav Item - Tables -->

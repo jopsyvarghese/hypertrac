@@ -48,6 +48,10 @@
 	<li class="nav-item"><a class="nav-link" href="dept.jsp"> <i
 			class="fa fa-columns"></i> <span>Departments</span>
 	</a></li>
+	
+	<li class="nav-item"><a class="nav-link" href="subDept.jsp"> <i
+			class="fa fa-columns"></i> <span>Sub Departments</span>
+	</a></li>
 
 	<!-- Nav Item - Charts -->
 	<li class="nav-item"><a class="nav-link" href="chat.jsp"> <i

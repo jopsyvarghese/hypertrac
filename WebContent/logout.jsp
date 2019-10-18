@@ -9,37 +9,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Logout</title>
 </head>
 <body>
 	<%
-int id = 0;
-Connection con = database.getConnection();
-ResultSet rs = null;
-Helper helper = new Helper();
-id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-String sql = "SELECT in_time FROM login_logs WHERE id=?";
-PreparedStatement ps = con.prepareStatement(sql);
-ps.setInt(1, id);
-rs = ps.executeQuery();
-if (rs.next()) {
-	String query = "UPDATE login_logs SET out_time=? WHERE id=?";
-	PreparedStatement pst = con.prepareStatement(query);
-	pst.setString(1, helper.getDateTime());
-	pst.setInt(2, id);
-	pst.executeUpdate();
-} else {
-	String query = "INSERT INTO login_logs(id, in_time, out_time) VALUES (?,?,?)";
-	PreparedStatement pst = con.prepareStatement(query);
-	pst.setInt(1, id);
-	pst.setString(2, helper.getDateTime());
-	pst.setString(3, helper.getDateTime());
-	pst.executeUpdate();
-	System.out.println(query + "=>" +helper.getDateTime());
-}
+		int id = 0;
+		Connection con = database.getConnection();
+		ResultSet rs = null;
+		Helper helper = new Helper();
 
-session.invalidate();
-response.sendRedirect("./");
-%>
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "index.jsp"
+	</script>
+	<%
+		}
+			id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
+
+		String sql = "SELECT in_time FROM login_logs WHERE id=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+		if (rs.next()) {
+			String query = "UPDATE login_logs SET out_time=? WHERE id=?";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, helper.getDateTime());
+			pst.setInt(2, id);
+			pst.executeUpdate();
+		} else {
+			String query = "INSERT INTO login_logs(id, in_time, out_time) VALUES (?,?,?)";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, id);
+			pst.setString(2, helper.getDateTime());
+			pst.setString(3, helper.getDateTime());
+			pst.executeUpdate();
+			System.out.println(query + "=>" + helper.getDateTime());
+		}
+
+		session.invalidate();
+		response.sendRedirect("./");
+	%>
 </body>
 </html>

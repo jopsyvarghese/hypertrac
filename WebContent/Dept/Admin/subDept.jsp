@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 
 <head>
@@ -26,8 +30,29 @@
 </head>
 
 <body id="page-top">
-<%
+	<%
+Connection con = null;
+Statement st = null;
+ResultSet rs = null;		
 Helper helper = new Helper();
+int myId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {%>
+		<script>window.location="../../logout.jsp"</script>
+	<% } else {
+		myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+	}
+} catch(NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
+
+if(myId > 0) {
+	String sql = "SELECT * FROM dept_sub";
+	con = database.getConnection();
+	st = con.createStatement();
+	rs = st.executeQuery(sql);	
+}
+
 %>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -43,7 +68,10 @@ Helper helper = new Helper();
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -55,11 +83,44 @@ Helper helper = new Helper();
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
+					<div class="col-sm-12">
+						<div class="text-center">
+							<h3 class="text-info">Sub Departments</h3>
+							<br />
+						</div>
+						<a href="addSubDept.jsp" class="btn btn-primary"> <span
+							class="fa fa-plus-circle"></span> Add Sub Department
+						</a> <br /> <br />
+						<table class="table table-hover table-responsive-lg">
+							<tr class="table-warning">
+								<th>Sl.No</th>
+								<th>Dept. Name</th>
+								<th>Sub Dept. Name</th>
+								<th>Major Clients</th>
+								<th>Action</th>
+							</tr>
+							<%
+							int i = 1;
+							while(rs.next()) {
+							%>
+							<tr>
+								<td><%=i %></td>
+								<td><%=helper.getDeptById(rs.getInt(2)) %></td>
+								<td><%=rs.getString(3) %></td>
+								<td><%=helper.getMajorClientByDeptId(rs.getInt(2)) %></td>
+								<td><a href="editSubDept.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-primary btn-sm"> <span
+										class="fa fa-pencil-alt"></span>
+								</a> &nbsp;&nbsp; <a href="deleteSubDept.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-danger btn-sm" onclick="return confirmDel();">
+										<span class="fa fa-trash-alt"></span>
+								</a></td>
+							</tr>
+							<%
+								i++; }
+							%>
 
-					<div class="text-center">
-						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4") %>" class="btn btn-primary">Chat
-							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
-							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
+						</table>
 					</div>
 
 				</div>
@@ -67,7 +128,9 @@ Helper helper = new Helper();
 
 			</div>
 			<!-- End of Main Content -->
-
+			<%
+con.close();
+%>
 			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
@@ -106,7 +169,7 @@ Helper helper = new Helper();
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
+					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -128,7 +191,7 @@ Helper helper = new Helper();
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script src="../js/common/common.js"></script>
 </body>
 
 </html>

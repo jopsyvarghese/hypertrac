@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
 <html lang="en">
 
 <head>
@@ -10,8 +14,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>HyperTrac</title>
+<title>HyperTrac Application Status</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -26,9 +29,23 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-%>
+	<%
+		int myId = 0;
+		Helper helper = new Helper();
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			response.sendRedirect("../../logout.jsp");
+		} catch (NullPointerException ne) {
+			response.sendRedirect("../../logout.jsp");
+		}
+		String sql = "SELECT * FROM role";
+		Statement st = null;
+		Connection con = database.getConnection();
+		st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -43,7 +60,10 @@ Helper helper = new Helper();
 			<div id="content">
 
 				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<jsp:include page="header.jsp"></jsp:include>
+				</nav>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -56,10 +76,52 @@ Helper helper = new Helper();
 						</div>
 					</div>
 
-					<div class="text-center">
-						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4") %>" class="btn btn-primary">Chat
-							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
-							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
+					<!-- Content Row -->
+					<div class="row">
+
+						<!-- Content Column -->
+						<div class="col-lg-6 mb-4 text-center">
+							<form action="manageRoles_2.jsp" method="post">
+								<h4 class="text-info">Manage Roles</h4>
+								<table class='table table-light'>
+									<tr>
+										<th>ID</th>
+										<th>Role</th>
+										<th>Action</th>
+									</tr>
+									<%
+										int i = 1;
+										while (rs.next()) {
+									%>
+									<tr>
+										<td><%=i%></td>
+										<td><%=rs.getString(2)%></td>
+										<td><a
+											href="editRole.jsp?id=<%=rs.getInt(1)%>&q=<%=rs.getString(2)%>">
+												<span class="fa fa-pen"></span>
+										</a> / <a
+											href="deleteRole.jsp?id=<%=helper.encrypt("" + rs.getInt(1))%>">
+												<span class="fa fa-trash"></span>
+										</a></td>
+									</tr>
+									<%
+										i++;
+										}
+									%>
+								</table>
+							</form>
+						</div>
+						<div class="col-lg-6 mb-4 text-center">
+							<h4 class="text-info">Add Role</h4>
+							<form action="addRole.jsp" method="post">
+								<table class="table table-light">
+									<td><input type="text" name="role" class="form-control"
+										placeholder="Enter new Role Name" /></td>
+									<td><input type="submit" value="Add Role"
+										class="btn btn-primary" /></td>
+								</table>
+							</form>
+						</div>
 					</div>
 
 				</div>

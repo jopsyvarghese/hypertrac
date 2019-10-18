@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.dao.database"%>
@@ -36,7 +37,25 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+int q = 0;
+String redirect = "";
+try {
+q = Integer.parseInt(helper.decrypt(request.getParameter("q")));
+} catch(Exception e) {
+	throw new Exception("Something went wrong.. ! Please try later...");
+}
+if (q == 0 || q == 4) {
+	redirect = "User/";
+} else if (q == 1) {
+	redirect = "Staff/";
+} else if (q == 2) {
+	redirect = "Major/";
+} else if (q == 3) {
+	redirect = "Admin/";
+}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -44,7 +63,7 @@
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-
+			
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
@@ -98,7 +117,9 @@
 						<h3>Chat Room</h3>
 						<br />
 						<div class="row">
-							<div class="col-sm-3"></div>
+							<div class="col-sm-3">
+								<a href="<%=redirect %>" class="text-primary"><span class="fa fa-arrow-left"></span></a>
+							</div>
 							<div class="col-sm-6">
 								<%
 							if(request.getParameter("status") != null) {

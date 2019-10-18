@@ -60,7 +60,6 @@ public class Helper {
 	}
 
 	public String getDeptById(int id) throws SQLException {
-		String arr[] = {};
 		String sql = "SELECT * FROM dept WHERE id="+id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
@@ -69,6 +68,12 @@ public class Helper {
 			return rs.getString(2);
 		}
 		return "";
+	}
+	
+	public ResultSet getDeptByMcId(int id) throws SQLException {
+		String sql = "SELECT * FROM dept WHERE mc_id="+id;
+		Statement st = con.createStatement();
+		return st.executeQuery(sql);
 	}
 	
 	public String getMajorClientByDeptId(int id) throws SQLException {

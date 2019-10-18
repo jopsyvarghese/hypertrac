@@ -30,17 +30,20 @@
 
 <body id="page-top">
 	<%
-Helper helper = new Helper();
-int loggedId = 0;
-try {
-	if(session.getAttribute("loggedInUserId") == null) {
-		%>
-	<script>window.location="../../logout.jsp"</script>
+		Helper helper = new Helper();
+		int loggedId = 0;
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
 	<%
-	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-} catch(NullPointerException ne){}
-%>
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -95,43 +98,62 @@ try {
 									<th>Operation</th>
 								</tr>
 								<%
-								String deptQ = "SELECT * FROM staff where mc_id="+loggedId;
-								Connection con = database.getConnection();
-	                            Statement st = null;
-	                            ResultSet rs = null;
-	                            st = con.createStatement();
-	                            rs = st.executeQuery(deptQ);
-	                            int i = 1;
-	                            int staffId = 0;
-	                            String email = "";
-	                            String mobile = "";
-	                            String name = "";
-	                            String deptName = "";
-	                            String position = "";
-	                            while(rs.next()) {
-		                            staffId = rs.getInt(1);
-		                            email = helper.getEmailById(staffId);
-									mobile = helper.getPhoneById(staffId);
-									name = helper.getNameById(staffId);
-									deptName = helper.getDeptById(rs.getInt(2));
-									position = helper.getPositionById(rs.getInt(3));
-									%>
+									String deptQ = "SELECT * FROM staff where mc_id=" + loggedId;
+									Connection con = database.getConnection();
+									Statement st = null;
+									ResultSet rs = null;
+									st = con.createStatement();
+									rs = st.executeQuery(deptQ);
+									int i = 1;
+									int staffId = 0;
+									String email = "";
+									String mobile = "";
+									String name = "";
+									String deptName = "";
+									String position = "";
+									int status = 0;
+									while (rs.next()) {
+										staffId = rs.getInt(1);
+										email = helper.getEmailById(staffId);
+										mobile = helper.getPhoneById(staffId);
+										name = helper.getNameById(staffId);
+										deptName = helper.getDeptById(rs.getInt(2));
+										position = helper.getPositionById(rs.getInt(3));
+										String stQry = "SELECT state FROM auth WHERE id=" + staffId;
+										Statement stm = null;
+										stm = con.createStatement();
+										ResultSet rst = stm.executeQuery(stQry);
+										if (rst.next()) {
+											status = rst.getInt(1);
+										}
+								%>
 								<tr>
-									<td><%=i %></td>
-									<td><%=name %></td>
-									<td><%=deptName %></td>
-									<td><%=position %></td>
-									<td><%=email %></td>
-									<td><%=mobile %></td>
-									<td><a href="editStaff.jsp?id=<%=staffId %>"><span
-											class="fa fa-pen"></span></a> &nbsp;&nbsp; <a
-										href="deleteStaff.jsp?id=<%=staffId %>"
-										onclick="return confirmDelete();"><span
+									<td><%=i%></td>
+									<td><%=name%></td>
+									<td><%=deptName%></td>
+									<td><%=position%></td>
+									<td><%=email%></td>
+									<td><%=mobile%></td>
+									<td><a href="editStaff.jsp?id=<%=staffId%>" class="btn btn-outline-primary btn-sm"><span
+											class="fa fa-pen"></span></a> <%
+ 	//Check Status
+ 		String btnColor = "btn-outline-danger";
+ 		String toggleStatus = "fa-toggle-off";
+ 		if (status == 1) {
+ 			btnColor = "btn-outline-success";
+ 			toggleStatus = "fa-toggle-on";
+ 		}
+ %> <a
+										href="../enableDisable.jsp?id=<%=staffId%>&redirect=Major/manageStaff.jsp"
+										class="btn <%=btnColor%> btn-sm"> <i
+											class="fas <%=toggleStatus%>"></i>
+									</a> <a href="deleteStaff.jsp?id=<%=staffId%>"
+										onclick="return confirmDelete();" class="btn btn-sm btn-outline-danger"><span
 											class="fa fa-trash-alt"></span></a></td>
 								</tr>
 								<%
-								i++;
-	                            }
+									i++;
+									}
 								%>
 
 							</table>
@@ -206,15 +228,15 @@ try {
 	<script src="../js/demo/chart-pie-demo.js"></script>
 
 	<script>
-    function confirmDelete() {
-        var r = confirm("Are you sure you want to Delete? !");
-        if (r == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-</script>
+		function confirmDelete() {
+			var r = confirm("Are you sure you want to Delete? !");
+			if (r == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
 </body>
 
 </html>

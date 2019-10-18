@@ -40,9 +40,15 @@
 		window.location = "../../logout.jsp"
 	</script>
 	<%
-		}
-			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} else {
+				loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+			}
 		} catch (NullPointerException ne) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
 		}
 	%>
 	<!-- Page Wrapper -->
