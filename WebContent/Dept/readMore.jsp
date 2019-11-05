@@ -56,6 +56,8 @@
 	</script>
 	<%
 		}
+		ResultSet rs = null;
+		rs = helper.getAllChats(myId);
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -112,14 +114,31 @@
 							<img src="../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="col-sm-12">
-					<table class="table">
-						<tr>
-							<th></th>
-						</tr>
-					</table>
+					<div class="col-sm-12 text-center">
+						<h3 class="text-info">Chat History</h3>
+						<table class="table table-hover">
+							<tr>
+								<th>Chat With</th>
+								<th>Chat Now</th>
+							</tr>
+							<%
+							String chatWith = "";
+								while (rs.next()) {
+									if (rs.getInt(2) != myId) {
+										chatWith = helper.getNameById(rs.getInt(2));
+									} else if (rs.getInt(3) != myId) {
+										chatWith = helper.getNameById(rs.getInt(3));
+									}
+							%>
+							<tr>
+								<td><%=chatWith %></td>
+								<td><a href="chatNow.jsp?q=<%=helper.encrypt(""+rs.getInt(1)) %>"><i class="far fa-comments"></i></a></td>
+							</tr>
+							<%
+								}
+							%>
+						</table>
 						<br />
-						
 					</div>
 				</div>
 				<!-- /.container-fluid -->

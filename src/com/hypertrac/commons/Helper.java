@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -377,5 +378,42 @@ public class Helper {
 		Date date= new Date();
 		long time = date.getTime();
 		return time;
+	}
+	
+	/**
+	 * 
+	 * @param appId
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getSubDeptByAppId(int appId) throws SQLException {
+		String sql = "SELECT sub_dept FROM applications_more WHERE id="+appId;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		String subDeptName = "";
+		int deptId = 0;
+		if (rs.next()) {
+			deptId = rs.getInt(1);
+		}
+		if (deptId > 0) {
+			subDeptName = getSubDept(deptId);
+		}
+		return subDeptName;
+	}
+	
+	/**
+	 * 
+	 * @param loggedInId
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getAllChats(int loggedInId) throws SQLException {
+		String sql = "SELECT DISTINCT id, c_by, c_to FROM chat_head WHERE c_to=? OR c_by=? ORDER BY id";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, loggedInId);
+		ps.setInt(2, loggedInId);
+		return ps.executeQuery();
+		
 	}
 }
