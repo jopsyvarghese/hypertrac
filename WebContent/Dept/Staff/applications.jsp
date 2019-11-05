@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.beans.Applications"%>
+<%@page import="com.hypertrac.dao.ApplicationsDao"%>
+<%@page import="java.util.List"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -30,7 +33,35 @@
 </head>
 
 <body id="page-top">
-
+	<%
+		Helper helper = new Helper();
+		int pageid = 1;
+		int itemCount = -1;
+		if (request.getParameter("page") == null) {
+			pageid = 1;
+		} else {
+			pageid = Integer.parseInt(request.getParameter("page"));
+		}
+		int total = 15;
+		int start = 0;
+		if (pageid < 1) {
+			pageid = 1;
+		} else {
+			start = (pageid - 1) * total + 1;
+		}
+		int loggedId = 0;
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -78,40 +109,57 @@
 									<th>Application Validity</th>
 								</tr>
 								<%
-                            Helper helper = new Helper();
-                            Connection con = database.getConnection();
-                            Statement st = null;
-                            st = con.createStatement();
-                            int myId = 0;
-                            try {
-                            	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-                            } catch(NumberFormatException ne) {
-                            	ne.printStackTrace();
-                            }
-                            int myDept = 0;
-                            String deptQ = "SELECT dept FROM staff WHERE id="+myId;
-                            ResultSet drs = st.executeQuery(deptQ);
-                            if(drs.next()) {
-                            	myDept = drs.getInt(1);
-                            }
-                            drs.close();
-                                                        
-                            String query = "SELECT * FROM applications WHERE dept="+myDept;
-                            ResultSet rs = null;
-                            rs = st.executeQuery(query);
-                            int i = 1;
-                            while(rs.next()) {
-                            %>
+									Connection con = database.getConnection();
+									Statement st = null;
+									st = con.createStatement();
+									int myDept = 0;
+									String deptQ = "SELECT dept FROM staff WHERE id=" + loggedId;
+									ResultSet drs = st.executeQuery(deptQ);
+									if (drs.next()) {
+										myDept = drs.getInt(1);
+									}
+									drs.close();
+									List<Applications> list = ApplicationsDao.getRecordsByDeptId(start, total, myDept);
+									int i = 1;
+
+									for (Applications e : list) {
+										if (itemCount < 0) {
+											itemCount = e.getItemCount();
+										}
+								%>
 								<tr>
-									<td><%=i %></td>
-									<td><a href="viewApplication.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(1) %></a></td>
-									<td><%=helper.getDeptById(rs.getInt(3)) %></td>
-									<td><%=rs.getString(4) %></td>
-									<td><%=rs.getString(5) %></td>
-									<td><%=rs.getString(6) %></td>
+									<td><%=i%></td>
+									<td><a href="viewApplication.jsp?id=<%=e.getId()%>"
+										class="btn-sm btn-outline-primary"><%=e.getId()%></a></td>
+									<td><%=helper.getMajorClientByDeptId(e.getDept())%></td>
+									<td><%=e.getSubject()%></td>
+									<td><%=e.getSubmitted_on()%></td>
+									<td><%=e.getValidity()%></td>
 								</tr>
-								<% i++; } %>
+								<%
+									i++;
+									}
+									int noOfPages = (int) Math.ceil(itemCount * 1.0 / total);
+								%>
 							</table>
+							<div class="text-center">
+								<%
+									if (pageid > 1) {
+								%>
+								<a class="btn btn-outline-primary btn-sm"
+									href="applications.jsp?page=<%=pageid - 1%>">Previous</a>
+								<%
+									}
+									if (pageid < noOfPages) {
+								%>&nbsp;&nbsp; <a class="btn btn-outline-primary btn-sm"
+									href="applications.jsp?page=<%=pageid + 1%>">Next</a>
+								<%
+									}
+								%><br />
+								<br />
+								<br />
+								<br />
+							</div>
 						</div>
 					</div>
 				</div>

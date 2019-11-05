@@ -68,7 +68,9 @@
 									<a class="btn btn-primary btn-sm" href="../chatRoom.jsp"
 										target="_blank">Chat Room</a> <a
 										class="btn btn-primary btn-sm" href="chatWithUser.jsp">Chat
-										with Contractor</a> <a class="btn btn-primary btn-sm" href="#">Email</a>
+										with Contractor</a> <a
+							class="btn btn-primary btn-sm" href="../chatWithAdmin.jsp?q=1">Chat
+							With Admin</a> <a class="btn btn-primary btn-sm" href="#">Email</a>
 								</div>
 							</div>
 						</div>

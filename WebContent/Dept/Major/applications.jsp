@@ -5,8 +5,8 @@
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
+<%@ page import="java.util.*,com.hypertrac.dao.*,com.hypertrac.beans.*"%>
 <html lang="en">
 
 <head>
@@ -33,17 +33,36 @@
 
 <body id="page-top">
 	<%
-Helper helper = new Helper();
-int loggedId = 0;
-try {
-	if(session.getAttribute("loggedInUserId") == null) {
-		%>
-	<script>window.location="../../logout.jsp"</script>
+		Helper helper = new Helper();
+		int pageId = 1;
+		int itemCount = -1;
+		if (request.getParameter("page") == null) {
+			pageId = 1;
+		} else {
+			pageId = Integer.parseInt(request.getParameter("page"));
+		}
+		int total = 15;
+		int start = 0;
+		if (pageId < 1) {
+			pageId = 1;
+		} else {
+			start = (pageId - 1) * total + 1;
+		}
+		int loggedId = 0;
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
 	<%
-	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-} catch(NullPointerException ne){}
-%>
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
+		List<Applications> list = ApplicationsDao.getRecordsByMcId(start, total, loggedId);
+		out.println(start+","+ total+","+ loggedId);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -89,40 +108,43 @@ try {
 									<th>Submitted Date</th>
 									<th>Application Validity</th>
 								</tr>
-								<%								
-								//GET all dept ID's
-								String deptQ = "SELECT id FROM dept where mc_id="+loggedId;
-								Connection con = database.getConnection();
-	                            Statement st = null;
-	                            ResultSet rs = null;
-	                            st = con.createStatement();
-	                            rs = st.executeQuery(deptQ);
-	                            int i = 1;
-	                            ArrayList<Integer> rowValues = new ArrayList<Integer>();
-	                            while(rs.next()) {
-	                            	rowValues.add(rs.getInt(1));
-	                            }
-	                            
-	                            for(int object:rowValues) {
-								String sql = "SELECT * FROM applications WHERE id="+object;
-								ResultSet rs1 = null;
-								rs1 = st.executeQuery(sql);
-								while(rs1.next()) {
+
+								<%
+									int i = 1;
+									for (Applications e : list) {
+										if (itemCount < 0) {
+											itemCount = e.getItemCount();
+										}
 								%>
 								<tr>
-									<td><%=i %></td>
-									<td><a href="viewApplication.jsp?id=<%=rs1.getInt(1) %>"><%=rs1.getInt(1) %></a></td>
-									<td><%=helper.getDeptById(rs1.getInt(3)) %></td>
-									<td><%=rs1.getString(4) %></td>
-									<td><%=rs1.getString(5) %></td>
-									<td>15 Days</td>
+									<td><%=i%></td>
+									<td><a href="viewApplication.jsp?id=<%=e.getId()%>"><%=e.getId()%></a></td>
+									<td><%=helper.getDeptById(e.getDept())%></td>
+									<td><%=e.getSubject()%></td>
+									<td><%=e.getSubmitted_on()%></td>
+									<td><%=e.getValidity()%></td>
 								</tr>
-								<% 
-								i++;
-								}
-								
-	                            } %>
+								<%
+									i++;
+									}
+									int noOfPages = (int) Math.ceil(itemCount * 1.0 / total);
+								%>
 							</table>
+							<div class="text-center">
+								<%
+									if (pageId > 1) {
+								%>
+								<a class="btn btn-outline-primary btn-sm"
+									href="applications.jsp?page=<%=pageId - 1%>">Previous</a>
+								<%
+									}
+									if (pageId < noOfPages) {
+								%>&nbsp;&nbsp; <a class="btn btn-outline-primary btn-sm"
+									href="applications.jsp?page=<%=pageId + 1%>">Next</a>
+								<%
+									}
+								%><br /> <br /> <br /> <br />
+							</div>
 						</div>
 					</div>
 

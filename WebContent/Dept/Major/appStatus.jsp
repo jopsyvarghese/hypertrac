@@ -101,7 +101,7 @@ try {
 	                            }
 	                            
 	                            for(int object:rowValues) {
-								String sql = "SELECT * FROM applications WHERE id="+object;
+								String sql = "SELECT * FROM applications WHERE dept="+object;
 								ResultSet rs1 = null;
 								rs1 = st.executeQuery(sql);
 								while(rs1.next()) {

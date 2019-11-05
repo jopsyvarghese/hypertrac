@@ -21,7 +21,9 @@
 		try {
 			loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
+			out.println("Sorry! Invalid Login Details Supplied");
+		} catch(NullPointerException npe) {
+			out.println("Sorry! You're not Logged In");
 		}
 		if (loggedInId == 0) {
 			response.sendRedirect("../../logout.jsp");

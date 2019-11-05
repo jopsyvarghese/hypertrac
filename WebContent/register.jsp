@@ -39,7 +39,42 @@
 </head>
 
 <body onload="onLoadFunc()">
-
+<%
+String fname = "";
+String addr = "";
+String email = "";
+String mob = "";
+String dob = "";
+String uname = "";
+String pwd = "";
+int role = 0;
+String rc = "";
+String status = "";
+	if(request.getParameter("fname") !=null) {
+		fname = request.getParameter("fname");
+	}
+	if(request.getParameter("addr") != null) {
+		addr = request.getParameter("addr");
+	}
+	if(request.getParameter("email") != null) {
+		email = request.getParameter("email");
+	}
+	if(request.getParameter("mob") != null) {
+		mob = request.getParameter("mob");
+	}
+	if(request.getParameter("dob") != null) {
+		dob = request.getParameter("dob");
+	}
+	if(request.getParameter("uname") != null) {
+		uname = request.getParameter("uname");
+	}
+	if(request.getParameter("role") != null) {
+		role = Integer.parseInt(request.getParameter("role"));
+	}
+	if(request.getParameter("rc") != null) {
+		rc = request.getParameter("rc");
+	}
+%>
 	<!--==========================
 Header
 ============================-->
@@ -76,7 +111,21 @@ Header
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 				<div style="margin-top: 100px; margin-bottom: 100px;">
-					<h3 class="text-center">Register Now</h3>
+					<h3 class="text-center">Register Now<% out.print(" : TEST: "+status); %></h3>
+					
+					<%
+						if(email.length() > 0 || uname.length() > 0) {
+					%>
+					<div class="alert alert-danger alert-dismissible fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Email ID / Username </strong>  Already Taken. Please try different one.
+					</div>
+					<%
+						}
+					%>
+					
+					
+					
 					<form action="SignUp" method="post" style="text-align: center"
 						onsubmit="return validate()">
 						<table>
@@ -85,24 +134,24 @@ Header
 								<td><select name="role" class="form-control" id="role"
 									onchange="checkRc()">
 										<option value="">Please Select Type</option>
-										<option value="0">Contractor (Company)</option>
-										<option value="4">Individual</option>
+										<option value="0" <% if(role==0) out.print("selected"); %>>Contractor (Company)</option>
+										<option value="4" <% if(role==4) out.print("selected"); %>>Individual</option>
 								</select></td>
 							</tr>
 							<tr>
 								<td>(Company/Individual) Name</td>
 								<td><input type="text" name="fname" class="form-control"
-									required></td>
+									required value="<%=fname%>"></td>
 							</tr>
 							<tr>
 								<td>Address</td>
-								<td><textarea name="addr" class="form-control" required></textarea>
+								<td><textarea name="addr" class="form-control" required><%=addr%></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>Username</td>
 								<td><input type="text" name="uname" id="uname"
-									class="form-control" required></td>
+									class="form-control" required  value="<%=uname%>"></td>
 							</tr>
 							<tr>
 								<td>Password</td>
@@ -121,22 +170,22 @@ Header
 							<tr>
 								<td>Email</td>
 								<td><input type="email" name="email" id="email"
-									class="form-control" required></td>
+									class="form-control" required  value="<%=email%>"></td>
 							</tr>
 							<tr>
 								<td>Mobile</td>
 								<td><input type="number" name="mob" id="mob"
-									class="form-control" required></td>
+									class="form-control" required  value="<%=mob%>"></td>
 							</tr>
 							<tr id="dobTr">
 								<td>Date Of Birth</td>
 								<td><input type="text" name="dob" class="form-control"
-									placeholder="dd/mm/yyyy"></td>
+									placeholder="dd/mm/yyyy"  value="<%=dob%>"></td>
 							</tr>
 							<tr id="rcTr">
 								<td>RC Number</td>
 								<td><input type="text" name="rc" id="rc"
-									class="form-control" placeholder="Optional for Individuals">
+									class="form-control"  value="<%=rc%>" placeholder="Optional for Individuals">
 								</td>
 							</tr>
 							<tr>
@@ -150,13 +199,6 @@ Header
 
 
 					</form>
-					<%
-						String status = "";
-						status = (String) request.getAttribute("status");
-						if (status != "" && status != null) {
-							out.println(status);
-						}
-					%>
 				</div>
 			</div>
 			<div class="col-sm-3"></div>
@@ -314,7 +356,15 @@ Footer
 			}
 		}
 		function onLoadFunc() {
-			document.getElementById("dobTr").style.display="collapse";
+			//document.getElementById("dobTr").style.display="collapse";
+			var role = document.getElementById("role").value;
+			if (role == 4) {
+				document.getElementById("rcTr").style.visibility = "collapse";
+				document.getElementById("dobTr").style.visibility = "visible";
+			} if (role == 0) {
+				document.getElementById("rcTr").style.visibility = "visible";
+				document.getElementById("dobTr").style.visibility = "collapse";
+			} 
 		}
 	</script>
 </body>

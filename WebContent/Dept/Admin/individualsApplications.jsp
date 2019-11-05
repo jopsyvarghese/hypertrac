@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@ page import="java.util.*,com.hypertrac.dao.*,com.hypertrac.beans.*"%>
 <html lang="en">
 
 <head>
@@ -28,12 +28,28 @@
 
 <!-- Custom styles for this template-->
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+<link href="../css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
 	<%
 		Helper helper = new Helper();
+		int pageid = 1;
+		int itemCount = -1;
+		if (request.getParameter("page") == null) {
+			pageid = 1;
+		} else {
+			pageid = Integer.parseInt(request.getParameter("page"));
+		}
+		int total = 15;
+		int start = 0;
+		if (pageid < 1) {
+			pageid = 1;
+		} else {
+			start = (pageid - 1) * total + 1;
+		}
+		List<Applications> list = ApplicationsDao.getRecordsByRole(start, total, 4);
 		int loggedId = 0;
 		try {
 			if (session.getAttribute("loggedInUserId") == null) {
@@ -78,49 +94,54 @@
 					</div>
 					<div class="text-center">
 						<h3 class="text-info">Individual's Application</h3>
-						<table class="table table-responsive-lg">
-							<tr class="table-warning">
-								<th>Sl.No</th>
-								<th>Applicant Name/No.</th>
-								<th>Major Client Name</th>
-								<th>Submitted Date</th>
-								<th>Status</th>
-							</tr>
-							<%
-								Connection con = database.getConnection();
-								Statement st = null;
-								ResultSet rs = null;
-								ResultSet rs2 = null;
-								st = con.createStatement();
-								int i = 1;
-								String sql = "SELECT id FROM auth WHERE role=4";
-
-								rs = st.executeQuery(sql);
-								while (rs.next()) {
-									String sql2 = "SELECT * FROM applications WHERE app_by=?";
-									PreparedStatement ps = con.prepareStatement(sql2);
-									ps.setInt(1, rs.getInt(1));
-									rs2 = ps.executeQuery();
-									while (rs2.next()) {
-							%>
-							<tr>
-								<td><%=i%></td>
-								<td><%=rs2.getString(2)%></td>
-								<td><%=helper.getMajorClientByDeptId(rs2.getInt(3))%></td>
-								<td><%=rs2.getString(5)%></td>
-								<td><a href="viewApplication.jsp?id=<%=rs2.getString(1)%>"
-									class="btn-sm btn-primary">View</a></td>
-							</tr>
-							<%
-								i++;
-									}
-								}
-								con.close();
-							%>
-
-
-						</table>
 					</div>
+					<br />
+					<table class="table table-responsive-lg">
+						<tr class="table-warning">
+							<th>Sl.No</th>
+							<th>Company Name/No.</th>
+							<th>Major Client Name</th>
+							<th>Submitted Date</th>
+							<th>Status</th>
+						</tr>
+						<%
+							int i = 1;
+							for (Applications e : list) {
+								if (itemCount < 0) {
+									itemCount = e.getItemCount();
+								}
+						%>
+						<tr>
+							<td><%=i%></td>
+							<td><%=e.getNameOrNo()%></td>
+							<td><%=helper.getMajorClientByDeptId(e.getDept())%></td>
+							<td><%=e.getSubmitted_on()%></td>
+							<td><a href="viewApplication.jsp?id=<%=e.getId()%>"
+								class="btn-sm btn-outline-primary"><span class="fa fa-eye"></span></a></td>
+						</tr>
+						<%
+							i++;
+							}
+							int noOfPages = (int) Math.ceil(itemCount * 1.0 / total);
+						%>
+					</table>
+					<div class="text-center">
+						<%
+							if (pageid > 1) {
+						%>
+						<a class="btn btn-outline-primary btn-sm"
+							href="applications.jsp?page=<%=pageid - 1%>">Previous</a>
+						<%
+							}
+							if (pageid < noOfPages) {
+						%>&nbsp;&nbsp;
+						<a class="btn btn-outline-primary btn-sm"
+							href="applications.jsp?page=<%=pageid + 1%>">Next</a>
+						<%
+							}
+						%><br/><br/><br/><br/>
+					</div>
+
 				</div>
 				<!-- /.container-fluid -->
 
@@ -142,6 +163,11 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

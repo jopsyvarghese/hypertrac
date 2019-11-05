@@ -8,13 +8,22 @@
   <component name="ChangeListManager">
     <list default="true" id="1f4dadb8-feda-4526-a291-a33bc77ce4fc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/sidebar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/manageStaff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/manageStaff.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/applications.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/applications.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/deleteStaff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/deleteStaff.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/individualsApplications.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/individualsApplications.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/invitation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/invitation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/appStatus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/appStatus.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/applications.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/applications.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/chat.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/inviteUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/inviteUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/applications.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/applications.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/chatWithContractor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/chatWithContractor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/User/userChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/User/userChat.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/chatNowDataLoad.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/chatNowDataLoad.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/com/hypertrac/dao/SignUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hypertrac/dao/SignUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hypertrac/dao/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hypertrac/dao/SignUp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +65,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/wellwishers" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -169,7 +178,8 @@
       <workItem from="1571045172196" duration="1197000" />
       <workItem from="1571133261654" duration="636000" />
       <workItem from="1571286446122" duration="646000" />
-      <workItem from="1571292414476" duration="2817000" />
+      <workItem from="1571292414476" duration="3392000" />
+      <workItem from="1571857553316" duration="55000" />
     </task>
     <servers />
   </component>

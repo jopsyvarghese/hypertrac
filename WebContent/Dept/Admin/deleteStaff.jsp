@@ -33,13 +33,15 @@
 	<%
 Helper helper = new Helper();
 int loggedId = 0;
+int role = 0;
 try {
 	if(session.getAttribute("loggedInUserId") == null) {
 		%>
 	<script>window.location="../../logout.jsp"</script>
 	<%
 	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+	role = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
 } catch(NullPointerException ne){}
 %>
 	<!-- Page Wrapper -->
@@ -81,7 +83,13 @@ try {
 							<%
 						int id = 0;
 						id = Integer.parseInt(request.getParameter("id"));
-						String sql = "SELECT * FROM staff WHERE id="+id+" AND mc_id="+loggedId;
+						String sql = "";
+						if(role == 3) {
+							sql = "SELECT * FROM staff WHERE id="+id;
+						} else {
+							sql = "SELECT * FROM staff WHERE id="+id+" AND mc_id="+loggedId;
+						}
+						
 						Connection con = database.getConnection();
 						Statement st = null;
 						st = con.createStatement();

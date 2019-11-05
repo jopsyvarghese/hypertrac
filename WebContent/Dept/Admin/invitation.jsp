@@ -91,7 +91,15 @@
 								<%
 									String stat[] = helper.getAppStatus();
 									int i = 1;
+									int status = 0;
+									String inviteStatus = "<span class='fa fa-times-circle text-danger'></span>";
 									while (rs.next()) {
+										String inviteQry = "SELECT status FROM invitation WHERE app_id=" + rs.getInt(1);
+										Statement stmt = con.createStatement();
+										ResultSet rst = stmt.executeQuery(inviteQry);
+										if (rst.next()) {
+											status = rst.getInt(1);
+										}
 								%>
 								<tr>
 									<td><%=i%></td>
@@ -100,9 +108,17 @@
 									<td><%=helper.getDeptById(rs.getInt(3))%></td>
 									<td><%=rs.getString(4)%></td>
 									<td><%=rs.getString(5)%></td>
-									<td><%=stat[rs.getInt(7)]%></td>
-									<%-- <td><a href="viewInvitation.jsp?id=<%=rs.getInt(1)%>"
-										class="btn btn-default btn-sm"> <span class="fa fa-eye"></span></a></td> --%>
+									<td>
+										<%
+											if (status == 1) {
+										%> <span
+										class="fa fa-check-circle text-success"></span><%
+										 	} else {
+										 %> <span
+										class="fa fa-times-circle text-danger"></span><%
+										 	}
+										 %>
+									</td>
 								</tr>
 								<%
 									i++;

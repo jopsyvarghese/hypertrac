@@ -48,7 +48,7 @@
 		int myId = 0;
 		try {
 			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		} catch(NumberFormatException ne) {
+		} catch (NumberFormatException ne) {
 			response.sendRedirect("../../logout.jsp");
 		}
 		String sql2 = "SELECT * FROM cso WHERE mc_id=?";
@@ -104,10 +104,13 @@
 										<td><select name="dept" class="form-control">
 												<option value="0">Select Any Department</option>
 												<%
-											ResultSet rsDept = helper.getDept();
-											while(rsDept.next()) { %>
-												<option value="<%=rsDept.getInt(1) %>"><%=rsDept.getString(2) %></option>
-												<% } %>
+													ResultSet rsDept = helper.getDept();
+														while (rsDept.next()) {
+												%>
+												<option value="<%=rsDept.getInt(1)%>"><%=rsDept.getString(2)%></option>
+												<%
+													}
+												%>
 										</select></td>
 									</tr>
 									<tr>
@@ -117,9 +120,13 @@
 									<tr>
 										<td>CSO Email</td>
 										<td><select name="cso" class="form-control">
-												<%	while(rsCso.next()) { %>
-												<option value="<%=rsCso.getString(3) %>"><%=rsCso.getString(3) %></option>
-												<% }	%>
+												<%
+													while (rsCso.next()) {
+												%>
+												<option value="<%=rsCso.getString(3)%>"><%=rsCso.getString(3)%></option>
+												<%
+													}
+												%>
 										</select></td>
 									</tr>
 									<tr>
@@ -133,7 +140,7 @@
 									int dept = Integer.parseInt(request.getParameter("dept"));
 									String csoEmail = request.getParameter("cso");
 									String message = request.getParameter("message");
-									
+
 									String host = "localhost";//or IP address  
 									final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 									Properties props = System.getProperties();
@@ -172,31 +179,60 @@
 
 											msg.setSubject("HyperTrac: Invitation Against Your Application");
 											msg.setContent("<h2 style='color:darkblue'>" + rs.getString(4) + "</h2><br/>"
-													+ "<h3 style='color:orange'>For Application ID: " + id + "</h3><br/>"
-													+ "<h4>"+message+"</h4><br/>", "text/html");
+													+ "<h3 style='color:orange'>For Application ID: " + id + "</h3><br/>" + "<h4>" + message
+													+ "</h4><br/>", "text/html");
 											/* msg.addRecipient(RecipientType.BCC, new InternetAddress(
-										            "your@email.com")); */
-											msg.addRecipient(RecipientType.CC, new InternetAddress(
-										            csoEmail));
+											        "your@email.com")); */
+											msg.addRecipient(RecipientType.CC, new InternetAddress(csoEmail));
 										}
-										
+
 										msg.setSentDate(new Date());
 										Transport.send(msg);
-										String sqlInv = "UPDATE invitation SET invite_by=?,for_dept=?,extra_docs=? WHERE app_id=?";
-										PreparedStatement psInv = con.prepareStatement(sqlInv); 
-										psInv.setInt(1, myId);
-										psInv.setInt(2, dept);
-										psInv.setString(3, message);
-										psInv.setInt(4, id);
-										int j = psInv.executeUpdate();
-										if(j > 0) {
-											out.println("<h5 class='text-success'>Email Invitation Sent Successfully and Details Updated</h4>");
+										//Check app_by exists in inviation
+										String appQuery = "SELECT status FROM invitation WHERE app_id=" + id;
+										Statement stQuery = con.createStatement();
+										ResultSet rsQuery = stQuery.executeQuery(appQuery);
+										if (rsQuery.next()) {
+											String sqlInv = "UPDATE invitation SET invite_by=?,for_dept=?,extra_docs=?,status=? WHERE app_id=?";
+											PreparedStatement psInv = con.prepareStatement(sqlInv);
+											psInv.setInt(1, myId);
+											psInv.setInt(2, dept);
+											psInv.setString(3, message);
+											psInv.setInt(4, 1);
+											psInv.setInt(5, id);
+											out.println(psInv);
+											int j = psInv.executeUpdate();
+											if (j > 0) {
+												out.println(
+														"<h5 class='text-success'>Email Invitation Sent Successfully and Details Updated</h4>");
+											} else {
+												out.println(
+														"<h5 class='text-warning'>Email Invitation Sent Successfully, Details Not Updated</h4>");
+											}
 										} else {
-											out.println("<h5 class='text-warning'>Email Invitation Sent Successfully, Details Not Updated</h4>");
+											String sqlInv = "INSERT INTO invitation(app_id, status, docs_submitted, ofc_visited, extra_docs_required," +
+										" extra_docs, invite_by, for_dept) VALUES(?,?,?,?,?,?,?,?)";
+											PreparedStatement psInv = con.prepareStatement(sqlInv);
+											psInv.setInt(1, id);
+											psInv.setInt(2, 1);
+											psInv.setInt(3, 0);
+											psInv.setInt(4, 0);
+											psInv.setInt(5, 0);
+											psInv.setInt(6, 0);
+											psInv.setInt(7, myId);
+											psInv.setInt(8, dept);
+											int j = psInv.executeUpdate();
+											if (j > 0) {
+												out.println(
+														"<h5 class='text-success'>Email Invitation Sent Successfully and Details Updated</h4>");
+											} else {
+												out.println(
+														"<h5 class='text-warning'>Email Invitation Sent Successfully, Details Not Updated</h4>");
+											}
 										}
 
 									} catch (MessagingException e) {
-										System.out.println("Erreur d'envoi, cause: " + e);
+										System.out.println("Error cause: " + e);
 									}
 								}
 							%>

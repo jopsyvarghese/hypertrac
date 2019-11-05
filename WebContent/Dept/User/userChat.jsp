@@ -26,9 +26,9 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-%>
+	<%
+		Helper helper = new Helper();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -55,11 +55,12 @@ Helper helper = new Helper();
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-
 					<div class="text-center">
-						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4") %>" class="btn btn-primary">Chat
-							Room</a> <a href="chatWithStaff.jsp" class="btn btn-primary">Chat
-							With Customer Staff</a> <a href="email.jsp" class="btn btn-primary">Email</a>
+						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4")%>"
+							class="btn btn-primary">Chat Room</a> <a href="chatWithStaff.jsp"
+							class="btn btn-primary">Chat With Customer Staff</a> <a
+							class="btn btn-primary" href="../chatWithAdmin.jsp?q=4>">Chat
+							With Admin</a> <a href="email.jsp" class="btn btn-primary">Email</a>
 					</div>
 
 				</div>
@@ -88,29 +89,6 @@ Helper helper = new Helper();
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

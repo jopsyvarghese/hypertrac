@@ -72,6 +72,8 @@
 										class="btn btn-primary btn-sm" href="chatWithContractor.jsp">Chat
 										with Contractor</a> <a class="btn btn-primary btn-sm"
 										href="chatWithUser.jsp">Chat with User</a> <a
+							class="btn btn-primary btn-sm" href="../chatWithAdmin.jsp?q=2">Chat
+							With Admin</a> <a
 										class="btn btn-primary btn-sm" href="#">Email</a>
 								</div>
 							</div>
