@@ -70,6 +70,7 @@
 									<th>Department Name</th>
 									<th>Submitted Date</th>
 									<th>Finished Date/Status</th>
+									<th>View</th>
 								</tr>
 								<%
 									int id = 0;
@@ -92,6 +93,7 @@
 									<td><%=helper.getDeptById(rs.getInt(3)) %></td>
 									<td><%=rs.getString(5) %></td>
 									<td><%=cons.getConstant(rs.getInt(7)) %></td>
+									<td><a href="appJourney.jsp?id=<%=rs.getInt(1) %>"><span class="fa fa-eye"></span></a></td>
 								</tr>
 								<%
 									i++; }

@@ -123,7 +123,7 @@
 					}
 				%>
 
-				<a class="dropdown-item text-center small text-gray-500" href="#">Read
+				<a class="dropdown-item text-center small text-gray-500" href="../readMore.jsp" target="_blank">Read
 					More Messages</a>
 			</div></li>
 

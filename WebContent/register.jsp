@@ -111,7 +111,7 @@ Header
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 				<div style="margin-top: 100px; margin-bottom: 100px;">
-					<h3 class="text-center">Register Now<% out.print(" : TEST: "+status); %></h3>
+					<h3 class="text-center">Register Now</h3>
 					
 					<%
 						if(email.length() > 0 || uname.length() > 0) {

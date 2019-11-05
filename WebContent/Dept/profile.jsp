@@ -266,12 +266,12 @@
 							<!-- Profile Pic -->
 							<div class="container">
 								<img src="<%=imgUrl%>" alt="Profile Pic"
-									class="image rounded-circle" style="width: 100%">
+									class="image rounded-circle" style="width: 100%" id="blah" src="#">
 								<div class="middle">
 									<div class="text">
 
 										<label class="btn btn-sm btn-info"><span
-											class="fas fa-upload"></span><input type="file" name="file"
+											class="fas fa-upload"></span><input type="file" name="file" id="imgInp"
 											hidden> </label>
 										<button class="btn btn-sm btn-primary">
 											Upload <span class="fa fa-plus-circle"></span>
@@ -383,6 +383,22 @@
 			}
 			return true;
 		}
+		
+		function readURL(input) {
+			  if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    
+			    reader.onload = function(e) {
+			      $('#blah').attr('src', e.target.result);
+			    }
+			    
+			    reader.readAsDataURL(input.files[0]);
+			  }
+			}
+
+			$("#imgInp").change(function() {
+			  readURL(this);
+			});
 	</script>
 </body>
 

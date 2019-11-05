@@ -201,7 +201,7 @@
 								</a>
 
 							</div>
-							<div style="margin-top: 30px; text-align: center">
+							<%-- <div style="margin-top: 30px; text-align: center">
 								<a href="appNext.jsp?id=<%=id%>&appId=<%=appId%>"
 									class="btn btn-danger">Next >></a>
 							</div>
@@ -213,7 +213,7 @@
 								</a><br /> <br /> <br /> <a href="../attachments.jsp?id=<%=id%>"
 									class="text-warning" target="_blank"><span
 									class="fa fa-paperclip"></span> Attachments</a>
-							</div>
+							</div> --%>
 						</div>
 					</div>
 				</div>

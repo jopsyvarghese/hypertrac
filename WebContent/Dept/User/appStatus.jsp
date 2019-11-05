@@ -65,7 +65,7 @@
 								<tr>
 									<th>Sl No</th>
 									<th>Application Id</th>
-									<th>Department Name</th>
+									<th>Department / Sub Department</th>
 									<th>Submitted Date</th>
 									<th>Finished Date/Status</th>
 								</tr>
@@ -87,7 +87,7 @@
 										Helper helper = new Helper();
 										Constants cons = new Constants();
 									%>
-									<td><%=helper.getDeptById(rs.getInt(3)) %></td>
+									<td><%=helper.getDeptById(rs.getInt(3)) %> - <small><%=helper.getSubDeptByAppId(rs.getInt(1)) %></small></td>
 									<td><%=rs.getString(5) %></td>
 									<td><%=cons.getConstant(rs.getInt(7)) %></td>
 								</tr>

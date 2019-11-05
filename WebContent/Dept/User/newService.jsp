@@ -32,6 +32,16 @@
 		String rc = helper.getRc(id);
 		ResultSet rs = helper.getBuzzType();
 		ResultSet majorClients = helper.getMajorClients();
+		int userRole = 0;
+		String userContractorName = "Company (Contractor) Name";
+		String address = "Company Address";
+		userRole = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
+		String phone2 = "";
+		if (userRole == 4) {
+			userContractorName = "Full Name";
+			address = "Individual Address";
+			phone2 = "Optional Number";
+		}
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -68,38 +78,47 @@
 							<table class="table table-hover">
 								<tbody>
 									<tr>
-										<td>Company (Contractor) Name</td>
+										<td><%=userContractorName%></td>
 										<td><input type="text" class="form-control"
 											name="contractorName" /></td>
 									</tr>
+									<%
+										if (userRole == 0) {
+									%>
 									<tr>
 										<td>RC Number</td>
 										<td><input type="text" class="form-control" name="rc"
 											value="<%=rc%>" readonly="readonly" /></td>
 									</tr>
+									<%
+										}
+									%>
 									<tr>
-										<td>Company Address</td>
+										<td><%=address %></td>
 										<td><textarea class="form-control" name="addr"></textarea></td>
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
 										<td><input type="number" class="form-control"
-											name="phone" /></td>
+											name="phone" required="required"/></td>
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
 										<td><input type="number" class="form-control"
-											name="phone2" /></td>
+											name="phone2" placeholder="<%=phone2 %>"/></td>
 									</tr>
 									<tr>
 										<td>Email-id</td>
-										<td><input type="email" class="form-control" name="email" /></td>
+										<td><input type="email" class="form-control" name="email" required="required"/></td>
 									</tr>
 									<tr>
 										<td>Website</td>
 										<td><input type="text" class="form-control"
 											name="website" /></td>
 									</tr>
+									<%
+										if (userRole == 0) {
+									%>
 									<tr>
 										<td>Type of Business</td>
 										<td><select name="buzzType" class="form-control">
@@ -112,6 +131,9 @@
 												%>
 										</select>
 									</tr>
+									<%
+										}
+									%>
 									<tr>
 										<td>Document Name/Subject/ID</td>
 										<td><input type="text" class="form-control"
