@@ -297,6 +297,20 @@ public class Helper {
 		return staffIds;
 	}
 	
+	public ArrayList<Integer> getStaffNamesByMcId(int id) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		String query = "SELECT id FROM staff WHERE mc_id=" + id;
+		rs = st.executeQuery(query);
+		ArrayList<Integer> staffIds = new ArrayList<Integer>();
+        while(rs.next()) {
+         	staffIds.add(rs.getInt(1));
+        }
+			
+		return staffIds;
+	}
+	
 	public String getStaffDeptById(int id) throws SQLException
 	{
 		Statement st = con.createStatement();

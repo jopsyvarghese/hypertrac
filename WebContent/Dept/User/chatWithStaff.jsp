@@ -76,23 +76,15 @@
 									onsubmit="return formCheck()">
 									<table>
 										<tr>
-											<td>Department</td>
+											<td>Major Client</td>
 											<td><select name="as" id="majorClient"
-												class="form-control" onchange="return getStaffs()">
-													<option>Select Department</option>
+												class="form-control" onchange="return getStaffName()">
+													<option>Select Major Client</option>
 													<%
 														while (rs.next()) {
 													%>
 													<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
 													<% } %>
-											</select></td>
-										</tr>
-										<tr>
-											<td>Sub Department</td>
-											<td><select name="sdf" id="staffs" class="form-control"
-												onchange="return getStaffName()">
-													<optgroup id="staffTeam">
-														</option>
 											</select></td>
 										</tr>
 										<tr>
@@ -164,13 +156,10 @@
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
-		function getStaffs() {
-			var deptId = document.getElementById("majorClient").value;
-			$("#staffs").load("subDept.jsp?dept=" + deptId);
-		}
 		function getStaffName() {
-			var staffId = document.getElementById("staffs").value;
-			$("#staffName").load("staffDept.jsp?id=" + staffId);
+			var deptId = document.getElementById("majorClient").value;
+			alert(deptId);
+			$("#staffName").load("staffNamesByDept.jsp?id=" + deptId);
 		}
 
 		function formCheck() {

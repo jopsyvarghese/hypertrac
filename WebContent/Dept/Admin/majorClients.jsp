@@ -120,7 +120,7 @@ String email = "";
 								</a></td>
 							</tr>
 							<%								
-							}
+							i++;}
 							%>
 						</table>
 					</div>
