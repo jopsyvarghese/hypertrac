@@ -98,14 +98,37 @@
 		} else {
 			throw new Exception("You are not authorized to view this page");
 		}
-
+		int userType = 0;
 		Connection con = database.getConnection();
 		try {
 			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+			userType = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
 		} catch (Exception e) {
 			response.sendRedirect("../logout.jsp");
 		}
-
+		String whose = "";
+		switch(userType) {
+		case 0:
+			whose = "Contractor";
+			break;
+		case 1:
+			whose = "Staff";
+			break;
+		case 2:
+			whose = "Client";
+			break;
+		case 3:
+			whose = "Admin";
+			break;
+		case 4:
+			whose = "User";
+			break;
+		default:
+			response.sendRedirect("../logout.jsp");
+			break;
+				
+		}
+		
 		String imgName = "";
 		String imgQry = "SELECT pro_pic FROM auth WHERE id=?";
 		PreparedStatement pImg = con.prepareStatement(imgQry);
@@ -149,7 +172,7 @@
 					<small><i class="fas fa-walking"></i></small>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					Hyper<sup>Trac</sup>
+					<%=whose%><sup>Profile</sup>
 				</div>
 			</a>
 
