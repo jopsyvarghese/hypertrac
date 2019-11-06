@@ -76,8 +76,10 @@
 		int myId = 0;
 		Helper helper = new Helper();
 		String redirect = "";
+		String redirectHeader = "";
 		int q = -1;
 		try {
+			redirectHeader = request.getParameter("q");
 			q = Integer.parseInt(helper.decrypt(request.getParameter("q")));
 		} catch (Exception e) {
 		}
@@ -229,7 +231,9 @@
 								<tr>
 									<td>Company Name</td>
 									<td><input type="text" name="fname" value="<%=cname%>"
-										class="form-control" /></td>
+										class="form-control" />
+										<input type="hidden" name="redirectHeader" value="<%=redirectHeader %>" />
+										</td>
 								</tr>
 								<tr>
 									<td>Company Address</td>
@@ -263,6 +267,7 @@
 					<div class="col-sm-4 propic" style="min-height: 200px;">
 						<form action="changePic.jsp" method="post"
 							enctype="multipart/form-data">
+							<input type="hidden" name="redirectHeader" value="<%=redirectHeader %>" />
 							<!-- Profile Pic -->
 							<div class="container">
 								<img src="<%=imgUrl%>" alt="Profile Pic"
@@ -286,6 +291,7 @@
 					<div class="col-sm-4 card text-center">
 						<form action="changePassword.jsp" method="post"
 							onsubmit="return passwordCheck()">
+							<input type="hidden" name="redirectHeader" value="<%=redirectHeader %>" />
 							<br />
 							<h4 class="text text-info">Update Password</h4>
 							<table>

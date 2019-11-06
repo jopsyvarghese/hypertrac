@@ -61,7 +61,6 @@
 		} catch (NullPointerException ne) {
 		}
 		List<Applications> list = ApplicationsDao.getRecordsByMcId(start, total, loggedId);
-		out.println(start+","+ total+","+ loggedId);
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">

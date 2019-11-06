@@ -71,11 +71,11 @@ String email = "";
 						<h3 class="text-info">Major Clients</h3>
 						<br />
 					</div>
-					<div class="col-sm-12">
+					<div class="col-sm-12 text-center">
 						<a href="addClient.jsp" class="btn btn-primary btn-sm"> <span
 							class="fa fa-plus-circle"></span> Add New Client
 						</a> <br /> <br />
-						<table class="table-hover table-responsive">
+						<table class="table table-hover table-responsive">
 							<tr class="table-warning">
 								<th>Sl.No</th>
 								<th>Major Client</th>

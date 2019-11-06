@@ -56,6 +56,28 @@
 	</script>
 	<%
 		}
+		int q = -1;
+		try {
+			q = Integer.parseInt(helper.decrypt(request.getParameter("q")));
+		} catch (Exception e) {
+		}
+
+		String redirect = "";
+		if (q < 0) {
+			out.println(
+					"<h3 class='text-danger text-center'>Sorry! Some error occured.Please contact Administrator</h3>");
+		} else if (q == 1) {
+			redirect = "Staff/";
+		} else if (q == 2) {
+			redirect = "Major/";
+		} else if (q == 3) {
+			redirect = "Admin/";
+		} else if ((q == 4) || (q == 0)) {
+			redirect = "User/";
+		} else {
+			throw new Exception("You are not authorized to view this page");
+		}
+
 		ResultSet rs = null;
 		rs = helper.getAllChats(myId);
 	%>
@@ -114,31 +136,37 @@
 							<img src="../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-					<div class="col-sm-12 text-center">
-						<h3 class="text-info">Chat History</h3>
-						<table class="table table-hover">
-							<tr>
-								<th>Chat With</th>
-								<th>Chat Now</th>
-							</tr>
-							<%
-							String chatWith = "";
-								while (rs.next()) {
-									if (rs.getInt(2) != myId) {
-										chatWith = helper.getNameById(rs.getInt(2));
-									} else if (rs.getInt(3) != myId) {
-										chatWith = helper.getNameById(rs.getInt(3));
+					<div class="col-sm-12">
+						<br /> &nbsp;&nbsp;<a href="<%=redirect%>" class="text-primary"><span
+							class="fa fa-arrow-left"></span></a> <br />
+						<div class="text-center">
+							<h3 class="text-info">Chat History</h3>
+							<table class="table table-hover">
+								<tr>
+									<th>Chat With</th>
+									<th>Chat Now</th>
+								</tr>
+								<%
+									String chatWith = "";
+									while (rs.next()) {
+										if (rs.getInt(2) != myId) {
+											chatWith = helper.getNameById(rs.getInt(2));
+										} else if (rs.getInt(3) != myId) {
+											chatWith = helper.getNameById(rs.getInt(3));
+										}
+								%>
+								<tr>
+									<td><%=chatWith%></td>
+									<td><a
+										href="chatNow.jsp?q=<%=helper.encrypt("" + rs.getInt(1))%>"><i
+											class="far fa-comments"></i></a></td>
+								</tr>
+								<%
 									}
-							%>
-							<tr>
-								<td><%=chatWith %></td>
-								<td><a href="chatNow.jsp?q=<%=helper.encrypt(""+rs.getInt(1)) %>"><i class="far fa-comments"></i></a></td>
-							</tr>
-							<%
-								}
-							%>
-						</table>
-						<br />
+								%>
+							</table>
+							<br />
+						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->

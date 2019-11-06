@@ -4,6 +4,7 @@
 <%
 String fname = request.getParameter("fname");
 String addr = request.getParameter("addr");
+String redirectHeader = request.getParameter("redirectHeader");
 Long mob = Long.parseLong(request.getParameter("mob"));
 String email = request.getParameter("email");
 int myId = 0;
@@ -18,11 +19,11 @@ if(myId > 0) {
 	ps.setString(4, email);
 	ps.setInt(5, myId);
 	int count = ps.executeUpdate();
+	String status = "failed";
 	if(count > 0) {
-		response.sendRedirect("profile.jsp?status=success");
-	} else {
-		response.sendRedirect("profile.jsp?status=failed");
+		status = "success";
 	}
+	response.sendRedirect("profile.jsp?status="+status+"&q="+redirectHeader);
 } else { %>
 <script>window.location.href="../logout.jsp"</script>
 <%

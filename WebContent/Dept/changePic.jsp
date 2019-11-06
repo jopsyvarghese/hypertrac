@@ -39,6 +39,7 @@
 
 <body id="page-top">
 	<%
+		String redirectHeader = "";
 		Connection con = database.getConnection();
 		int myId = 0;
 		try {
@@ -142,6 +143,7 @@
 								while (itr.hasNext()) {
 									FileItem item = (FileItem) itr.next();
 									if (item.isFormField()) {
+										redirectHeader = item.getString();
 									} else {
 										//File Uploads Here
 										try {
@@ -182,14 +184,14 @@
 								PreparedStatement ps = con.prepareStatement(sql);
 								ps.setString(1, savedFileName);
 								ps.setInt(2, myId);
+								String status = "failed";
 								if (ps.executeUpdate() > 0) {
 									//First Delete Old Image and Update Table
 									/* File filePath = new File("../../../images/service/" + imgName);
 									filePath.delete(); */
-									response.sendRedirect("profile.jsp?status=success");
-								} else {
-									response.sendRedirect("profile.jsp?status=failed");
+									status = "success";
 								}
+								response.sendRedirect("profile.jsp?status=" + status + "&q=" + redirectHeader);
 							}
 						%>
 					</div>

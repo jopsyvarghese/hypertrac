@@ -18,29 +18,40 @@
 		</button>
 
 		<%
-		Helper helper = new Helper();
-		Connection con = database.getConnection();
-		int loggedInId = 0;
-		try {
-			loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
-		}
-		if (loggedInId == 0) {
-			response.sendRedirect("../../logout.jsp");
-		}
+			Helper helper = new Helper();
+			Connection con = database.getConnection();
+			int loggedInId = 0;
+			try {
+				if (session.getAttribute("loggedInUserId") == null
+						|| session.getAttribute("loggedInUserId").equals("")) {
+		%>
+		<script>
+			window.location = "../../logout.jsp"
+		</script>
+		<%
+			} else {
+					loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+				}
+			} catch (NumberFormatException ne) {
+				out.println("Sorry! Invalid Login Details Supplied");
+			} catch (NullPointerException npe) {
+				out.println("Sorry! You're not Logged In");
+			}
+			if (loggedInId == 0) {
+				response.sendRedirect("../../logout.jsp");
+			}
 
-		String sql = "SELECT DISTINCT id, c_by, c_to FROM chat_head WHERE c_to=? OR c_by=? ORDER BY id DESC LIMIT 0,8";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, loggedInId);
-		ps.setInt(2, loggedInId);
-		ResultSet rs = ps.executeQuery();
-		PreparedStatement psC = con.prepareStatement(sql);
-		psC.setInt(1, loggedInId);
-		psC.setInt(2, loggedInId);
-		ResultSet rsC = psC.executeQuery();
-		int totalMessages = 0;
-	%>
+			String sql = "SELECT DISTINCT id, c_by, c_to FROM chat_head WHERE c_to=? OR c_by=? ORDER BY id DESC LIMIT 0,8";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, loggedInId);
+			ps.setInt(2, loggedInId);
+			ResultSet rs = ps.executeQuery();
+			PreparedStatement psC = con.prepareStatement(sql);
+			psC.setInt(1, loggedInId);
+			psC.setInt(2, loggedInId);
+			ResultSet rsC = psC.executeQuery();
+			int totalMessages = 0;
+		%>
 		<!-- Topbar Navbar -->
 		<ul class="navbar-nav ml-auto">
 			<!-- Nav Item - Messages -->
@@ -114,7 +125,8 @@
 						}
 					%>
 
-					<a class="dropdown-item text-center small text-gray-500" href="../readMore.jsp" target="_blank">Read
+					<a class="dropdown-item text-center small text-gray-500"
+						href="../readMore.jsp?q=<%=helper.encrypt("4")%>">Read
 						More Messages</a>
 				</div></li>
 
@@ -149,8 +161,9 @@
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="../profile.jsp?q=<%=helper.encrypt("4") %>">
-						<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+					<a class="dropdown-item"
+						href="../profile.jsp?q=<%=helper.encrypt("4")%>"> <i
+						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
 						<div class="dropdown-divider"></div> <a class="dropdown-item"
 						href="../../logout.jsp"> <i
 							class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout

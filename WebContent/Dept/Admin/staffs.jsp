@@ -81,10 +81,14 @@
 						</div>
 					</div>
 					<div class="text-center">
+						<h3 class="text-info">Staffs</h3>
+						<br />
+					</div>
+					<div class="text-center">
 						<a href="addStaff.jsp" class="btn btn-primary btn-sm"> <span
 							class="fa fa-plus-circle"></span> New Staff
 						</a> <br /> <br />
-						<div class="table-responsive">
+						<div class="table table-hover table-responsive">
 							<table class="table-hover table-responsive">
 								<tr class="table-warning">
 									<th>Sl.No</th>

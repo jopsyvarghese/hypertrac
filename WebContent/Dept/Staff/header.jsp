@@ -19,9 +19,20 @@
 		Connection con = database.getConnection();
 		int loggedInId = 0;
 		try {
-			loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+			if (session.getAttribute("loggedInUserId") == null
+					|| session.getAttribute("loggedInUserId").equals("")) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
+	<%
+		} else {
+				loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+			}
 		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
+			out.println("Sorry! Invalid Login Details Supplied");
+		} catch (NullPointerException npe) {
+			out.println("Sorry! You're not Logged In");
 		}
 		if (loggedInId == 0) {
 			response.sendRedirect("../../logout.jsp");
@@ -111,8 +122,8 @@
 					}
 				%>
 
-				<a class="dropdown-item text-center small text-gray-500" href="../readMore.jsp" target="_blank">Read
-					More Messages</a>
+				<a class="dropdown-item text-center small text-gray-500"
+					href="../readMore.jsp?q=<%=helper.encrypt("1") %>">Read More Messages</a>
 			</div></li>
 
 		<div class="topbar-divider d-none d-sm-block"></div>
@@ -144,8 +155,9 @@
 			<div
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="../profile.jsp?q=<%=helper.encrypt("1") %>">
-					<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+				<a class="dropdown-item"
+					href="../profile.jsp?q=<%=helper.encrypt("1")%>"> <i
+					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
 					<div class="dropdown-divider"></div> <a class="dropdown-item"
 					href="../../logout.jsp"> <i
 						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout

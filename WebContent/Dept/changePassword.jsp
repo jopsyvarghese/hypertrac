@@ -14,6 +14,7 @@ try {
 
 String currentPwd = request.getParameter("oldPwd");
 String newPwd = request.getParameter("newPwd");
+String redirectHeader = request.getParameter("redirectHeader");
 
 String sql = "UPDATE auth SET pwd = ? WHERE id=? AND pwd=?";
 PreparedStatement ps = con.prepareStatement(sql);
@@ -21,9 +22,9 @@ ps.setString(1, helper.encryptPwd(newPwd));
 ps.setInt(2, myId);
 ps.setString(3, helper.encryptPwd(currentPwd));
 int i = ps.executeUpdate();
+String status = "failed";
 if(i > 0) {
-	response.sendRedirect("profile.jsp?status=success");
-} else {
-	response.sendRedirect("profile.jsp?status=failed");
+	status = "success";
 }
+response.sendRedirect("profile.jsp?status="+status+"&q="+redirectHeader);
 %>
