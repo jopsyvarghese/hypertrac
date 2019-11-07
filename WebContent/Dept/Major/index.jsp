@@ -33,7 +33,7 @@ session.setAttribute("reportGenerateDept", 2);
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<jsp:include page="sidebar.jsp"></jsp:include>
+		<%@include file="sidebar.jsp" %>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->

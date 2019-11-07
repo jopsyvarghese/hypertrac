@@ -190,6 +190,7 @@
 									/* File filePath = new File("../../../images/service/" + imgName);
 									filePath.delete(); */
 									status = "success";
+									session.setAttribute("myImg", savedFileName);
 								}
 								response.sendRedirect("profile.jsp?status=" + status + "&q=" + redirectHeader);
 							}

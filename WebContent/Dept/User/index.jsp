@@ -30,7 +30,8 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<jsp:include page="sidebar.jsp"></jsp:include>
+		<%@include file="sidebar.jsp" %>
+		<%-- <jsp:include page="sidebar.jsp"></jsp:include> --%>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -64,7 +65,6 @@
 						<div class="col-md-1 col-lg-1"></div>
 					</div>
 					<%
-						int userType = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
 						String display = "";
 						if (userType == 4) {
 							display = "display:none;";

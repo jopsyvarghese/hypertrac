@@ -91,6 +91,7 @@
 								<tr class="table-warning">
 									<th>Sl.No</th>
 									<th>Staff Name</th>
+									<th>User Name</th>
 									<th>Department</th>
 									<th>Position</th>
 									<th>Email</th>
@@ -111,6 +112,7 @@
 									String name = "";
 									String deptName = "";
 									String position = "";
+									String staffUname = "";
 									int status = 0;
 									while (rs.next()) {
 										staffId = rs.getInt(1);
@@ -119,17 +121,19 @@
 										name = helper.getNameById(staffId);
 										deptName = helper.getDeptById(rs.getInt(2));
 										position = helper.getPositionById(rs.getInt(3));
-										String stQry = "SELECT state FROM auth WHERE id=" + staffId;
+										String stQry = "SELECT state,uname FROM auth WHERE id=" + staffId;
 										Statement stm = null;
 										stm = con.createStatement();
 										ResultSet rst = stm.executeQuery(stQry);
 										if (rst.next()) {
 											status = rst.getInt(1);
+											staffUname = rst.getString(2);
 										}
 								%>
 								<tr>
 									<td><%=i%></td>
 									<td><%=name%></td>
+									<td><%=staffUname %></td>
 									<td><%=deptName%></td>
 									<td><%=position%></td>
 									<td><%=email%></td>

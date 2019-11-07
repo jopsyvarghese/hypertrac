@@ -167,7 +167,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+				href="<%=redirect %>">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<small><i class="fas fa-walking"></i></small>
 				</div>

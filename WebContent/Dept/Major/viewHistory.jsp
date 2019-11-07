@@ -168,8 +168,8 @@
 										<td><%=helper.getMajorClient(major_client)%></td>
 									</tr>
 									<tr>
-										<th>Sub-Department</th>
-										<td><%=helper.getSubDept(sub_dept)%></td>
+										<th>Department</th>
+										<td><%=helper.getDeptById(dept)%></td>
 									</tr>
 									<!-- <tr>
 										<th>Upload Scanned Documents</th>

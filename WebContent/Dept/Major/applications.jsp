@@ -43,7 +43,7 @@
 		}
 		int total = 15;
 		int start = 0;
-		if (pageId < 1) {
+		if (pageId <= 1) {
 			pageId = 1;
 		} else {
 			start = (pageId - 1) * total + 1;

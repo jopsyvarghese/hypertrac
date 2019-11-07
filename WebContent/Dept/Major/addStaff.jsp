@@ -160,6 +160,11 @@
 											class="form-control" /></td>
 									</tr>
 									<tr>
+										<th>Date Of Birth</th>
+										<td><input type="date" name="dob"
+											class="form-control" required/></td>
+									</tr>
+									<tr>
 										<th>Password</th>
 										<td><input type="password" name="pwd" id="pwd"
 											class="form-control" /></td>

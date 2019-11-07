@@ -94,22 +94,23 @@
 										}
 									%>
 									<tr>
-										<td><%=address %></td>
+										<td><%=address%></td>
 										<td><textarea class="form-control" name="addr"></textarea></td>
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
 										<td><input type="number" class="form-control"
-											name="phone" required="required"/></td>
+											name="phone" required="required" /></td>
 									</tr>
 									<tr>
 										<td>Telephone No.</td>
 										<td><input type="number" class="form-control"
-											name="phone2" placeholder="<%=phone2 %>"/></td>
+											name="phone2" placeholder="<%=phone2%>" /></td>
 									</tr>
 									<tr>
 										<td>Email-id</td>
-										<td><input type="email" class="form-control" name="email" required="required"/></td>
+										<td><input type="email" class="form-control" name="email"
+											required="required" /></td>
 									</tr>
 									<tr>
 										<td>Website</td>
@@ -142,7 +143,7 @@
 									<tr>
 										<td>Name of Major client(s)</td>
 										<td><select name="majorClient" class="form-control"
-											onchange="loadSub()" id="majorClient">
+											onchange="loadDept()" id="majorClient">
 												<option value="0">Select Major Client</option>
 												<%
 													while (majorClients.next()) {
@@ -151,6 +152,14 @@
 												<%
 													}
 												%>
+										</select></td>
+									</tr>
+									<tr>
+										<td>Department</td>
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="loadSub()">
+												<option value="0">Select Department</option>
+												<optgroup label="" id="catData"></optgroup>
 										</select></td>
 									</tr>
 									<tr>
@@ -239,9 +248,13 @@
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
+		function loadDept() {
+			var mcId = document.getElementById("majorClient").value;
+			$("#catData").load("dept.jsp?mcId=" + mcId);
+		}
 		function loadSub() {
-			var deptId = document.getElementById("majorClient").value;
-			$("#subCatData").load("subDept.jsp?dept=" + deptId);
+			var deptId = document.getElementById("dept").value;
+			$("#subCatData").load("subDept.jsp?deptId=" + deptId);
 		}
 	</script>
 </body>

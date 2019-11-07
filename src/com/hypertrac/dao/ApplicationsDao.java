@@ -163,6 +163,7 @@ public class ApplicationsDao {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = null;
 		rs = ps.executeQuery();
+		System.out.println(sql);
 		while (rs.next()) {
 			Applications app = new Applications();
 			app.setId(rs.getInt(1));
