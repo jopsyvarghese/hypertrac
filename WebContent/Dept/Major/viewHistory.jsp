@@ -49,6 +49,8 @@
 		rs = apPs.executeQuery();
 		rs2 = apMorePs.executeQuery();
 
+		int role = -1;
+
 		String name_or_no = "";
 		int dept = 0;
 		String subject = "";
@@ -85,6 +87,7 @@
 			sub_dept = rs2.getInt(12);
 		}
 		rc = helper.getRc(app_by);
+		role = helper.getUserRoleById(app_by);
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -131,12 +134,18 @@
 								enctype="multipart/form-data">
 								<input type="hidden" name="id" value="<%=id%>" />
 								<table class="table">
+									<%
+										if (role == 0) {
+									%>
 									<tr>
 										<th>RC Number</th>
 										<td><%=rc%></td>
 									</tr>
+									<%
+										}
+									%>
 									<tr>
-										<th>Company Address</th>
+										<th>Address</th>
 										<td><%=company + ", " + comp_addr%></td>
 									</tr>
 									<tr>
@@ -155,10 +164,16 @@
 										<th>Website</th>
 										<td><%=website%></td>
 									</tr>
+									<%
+										if (role == 0) {
+									%>
 									<tr>
 										<th>Type of Business</th>
 										<td><%=helper.buzzType(buzz_type)%></td>
 									</tr>
+									<%
+										}
+									%>
 									<tr>
 										<th>Document Name/Subject/ID</th>
 										<td><%=doc_name%></td>

@@ -202,6 +202,17 @@ public class Helper {
 		return rs;
 	}
 	
+	public int getUserRoleById(int id) throws SQLException {
+		String sql = "SELECT role FROM auth WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getInt(1);
+		}
+		return -1;
+	}
+	
 	public String getRoleById(int id) throws SQLException {
 		String sql = "SELECT * FROM role WHERE id="+id;
 		Statement st = con.createStatement();
