@@ -33,4 +33,12 @@
 		<url-pattern>/files/*</url-pattern>
 	</servlet-mapping>
 
+	<filter>
+		<filter-name>SessionFilter</filter-name>
+		<filter-class>com.hypertrac.commons.SessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SessionFilter</filter-name>
+		<url-pattern>/Dept/*</url-pattern>
+	</filter-mapping>
 </web-app>
