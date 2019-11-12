@@ -67,7 +67,7 @@
 							<%
 						Connection con = null;
 						con = database.getConnection();
-						String deptHead = request.getParameter("deptHead");
+						int deptHead = Integer.parseInt(request.getParameter("deptHead"));
 						String deptName = request.getParameter("deptName");
 						int myId = 0;
 						myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
@@ -78,12 +78,12 @@
 						PreparedStatement ps = con.prepareStatement(sql);
 						ps.setString(1, deptName);
 						ps.setInt(2, myId);
-						ps.setString(3, deptHead);
+						ps.setInt(3, deptHead);
 						
 						if(ps.executeUpdate() > 0) {
-							out.println("<h4 style='color:green'>Created Department Successfully</h4>");
+							response.sendRedirect("dept.jsp?status=success");
 						} else {
-							out.println("<h4 style='color:red'>Sorry! Unable to Create</h4>");
+							response.sendRedirect("dept.jsp?status=failed");
 						}
 						%>
 

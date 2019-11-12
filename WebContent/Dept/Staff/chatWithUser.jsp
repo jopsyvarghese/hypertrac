@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="javax.crypto.Cipher"%>
@@ -73,7 +74,7 @@ Connection con = database.getConnection();
 						<form action="#" method="get">
 							<table class="table">
 								<tr>
-									<td><input list="users" name="q" class="form-control"
+									<td><input list="users" name="q" class="form-control" autocomplete="off"
 										placeholder="Type a User's Name To Search"> <datalist
 											id="users">
 											<%

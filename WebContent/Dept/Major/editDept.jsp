@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -70,6 +72,7 @@
 						</div>
 						<div class="col-lg-6 mb-4">
 							<%
+								Helper helper = new Helper();
 								int id = Integer.parseInt(request.getParameter("id"));
 								if (!(id > 0)) {
 									throw new Exception("Invalid Department");
@@ -86,17 +89,29 @@
 								if (rs.next()) {
 							%>
 							<h4>Update Department</h4>
-							<form action="updateDept.jsp" method="post">
+							<form action="updateDept.jsp" method="post" onsubmit="return checkForm();">
 								<input type="hidden" name="id" value="<%=rs.getInt(1)%>" />
 								<table>
 									<tr>
 										<td>Department Head</td>
-										<td><input type="text" name="deptHead"
-											class="form-control" value="<%=rs.getString(4)%>" /></td>
+										<td>
+											<%
+											int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+												ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
+											%> <select name="deptHead" id="deptHead" class="form-control" required="required">
+												<%
+													for (int rowValue : arr) {
+												%>
+												<option value="<%=rowValue%>"><%=helper.getNameById(rowValue)%></option>
+												<%
+													}
+												%>
+										</select>
+										</td>
 									</tr>
 									<tr>
 										<td>Department Name</td>
-										<td><input type="text" name="deptName"
+										<td><input type="text" name="deptName" id="deptName"
 											class="form-control" value="<%=rs.getString(2)%>" /></td>
 									</tr>
 									<tr>
@@ -178,7 +193,17 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script>
+		function checkForm() {
+			var deptHead = $("#deptHead").val();
+			var deptName = $("#deptName").val();
+			if (deptHead < 1 || deptName.length < 2) {
+				alert("Invalid Details Supplied");
+				return false;	
+			}
+			
+		}
+	</script>
 </body>
 
 </html>

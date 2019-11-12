@@ -44,7 +44,6 @@ Statement st = null;
 st = con.createStatement();
 ResultSet rs = null;
 rs = st.executeQuery(sql);
-
 %>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -98,7 +97,7 @@ rs = st.executeQuery(sql);
 							%>
 								<tr>
 									<td><%=i %></td>
-									<td><%=rs.getString(4) %></td>
+									<td><%=helper.getNameById(rs.getInt(4)) %></td>
 									<td><%=rs.getString(2) %></td>
 									<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>"
 										class="btn btn-primary btn-sm"> <span
@@ -183,7 +182,17 @@ rs = st.executeQuery(sql);
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script>
+	function confirmDel()
+	{
+	    var r = confirm("Are you sure you want to Delete? !");
+	    if (r == true) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+	</script>
 </body>
 
 </html>

@@ -61,7 +61,7 @@
 					</div>
 					<%
 					int client= Integer.parseInt(request.getParameter("client"));
-					String deptHead= request.getParameter("deptHead");
+					int deptHead= Integer.parseInt(request.getParameter("deptHead"));
 					String deptName = request.getParameter("deptName");
 					int id = Integer.parseInt(request.getParameter("id"));
 					Helper helper = new Helper();
@@ -74,11 +74,11 @@
 					PreparedStatement ps = con.prepareStatement(sql);
 					ps.setString(1, deptName);
 					ps.setInt(2, client);
-					ps.setString(3, deptHead);
+					ps.setInt(3, deptHead);
 					ps.setInt(4, id);
 					int i = ps.executeUpdate();
 					if(i > 0) {
-						response.sendRedirect("editDept.jsp?id="+id+"&status=success");						
+						response.sendRedirect("dept.jsp?id="+id+"&status=success");						
 					} else {
 						response.sendRedirect("editDept.jsp?id="+id+"&status=failed");
 					}

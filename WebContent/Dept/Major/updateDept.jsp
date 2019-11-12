@@ -79,19 +79,19 @@
 						
 						Connection con = null;
 						con = database.getConnection();
-						String deptHead = request.getParameter("deptHead");
+						int deptHead = Integer.parseInt(request.getParameter("deptHead"));
 						String deptName = request.getParameter("deptName");
 						String sql = "UPDATE dept SET dname=?,mc_id=?,dept_head=? WHERE id=?";
 						PreparedStatement ps = null;
 						ps = con.prepareStatement(sql);
 						ps.setString(1, deptName);
 						ps.setInt(2, myId);
-						ps.setString(3, deptHead);
+						ps.setInt(3, deptHead);
 						ps.setInt(4, id);
 						if(ps.executeUpdate() > 0) {
-							out.println("<h4 style='color:green'>Updated Successfully</h4>");
+							response.sendRedirect("dept.jsp?status=success");
 						} else {
-							out.println("<h4 style='color:red'>Sorry! Unable to Update</h4>");
+							response.sendRedirect("dept.jsp?status=failed");
 						}
 						%>
 

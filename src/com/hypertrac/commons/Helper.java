@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
 import javax.crypto.Cipher;
@@ -109,10 +110,12 @@ public class Helper {
 
 	public String getDateTime() {
 		java.util.Date dt = new java.util.Date();
-		java.text.SimpleDateFormat sdf = 
+		Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(dt);
+	    calendar.add(Calendar.HOUR_OF_DAY, 1);
+	    java.text.SimpleDateFormat sdf = 
 				new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String currentTime = sdf.format(dt);
-		return currentTime;
+	    return sdf.format(calendar.getTime());
 	}
 
 	public String getDay() {

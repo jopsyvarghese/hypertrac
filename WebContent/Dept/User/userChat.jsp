@@ -56,11 +56,12 @@
 						</div>
 					</div>
 					<div class="text-center">
+					<h3 class="text-info">Chat Now</h3>
 						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4")%>"
 							class="btn btn-primary">Chat Room</a> <a href="chatWithStaff.jsp"
 							class="btn btn-primary">Chat With Customer Staff</a> <a
 							class="btn btn-primary" href="../chatWithAdmin.jsp?q=4>">Chat
-							With Admin</a> <a href="email.jsp" class="btn btn-primary">Email</a>
+							With Admin</a>
 					</div>
 
 				</div>

@@ -63,14 +63,14 @@
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<div class="text-center">
-								Chat With Contractor <br /> <br />
+								<h3 class="text-info">Chat Now</h3>
 								<div style="padding: 15px 5px;">
 									<a class="btn btn-primary btn-sm" href="../chatRoom.jsp"
 										target="_blank">Chat Room</a> <a
 										class="btn btn-primary btn-sm" href="chatWithUser.jsp">Chat
 										with Contractor</a> <a
 							class="btn btn-primary btn-sm" href="../chatWithAdmin.jsp?q=1">Chat
-							With Admin</a> <a class="btn btn-primary btn-sm" href="#">Email</a>
+							With Admin</a>
 								</div>
 							</div>
 						</div>

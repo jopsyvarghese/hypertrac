@@ -101,7 +101,7 @@ if(myId > 0) {
 							%>
 							<tr>
 								<td><%=i %></td>
-								<td><%=rs.getString(4) %></td>
+								<td><%=helper.getNameById(rs.getInt(4)) %></td>
 								<td><%=rs.getString(2) %></td>
 								<td><%=helper.getMajorClient(rs.getInt(3)) %></td>
 								<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>"

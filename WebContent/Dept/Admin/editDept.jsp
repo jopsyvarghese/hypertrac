@@ -31,26 +31,25 @@
 
 <body id="page-top">
 	<%
-Connection con = null;
-ResultSet rs = null;		
-PreparedStatement ps = null;		
-Helper helper = new Helper();
-int id = 0;
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-} catch(Exception e) {
-	e.printStackTrace();
-}
-if(id == 0) {
-	throw new Exception("Invalid Data Provided");
-}
-	String sql = "SELECT * FROM dept WHERE id=?";
-	con = database.getConnection();
-	ps = con.prepareStatement(sql);
-	ps.setInt(1, id);
-	rs = ps.executeQuery();
-
-%>
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Helper helper = new Helper();
+		int id = 0;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (id == 0) {
+			throw new Exception("Invalid Data Provided");
+		}
+		String sql = "SELECT * FROM dept WHERE id=?";
+		con = database.getConnection();
+		ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -89,24 +88,24 @@ if(id == 0) {
 						Edit Departments <br /> <br />
 						<form action="editDept_2.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
-								<input type="hidden" name="id" value="<%=id %>" />
+								<input type="hidden" name="id" value="<%=id%>" />
 								<%
-								while(rs.next()) {
-									ResultSet rs2 = helper.getMajorClients();
-							%>
+									while (rs.next()) {
+										ResultSet rs2 = helper.getMajorClients();
+								%>
 								<tr>
 									<th>Major Client</th>
-									<td><select name="client" class="form-control">
+									<td><select name="client" id="client" class="form-control"
+										onchange="return selectDeptHead()">
 											<option value="0">Select Major Client</option>
 											<%
-											String selected = "";											
-												while(rs2.next()) {
-													if(id == rs2.getInt(1)) {
-														selected = "selected='selected'";
-													}
+												String selected = "";
+													while (rs2.next()) {
+														if (id == rs2.getInt(1)) {
+															selected = "selected='selected'";
+														}
 											%>
-											<option value="<%=rs2.getInt(1) %>"
-												<% out.print(selected); %>><%=rs2.getString(2) %></option>
+											<option value="<%=rs2.getInt(1)%>" <%out.print(selected);%>><%=rs2.getString(2)%></option>
 											<%
 												}
 											%>
@@ -114,16 +113,17 @@ if(id == 0) {
 								</tr>
 								<tr>
 									<th>Department Head</th>
-									<td><input type="text" name="deptHead"
-										class="form-control" value="<%=rs.getString(4) %>" /></td>
+									<td><select name="deptHead" class="form-control">
+											<optgroup label="Please select a Staff" id="staffs"></optgroup>
+									</select></td>
 								</tr>
 								<tr>
 									<th>Department Name</th>
 									<td><input type="text" name="deptName"
-										class="form-control" value="<%=rs.getString(2) %>" /></td>
+										class="form-control" value="<%=rs.getString(2)%>" /></td>
 								</tr>
 								<%
-								}
+									}
 								%>
 							</table>
 							<br />
@@ -199,7 +199,12 @@ if(id == 0) {
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script>
+		function selectDeptHead() {
+			var mcId = $("#client").val();
+			$("#staffs").load("../loadStaffsByMcId.jsp?mcId=" + mcId);
+		}
+	</script>
 </body>
 
 </html>

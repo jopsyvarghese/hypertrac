@@ -65,7 +65,7 @@
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<div class="text-center">
-								<h3 class="text-info">Chat With Contractor</h3>
+								<h3 class="text-info">Chat Now</h3>
 								<br /> <br />
 								<div style="padding: 15px 5px;">
 									<a class="btn btn-primary btn-sm"  href="../chatRoom.jsp?q=<%=helper.encrypt("2") %>">Chat Room</a> <a
@@ -73,8 +73,7 @@
 										with Contractor</a> <a class="btn btn-primary btn-sm"
 										href="chatWithUser.jsp">Chat with User</a> <a
 							class="btn btn-primary btn-sm" href="../chatWithAdmin.jsp?q=2">Chat
-							With Admin</a> <a
-										class="btn btn-primary btn-sm" href="#">Email</a>
+							With Admin</a>
 								</div>
 							</div>
 						</div>

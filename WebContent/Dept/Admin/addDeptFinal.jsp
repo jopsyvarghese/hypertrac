@@ -79,13 +79,13 @@ con = database.getConnection();
 					</div>
 					<%
 					int client = Integer.parseInt(request.getParameter("client"));
-					String deptHead = request.getParameter("deptHead");
+					int deptHead = Integer.parseInt(request.getParameter("deptHead"));
 					String deptName = request.getParameter("deptName");
 					String sql = "INSERT INTO dept(dname, mc_id, dept_head) VALUES (?,?,?)";
 					ps = con.prepareStatement(sql);
 					ps.setString(1, deptName);
 					ps.setInt(2, client);
-					ps.setString(3, deptHead);
+					ps.setInt(3, deptHead);
 					int i = ps.executeUpdate();
 					if(i > 0) {
 						response.sendRedirect("dept.jsp?status=success");

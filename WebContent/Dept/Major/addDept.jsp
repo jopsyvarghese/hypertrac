@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -69,8 +71,19 @@
 									<table class="table table-hover table-responsive-lg">
 										<tr>
 											<th>Department Head</th>
-											<td><input type="text" name="deptHead"
-												class="form-control" required /></td>
+											<td><select name="deptHead" class="form-control"
+												required>
+													<%
+														int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+														Helper helper = new Helper();
+														ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
+														for (int rowValues : arr) {
+													%>
+													<option value="<%=rowValues%>"><%=helper.getNameById(rowValues)%></option>
+													<%
+														}
+													%>
+											</select></td>
 										</tr>
 										<tr>
 											<th>Department Name</th>
