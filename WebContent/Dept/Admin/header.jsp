@@ -53,6 +53,52 @@
 	<ul class="navbar-nav ml-auto">
 		<!-- Nav Item - Messages -->
 		<li class="nav-item dropdown no-arrow mx-1"><a
+			class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+			role="button" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
+				<%
+					int unreadCount = helper.getAppsUnreadCountAdmin();
+					if (unreadCount > 0) {
+				%> <span class="badge badge-danger badge-counter"> <%=unreadCount%>
+			</span> <%
+ 	}
+ %>
+
+		</a> <!-- Dropdown - Alerts -->
+			<div
+				class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+				aria-labelledby="alertsDropdown">
+				<h6 class="dropdown-header">New Applications</h6>
+				<%
+					ResultSet rsNotification = helper.getAppNotificationAdmin();
+					while (rsNotification.next()) {
+						String appSubmittedDate = helper.getAppSubmittedOnById(rsNotification.getInt(1));
+				%>
+				<a class="dropdown-item d-flex align-items-center"
+					href="viewApplication.jsp?id=<%=rsNotification.getInt(1)%>&read=1">
+					<div class="mr-3">
+						<div class="icon-circle bg-primary">
+							<i class="fas fa-file-alt text-white"></i>
+						</div>
+					</div>
+					<div>
+						<div class="small text-gray-500"><%=appSubmittedDate%></div>
+						<span class="font-weight-bold"> <%
+ 	out.print(rsNotification.getInt(1) + " => " + helper.getSubjectById(rsNotification.getInt(1)));
+ %>
+						</span>
+					</div>
+				</a>
+				<%
+					}
+				%>
+
+
+				<a class="dropdown-item text-center small text-gray-500" href="#">Show
+					All Alerts</a>
+			</div></li>
+			
+		<li class="nav-item dropdown no-arrow mx-1"><a
 			class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false"> <i class="fa fa-comment"

@@ -35,8 +35,16 @@
 <body id="page-top">
 	<%
 		Helper helper = new Helper();
-		int id = Integer.parseInt(request.getParameter("id"));
 		Connection con = database.getConnection();
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		if (request.getParameter("read") != null || request.getParameter("read") !="") {
+			String updateNotificationQry = "UPDATE applications_realtime SET staff_read=1 WHERE app_id=?";
+			PreparedStatement psNotification = con.prepareStatement(updateNotificationQry);
+			psNotification.setInt(1, id);
+			psNotification.executeUpdate();
+		}
+		
 		ResultSet imgRs = helper.getImagesByFKey(id);
 		ResultSet imgRs1 = helper.getImagesByFKey(id);
 		File uploads = new File(getServletContext().getInitParameter("file-upload"));

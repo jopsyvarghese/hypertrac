@@ -8,16 +8,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1f4dadb8-feda-4526-a291-a33bc77ce4fc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/addDept.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/addDept.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/chat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/chat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/dept.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/dept.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/chatWithContractor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/chatWithContractor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/chatWithUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/chatWithUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/User/userChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/User/userChat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/SendEmail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/viewApplication.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/viewApplication.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/User/createService.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/User/createService.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SendEmail.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -177,7 +171,7 @@
       <workItem from="1571857553316" duration="55000" />
       <workItem from="1572953238277" duration="430000" />
       <workItem from="1573529840331" duration="101000" />
-      <workItem from="1573530318691" duration="639000" />
+      <workItem from="1573530318691" duration="1290000" />
     </task>
     <servers />
   </component>

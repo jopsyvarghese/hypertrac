@@ -166,6 +166,31 @@
 								}
 							}
 							Connection con = database.getConnection();
+							
+							// Update Application Notification Table
+							String checkQry = "SELECT staff_id FROM applications_realtime WHERE app_id="+id;
+							Statement stCheck = con.createStatement();
+							ResultSet rsCheck = stCheck.executeQuery(checkQry);
+							if (rsCheck.next()) {
+								String sql4 = "UPDATE applications_realtime SET staff_id=?, staff_read=? WHERE app_id=?";
+								PreparedStatement pst = con.prepareStatement(sql4);
+								pst.setInt(1, staffTo);
+								pst.setInt(2, 0);
+								pst.setInt(3, id);
+								pst.executeUpdate();
+							} else {
+								String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, staff_read, mc_id, mc_read, admin_id, admin_read) VALUES(?,?,?,?,?,?,?)";
+								PreparedStatement pst = con.prepareStatement(sql4);
+								pst.setInt(1,id);
+								pst.setInt(2, staffTo);
+								pst.setInt(3, 0);
+								pst.setInt(4, helper.getMcIdByDeptId(staffTo));
+								pst.setInt(5, 0);
+								pst.setInt(6, 4);
+								pst.setInt(7, 0);
+								pst.executeUpdate();
+							}
+							
 							String sql = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
 							PreparedStatement ps = con.prepareStatement(sql);
 							ps.setInt(1, id);

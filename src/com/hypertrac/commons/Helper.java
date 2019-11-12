@@ -444,4 +444,164 @@ public class Helper {
 		return ps.executeQuery();
 		
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getDeptHeadById(int id) throws SQLException {
+		String sql = "SELECT dept_head FROM dept WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getAppNotificationByStaffId(int id) throws SQLException {
+		String sql = "SELECT * FROM applications_realtime WHERE staff_id="+id+" AND staff_read=0";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getAppNotificationByMcId(int id) throws SQLException {
+		String sql = "SELECT * FROM applications_realtime WHERE mc_id="+id+" AND mc_read=0";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getAppSubmittedOnById(int id) throws SQLException {
+		String sql = "SELECT submitted_on FROM applications WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getSubjectById(int id) throws SQLException {
+		String sql = "SELECT subject FROM applications WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getAppsUnreadCountByStaffId(int id) throws SQLException {
+		String sql = "SELECT count(*) FROM applications_realtime WHERE staff_id="+id+" AND staff_read=0";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getAppsUnreadCountByMcId(int id) throws SQLException {
+		String sql = "SELECT count(*) FROM applications_realtime WHERE mc_id="+id+" AND mc_read=0";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getAppsUnreadCountAdmin() throws SQLException {
+		String sql = "SELECT count(*) FROM applications_realtime WHERE admin_id=4 AND admin_read=0";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getAppNotificationAdmin() throws SQLException {
+		String sql = "SELECT * FROM applications_realtime WHERE admin_id=4 AND admin_read=0";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getMcIdByDeptId(int id) throws SQLException {
+		String sql = "SELECT mc_id FROM dept WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
 }

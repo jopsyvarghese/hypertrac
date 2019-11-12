@@ -39,6 +39,13 @@
 		Connection con = database.getConnection();
 		ResultSet imgRs = helper.getImagesByFKey(id);
 		ResultSet imgRs1 = helper.getImagesByFKey(id);
+		
+		if (request.getParameter("read") != null || request.getParameter("read") !="") {
+			String updateNotificationQry = "UPDATE applications_realtime SET admin_read=1 WHERE app_id=?";
+			PreparedStatement psNotification = con.prepareStatement(updateNotificationQry);
+			psNotification.setInt(1, id);
+			psNotification.executeUpdate();
+		}
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">

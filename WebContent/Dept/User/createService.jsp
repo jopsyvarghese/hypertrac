@@ -67,6 +67,7 @@
 					<div class="text-center">
 						<br /> <br />
 						<%
+							Helper helper = new Helper();
 							int maxFileSize = 2000 * 1024;
 							int i = 0;
 							int myId = 0;
@@ -119,44 +120,44 @@
 
 											//Form Fields are Here
 											switch (item.getFieldName()) {
-												case "contractorName" :
-													contractorName = item.getString();
-													break;
-												case "rc" :
-													rc = item.getString();
-													break;
-												case "addr" :
-													addr = item.getString();
-													break;
-												case "phone" :
-													phone = item.getString();
-													break;
-												case "phone2" :
-													phone2 = item.getString();
-													break;
-												case "email" :
-													email = item.getString();
-													break;
-												case "website" :
-													website = item.getString();
-													break;
-												case "buzzType" :
-													buzzType = Integer.parseInt(item.getString());
-													break;
-												case "docName" :
-													docName = item.getString();
-													break;
-												case "majorClient" :
-													majorClient = Integer.parseInt(item.getString());
-													break;
-												case "dept" :
-													dept = Integer.parseInt(item.getString());
-													break;
-												case "subDept" :
-													subDept = Integer.parseInt(item.getString());
-													break;
-												default :
-													break;
+											case "contractorName":
+												contractorName = item.getString();
+												break;
+											case "rc":
+												rc = item.getString();
+												break;
+											case "addr":
+												addr = item.getString();
+												break;
+											case "phone":
+												phone = item.getString();
+												break;
+											case "phone2":
+												phone2 = item.getString();
+												break;
+											case "email":
+												email = item.getString();
+												break;
+											case "website":
+												website = item.getString();
+												break;
+											case "buzzType":
+												buzzType = Integer.parseInt(item.getString());
+												break;
+											case "docName":
+												docName = item.getString();
+												break;
+											case "majorClient":
+												majorClient = Integer.parseInt(item.getString());
+												break;
+											case "dept":
+												dept = Integer.parseInt(item.getString());
+												break;
+											case "subDept":
+												subDept = Integer.parseInt(item.getString());
+												break;
+											default:
+												break;
 											}
 										} else {
 											//File Uploads Here
@@ -236,6 +237,12 @@
 													if (ps3.executeUpdate() > 0) {
 														status += 1;
 													}
+													// Adding Notification & Realtime Info
+													int deptHead = helper.getDeptHeadById(dept);
+													
+													String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, staff_read, mc_id, mc_read, admin_id, admin_read) VALUES("+lastInsertedId+", "+deptHead+", 0, "+majorClient+", 0, 4, 0)";
+													Statement st4 = con.createStatement();
+													st4.executeUpdate(sql4);
 												}
 												if (status > 0) {
 													session.setAttribute("submitted", myId);
@@ -246,7 +253,6 @@
 													out.println(
 															"<h4 style='color:red;'>Sorry! Unable to Complete Application at this time.</h4>");
 												}
-
 											} else {
 												out.println(
 														"<h4 style='color:red;'>Sorry! Unable to Complete Application at this time.</h4>");
