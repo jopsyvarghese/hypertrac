@@ -30,21 +30,21 @@
 
 <body id="page-top">
 	<%
-int myId = 0;
-myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-if(!(myId > 0)) {
-	throw new Exception("You are not logged In");
-}
+		int myId = 0;
+		myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		if (!(myId > 0)) {
+			throw new Exception("You are not logged In");
+		}
 
-Helper helper = new Helper();
-String sql = "SELECT * FROM dept WHERE mc_id="+myId;
-Connection con = null;
-con = database.getConnection();
-Statement st = null;
-st = con.createStatement();
-ResultSet rs = null;
-rs = st.executeQuery(sql);
-%>
+		Helper helper = new Helper();
+		String sql = "SELECT * FROM dept WHERE mc_id=" + myId;
+		Connection con = null;
+		con = database.getConnection();
+		Statement st = null;
+		st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -80,10 +80,16 @@ rs = st.executeQuery(sql);
 
 						<!-- Content Column -->
 						<div class="col-sm-12">
-							<div class="text-center">Departments</div>
-							<a href="addDept.jsp" class="btn btn-primary"> <span
-								class="fa fa-plus-circle"></span> Add Department
-							</a> <br /> <br />
+							<div class="text-center">
+								<h3 class="text-info">Departments</h3><br />
+								<a href="addDept.jsp" class="btn btn-primary"> <span
+									class="fa fa-plus-circle"></span> Dept.
+								</a>
+								<a href="addDeptHead.jsp" class="btn btn-primary"> <span
+									class="fa fa-plus-circle"></span> Dept. Head
+								</a>
+							</div><br />
+							
 							<table class="table table-hover table-responsive-lg">
 								<tr class="table-warning">
 									<th>Sl.No</th>
@@ -92,25 +98,25 @@ rs = st.executeQuery(sql);
 									<th>Operations</th>
 								</tr>
 								<%
-							int i=1;
-							while(rs.next()) {
-							%>
+									int i = 1;
+									while (rs.next()) {
+								%>
 								<tr>
-									<td><%=i %></td>
-									<td><%=helper.getNameById(rs.getInt(4)) %></td>
-									<td><%=rs.getString(2) %></td>
-									<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>"
+									<td><%=i%></td>
+									<td><%=helper.getNameById(rs.getInt(4))%></td>
+									<td><%=rs.getString(2)%></td>
+									<td><a href="editDept.jsp?id=<%=rs.getInt(1)%>"
 										class="btn btn-primary btn-sm"> <span
 											class="fa fa-pencil-alt"></span>
-									</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1) %>"
+									</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1)%>"
 										class="btn btn-danger btn-sm" onclick="return confirmDel();">
 											<span class="fa fa-trash-alt"></span>
 									</a></td>
 								</tr>
 								<%
-							i++;
-							}
-							%>
+									i++;
+									}
+								%>
 
 							</table>
 						</div>
@@ -183,15 +189,14 @@ rs = st.executeQuery(sql);
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
-	function confirmDel()
-	{
-	    var r = confirm("Are you sure you want to Delete? !");
-	    if (r == true) {
-	        return true;
-	    } else {
-	        return false;
-	    }
-	}
+		function confirmDel() {
+			var r = confirm("Are you sure you want to Delete? !");
+			if (r == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	</script>
 </body>
 

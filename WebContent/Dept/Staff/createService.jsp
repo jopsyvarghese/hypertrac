@@ -95,6 +95,8 @@
 								String website = "";
 								int buzzType = 0;
 								String docName = "";
+								String countryCode = "";
+								String countryCode2 = "";
 								int majorClient = 0;
 								int subDept = 0;
 								FileItemFactory factory = new DiskFileItemFactory();
@@ -122,6 +124,16 @@
 												break;
 											case "addr" :
 												addr = item.getString();
+												break;
+											case "countryCode":
+												if (item.getString() != "") {
+													countryCode = item.getString();
+												}
+												break;
+											case "countryCode2":
+												if (item.getString() != "") {
+													countryCode2 = item.getString();
+												}
 												break;
 											case "phone" :
 												phone = item.getString();
@@ -205,8 +217,8 @@
 										ps2.setInt(1, lastInsertedId);
 										ps2.setString(2, contractorName);
 										ps2.setString(3, addr);
-										ps2.setLong(4, Long.parseLong(phone));
-										ps2.setLong(5, Long.parseLong(phone2));
+										ps2.setLong(4, Long.parseLong(countryCode+phone));
+										ps2.setLong(5, Long.parseLong(countryCode2+phone2));
 										ps2.setString(6, email);
 										ps2.setString(7, website);
 										ps2.setInt(8, buzzType);

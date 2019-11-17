@@ -86,7 +86,7 @@
 										if (userRole == 0) {
 									%>
 									<tr>
-										<td>RC Number</td>
+										<td>RC No.</td>
 										<td><input type="text" class="form-control" name="rc"
 											value="<%=rc%>" readonly="readonly" /></td>
 									</tr>
@@ -98,14 +98,19 @@
 										<td><textarea class="form-control" name="addr"></textarea></td>
 									</tr>
 									<tr>
-										<td>Telephone No.</td>
+										<td>Telephone</td>
 										<td><input type="number" class="form-control"
-											name="phone" required="required" /></td>
+											name="countryCode" required="required" style="width:30%;float:left;" placeholder="ISD Code"/>
+											<input type="number" class="form-control"
+											name="phone" required="required" style="width:70%"/>
+											</td>
 									</tr>
 									<tr>
-										<td>Telephone No.</td>
+										<td>Telephone</td>
 										<td><input type="number" class="form-control"
-											name="phone2" placeholder="<%=phone2%>" /></td>
+											name="countryCode2" style="width:30%;float:left;" placeholder="ISD Code"/>
+											<input type="number" class="form-control"
+											name="phone2" placeholder="<%=phone2%>" style="width:70%"/></td>
 									</tr>
 									<tr>
 										<td>Email-id</td>
@@ -163,7 +168,7 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td>Sub-Department</td>
+										<td>Sub-Department (Optional)</td>
 										<td><select name="subDept" class="form-control">
 												<option value="0">Select Sub-Department</option>
 												<optgroup label="" id="subCatData"></optgroup>

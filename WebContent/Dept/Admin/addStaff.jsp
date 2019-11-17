@@ -50,6 +50,26 @@
 		String sql = "SELECT id, dname FROM dept";
 		ResultSet rs = st.executeQuery(sql);
 		ResultSet rs1 = helper.getAllPositions();
+		
+		String firstName = "";
+		String lastName = "";
+		String userName = "";
+		String email = "";
+		int status = 0;
+		String pwd = "";
+		String phone = "";
+		
+		if (request.getParameter("firstName") != null && request.getParameter("firstName") != "") {
+			firstName = request.getParameter("firstName");
+			lastName = request.getParameter("lastName");
+			userName = request.getParameter("userName");
+			email = request.getParameter("email");
+			pwd = request.getParameter("pwd");
+			status = 1;
+			phone = request.getParameter("phone");
+		}
+		
+		
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -95,24 +115,35 @@
 								<h3 class="text-info">Staff Registration</h3>
 								<br />
 							</div>
-
+							
+							<%
+						if(status > 0) {
+					%>
+					<div class="alert alert-danger alert-dismissible fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Sorry! Email ID Already Taken</strong> Please type another one
+					</div>
+					<%
+						}
+					%>
+							
 							<form action="addStaff_2.jsp" method="post"
 								onsubmit="return passwordCheck()">
 								<table class="table">
 									<tr>
 										<th>First Name</th>
 										<td><input type="text" name="firstName"
-											class="form-control" /></td>
+											class="form-control" value="<%=firstName%>"/></td>
 									</tr>
 									<tr>
 										<th>Last Name</th>
 										<td><input type="text" name="lastName"
-											class="form-control" /></td>
+											class="form-control" value="<%=lastName%>"/></td>
 									</tr>
 									<tr>
 										<th>User Name</th>
 										<td><input type="text" name="userName"
-											class="form-control" /></td>
+											class="form-control" value="<%=userName%>"/></td>
 									</tr>
 									<tr>
 										<th>Department</th>
@@ -153,7 +184,7 @@
 									</tr>
 									<tr>
 										<th>Email</th>
-										<td><input type="email" name="email" class="form-control" />
+										<td><input type="email" name="email" class="form-control" value="<%=email%>"/>
 										</td>
 									</tr>
 									<tr>
@@ -164,12 +195,12 @@
 									<tr>
 										<th>Password</th>
 										<td><input type="password" name="pwd" id="pwd"
-											class="form-control" /></td>
+											class="form-control" value="<%=pwd%>"/></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" name="cpwd" id="cpwd"
-											class="form-control" /></td>
+											class="form-control" value="<%=pwd%>"/></td>
 									</tr>
 									<tr>
 										<th colspan="2" class="text-center">

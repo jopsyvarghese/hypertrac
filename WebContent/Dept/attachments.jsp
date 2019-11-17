@@ -45,6 +45,7 @@
 							<div class="col-lg-12 text-center">
 								<h3 class="text-info">Attachments List</h3>
 								<%
+									Helper helper = new Helper();
 									Connection con = database.getConnection();
 									String idStr = request.getParameter("id");
 									int id = 0;

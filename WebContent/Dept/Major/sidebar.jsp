@@ -25,7 +25,9 @@
 	<li class="nav-item"><a class="nav-link" href="dept.jsp"> <i
 			class="fas fa-newspaper"></i> <span>Departments</span>
 	</a></li>
-
+	<li class="nav-item"><a class="nav-link" href="subDeptMain.jsp"> <i
+			class="fa fa-columns"></i> <span>Sub Department</span>
+	</a></li>
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link" href="appStatus.jsp">
 			<i class="fas fa-truck-loading"></i> <span>Application Status</span>
@@ -39,19 +41,18 @@
 	<li class="nav-item"><a class="nav-link" href="manageStaff.jsp">
 			<i class="fas fa-fw fa-user"></i> <span>Manage Staff</span>
 	</a></li>
-	
+
 	<li class="nav-item"><a class="nav-link" href="manageRoles.jsp">
 			<i class="fas fa-fw fa-user"></i> <span>Manage Roles</span>
 	</a></li>
-	
+
 	<!-- Nav Item - Charts -->
 	<li class="nav-item"><a class="nav-link" href="history.jsp"> <i
 			class="fas fa-fw fa-history"></i> <span>View History</span></a></li>
 
 	<!-- Nav Item - Charts -->
-	<li class="nav-item"><a class="nav-link"
-		href="chat.jsp"> <i class="fas fa-fw fa-comment"></i>
-			<span>Chat</span></a></li>
+	<li class="nav-item"><a class="nav-link" href="chat.jsp"> <i
+			class="fas fa-fw fa-comment"></i> <span>Chat</span></a></li>
 
 	<!-- Nav Item - Tables -->
 	<li class="nav-item"><a class="nav-link"

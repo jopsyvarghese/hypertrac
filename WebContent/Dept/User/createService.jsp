@@ -103,6 +103,8 @@
 									int majorClient = 0;
 									int subDept = 0;
 									int dept = 0;
+									String countryCode = "";
+									String countryCode2 = "";
 									FileItemFactory factory = new DiskFileItemFactory();
 									ServletFileUpload upload = new ServletFileUpload(factory);
 									String[] savedFileName = new String[10];
@@ -128,6 +130,16 @@
 												break;
 											case "addr":
 												addr = item.getString();
+												break;
+											case "countryCode":
+												if (item.getString() != "") {
+													countryCode = item.getString();
+												}
+												break;
+											case "countryCode2":
+												if (item.getString() != "") {
+													countryCode2 = item.getString();
+												}
 												break;
 											case "phone":
 												phone = item.getString();
@@ -214,8 +226,8 @@
 											ps2.setInt(1, lastInsertedId);
 											ps2.setString(2, contractorName);
 											ps2.setString(3, addr);
-											ps2.setLong(4, Long.parseLong(phone));
-											ps2.setLong(5, Long.parseLong(phone2));
+											ps2.setLong(4, Long.parseLong(countryCode+phone));
+											ps2.setLong(5, Long.parseLong(countryCode2+phone2));
 											ps2.setString(6, email);
 											ps2.setString(7, website);
 											ps2.setInt(8, buzzType);
@@ -239,8 +251,9 @@
 													}
 													// Adding Notification & Realtime Info
 													int deptHead = helper.getDeptHeadById(dept);
-													
-													String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, staff_read, mc_id, mc_read, admin_id, admin_read) VALUES("+lastInsertedId+", "+deptHead+", 0, "+majorClient+", 0, 4, 0)";
+
+													String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, staff_read, mc_id, mc_read, admin_id, admin_read) VALUES("
+															+ lastInsertedId + ", " + deptHead + ", 0, " + majorClient + ", 0, 4, 0)";
 													Statement st4 = con.createStatement();
 													st4.executeUpdate(sql4);
 												}

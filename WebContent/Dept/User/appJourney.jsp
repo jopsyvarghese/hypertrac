@@ -68,7 +68,7 @@ appId = Integer.parseInt(request.getParameter("id"));
 					</small>
 
 					<div class="text-center">
-						<a href="../attachments.jsp?id=<%=helper.encrypt(""+appId) %>"
+						<a href="../attachments.jsp?id=<%=appId %>"
 							class="text-primary" target="_blank"><strong>View
 								Attachment <span class="fa fa-paperclip"></span>
 						</strong></a><br /> <br />

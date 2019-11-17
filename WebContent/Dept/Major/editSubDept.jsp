@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.sun.java.swing.plaf.motif.resources.motif"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <html lang="en">
 
@@ -14,7 +14,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>HyperTrac Application Status</title>
+
+<title>HyperTrac</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -29,7 +30,35 @@
 </head>
 
 <body id="page-top">
+	<%
+Connection con = null;
+ResultSet rs = null;		
+PreparedStatement ps = null;		
+Helper helper = new Helper();
+int id = 0;
+try {
+	id = Integer.parseInt(request.getParameter("id"));	
+} catch(Exception e) {
+	e.printStackTrace();
+}
+if(id == 0) {
+	throw new Exception("Invalid Data Provided");
+}
 
+int myId = 0;
+try {
+	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+} catch (NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
+
+	String sql = "SELECT * FROM dept_sub WHERE id=?";
+	con = database.getConnection();
+	ps = con.prepareStatement(sql);
+	ps.setInt(1, id);
+	rs = ps.executeQuery();
+	ResultSet rsDept = helper.getDeptByMcId(myId);
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -60,66 +89,46 @@
 						</div>
 					</div>
 
-					<!-- Content Row -->
-					<div class="row">
+					<small class="pull-left"> <a href="dept.jsp"><i
+							class="fa fa-arrow-left" aria-hidden="true"></i></a>
+					</small>
 
-						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
-						<div class="col-lg-6 mb-4">
-							<%
-								try {
-									Connection con = database.getConnection();
-									int id = Integer.parseInt(request.getParameter("id"));
-									String firstName = request.getParameter("firstName");
-									String userName = request.getParameter("userName");
-									String email = request.getParameter("email");
-									Long phone = Long.parseLong(request.getParameter("phone"));
-									String pwd = request.getParameter("pwd");
-
-									int dept = Integer.parseInt(request.getParameter("dept"));
-									int position = Integer.parseInt(request.getParameter("position"));
-
-									//Check email or uname exists already
-									String isExistQry = "SELECT fname FROM auth WHERE (email=? OR uname=?) AND NOT id=?";
-									PreparedStatement psExist = con.prepareStatement(isExistQry);
-									psExist.setString(1, email);
-									psExist.setString(2, userName);
-									psExist.setInt(3, id);
-									System.out.println(psExist);
-									ResultSet rsExist = psExist.executeQuery();
-									if (rsExist.next()) {
-										RequestDispatcher rd = request.getRequestDispatcher("editStaff.jsp");
-										request.setAttribute("status", 1);
-										rd.forward(request, response);
-									} else {
-										String sql = "UPDATE auth SET fname=?,uname=?,pwd=?,email=?,mob=? WHERE id=?";
-
-										PreparedStatement ps = con.prepareStatement(sql);
-										ps.setString(1, firstName);
-										ps.setString(2, userName);
-										ps.setString(3, pwd);
-										ps.setString(4, email);
-										ps.setLong(5, phone);
-										ps.setInt(6, id);
-										if (ps.executeUpdate() > 0) {
-											String sql2 = "UPDATE staff SET dept=?, position=? WHERE id=?";
-											PreparedStatement ps2 = con.prepareStatement(sql2);
-											ps2.setInt(1, dept);
-											ps2.setInt(2, position);
-											ps2.setInt(3, id);
-											if (ps2.executeUpdate() > 0) {
-												response.sendRedirect("staffs.jsp?status=success");
-											} else {
-												response.sendRedirect("staffs.jsp?status=failed");
-											}
-										}
-									}
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
+					<div class="text-center">
+						<h3 class="text-info">Edit Departments </h3>
+						<form action="editSubDept_2.jsp" method="post">
+							<table class="table table-hover table-responsive-lg">
+								<input type="hidden" name="id" value="<%=id %>" />
+								<%
+								while(rs.next()) {
+									ResultSet rs2 = helper.getMajorClients();
 							%>
-						</div>
-						<div class="col-lg-3 mb-4"></div>
+							<input type="hidden" name="client" value="<%=myId %>" />											
+								<tr>
+									<th>Department</th>
+									<td><select name="dept" class="form-control">
+											<%
+												while (rsDept.next()) {
+											%>
+											<option value="<%=rsDept.getInt(1)%>"><%=rsDept.getString(2)%></option>
+											<%
+												}
+											%>
+									</select></td>
+								</tr>
+								<tr>
+									<th>Sub Department Name</th>
+									<td><input type="text" name="subDept"
+										class="form-control" value="<%=rs.getString(3) %>" /></td>
+								</tr>
+								<%
+								}
+								%>
+							</table>
+							<br />
+							<button type="submit" class="btn btn-primary">
+								<span class="fa fa-pencil-alt"></span> &nbsp;Edit
+							</button>
+						</form>
 					</div>
 
 				</div>
@@ -166,7 +175,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
+					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -188,7 +197,12 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+<script>
+function loadDepartment() {
+  var x = document.getElementById("client").value;
+  $("#department").load("../loadDept.jsp?id="+x);
+}
+</script>
 </body>
 
 </html>

@@ -61,6 +61,10 @@
 	<li class="nav-item"><a class="nav-link" href="invitation.jsp">
 			<i class="fas fa-fw fa-handshake"></i> <span>Invitation</span>
 	</a></li>
+	
+	<li class="nav-item"><a class="nav-link" href="businessType.jsp">
+			<i class="fas fa-fw fa-handshake"></i> <span>Type Of Business</span>
+	</a></li>
 
 	<!-- Nav Item - Tables -->
 	<li class="nav-item"><a class="nav-link" href="mail.jsp"> <i

@@ -113,12 +113,14 @@
 									}
 
 									for (int object : rowValues) {
-										String sql = "SELECT id FROM applications WHERE dept=" + object;
+										String sql = "SELECT id,app_by FROM applications WHERE dept=" + object;
 										ResultSet rs1 = null;
 										Statement st1 = con.createStatement();
 										rs1 = st1.executeQuery(sql);
+										String cName = "";
 										while (rs1.next()) {
 											appId = rs1.getInt(1);
+											cName = helper.getNameById(rs1.getInt(2));
 								%>
 								<tr>
 									<td><%=i%></td>

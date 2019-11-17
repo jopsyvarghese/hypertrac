@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.hypertrac.dao.database"%>
 <html lang="en">
 
 <head>
@@ -11,7 +15,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>HyperTrac Application Status</title>
+
+<title>HyperTrac</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -26,7 +31,23 @@
 </head>
 
 <body id="page-top">
+	<%
+Connection con = null;
+PreparedStatement ps = null;
+ResultSet rs = null;		
+Helper helper = new Helper();
+int myId = 0;
+try {
+	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+} catch(NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
 
+if(myId == 0) {
+	throw new Exception("You are not logged In");
+}
+con = database.getConnection();
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -56,49 +77,20 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-
-					<!-- Content Row -->
-					<div class="row">
-
-						<!-- Content Column -->
-						<div class="col-lg-12 mb-4">
-							<small class="pull-left"> <a href="dept.jsp"><i
-									class="fa fa-arrow-left" aria-hidden="true"></i></a>
-							</small><br />
-							<div class="text-center">
-								<h3 class="text-info">Add New Departments </h3>
-								<form action="addDeptFinal.jsp" method="post">
-									<table class="table table-hover table-responsive-lg">
-										<%-- <tr>
-											<th>Department Head</th>
-											<td><select name="deptHead" class="form-control"
-												required>
-													<%
-														int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-														Helper helper = new Helper();
-														ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
-														for (int rowValues : arr) {
-													%>
-													<option value="<%=rowValues%>"><%=helper.getNameById(rowValues)%></option>
-													<%
-														}
-													%>
-											</select></td>
-										</tr> --%>
-										<tr>
-											<th>Department Name</th>
-											<td><input type="text" name="deptName"
-												class="form-control" required /></td>
-										</tr>
-									</table>
-									<br />
-									<button type="submit" class="btn btn-primary">
-										<span class="fa fa-plus-circle"></span> &nbsp;Add
-									</button>
-								</form>
-							</div>
-						</div>
-					</div>
+					<%
+					String subDept = request.getParameter("subDept");
+					String dept = request.getParameter("dept");
+					String sql = "INSERT INTO dept_sub(dept_id, sname) VALUES (?,?)";
+					ps = con.prepareStatement(sql);
+					ps.setString(1, dept);
+					ps.setString(2, subDept);
+					int i = ps.executeUpdate();
+					if(i > 0) {
+						response.sendRedirect("subDeptMain.jsp?status=success");
+					} else {
+						response.sendRedirect("subDeptMain.jsp?status=failed");
+					}
+					%>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -126,7 +118,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

@@ -114,9 +114,18 @@
 							</small>
 						</div>
 						<div class="col-lg-8 mb-4">
-							<div class="text-center">Edit Staff</div>
+							<h3 class="text-center">Edit Staff</h3>
 							<%
-								String sql = "SELECT * FROM auth WHERE id=?";
+							if (request.getAttribute("status") != null) {
+							%>
+							<div class="alert alert-danger alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Sorry! You Cannot Use this User name /Email ID</strong> Please type
+								another one
+							</div>
+							<%
+							}
+							String sql = "SELECT * FROM auth WHERE id=?";
 								String sql2 = "SELECT * FROM staff WHERE id=?";
 								String sql3 = "SELECT id, dname FROM dept";
 								ResultSet rs3 = null;

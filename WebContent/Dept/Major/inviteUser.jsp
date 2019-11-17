@@ -200,7 +200,6 @@
 											psInv.setString(3, message);
 											psInv.setInt(4, 1);
 											psInv.setInt(5, id);
-											out.println(psInv);
 											int j = psInv.executeUpdate();
 											if (j > 0) {
 												out.println(

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
@@ -11,7 +11,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>HyperTrac Application Status</title>
+
+<title>HyperTrac</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -26,7 +27,17 @@
 </head>
 
 <body id="page-top">
-
+	<%
+		Helper helper = new Helper();
+		ResultSet rs = null;
+		int id = 0;
+		if(request.getParameter("id") != null) {
+			id = Integer.parseInt(request.getParameter("id"));	
+		} else {
+			out.println("No ID supplied");
+		}		
+		rs = helper.getAllBuzzTypeById(id);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -57,47 +68,23 @@
 						</div>
 					</div>
 
-					<!-- Content Row -->
-					<div class="row">
-
-						<!-- Content Column -->
-						<div class="col-lg-12 mb-4">
-							<small class="pull-left"> <a href="dept.jsp"><i
-									class="fa fa-arrow-left" aria-hidden="true"></i></a>
-							</small><br />
-							<div class="text-center">
-								<h3 class="text-info">Add New Departments </h3>
-								<form action="addDeptFinal.jsp" method="post">
-									<table class="table table-hover table-responsive-lg">
-										<%-- <tr>
-											<th>Department Head</th>
-											<td><select name="deptHead" class="form-control"
-												required>
-													<%
-														int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-														Helper helper = new Helper();
-														ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
-														for (int rowValues : arr) {
-													%>
-													<option value="<%=rowValues%>"><%=helper.getNameById(rowValues)%></option>
-													<%
-														}
-													%>
-											</select></td>
-										</tr> --%>
-										<tr>
-											<th>Department Name</th>
-											<td><input type="text" name="deptName"
-												class="form-control" required /></td>
-										</tr>
-									</table>
-									<br />
-									<button type="submit" class="btn btn-primary">
-										<span class="fa fa-plus-circle"></span> &nbsp;Add
-									</button>
-								</form>
-							</div>
-						</div>
+					<div class="text-center">
+						<h3 class="text-info">Business Type</h3>
+						<br />
+						<%
+							if (rs.next()) {
+						%>
+						<form action="updateBusinessType.jsp" method="post">
+							<input type="hidden" name="id" value="<%=rs.getInt(1) %>" />
+							<input type="text" name="buzzName" value="<%=rs.getString(2)%>"
+								class="form-control" style="width: 80%; float: left;" /> <input
+								type="submit" class="btn btn-primary" value="Update" />
+						</form>
+						<%
+							} else {
+								out.println("<h4 class='text-danger'>Invalid Details Supplied</h4>");
+							}
+						%>
 					</div>
 
 				</div>
@@ -126,7 +113,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

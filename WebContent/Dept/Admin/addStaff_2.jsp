@@ -84,7 +84,7 @@ try {
 						ResultSet rs = null;
 						String firstname = request.getParameter("firstName");
 						String lastname = request.getParameter("lastName");
-						int random = (int)(Math.random() * 50000 + 1);
+						int random = (int)(Math.random() * 5000 + 1);
 						String username = request.getParameter("userName")+random;
 						int dept = Integer.parseInt(request.getParameter("dept"));
 						int subDept = Integer.parseInt(request.getParameter("subDept"));
@@ -93,6 +93,16 @@ try {
 						Long phone =  Long.parseLong(request.getParameter("phone"));
 						String pwd =  request.getParameter("pwd");					
 						con = database.getConnection();
+						
+						//Check username or email exists
+						String checkQry = "SELECT id FROM auth WHERE email=?";
+						PreparedStatement psQry = con.prepareStatement(checkQry);
+						psQry.setString(1, email);
+						ResultSet rsQry = psQry.executeQuery();
+						if (rsQry.next()) {
+							RequestDispatcher rd = request.getRequestDispatcher("addStaff.jsp");
+							rd.forward(request, response);	
+						}
 						
 						String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by)" +
 						"VALUES(?,?,?,?,?,?,?,?,?,?,?)";

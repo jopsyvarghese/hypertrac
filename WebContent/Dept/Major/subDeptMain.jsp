@@ -1,7 +1,7 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.sun.java.swing.plaf.motif.resources.motif"%>
-<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.dao.database"%>
 <%@page import="java.sql.Connection"%>
 <html lang="en">
@@ -14,7 +14,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>HyperTrac Application Status</title>
+
+<title>HyperTrac</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -29,7 +30,30 @@
 </head>
 
 <body id="page-top">
+	<%
+Connection con = null;
+Statement st = null;
+ResultSet rs = null;		
+Helper helper = new Helper();
+int myId = 0;
+try {
+	if(session.getAttribute("loggedInUserId") == null) {%>
+		<script>window.location="../../logout.jsp"</script>
+	<% } else {
+		myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
+	}
+} catch(NumberFormatException ne) {
+	response.sendRedirect("../../logout.jsp");
+}
 
+if(myId > 0) {
+	String sql = "SELECT * FROM dept_sub";
+	con = database.getConnection();
+	st = con.createStatement();
+	rs = st.executeQuery(sql);	
+}
+
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -59,67 +83,44 @@
 							<img src="../../img/logo.png" style="width: 150px; height: 40px;" />
 						</div>
 					</div>
-
-					<!-- Content Row -->
-					<div class="row">
-
-						<!-- Content Column -->
-						<div class="col-lg-3 mb-4"></div>
-						<div class="col-lg-6 mb-4">
-							<%
-								try {
-									Connection con = database.getConnection();
-									int id = Integer.parseInt(request.getParameter("id"));
-									String firstName = request.getParameter("firstName");
-									String userName = request.getParameter("userName");
-									String email = request.getParameter("email");
-									Long phone = Long.parseLong(request.getParameter("phone"));
-									String pwd = request.getParameter("pwd");
-
-									int dept = Integer.parseInt(request.getParameter("dept"));
-									int position = Integer.parseInt(request.getParameter("position"));
-
-									//Check email or uname exists already
-									String isExistQry = "SELECT fname FROM auth WHERE (email=? OR uname=?) AND NOT id=?";
-									PreparedStatement psExist = con.prepareStatement(isExistQry);
-									psExist.setString(1, email);
-									psExist.setString(2, userName);
-									psExist.setInt(3, id);
-									System.out.println(psExist);
-									ResultSet rsExist = psExist.executeQuery();
-									if (rsExist.next()) {
-										RequestDispatcher rd = request.getRequestDispatcher("editStaff.jsp");
-										request.setAttribute("status", 1);
-										rd.forward(request, response);
-									} else {
-										String sql = "UPDATE auth SET fname=?,uname=?,pwd=?,email=?,mob=? WHERE id=?";
-
-										PreparedStatement ps = con.prepareStatement(sql);
-										ps.setString(1, firstName);
-										ps.setString(2, userName);
-										ps.setString(3, pwd);
-										ps.setString(4, email);
-										ps.setLong(5, phone);
-										ps.setInt(6, id);
-										if (ps.executeUpdate() > 0) {
-											String sql2 = "UPDATE staff SET dept=?, position=? WHERE id=?";
-											PreparedStatement ps2 = con.prepareStatement(sql2);
-											ps2.setInt(1, dept);
-											ps2.setInt(2, position);
-											ps2.setInt(3, id);
-											if (ps2.executeUpdate() > 0) {
-												response.sendRedirect("staffs.jsp?status=success");
-											} else {
-												response.sendRedirect("staffs.jsp?status=failed");
-											}
-										}
-									}
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							%>
+					<div class="col-sm-12">
+						<div class="text-center">
+							<h3 class="text-info">Sub Departments</h3>
+							<br />
 						</div>
-						<div class="col-lg-3 mb-4"></div>
+						<a href="addSubDept.jsp" class="btn btn-primary"> <span
+							class="fa fa-plus-circle"></span> Add Sub Department
+						</a> <br /> <br />
+						<table class="table table-hover table-responsive-lg">
+							<tr class="table-warning">
+								<th>Sl.No</th>
+								<th>Dept. Name</th>
+								<th>Sub Dept. Name</th>
+								<th>Major Clients</th>
+								<th>Action</th>
+							</tr>
+							<%
+							int i = 1;
+							while(rs.next()) {
+							%>
+							<tr>
+								<td><%=i %></td>
+								<td><%=helper.getDeptById(rs.getInt(2)) %></td>
+								<td><%=rs.getString(3) %></td>
+								<td><%=helper.getMajorClientByDeptId(rs.getInt(2)) %></td>
+								<td><a href="editSubDept.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-primary btn-sm"> <span
+										class="fa fa-pencil-alt"></span>
+								</a> &nbsp;&nbsp; <a href="deleteSubDept.jsp?id=<%=rs.getInt(1) %>"
+									class="btn btn-danger btn-sm" onclick="return confirmDel();">
+										<span class="fa fa-trash-alt"></span>
+								</a></td>
+							</tr>
+							<%
+								i++; }
+							%>
+
+						</table>
 					</div>
 
 				</div>
@@ -127,7 +128,9 @@
 
 			</div>
 			<!-- End of Main Content -->
-
+			<%
+con.close();
+%>
 			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
@@ -166,7 +169,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
+					<a class="btn btn-primary" href="../../logout.jsp">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -188,7 +191,7 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script src="../js/common/common.js"></script>
 </body>
 
 </html>

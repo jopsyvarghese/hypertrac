@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.hypertrac.commons.Helper"%>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
 <html lang="en">
 
 <head>
@@ -61,43 +62,33 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-12 mb-4">
-							<small class="pull-left"> <a href="dept.jsp"><i
-									class="fa fa-arrow-left" aria-hidden="true"></i></a>
-							</small><br />
-							<div class="text-center">
-								<h3 class="text-info">Add New Departments </h3>
-								<form action="addDeptFinal.jsp" method="post">
-									<table class="table table-hover table-responsive-lg">
-										<%-- <tr>
-											<th>Department Head</th>
-											<td><select name="deptHead" class="form-control"
-												required>
-													<%
-														int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-														Helper helper = new Helper();
-														ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
-														for (int rowValues : arr) {
-													%>
-													<option value="<%=rowValues%>"><%=helper.getNameById(rowValues)%></option>
-													<%
-														}
-													%>
-											</select></td>
-										</tr> --%>
-										<tr>
-											<th>Department Name</th>
-											<td><input type="text" name="deptName"
-												class="form-control" required /></td>
-										</tr>
-									</table>
-									<br />
-									<button type="submit" class="btn btn-primary">
-										<span class="fa fa-plus-circle"></span> &nbsp;Add
-									</button>
-								</form>
-							</div>
+						<div class="col-lg-3 mb-4"></div>
+						<div class="col-lg-6 mb-4">
+							<%
+						Connection con = null;
+						con = database.getConnection();
+						int deptHead = Integer.parseInt(request.getParameter("deptHead"));
+						int dept = Integer.parseInt(request.getParameter("dept"));
+						int myId = 0;
+						myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+						if(!(myId > 0)) {
+							throw new Exception("You are not logged In");
+						}
+						String sql = "UPDATE dept SET dept_head=? WHERE id=?";
+						PreparedStatement ps = con.prepareStatement(sql);
+						ps.setInt(1, deptHead);
+						ps.setInt(2, dept);
+						
+						if(ps.executeUpdate() > 0) {
+							response.sendRedirect("dept.jsp?status=success");
+						} else {
+							response.sendRedirect("dept.jsp?status=failed");
+						}
+						%>
+
+
 						</div>
+						<div class="col-lg-3 mb-4"></div>
 					</div>
 
 				</div>

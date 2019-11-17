@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
@@ -11,7 +11,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>HyperTrac Application Status</title>
+
+<title>HyperTrac</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -26,7 +27,11 @@
 </head>
 
 <body id="page-top">
-
+	<%
+		Helper helper = new Helper();
+		ResultSet rs = null;
+		rs = helper.getAllBuzzTypes();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -57,47 +62,29 @@
 						</div>
 					</div>
 
-					<!-- Content Row -->
-					<div class="row">
-
-						<!-- Content Column -->
-						<div class="col-lg-12 mb-4">
-							<small class="pull-left"> <a href="dept.jsp"><i
-									class="fa fa-arrow-left" aria-hidden="true"></i></a>
-							</small><br />
-							<div class="text-center">
-								<h3 class="text-info">Add New Departments </h3>
-								<form action="addDeptFinal.jsp" method="post">
-									<table class="table table-hover table-responsive-lg">
-										<%-- <tr>
-											<th>Department Head</th>
-											<td><select name="deptHead" class="form-control"
-												required>
-													<%
-														int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-														Helper helper = new Helper();
-														ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
-														for (int rowValues : arr) {
-													%>
-													<option value="<%=rowValues%>"><%=helper.getNameById(rowValues)%></option>
-													<%
-														}
-													%>
-											</select></td>
-										</tr> --%>
-										<tr>
-											<th>Department Name</th>
-											<td><input type="text" name="deptName"
-												class="form-control" required /></td>
-										</tr>
-									</table>
-									<br />
-									<button type="submit" class="btn btn-primary">
-										<span class="fa fa-plus-circle"></span> &nbsp;Add
-									</button>
-								</form>
-							</div>
-						</div>
+					<div class="text-center">
+						<h3 class="text-info">Business Type</h3>
+						<br /> <a href="addBusinessType.jsp" class="btn btn-primary"><span
+							class="fa fa-plus-circle"></span> Business Type</a><br /> <br />
+						<table class="table table-hover">
+							<tr class="table-warning">
+								<th>Name</th>
+								<th>Operation</th>
+							</tr>
+							<%
+								while (rs.next()) {
+							%>
+							<tr>
+								<td><%=rs.getString(2)%></td>
+								<td><a href="editBusinessType.jsp?id=<%=rs.getInt(1)%>"
+									class="text-secondary"><span class="fa fa-pencil-alt"></span></a>&nbsp;&nbsp;&nbsp;
+									<a href="deleteBusinessType.jsp?id=<%=rs.getInt(1)%>"
+									class="text-danger" onclick="return confirmDel();"><span class="fa fa-trash"></span></a></td>
+							</tr>
+							<%
+								}
+							%>
+						</table>
 					</div>
 
 				</div>
@@ -127,7 +114,6 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -144,7 +130,16 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script>
+		function confirmDel() {
+			var r = confirm("Are you sure you want to Delete? !");
+			if (r == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
 </body>
 
 </html>

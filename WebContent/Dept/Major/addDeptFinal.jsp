@@ -67,7 +67,8 @@
 							<%
 						Connection con = null;
 						con = database.getConnection();
-						int deptHead = Integer.parseInt(request.getParameter("deptHead"));
+						//int deptHead = Integer.parseInt(request.getParameter("deptHead"));
+						int deptHead = 0;
 						String deptName = request.getParameter("deptName");
 						int myId = 0;
 						myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());

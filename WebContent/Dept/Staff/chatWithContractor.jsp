@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -25,7 +26,9 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -65,7 +68,7 @@
 							<div class="text-center">
 								<h3 class="text-info">Chat Now</h3>
 								<div style="padding: 15px 5px;">
-									<a class="btn btn-primary btn-sm" href="../chatRoom.jsp"
+									<a class="btn btn-primary btn-sm" href="../chatRoom.jsp?q=<%=helper.encrypt("1") %>"
 										target="_blank">Chat Room</a> <a
 										class="btn btn-primary btn-sm" href="chatWithUser.jsp">Chat
 										with Contractor</a> <a

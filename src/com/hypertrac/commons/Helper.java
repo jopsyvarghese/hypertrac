@@ -604,4 +604,20 @@ public class Helper {
 		}
 		return 0;
 	}
+	
+	public ResultSet getAllBuzzTypes() throws SQLException {
+		String sql = "SELECT * FROM business";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
+	
+	public ResultSet getAllBuzzTypeById(int id) throws SQLException {
+		String sql = "SELECT * FROM business WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
 }
