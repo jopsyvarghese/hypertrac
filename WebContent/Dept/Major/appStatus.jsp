@@ -101,7 +101,7 @@ try {
 	                            }
 	                            
 	                            for(int object:rowValues) {
-								String sql = "SELECT * FROM applications WHERE dept="+object;
+								String sql = "SELECT * FROM applications WHERE dept="+object+" ORDER BY id DESC";
 								ResultSet rs1 = null;
 								rs1 = st.executeQuery(sql);
 								while(rs1.next()) {

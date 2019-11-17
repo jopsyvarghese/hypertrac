@@ -124,7 +124,7 @@
 								%>
 								<tr>
 									<td><%=i%></td>
-									<td><a href="viewApplication.jsp?id=<%=appId%>"><%=appId%></a></td>
+									<td><a href="viewApplication.jsp?id=<%=appId%>"><%=cName %><small>&nbsp;&nbsp;&nbsp;( <%=appId%> )</small></a></td>
 									<%
 										String invitationQ = "SELECT * FROM invitation WHERE app_id=" + appId;
 												Statement st3 = con.createStatement();
