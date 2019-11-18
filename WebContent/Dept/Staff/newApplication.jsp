@@ -86,17 +86,17 @@
 									<tr>
 										<td>Telephone</td>
 										<td><input type="number" class="form-control"
-											name="countryCode" required="required" style="width:30%;float:left;" placeholder="ISD Code"/>
-											<input type="number" class="form-control"
-											name="phone" required="required" style="width:70%"/>
-											</td>
+											name="countryCode" required="required"
+											style="width: 30%; float: left;" placeholder="ISD Code" /> <input
+											type="number" class="form-control" name="phone"
+											required="required" style="width: 70%" /></td>
 									</tr>
 									<tr>
 										<td>Telephone</td>
 										<td><input type="number" class="form-control"
-											name="countryCode2" style="width:30%;float:left;" placeholder="ISD Code"/>
-											<input type="number" class="form-control"
-											name="phone2" style="width:70%"/></td>
+											name="countryCode2" style="width: 30%; float: left;"
+											placeholder="ISD Code" /> <input type="number"
+											class="form-control" name="phone2" style="width: 70%" /></td>
 									</tr>
 									<tr>
 										<td>Email-id</td>
@@ -127,7 +127,7 @@
 									<tr>
 										<td>Name of Major client(s)</td>
 										<td><select name="majorClient" class="form-control"
-											onchange="loadSub()" id="majorClient">
+											onchange="loadDept()" id="majorClient">
 												<option value="0">Select Major Client</option>
 												<%
 													while (majorClients.next()) {
@@ -139,7 +139,15 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td>Sub-Department (Optional)</td>
+										<td>Department</td>
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="loadSub()">
+												<option value="0">Select Department</option>
+												<optgroup label="" id="catData"></optgroup>
+										</select></td>
+									</tr>
+									<tr>
+										<td>Sub-Department(Optional)</td>
 										<td><select name="subDept" class="form-control">
 												<option value="0">Select Sub-Department</option>
 												<optgroup label="" id="subCatData"></optgroup>
@@ -201,9 +209,13 @@
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
+		function loadDept() {
+			var mcId = document.getElementById("majorClient").value;
+			$("#catData").load("../User/dept.jsp?mcId=" + mcId);
+		}
 		function loadSub() {
-			var deptId = document.getElementById("majorClient").value;
-			$("#subCatData").load("../User/subDept.jsp?dept=" + deptId);
+			var deptId = document.getElementById("dept").value;
+			$("#subCatData").load("../User/subDept.jsp?deptId=" + deptId);
 		}
 	</script>
 </body>

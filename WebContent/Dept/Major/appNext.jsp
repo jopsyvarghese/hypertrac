@@ -29,10 +29,20 @@
 
 <body id="page-top">
 	<%
-Helper helper = new Helper();
-Connection con = database.getConnection();
-ResultSet rs = helper.getDept();
-%>
+		Helper helper = new Helper();
+		Connection con = database.getConnection();
+		int myId = 0;
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			ne.printStackTrace();
+		}
+		if (myId == 0) {
+			response.sendRedirect("../../logout.jsp");
+		}
+
+		ResultSet rs = helper.getDeptByMcId(myId);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -80,7 +90,7 @@ ResultSet rs = helper.getDept();
 									%>
 									<tr>
 										<th>Application Name/No</th>
-										<td><%=appId %> <input type="hidden" name="id"
+										<td><%=appId%> <input type="hidden" name="id"
 											value="<%=id%>" /></td>
 									</tr>
 									<tr>
@@ -113,11 +123,13 @@ ResultSet rs = helper.getDept();
 										<th>Update Status</th>
 										<td><select name="status" class="form-control">
 												<%
-										String stat[] = helper.getAppStatus();
-										for (int k=0; k<stat.length; k++) {
-										%>
-												<option value="<%=k %>"><%=stat[k] %></option>
-												<% } %>
+													String stat[] = helper.getAppStatus();
+													for (int k = 0; k < stat.length; k++) {
+												%>
+												<option value="<%=k%>"><%=stat[k]%></option>
+												<%
+													}
+												%>
 										</select></td>
 									</tr>
 									<tr>
@@ -202,11 +214,11 @@ ResultSet rs = helper.getDept();
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
-	function getStaffsList() {
-		var dept = document.getElementById("dept").value;
-		$("#staffsList").load("../Staff/staffsList.jsp?dept=" + dept);
-	}
-</script>
+		function getStaffsList() {
+			var dept = document.getElementById("dept").value;
+			$("#staffsList").load("../Staff/staffsList.jsp?dept=" + dept);
+		}
+	</script>
 </body>
 
 </html>

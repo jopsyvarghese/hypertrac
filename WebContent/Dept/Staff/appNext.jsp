@@ -33,11 +33,22 @@
 	<%
 		Helper helper = new Helper();
 		Connection con = database.getConnection();
-		ResultSet rs = helper.getDept();
 		String appId = "";
 		String id = "";
 		id = request.getParameter("id");
 		appId = request.getParameter("appId");
+		int myId = 0;
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			ne.printStackTrace();
+		}
+		if (myId == 0) {
+			response.sendRedirect("../../logout.jsp");
+		}
+		int mcId = 0;
+		mcId = helper.getMcIdByStaffId(myId);
+		ResultSet rs = helper.getDeptByMcId(mcId);
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">

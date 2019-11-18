@@ -252,8 +252,8 @@
 													// Adding Notification & Realtime Info
 													int deptHead = helper.getDeptHeadById(dept);
 
-													String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, staff_read, mc_id, mc_read, admin_id, admin_read) VALUES("
-															+ lastInsertedId + ", " + deptHead + ", 0, " + majorClient + ", 0, 4, 0)";
+													String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, mc_id, admin_id) VALUES("
+															+ lastInsertedId + ", " + deptHead + "," + majorClient + ", 4)";
 													Statement st4 = con.createStatement();
 													st4.executeUpdate(sql4);
 												}

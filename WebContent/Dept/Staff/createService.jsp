@@ -99,6 +99,7 @@
 								String countryCode2 = "";
 								int majorClient = 0;
 								int subDept = 0;
+								int dept = 0;
 								FileItemFactory factory = new DiskFileItemFactory();
 								ServletFileUpload upload = new ServletFileUpload(factory);
 								String[] savedFileName = new String[10];
@@ -156,6 +157,9 @@
 											case "majorClient" :
 												majorClient = Integer.parseInt(item.getString());
 												break;
+											case "dept" :
+												dept = Integer.parseInt(item.getString());
+												break;
 											case "subDept" :
 												subDept = Integer.parseInt(item.getString());
 												break;
@@ -199,7 +203,7 @@
 										+ "VALUES(?,?,?,?,?,?,?)";
 								PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 								ps.setString(1, contractorName);
-								ps.setInt(2, majorClient);
+								ps.setInt(2, dept);
 								ps.setString(3, docName);
 								ps.setString(4, help.getLocalDateTime());
 								ps.setString(5, "15 Days");

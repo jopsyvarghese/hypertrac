@@ -93,16 +93,39 @@
 									<hr />
 									<%
 										String appQ = "SELECT * FROM applications WHERE id=" + id;
+										int deptId = 0;
 										ResultSet rsQ = null;
 										String pDate = "";
+										String submittedOn = "";
 										rsQ = st.executeQuery(appQ);
 										if (rsQ.next()) {
 											pDate = rsQ.getString(5);
+											deptId = rsQ.getInt(3);
+											submittedOn = rsQ.getString(5);
 										}
 										//Get All Changes of this application
 										String statQ = "SELECT * FROM applications_comment WHERE app_id=" + id;
 										ResultSet rs = null;
+										ResultSet rs2 = null;
 										rs = st.executeQuery(statQ);
+										rs2 = rs;
+										if (!rs2.next()) { %>
+										<div class="col-sm-2">
+										<small> <strong
+											class="rounded-pill bg-secondary text-white"
+											style="padding: 2px 4px;">
+											Open
+										</strong>
+										</small>
+									</div>
+									<div class="col-sm-8">
+										<small>Assigned To : <%=helper.getNameById(helper.getDeptHeadById(deptId)) %> (Dept. Head)</small>
+									</div>
+									<div class="col-sm-2">
+										<small><%=submittedOn %></small>
+									</div>	
+										<%
+										}										
 										while (rs.next()) {
 									%>
 

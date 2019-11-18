@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
 
 <head>
@@ -27,6 +28,9 @@
 <body id="page-top">
 <%
 session.setAttribute("reportGenerateDept", 1);
+Helper helper = new Helper();
+		
+	int loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 %>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -60,7 +64,9 @@ session.setAttribute("reportGenerateDept", 1);
 
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+						<h1 class="h3 mb-0 text-gray-800">Dashboard
+						<small class="text-info"><i> / <%=helper.getDeptNameByStaffId(loggedId) %> / <%=session.getAttribute("loggedInUserName").toString() %></i></small>
+						</h1>
 						<a href="../generateReport.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 					</div>
 

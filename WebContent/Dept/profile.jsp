@@ -107,28 +107,28 @@
 			response.sendRedirect("../logout.jsp");
 		}
 		String whose = "";
-		switch(userType) {
-		case 0:
-			whose = "Contractor";
-			break;
-		case 1:
-			whose = "Staff";
-			break;
-		case 2:
-			whose = "Client";
-			break;
-		case 3:
-			whose = "Admin";
-			break;
-		case 4:
-			whose = "User";
-			break;
-		default:
-			response.sendRedirect("../logout.jsp");
-			break;
-				
+		switch (userType) {
+			case 0 :
+				whose = "Contractor";
+				break;
+			case 1 :
+				whose = "Staff";
+				break;
+			case 2 :
+				whose = "Client";
+				break;
+			case 3 :
+				whose = "Admin";
+				break;
+			case 4 :
+				whose = "User";
+				break;
+			default :
+				response.sendRedirect("../logout.jsp");
+				break;
+
 		}
-		
+
 		String imgName = "";
 		String imgQry = "SELECT pro_pic FROM auth WHERE id=?";
 		PreparedStatement pImg = con.prepareStatement(imgQry);
@@ -167,7 +167,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="<%=redirect %>">
+				href="<%=redirect%>">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<small><i class="fas fa-walking"></i></small>
 				</div>
@@ -252,14 +252,27 @@
 						<form action="updateProfile.jsp" method="post">
 							<table>
 								<tr>
-									<td>Company Name</td>
+									<td><%=whose%> Name</td>
 									<td><input type="text" name="fname" value="<%=cname%>"
-										class="form-control" />
-										<input type="hidden" name="redirectHeader" value="<%=redirectHeader %>" />
-										</td>
+										class="form-control" /> <input type="hidden"
+										name="redirectHeader" value="<%=redirectHeader%>" /></td>
 								</tr>
+								<%
+									if (q == 1) {
+								%>
 								<tr>
-									<td>Company Address</td>
+									<td>Department</td>
+									<td><input type="text" name="dept" value="<%=helper.getDeptNameByStaffId(myId) %>"
+										class="form-control" readonly/>
+									</td>
+								</tr>
+								<%
+									}
+								%>
+
+
+								<tr>
+									<td>Address</td>
 									<td><textarea name="addr" class="form-control"><%=addr%></textarea>
 									</td>
 								</tr>
@@ -290,17 +303,19 @@
 					<div class="col-sm-4 propic" style="min-height: 200px;">
 						<form action="changePic.jsp" method="post"
 							enctype="multipart/form-data">
-							<input type="hidden" name="redirectHeader" value="<%=redirectHeader %>" />
+							<input type="hidden" name="redirectHeader"
+								value="<%=redirectHeader%>" />
 							<!-- Profile Pic -->
 							<div class="container">
 								<img src="<%=imgUrl%>" alt="Profile Pic"
-									class="image rounded-circle" style="width: 100%" id="blah" src="#">
+									class="image rounded-circle" style="width: 100%" id="blah"
+									src="#">
 								<div class="middle">
 									<div class="text">
 
 										<label class="btn btn-sm btn-info"><span
-											class="fas fa-upload"></span><input type="file" name="file" id="imgInp"
-											hidden> </label>
+											class="fas fa-upload"></span><input type="file" name="file"
+											id="imgInp" hidden> </label>
 										<button class="btn btn-sm btn-primary">
 											Upload <span class="fa fa-plus-circle"></span>
 										</button>
@@ -314,8 +329,8 @@
 					<div class="col-sm-4 card text-center">
 						<form action="changePassword.jsp" method="post"
 							onsubmit="return passwordCheck()">
-							<input type="hidden" name="redirectHeader" value="<%=redirectHeader %>" />
-							<br />
+							<input type="hidden" name="redirectHeader"
+								value="<%=redirectHeader%>" /> <br />
 							<h4 class="text text-info">Update Password</h4>
 							<table>
 								<tr>
@@ -412,22 +427,22 @@
 			}
 			return true;
 		}
-		
-		function readURL(input) {
-			  if (input.files && input.files[0]) {
-			    var reader = new FileReader();
-			    
-			    reader.onload = function(e) {
-			      $('#blah').attr('src', e.target.result);
-			    }
-			    
-			    reader.readAsDataURL(input.files[0]);
-			  }
-			}
 
-			$("#imgInp").change(function() {
-			  readURL(this);
-			});
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#blah').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp").change(function() {
+			readURL(this);
+		});
 	</script>
 </body>
 

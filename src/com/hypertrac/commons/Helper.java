@@ -620,4 +620,27 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		return rs;
 	}
+	
+	public int getMcIdByStaffId(int id) throws SQLException {
+		String sql = "SELECT mc_id FROM staff WHERE id="+id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+	
+	public String getDeptNameByStaffId(int id) throws SQLException {
+		String sql = "SELECT dname FROM dept WHERE id=(SELECT dept FROM staff WHERE id="+id+")";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
+	}
+	
 }

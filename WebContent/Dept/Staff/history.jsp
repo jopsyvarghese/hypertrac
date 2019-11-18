@@ -77,7 +77,7 @@
 								</tr>
 								<%
                            Constants consta = new Constants();
-                            String query = "SELECT * FROM applications";
+                            String query = "SELECT * FROM applications ORDER BY id DESC";
                             Connection con = database.getConnection();
                             Statement st = null;
                             ResultSet rs = null;

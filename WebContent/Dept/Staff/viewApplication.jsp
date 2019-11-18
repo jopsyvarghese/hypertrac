@@ -45,6 +45,18 @@
 			psNotification.executeUpdate();
 		}
 		
+		//For setting staff Unread
+		if (session.getAttribute("staffRead") != null && session.getAttribute("staffRead").toString() != "") {
+			String readQry = "UPDATE applications_realtime SET staff_read=0 WHERE app_id="+id;
+			Statement stQry = con.createStatement();
+			int i = stQry.executeUpdate(readQry);
+			if (i > 0) {
+				session.removeAttribute("staffRead");	
+			}
+		}
+		
+		
+		
 		ResultSet imgRs = helper.getImagesByFKey(id);
 		ResultSet imgRs1 = helper.getImagesByFKey(id);
 		File uploads = new File(getServletContext().getInitParameter("file-upload"));

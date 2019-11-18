@@ -172,22 +172,19 @@
 							Statement stCheck = con.createStatement();
 							ResultSet rsCheck = stCheck.executeQuery(checkQry);
 							if (rsCheck.next()) {
-								String sql4 = "UPDATE applications_realtime SET staff_id=?, staff_read=? WHERE app_id=?";
+								String sql4 = "UPDATE applications_realtime SET staff_id=? WHERE app_id=?";
 								PreparedStatement pst = con.prepareStatement(sql4);
 								pst.setInt(1, staffTo);
-								pst.setInt(2, 0);
-								pst.setInt(3, id);
+								pst.setInt(2, id);
 								pst.executeUpdate();
+								session.setAttribute("staffRead", "unread");
 							} else {
-								String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, staff_read, mc_id, mc_read, admin_id, admin_read) VALUES(?,?,?,?,?,?,?)";
+								String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, mc_id, admin_id) VALUES(?,?,?,?)";
 								PreparedStatement pst = con.prepareStatement(sql4);
 								pst.setInt(1,id);
 								pst.setInt(2, staffTo);
-								pst.setInt(3, 0);
-								pst.setInt(4, helper.getMcIdByDeptId(staffTo));
-								pst.setInt(5, 0);
-								pst.setInt(6, 4);
-								pst.setInt(7, 0);
+								pst.setInt(3, helper.getMcIdByDeptId(staffTo));
+								pst.setInt(4,4);
 								pst.executeUpdate();
 							}
 							
@@ -231,34 +228,7 @@
 							} else {
 								response.sendRedirect("viewApplication.jsp?id="+id+"&status=failed");
 							}	
-						}
-						
-							
-							
-										
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-							
-							
+						}	
 						%>
 					</div>
 				</div>

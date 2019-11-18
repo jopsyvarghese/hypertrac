@@ -22,6 +22,7 @@ if(myId > 0) {
 	String status = "failed";
 	if(count > 0) {
 		status = "success";
+		session.setAttribute("loggedInUserName", fname);
 	}
 	response.sendRedirect("profile.jsp?status="+status+"&q="+redirectHeader);
 } else { %>
