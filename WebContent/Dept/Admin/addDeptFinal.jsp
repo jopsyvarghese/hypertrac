@@ -79,7 +79,7 @@ con = database.getConnection();
 					</div>
 					<%
 					int client = Integer.parseInt(request.getParameter("client"));
-					int deptHead = Integer.parseInt(request.getParameter("deptHead"));
+					int deptHead = 0;
 					String deptName = request.getParameter("deptName");
 					String sql = "INSERT INTO dept(dname, mc_id, dept_head) VALUES (?,?,?)";
 					ps = con.prepareStatement(sql);

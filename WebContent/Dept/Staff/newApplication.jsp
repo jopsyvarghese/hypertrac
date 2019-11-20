@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.dao.database"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
@@ -27,10 +30,42 @@
 <body id="page-top">
 	<%
 		Helper helper = new Helper();
+		Connection con = database.getConnection();
 		int id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		String rc = helper.getRc(id);
+		int rc = 0;
 		ResultSet rs = helper.getBuzzType();
 		ResultSet majorClients = helper.getMajorClients();
+		int rcSearch = 0;
+		String contractorName = "";
+		String addr = "";
+		Long phone = 0L;
+		Long phone2 = 0L;
+		String website = "";
+		String email = "";
+		int userId = 0;
+
+		// Check RC Search for fetching user data
+		if (request.getParameter("rcSearch") != null && request.getParameter("rcSearch") != "") {
+			System.out.println("RC Search IS: " + request.getParameter("rcSearch") + " . . . ");
+			rcSearch = Integer.parseInt(request.getParameter("rcSearch"));
+			if (rcSearch > 0) {
+				rc = rcSearch;
+				userId = helper.getIdByRc(rc);
+				String rcQry = "SELECT company, comp_addr, phone, phone2, email, website FROM applications_more WHERE fk_id=(SELECT id FROM applications WHERE app_by=? ORDER BY id DESC limit 0,1) ORDER BY id DESC limit 0,1";
+				PreparedStatement psQ = con.prepareStatement(rcQry);
+				psQ.setInt(1, userId);
+				ResultSet rsQ = null;
+				rsQ = psQ.executeQuery();
+				while (rsQ.next()) {
+					contractorName = rsQ.getString(1);
+					addr = rsQ.getString(2);
+					phone = rsQ.getLong(3);
+					phone2 = rsQ.getLong(4);
+					email = rsQ.getString(5);
+					website = rsQ.getString(6);
+				}
+			}
+		}
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -63,8 +98,27 @@
 					</div>
 
 					<div class="text-center">
-						<h4>Apply For New Service</h4>
+						<h4 class="text-info">Apply For New Service</h4>
 						<br />
+
+						<!-- Auto fill Data With RC Number Search -->
+						<div class="bg-white" style="padding: 20px">
+							<form action="#" method="get">
+								<small class="text-warning">Search With RC Number for
+									Auto-Populating data</small><br /> <input type="text" name="rcSearch"
+									class="form-control"
+									placeholder="Type RC No. to Auto-Populate below details"
+									style="width: 90%; float: left;" />
+								<button type="submit" class="btn btn-primary">
+									<span class="fa fa-search"></span>
+								</button>
+								<br />
+								<br />
+							</form>
+						</div>
+
+
+
 						<form action="createService.jsp" method="post"
 							enctype="multipart/form-data">
 							<table class="table table-hover">
@@ -72,7 +126,7 @@
 									<tr>
 										<td>Company (Contractor) Name</td>
 										<td><input type="text" class="form-control"
-											name="contractorName" /></td>
+											name="contractorName" value="<%=contractorName%>" /></td>
 									</tr>
 									<tr>
 										<td>RC Number</td>
@@ -81,7 +135,7 @@
 									</tr>
 									<tr>
 										<td>Company Address</td>
-										<td><textarea class="form-control" name="addr"></textarea></td>
+										<td><textarea class="form-control" name="addr"><%=addr%></textarea></td>
 									</tr>
 									<tr>
 										<td>Telephone</td>
@@ -89,23 +143,25 @@
 											name="countryCode" required="required"
 											style="width: 30%; float: left;" placeholder="ISD Code" /> <input
 											type="number" class="form-control" name="phone"
-											required="required" style="width: 70%" /></td>
+											required="required" style="width: 70%" value="<%=phone%>" /></td>
 									</tr>
 									<tr>
 										<td>Telephone</td>
 										<td><input type="number" class="form-control"
 											name="countryCode2" style="width: 30%; float: left;"
 											placeholder="ISD Code" /> <input type="number"
-											class="form-control" name="phone2" style="width: 70%" /></td>
+											class="form-control" name="phone2" style="width: 70%"
+											value="<%=phone2%>" /></td>
 									</tr>
 									<tr>
 										<td>Email-id</td>
-										<td><input type="email" class="form-control" name="email" /></td>
+										<td><input type="email" class="form-control" name="email"
+											value="<%=email%>" /></td>
 									</tr>
 									<tr>
 										<td>Website</td>
 										<td><input type="text" class="form-control"
-											name="website" /></td>
+											name="website" value="<%=website%>" /></td>
 									</tr>
 									<tr>
 										<td>Type of Business</td>

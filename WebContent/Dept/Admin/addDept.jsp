@@ -90,7 +90,7 @@
 							<table class="table table-hover table-responsive-lg">
 								<tr>
 									<th>Major Client</th>
-									<td><select name="client" id="client" class="form-control" onchange="return selectDeptHead()">
+									<td><select name="client" id="client" class="form-control">
 											<option value="0">Select Major Client</option>
 											<%
 												while (rs.next()) {
@@ -101,14 +101,14 @@
 											%>
 									</select></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th>Department Head</th>
 									<td><select name="deptHead" class="form-control">
 											<optgroup label="Please select a Staff" id="staffs"></optgroup>
  									</select></td>
-								</tr>
+								</tr> -->
 								<tr>
-									<th>Department Name</th>
+									<th>Dept. Name</th>
 									<td><input type="text" name="deptName"
 										class="form-control" /></td>
 								</tr>
@@ -186,12 +186,6 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-	<script>
-		function selectDeptHead() {
-			var mcId = $("#client").val();
-			$("#staffs").load("../loadStaffsByMcId.jsp?mcId="+mcId);
-		}
-	</script>
 </body>
 
 </html>

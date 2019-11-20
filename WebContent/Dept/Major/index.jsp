@@ -67,13 +67,23 @@ session.setAttribute("reportGenerateDept", 2);
 					<!-- Content Row -->
 					<%
 						int i = 0;
+						int staffCount = 0;
 						Statement st = null;
 						Connection conn = null;
 						ResultSet rst = null;
+						conn = database.getConnection();
+						int myLoggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+						// Get Staffs Count
+						String cSql = "SELECT count(*) FROM staff WHERE mc_id="+myLoggedId;
+						Statement cSt = conn.createStatement();
+						ResultSet cRs = cSt.executeQuery(cSql);
+						if (cRs.next()) {
+							staffCount = cRs.getInt(1);
+						}
+						
 						int[] arr = new int[20];
 						for (i = 0; i < 5; i++) {
 							String countSql = "SELECT count(*) FROM auth WHERE role=" + i;
-							conn = database.getConnection();
 							st = conn.createStatement();
 							rst = st.executeQuery(countSql);
 							if (rst.next()) {
@@ -147,7 +157,7 @@ session.setAttribute("reportGenerateDept", 2);
 										<div class="col mr-2">
 											<div
 												class="text-xs font-weight-bold text-success text-uppercase mb-1">Staff</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"><%=arr[1]%></div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800"><%=staffCount%></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

@@ -643,4 +643,15 @@ public class Helper {
 		return "";
 	}
 	
+	public int getIdByRc(int rc) throws SQLException {
+		String sql = "SELECT id FROM auth WHERE rc="+rc;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+	
 }

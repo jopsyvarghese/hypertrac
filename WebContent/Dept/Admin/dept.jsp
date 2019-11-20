@@ -31,25 +31,24 @@
 
 <body id="page-top">
 	<%
-Connection con = null;
-Statement st = null;
-ResultSet rs = null;		
-Helper helper = new Helper();
-int myId = 0;
-try {
-	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-} catch(NumberFormatException ne) {
-	response.sendRedirect("../../logout.jsp");
-}
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		Helper helper = new Helper();
+		int myId = 0;
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			response.sendRedirect("../../logout.jsp");
+		}
 
-if(myId > 0) {
-	String sql = "SELECT * FROM dept";
-	con = database.getConnection();
-	st = con.createStatement();
-	rs = st.executeQuery(sql);	
-}
-
-%>
+		if (myId > 0) {
+			String sql = "SELECT * FROM dept";
+			con = database.getConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -83,10 +82,13 @@ if(myId > 0) {
 						<div class="text-center">
 							<h3 class="text-info">Departments</h3>
 							<br />
+							<a href="addDept.jsp" class="btn btn-primary"> <span
+							class="fa fa-plus-circle"></span> Dept.
+						</a> <a href="addDeptHead.jsp" class="btn btn-primary"> <span
+							class="fa fa-plus-circle"></span> Dept. Head
+						</a>
 						</div>
-						<a href="addDept.jsp" class="btn btn-primary"> <span
-							class="fa fa-plus-circle"></span> Add Department
-						</a> <br /> <br />
+						 <br /> <br />
 						<table class="table table-hover table-responsive-lg">
 							<tr class="table-warning">
 								<th>Sl.No</th>
@@ -96,24 +98,25 @@ if(myId > 0) {
 								<th>Operations</th>
 							</tr>
 							<%
-							int i = 1;
-							while(rs.next()) {
+								int i = 1;
+								while (rs.next()) {
 							%>
 							<tr>
-								<td><%=i %></td>
-								<td><%=helper.getNameById(rs.getInt(4)) %></td>
-								<td><%=rs.getString(2) %></td>
-								<td><%=helper.getMajorClient(rs.getInt(3)) %></td>
-								<td><a href="editDept.jsp?id=<%=rs.getInt(1) %>"
+								<td><%=i%></td>
+								<td><%=helper.getNameById(rs.getInt(4))%></td>
+								<td><%=rs.getString(2)%></td>
+								<td><%=helper.getMajorClient(rs.getInt(3))%></td>
+								<td><a href="editDept.jsp?id=<%=rs.getInt(1)%>"
 									class="btn btn-primary btn-sm"> <span
 										class="fa fa-pencil-alt"></span>
-								</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1) %>"
+								</a> &nbsp;&nbsp; <a href="deleteDept.jsp?id=<%=rs.getInt(1)%>"
 									class="btn btn-danger btn-sm" onclick="return confirmDel();">
 										<span class="fa fa-trash-alt"></span>
 								</a></td>
 							</tr>
 							<%
-								i++; }
+								i++;
+								}
 							%>
 
 						</table>
@@ -125,8 +128,8 @@ if(myId > 0) {
 			</div>
 			<!-- End of Main Content -->
 			<%
-con.close();
-%>
+				con.close();
+			%>
 			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">

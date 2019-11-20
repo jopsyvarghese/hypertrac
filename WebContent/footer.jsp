@@ -46,11 +46,11 @@
 				</p>
 
 				<div class="social-links">
-					<a href="#" class="twitter"><i class="fa fa-twitter"></i></a> <a
-						href="#" class="facebook"><i class="fa fa-facebook"></i></a> <a
+					<a href="https://twitter.com/HYPERTRAC1/photo" class="twitter"><i class="fa fa-twitter"></i></a> <a
+						href="https://www.facebook.com/Hypertrac-106477804143763/?modal=admin_todo_tour" class="facebook"><i class="fa fa-facebook"></i></a> <a
 						href="#" class="instagram"><i class="fa fa-instagram"></i></a> <a
 						href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-					<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+					<a href="https://www.linkedin.com/in/hypertrac-ltd-55b952197/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BVPMylpMjRPqNvdjrKMh7aA%3D%3D" class="linkedin"><i class="fa fa-linkedin"></i></a>
 				</div>
 
 			</div>

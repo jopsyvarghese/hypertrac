@@ -45,8 +45,8 @@
 .more-info {
 	/* background-color: #00428a;
 	padding:10px; */
-	font-size: 12px;
-	font-weight: bold;
+	font-size: 14px;
+	/* font-weight: bold; */
 }
 </style>
 <!-- =======================================================
@@ -170,7 +170,7 @@
 					</div>
 					<div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
 						<h4>BENEFITS OF HYPERTRAC</h4>
-						<p>This Solution would improve the ease of doing business
+						<p class="more-info">This Solution would improve the ease of doing business
 							within any country, state, organization and by extension improve
 							the rating on the World Ease of Doing Business Index (DBI). If
 							files and documents can be acted upon from anywhere in the world

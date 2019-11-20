@@ -91,6 +91,7 @@ try {
 						int position = Integer.parseInt(request.getParameter("position"));
 						String email =  request.getParameter("email");
 						Long phone =  Long.parseLong(request.getParameter("phone"));
+						String dob =  request.getParameter("dob");
 						String pwd =  request.getParameter("pwd");					
 						con = database.getConnection();
 						
@@ -104,8 +105,8 @@ try {
 							rd.forward(request, response);	
 						}
 						
-						String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by)" +
-						"VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+						String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by, dob)" +
+						"VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 						PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 						ps.setString(1, firstname);
 						ps.setString(2, "");
@@ -118,6 +119,7 @@ try {
 						ps.setInt(9, 0);
 						ps.setInt(10, 0);
 						ps.setInt(11, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
+						ps.setString(12, dob);
 						if (ps.executeUpdate() > 0) {
 							rs = ps.getGeneratedKeys();
 							if (rs.next()) {

@@ -31,7 +31,7 @@
 		int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 		Helper helper = new Helper();
 		ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
-		ResultSet rs = helper.getDeptByMcId(mcId);
+		ResultSet rs = helper.getMajorClients();
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -76,27 +76,30 @@
 								<form action="addDeptHeadFinal.jsp" method="post">
 									<table class="table table-hover table-responsive-lg">
 										<tr>
-											<th>Department Head</th>
-											<td><select name="deptHead" class="form-control"
-												required>
-													<%
-														for (int rowValues : arr) {
-													%>
-													<option value="<%=rowValues%>"><%=helper.getNameById(rowValues)%></option>
-													<%
-														}
-													%>
-											</select></td>
-										</tr>
-										<tr>
-											<th>Department Name</th>
-											<td><select name="dept" class="form-control"
-												required>
+											<th>Major Client Name</th>
+											<td><select name="majorClient" class="form-control" id="majorClient"
+												required onchange="return showDept()">
+													<option>Select Major Client</option>
 													<%														
 														while (rs.next()) {
 													%>
 													<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
 													<% } %>
+											</select></td>
+										</tr>
+										<tr>
+											<th>Department Name</th>
+											<td><select name="dept" id="dept" class="form-control"
+												required onchange="return showStaffs()">
+												<option>Select Department</option>
+													<optgroup id="deptList"></optgroup>
+											</select></td>
+										</tr>										
+										<tr>
+											<th>Department Head</th>
+											<td><select name="deptHead" class="form-control"
+												required>
+													<optgroup label="Select Dept.Head" id="staffsList"></optgroup>
 											</select></td>
 										</tr>
 									</table>
@@ -153,7 +156,17 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	
+	<script>
+		function showDept() {
+			var majorClient = document.getElementById("majorClient").value;
+			$("#deptList").load("../User/dept.jsp?mcId=" + majorClient);
+		}
+		function showStaffs() {
+			var dept = document.getElementById("dept").value;
+			$("#staffsList").load("../Staff/staffsList.jsp?dept=" + dept);
+		}
+	</script>
 </body>
 
 </html>
