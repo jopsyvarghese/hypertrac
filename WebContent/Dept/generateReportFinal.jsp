@@ -199,7 +199,8 @@
 							</tr>
 							<%
 								while (rs.next()) {
-										int userId = rs.getInt(1);
+										int userId = rs.getInt(1); // This is only correct when role is 0 or 4
+										// should check for 
 										String sql2 = "SELECT * FROM applications WHERE app_by=?";
 										PreparedStatement ps2 = con.prepareStatement(sql2);
 										ps2.setInt(1, userId);

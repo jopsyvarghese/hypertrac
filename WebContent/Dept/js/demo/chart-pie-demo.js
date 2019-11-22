@@ -4,14 +4,20 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
+var newOpen = document.getElementById("newOpen").value;
+var inProgress = document.getElementById("inProgress").value;
+var onHold = document.getElementById("onHold").value;
+var redirected = document.getElementById("redirected").value;
+var completed = document.getElementById("completed").value;
+
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: ["New/Open", "In Progress", "On Hold", "Redirected", "Completed"],
     datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: [newOpen, inProgress, onHold, redirected, completed],
+      backgroundColor: ['#D85C4C', '#4C60E5', '#44C7D5', '#E59C3A', '#47C95A'],
+      hoverBackgroundColor: ['#5B0807', '#5B0807', '#5B0807', '#5B0807', '#5B0807'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },

@@ -30,7 +30,7 @@
 
 <body id="page-top">
 	<%
-String sql = "SELECT * FROM auth WHERE role=2";
+String sql = "SELECT * FROM auth WHERE role=2 ORDER BY id DESC";
 Connection con = null;
 Statement st = null;
 ResultSet rs = null;
@@ -73,7 +73,7 @@ String email = "";
 					</div>
 					<div class="col-sm-12 text-center">
 						<a href="addClient.jsp" class="btn btn-primary btn-sm"> <span
-							class="fa fa-plus-circle"></span> Add New Client
+							class="fa fa-plus-circle"></span> New Major Client
 						</a> <br /> <br />
 						<table class="table table-hover table-responsive">
 							<tr class="table-warning">

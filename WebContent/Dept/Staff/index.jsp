@@ -26,12 +26,39 @@
 </head>
 
 <body id="page-top">
-<%
-session.setAttribute("reportGenerateDept", 1);
-Helper helper = new Helper();
+	<%
+		session.setAttribute("reportGenerateDept", 1);
+		Helper helper = new Helper();
+		int loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		ResultSet rsCount = helper.getStatusCountOfApplicationsByStaffId(loggedId);
 		
-	int loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-%>
+		int newOpen = 0;
+		int inProgress = 0;
+		int onHold = 0;
+		int redirected = 0;
+		int completed = 0;
+		int totalCount = 0;		
+		int newPercentage = 0;
+		int inProgressPercentage = 0;
+		int onHoldPercentage = 0;
+		int redirectedPercentage = 0;
+		int completedPercentage = 0;		
+		
+		if (rsCount.next()) {
+			newOpen = rsCount.getInt(1);
+			inProgress = rsCount.getInt(2);
+			onHold = rsCount.getInt(3);
+			redirected = rsCount.getInt(4);
+			completed = rsCount.getInt(5);
+			totalCount = rsCount.getInt(6);
+
+			newPercentage = (newOpen * 100) / totalCount;
+			inProgressPercentage = (inProgress * 100) / totalCount;
+			onHoldPercentage = (onHold * 100) / totalCount;
+			redirectedPercentage = (redirected * 100) / totalCount;
+			completedPercentage = (completed * 100) / totalCount;
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -64,10 +91,13 @@ Helper helper = new Helper();
 
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard
-						<small class="text-info"><i> / <%=helper.getDeptNameByStaffId(loggedId) %> / <%=session.getAttribute("loggedInUserName").toString() %></i></small>
+						<h1 class="h3 mb-0 text-gray-800">
+							Dashboard <small class="text-info"><i> / <%=helper.getDeptNameByStaffId(loggedId)%>
+									/ <%=session.getAttribute("loggedInUserName").toString()%></i></small>
 						</h1>
-						<a href="../generateReport.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+						<a href="../generateReport.jsp"
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 					</div>
 
 					<!-- Content Row -->
@@ -145,14 +175,23 @@ Helper helper = new Helper();
 								<div class="card-body">
 									<div class="chart-pie pt-4 pb-2">
 										<canvas id="myPieChart"></canvas>
+										<input id="newOpen" value="<%=newOpen %>" type="hidden" /> <input
+											id="inProgress" value="<%=inProgress %>" type="hidden" /> <input
+											id="onHold" value="<%=onHold %>" type="hidden" /> <input
+											id="redirected" value="<%=redirected %>" type="hidden" /> <input
+											id="completed" value="<%=completed %>" type="hidden" />
 									</div>
 									<div class="mt-4 text-center small">
 										<span class="mr-2"> <i
-											class="fas fa-circle text-primary"></i> User
+											class="fas fa-circle text-danger"></i> New/Open
 										</span> <span class="mr-2"> <i
-											class="fas fa-circle text-success"></i> Staff
+											class="fas fa-circle text-primary"></i> In Progress
 										</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-											Major Client
+											On Hold
+										</span> <span class="mr-2"> <i
+											class="fas fa-circle text-warning"></i> Redirected
+										</span> <span class="mr-2"> <i
+											class="fas fa-circle text-success"></i> Completed
 										</span>
 									</div>
 								</div>
@@ -165,50 +204,54 @@ Helper helper = new Helper();
 
 						<!-- Content Column -->
 						<div class="col-lg-6 mb-4">
-
 							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Pending
-										Tickets</h6>
+									<h6 class="m-0 font-weight-bold text-primary">My
+										Department Tickets Status</h6>
 								</div>
 								<div class="card-body">
 									<h4 class="small font-weight-bold">
-										Others <span class="float-right">20%</span>
+										New / Open <span class="float-right"><%=newPercentage%>
+											%</span>
 									</h4>
 									<div class="progress mb-4">
 										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-											aria-valuemax="100"></div>
+											style="width: <%=newPercentage%>%" aria-valuenow="20"
+											aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 									<h4 class="small font-weight-bold">
-										Staff <span class="float-right">40%</span>
+										In Progress <span class="float-right"><%=inProgressPercentage%>%</span>
 									</h4>
 									<div class="progress mb-4">
 										<div class="progress-bar bg-warning" role="progressbar"
-											style="width: 40%" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100"></div>
+											style="width: <%=inProgressPercentage%>%" aria-valuenow="40"
+											aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 									<h4 class="small font-weight-bold">
-										Major Client <span class="float-right">60%</span>
+										On Hold <span class="float-right"><%=onHoldPercentage%>%</span>
 									</h4>
 									<div class="progress mb-4">
 										<div class="progress-bar" role="progressbar"
-											style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-											aria-valuemax="100"></div>
+											style="width: <%=onHoldPercentage%>%" aria-valuenow="60"
+											aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 									<h4 class="small font-weight-bold">
-										Users<span class="float-right">80%</span>
+										Redirected<span class="float-right"><%=redirectedPercentage%>%</span>
 									</h4>
 									<div class="progress mb-4">
 										<div class="progress-bar bg-info" role="progressbar"
-											style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
+											style="width: <%=redirectedPercentage%>%" aria-valuenow="80"
+											aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-									<!--<h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>-->
-									<!--<div class="progress">-->
-									<!--<div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>-->
-									<!--</div>-->
+									<h4 class="small font-weight-bold">
+										Completed<span class="float-right"><%=completedPercentage%>%</span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-info" role="progressbar"
+											style="width: <%=completedPercentage%>%" aria-valuenow="80"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -266,28 +309,6 @@ Helper helper = new Helper();
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="../login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

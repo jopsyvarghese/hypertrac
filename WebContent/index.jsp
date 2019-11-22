@@ -170,16 +170,16 @@
 					</div>
 					<div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
 						<h4>BENEFITS OF HYPERTRAC</h4>
-						<p class="more-info">This Solution would improve the ease of doing business
-							within any country, state, organization and by extension improve
-							the rating on the World Ease of Doing Business Index (DBI). If
-							files and documents can be acted upon from anywhere in the world
-							it then means staff will no longer be limited to time and space.
-							This will enhance the Ease of Doing Business in your organization
-							coupled with the fact that all your service providers like
-							contractors, vendors and individuals will be able to know and get
-							real-time updates of the status of their files from their own
-							portal on the HYPERTRAC platform.</p>
+						<p class="more-info">This Solution would improve the ease of
+							doing business within any country, state, organization and by
+							extension improve the rating on the World Ease of Doing Business
+							Index (DBI). If files and documents can be acted upon from
+							anywhere in the world it then means staff will no longer be
+							limited to time and space. This will enhance the Ease of Doing
+							Business in your organization coupled with the fact that all your
+							service providers like contractors, vendors and individuals will
+							be able to know and get real-time updates of the status of their
+							files from their own portal on the HYPERTRAC platform.</p>
 					</div>
 					<div class="col-lg-12 wow fadeInUp pt-5 pt-lg-0">
 						<strong>Benefit</strong>
@@ -195,30 +195,28 @@
 								in stress.</li>
 							<li><span class="fa fa-thumbs-up text-info"></span>&nbsp;Makes
 								your organization a reference point in the league of both
-								locally and internationally.
-								<ul>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Makes
-										your organization a flagship institution amongst others</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Better
-										positioned to serve your clients.</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Potential
-										for getting a higher rating for Ease of Doing Business Index
-										with your government and international organizations</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Reduces
-										waste, time, money and other input like equipment and paper</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Reduction
-										in overall cost of doing business</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;More
-										efficiency and openness in government business</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Your
-										organization will not be limited by time and space</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;It
-										will enable your organization to quickly respond to inquiries</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;It
-										further keys into the anti-corruption project in your country</li>
-									<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Makes
-										your organization and government even more transparent.</li>
-								</ul></li>
+								locally and internationally.</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Makes
+								your organization a flagship institution amongst others</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Better
+								positioned to serve your clients.</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Potential
+								for getting a higher rating for Ease of Doing Business Index
+								with your government and international organizations</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Reduces
+								waste, time, money and other input like equipment and paper</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Reduction
+								in overall cost of doing business</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;More
+								efficiency and openness in government business</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Your
+								organization will not be limited by time and space</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;It
+								will enable your organization to quickly respond to inquiries</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;It
+								further keys into the anti-corruption project in your country</li>
+							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Makes
+								your organization and government even more transparent.</li>
 						</ul>
 						</small> </strong>
 					</div>

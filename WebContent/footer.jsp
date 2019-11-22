@@ -46,7 +46,7 @@
 				</p>
 
 				<div class="social-links">
-					<a href="https://twitter.com/HYPERTRAC1/photo" class="twitter"><i class="fa fa-twitter"></i></a> <a
+					<a href="https://mobile.twitter.com/HYPERTRAC1" class="twitter"><i class="fa fa-twitter"></i></a> <a
 						href="https://www.facebook.com/Hypertrac-106477804143763/?modal=admin_todo_tour" class="facebook"><i class="fa fa-facebook"></i></a> <a
 						href="#" class="instagram"><i class="fa fa-instagram"></i></a> <a
 						href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>

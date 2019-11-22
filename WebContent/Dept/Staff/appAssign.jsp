@@ -201,10 +201,11 @@
 							int count = ps.executeUpdate();
 
 							if (count > 0) {
-								String query = "UPDATE applications SET dept = ? WHERE id = ?";
+								String query = "UPDATE applications SET dept = ?, status = ? WHERE id = ?";
 								PreparedStatement ps1 = con.prepareStatement(query);
 								ps1.setInt(1, dept);
-								ps1.setInt(2, id);
+								ps1.setInt(2, status);
+								ps1.setInt(3, id);
 								int count2 = ps1.executeUpdate();
 								if(count2 > 0) {
 									for (int j = 0; j < savedFileName.length; j++) {

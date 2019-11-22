@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;  
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -28,13 +28,13 @@ public class Helper {
 	Connection con;
 	private String secretKey = "SJDl129734fjweojfdsfd!!!!";
 	private String salt = "AEWufodjklfu23487yewo!!!!";
-	
+
 	public Helper() throws ClassNotFoundException, SQLException {
 		con = com.hypertrac.dao.database.getConnection();
 	}
 
 	public String buzzType(int id) throws SQLException {
-		String sql = "SELECT * FROM business WHERE id="+id;
+		String sql = "SELECT * FROM business WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -45,7 +45,7 @@ public class Helper {
 	}
 
 	public String getMajorClient(int id) throws SQLException {
-		String sql = "SELECT fname FROM auth WHERE id="+id;
+		String sql = "SELECT fname FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -62,35 +62,35 @@ public class Helper {
 	}
 
 	public String getDeptById(int id) throws SQLException {
-		String sql = "SELECT * FROM dept WHERE id="+id;
+		String sql = "SELECT * FROM dept WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getString(2);
 		}
 		return "";
 	}
-	
+
 	public ResultSet getDeptByMcId(int id) throws SQLException {
-		String sql = "SELECT * FROM dept WHERE mc_id="+id;
+		String sql = "SELECT * FROM dept WHERE mc_id=" + id;
 		Statement st = con.createStatement();
 		return st.executeQuery(sql);
 	}
-	
+
 	public String getMajorClientByDeptId(int id) throws SQLException {
 		String arr[] = {};
-		String sql = "SELECT * FROM dept WHERE id="+id;
+		String sql = "SELECT * FROM dept WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
-			int mId =  Integer.parseInt(rs.getString(3));
-			String sql2 = "SELECT fname FROM auth WHERE id="+mId;
+		if (rs.next()) {
+			int mId = Integer.parseInt(rs.getString(3));
+			String sql2 = "SELECT fname FROM auth WHERE id=" + mId;
 			Statement st2 = con.createStatement();
 			ResultSet rs2 = null;
 			rs2 = st2.executeQuery(sql2);
-			if(rs2.next()) {
+			if (rs2.next()) {
 				return rs2.getString(1);
 			}
 		}
@@ -98,7 +98,7 @@ public class Helper {
 	}
 
 	public String getSubDept(int id) throws SQLException {
-		String sql = "SELECT * FROM dept_sub WHERE id="+id;
+		String sql = "SELECT * FROM dept_sub WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -111,39 +111,35 @@ public class Helper {
 	public String getDateTime() {
 		java.util.Date dt = new java.util.Date();
 		Calendar calendar = Calendar.getInstance();
-	    calendar.setTime(dt);
-	    calendar.add(Calendar.HOUR_OF_DAY, 1);
-	    java.text.SimpleDateFormat sdf = 
-				new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	    return sdf.format(calendar.getTime());
+		calendar.setTime(dt);
+		calendar.add(Calendar.HOUR_OF_DAY, 1);
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(calendar.getTime());
 	}
 
 	public String getDay() {
 		java.util.Date dt = new java.util.Date();
-		java.text.SimpleDateFormat sdf = 
-				new java.text.SimpleDateFormat("dd");
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd");
 		String currentTime = sdf.format(dt);
 		return currentTime;
 	}
 
 	public String getMonth() {
 		java.util.Date dt = new java.util.Date();
-		java.text.SimpleDateFormat sdf = 
-				new java.text.SimpleDateFormat("MM");
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MM");
 		String currentTime = sdf.format(dt);
 		return currentTime;
 	}
 
 	public String getYear() {
 		java.util.Date dt = new java.util.Date();
-		java.text.SimpleDateFormat sdf = 
-				new java.text.SimpleDateFormat("YYYY");
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("YYYY");
 		String currentTime = sdf.format(dt);
 		return currentTime;
 	}
 
 	public String getNameById(int id) throws SQLException {
-		String sql = "SELECT fname FROM auth WHERE id="+id;
+		String sql = "SELECT fname FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -152,9 +148,9 @@ public class Helper {
 		}
 		return "";
 	}
-	
+
 	public String getFirstNameById(int id) throws SQLException {
-		String sql = "SELECT fname FROM auth WHERE id="+id;
+		String sql = "SELECT fname FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -165,7 +161,7 @@ public class Helper {
 	}
 
 	public String getEmailById(int id) throws SQLException {
-		String sql = "SELECT email FROM auth WHERE id="+id;
+		String sql = "SELECT email FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -174,9 +170,9 @@ public class Helper {
 		}
 		return "";
 	}
-	
+
 	public String getPhoneById(int id) throws SQLException {
-		String sql = "SELECT mob FROM auth WHERE id="+id;
+		String sql = "SELECT mob FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -185,9 +181,9 @@ public class Helper {
 		}
 		return "";
 	}
-	
+
 	public String getPositionById(int id) throws SQLException {
-		String sql = "SELECT role FROM role WHERE id="+id;
+		String sql = "SELECT role FROM role WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -196,7 +192,7 @@ public class Helper {
 		}
 		return "";
 	}
-	
+
 	public ResultSet getAllPositions() throws SQLException {
 		String sql = "SELECT * FROM role";
 		Statement st = con.createStatement();
@@ -204,9 +200,9 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	public int getUserRoleById(int id) throws SQLException {
-		String sql = "SELECT role FROM auth WHERE id="+id;
+		String sql = "SELECT role FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -215,9 +211,9 @@ public class Helper {
 		}
 		return -1;
 	}
-	
+
 	public String getRoleById(int id) throws SQLException {
-		String sql = "SELECT * FROM role WHERE id="+id;
+		String sql = "SELECT * FROM role WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -226,7 +222,7 @@ public class Helper {
 		}
 		return "";
 	}
-	
+
 	public ResultSet getRole() throws SQLException {
 		String sql = "SELECT * FROM role";
 		Statement st = con.createStatement();
@@ -237,7 +233,7 @@ public class Helper {
 
 	public String getRc(int id) throws SQLException {
 		String rc = "";
-		String sql = "SELECT rc FROM auth WHERE id="+id;
+		String sql = "SELECT rc FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -272,22 +268,21 @@ public class Helper {
 	}
 
 	public String getLocalDateTime() {
-		LocalDateTime now = LocalDateTime.now();  
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String formatDateTime = now.format(format);
 		return formatDateTime;
 	}
 
-	public ResultSet getImagesByFKey(int id) throws SQLException
-	{
+	public ResultSet getImagesByFKey(int id) throws SQLException {
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		String sql = "SELECT img_path FROM applications_img WHERE fk_id=" + id;
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
-	public String[] getAppStatus(){
+
+	public String[] getAppStatus() {
 		String arr[] = new String[5];
 		arr[0] = "New / Open";
 		arr[1] = "In Progress";
@@ -296,118 +291,107 @@ public class Helper {
 		arr[4] = "Completed";
 		return arr;
 	}
-	
-	public ArrayList<Integer> getStaffNameByDeptId(int id) throws SQLException
-	{
+
+	public ArrayList<Integer> getStaffNameByDeptId(int id) throws SQLException {
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		String query = "SELECT id FROM staff WHERE dept=" + id;
 		rs = st.executeQuery(query);
 		ArrayList<Integer> staffIds = new ArrayList<Integer>();
-        while(rs.next()) {
-         	staffIds.add(rs.getInt(1));
-        }
-			
+		while (rs.next()) {
+			staffIds.add(rs.getInt(1));
+		}
+
 		return staffIds;
 	}
-	
-	public ArrayList<Integer> getStaffNamesByMcId(int id) throws SQLException
-	{
+
+	public ArrayList<Integer> getStaffNamesByMcId(int id) throws SQLException {
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		String query = "SELECT id FROM staff WHERE mc_id=" + id;
 		rs = st.executeQuery(query);
 		ArrayList<Integer> staffIds = new ArrayList<Integer>();
-        while(rs.next()) {
-         	staffIds.add(rs.getInt(1));
-        }
-			
+		while (rs.next()) {
+			staffIds.add(rs.getInt(1));
+		}
+
 		return staffIds;
 	}
-	
-	public String getStaffDeptById(int id) throws SQLException
-	{
+
+	public String getStaffDeptById(int id) throws SQLException {
 		Statement st = con.createStatement();
 		ResultSet rs = null;
-		String sql = "SELECT dname FROM dept WHERE id=(SELECT dept FROM staff WHERE id=" + id+");";
+		String sql = "SELECT dname FROM dept WHERE id=(SELECT dept FROM staff WHERE id=" + id + ");";
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getString(1);
 		}
 		return "";
 	}
-	
-	public String encryptPwd(String input) 
-    { 
-        try { 
-            MessageDigest md = MessageDigest.getInstance("SHA-512"); 
-            byte[] messageDigest = md.digest(input.getBytes()); 
-            BigInteger no = new BigInteger(1, messageDigest); 
-            String hashtext = no.toString(16); 
-            while (hashtext.length() < 32) { 
-                hashtext = "0" + hashtext; 
-            } 
-            return hashtext; 
-        } 
-        catch (NoSuchAlgorithmException e) { 
-            throw new RuntimeException(e); 
-        } 
-    }
-	
-	public String encrypt(String strToEncrypt)
-	{
-	    try
-	    {
-	        byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	        IvParameterSpec ivspec = new IvParameterSpec(iv);
-	         
-	        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-	        KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
-	        SecretKey tmp = factory.generateSecret(spec);
-	        SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
-	         
-	        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-	        cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
-	        return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
-	    }
-	    catch (Exception e)
-	    {
-	        System.out.println("Error while encrypting: " + e.toString());
-	    }
-	    return null;
+
+	public String encryptPwd(String input) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			byte[] messageDigest = md.digest(input.getBytes());
+			BigInteger no = new BigInteger(1, messageDigest);
+			String hashtext = no.toString(16);
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+			return hashtext;
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
 	}
-	
+
+	public String encrypt(String strToEncrypt) {
+		try {
+			byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+			IvParameterSpec ivspec = new IvParameterSpec(iv);
+
+			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+			KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
+			SecretKey tmp = factory.generateSecret(spec);
+			SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
+			return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+		} catch (Exception e) {
+			System.out.println("Error while encrypting: " + e.toString());
+		}
+		return null;
+	}
+
 	public String decrypt(String strToDecrypt) {
-	    try
-	    {
-	        byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	        IvParameterSpec ivspec = new IvParameterSpec(iv);
-	         
-	        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-	        KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
-	        SecretKey tmp = factory.generateSecret(spec);
-	        SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
-	         
-	        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-	        cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
-	        return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
-	    }
-	    catch (Exception e) {
-	        System.out.println("Error while decrypting: " + e.toString());
-	    }
-	    return null;
+		try {
+			byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+			IvParameterSpec ivspec = new IvParameterSpec(iv);
+
+			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+			KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
+			SecretKey tmp = factory.generateSecret(spec);
+			SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
+			return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+		} catch (Exception e) {
+			System.out.println("Error while decrypting: " + e.toString());
+		}
+		return null;
 	}
-	
+
 	public String getGTTxnKey() {
 		return "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F";
 	}
-	
+
 	public Long getTimeStamp() {
-		Date date= new Date();
+		Date date = new Date();
 		long time = date.getTime();
 		return time;
 	}
-	
+
 	/**
 	 * 
 	 * @param appId
@@ -415,7 +399,7 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public String getSubDeptByAppId(int appId) throws SQLException {
-		String sql = "SELECT sub_dept FROM applications_more WHERE id="+appId;
+		String sql = "SELECT sub_dept FROM applications_more WHERE id=" + appId;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -429,7 +413,7 @@ public class Helper {
 		}
 		return subDeptName;
 	}
-	
+
 	/**
 	 * 
 	 * @param loggedInId
@@ -442,9 +426,9 @@ public class Helper {
 		ps.setInt(1, loggedInId);
 		ps.setInt(2, loggedInId);
 		return ps.executeQuery();
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -452,16 +436,16 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public int getDeptHeadById(int id) throws SQLException {
-		String sql = "SELECT dept_head FROM dept WHERE id="+id;
+		String sql = "SELECT dept_head FROM dept WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getInt(1);
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -469,13 +453,13 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public ResultSet getAppNotificationByStaffId(int id) throws SQLException {
-		String sql = "SELECT * FROM applications_realtime WHERE staff_id="+id+" AND staff_read=0";
+		String sql = "SELECT * FROM applications_realtime WHERE staff_id=" + id + " AND staff_read=0";
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -483,13 +467,13 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public ResultSet getAppNotificationByMcId(int id) throws SQLException {
-		String sql = "SELECT * FROM applications_realtime WHERE mc_id="+id+" AND mc_read=0";
+		String sql = "SELECT * FROM applications_realtime WHERE mc_id=" + id + " AND mc_read=0";
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -497,16 +481,16 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public String getAppSubmittedOnById(int id) throws SQLException {
-		String sql = "SELECT submitted_on FROM applications WHERE id="+id;
+		String sql = "SELECT submitted_on FROM applications WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getString(1);
 		}
 		return "";
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -514,16 +498,16 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public String getSubjectById(int id) throws SQLException {
-		String sql = "SELECT subject FROM applications WHERE id="+id;
+		String sql = "SELECT subject FROM applications WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getString(1);
 		}
 		return "";
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -531,16 +515,16 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public int getAppsUnreadCountByStaffId(int id) throws SQLException {
-		String sql = "SELECT count(*) FROM applications_realtime WHERE staff_id="+id+" AND staff_read=0";
+		String sql = "SELECT count(*) FROM applications_realtime WHERE staff_id=" + id + " AND staff_read=0";
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getInt(1);
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -548,16 +532,16 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public int getAppsUnreadCountByMcId(int id) throws SQLException {
-		String sql = "SELECT count(*) FROM applications_realtime WHERE mc_id="+id+" AND mc_read=0";
+		String sql = "SELECT count(*) FROM applications_realtime WHERE mc_id=" + id + " AND mc_read=0";
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getInt(1);
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -568,12 +552,12 @@ public class Helper {
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
-		if(rs.next()) {
+		if (rs.next()) {
 			return rs.getInt(1);
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -587,7 +571,7 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -595,7 +579,7 @@ public class Helper {
 	 * @throws SQLException
 	 */
 	public int getMcIdByDeptId(int id) throws SQLException {
-		String sql = "SELECT mc_id FROM dept WHERE id="+id;
+		String sql = "SELECT mc_id FROM dept WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -604,7 +588,7 @@ public class Helper {
 		}
 		return 0;
 	}
-	
+
 	public ResultSet getAllBuzzTypes() throws SQLException {
 		String sql = "SELECT * FROM business";
 		Statement st = con.createStatement();
@@ -612,17 +596,39 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	public ResultSet getAllBuzzTypeById(int id) throws SQLException {
-		String sql = "SELECT * FROM business WHERE id="+id;
+		String sql = "SELECT * FROM business WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	public int getMcIdByStaffId(int id) throws SQLException {
-		String sql = "SELECT mc_id FROM staff WHERE id="+id;
+		String sql = "SELECT mc_id FROM staff WHERE id=" + id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+
+	public String getDeptNameByStaffId(int id) throws SQLException {
+		String sql = "SELECT dname FROM dept WHERE id=(SELECT dept FROM staff WHERE id=" + id + ")";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getString(1);
+		}
+		return "";
+	}
+
+	public int getIdByRc(int rc) throws SQLException {
+		String sql = "SELECT id FROM auth WHERE rc=" + rc;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -632,26 +638,58 @@ public class Helper {
 		return 0;
 	}
 	
-	public String getDeptNameByStaffId(int id) throws SQLException {
-		String sql = "SELECT dname FROM dept WHERE id=(SELECT dept FROM staff WHERE id="+id+")";
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getStatusCountOfApplications() throws SQLException {
+		
+		String sql = "SELECT SUM(CASE WHEN status=0 THEN 1 ELSE 0 END ) as newOpen, "
+				+ "SUM(CASE WHEN status=1 THEN 1 ELSE 0 END ) as inProgress , "
+				+ "SUM(CASE WHEN status=2 THEN 1 ELSE 0 END ) as onHold , "
+				+ "SUM(CASE WHEN status=3 THEN 1 ELSE 0 END ) as redirected , "
+				+ "SUM(CASE WHEN status=4 THEN 1 ELSE 0 END ) as completed, "
+				+ "COUNT(id) as totalCount FROM applications;";
 		Statement st = con.createStatement();
-		ResultSet rs = null;
-		rs = st.executeQuery(sql);
-		if(rs.next()) {
-			return rs.getString(1);
-		}
-		return "";
+		ResultSet rs = st.executeQuery(sql);
+		return rs;		
 	}
 	
-	public int getIdByRc(int rc) throws SQLException {
-		String sql = "SELECT id FROM auth WHERE rc="+rc;
+	/**
+	 * 
+	 * @param mcId
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getStatusCountOfApplicationsByMcId(int mcId) throws SQLException {
+		String sql = "SELECT SUM(CASE WHEN status=0 THEN 1 ELSE 0 END ) as newOpen, "
+				+ "SUM(CASE WHEN status=1 THEN 1 ELSE 0 END ) as inProgress , "
+				+ "SUM(CASE WHEN status=2 THEN 1 ELSE 0 END ) as onHold , "
+				+ "SUM(CASE WHEN status=3 THEN 1 ELSE 0 END ) as redirected , "
+				+ "SUM(CASE WHEN status=4 THEN 1 ELSE 0 END ) as completed, COUNT(id) as totalCount "
+				+ "FROM applications WHERE dept IN(SELECT id FROM dept WHERE mc_id="+mcId+")";
 		Statement st = con.createStatement();
-		ResultSet rs = null;
-		rs = st.executeQuery(sql);
-		if(rs.next()) {
-			return rs.getInt(1);
-		}
-		return 0;
+		ResultSet rs = st.executeQuery(sql);
+		return rs;
 	}
 	
+	/**
+	 * 
+	 * @param staffId
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getStatusCountOfApplicationsByStaffId(int staffId) throws SQLException {
+		String sql = "SELECT SUM(CASE WHEN status=0 THEN 1 ELSE 0 END ) as newOpen, "
+				+ "SUM(CASE WHEN status=1 THEN 1 ELSE 0 END ) as inProgress , "
+				+ "SUM(CASE WHEN status=2 THEN 1 ELSE 0 END ) as onHold , "
+				+ "SUM(CASE WHEN status=3 THEN 1 ELSE 0 END ) as redirected , "
+				+ "SUM(CASE WHEN status=4 THEN 1 ELSE 0 END ) as completed, COUNT(id) as totalCount "
+				+ "FROM applications WHERE dept = (SELECT dept FROM staff WHERE id="+staffId+")";
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		return rs;
+	}
+
 }
