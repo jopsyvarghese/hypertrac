@@ -75,24 +75,30 @@
 									<th>Finished Status</th>
 								</tr>
 								<%
-                           Constants consta = new Constants();
-                            String query = "SELECT * FROM applications ORDER BY id DESC";
-                            Connection con = database.getConnection();
-                            Statement st = null;
-                            ResultSet rs = null;
-                            st = con.createStatement();
-                            rs = st.executeQuery(query);
-                            int i = 1;
-                            while(rs.next()) {
-                            %>
+									Constants consta = new Constants();
+									int myId = 0;
+									myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+									String query = "SELECT * FROM applications WHERE dept IN(SELECT id FROM dept WHERE mc_id=" + myId
+											+ ") ORDER BY id DESC";
+									Connection con = database.getConnection();
+									Statement st = null;
+									ResultSet rs = null;
+									st = con.createStatement();
+									rs = st.executeQuery(query);
+									int i = 1;
+									while (rs.next()) {
+								%>
 								<tr>
-									<td><%=i %></td>
-									<td><a href="viewHistory.jsp?id=<%=rs.getString(1) %>"><%=rs.getString(1) %></a></td>
-									<td><%=rs.getString(4) %></td>
-									<td><%=rs.getString(5) %></td>
-									<td><%=consta.getConstant(rs.getInt(7)) %></td>
+									<td><%=i%></td>
+									<td><a href="viewHistory.jsp?id=<%=rs.getString(1)%>"><%=rs.getString(1)%></a></td>
+									<td><%=rs.getString(4)%></td>
+									<td><%=rs.getString(5)%></td>
+									<td><%=consta.getConstant(rs.getInt(7))%></td>
 								</tr>
-								<% i++; } %>
+								<%
+									i++;
+									}
+								%>
 							</table>
 						</div>
 					</div>

@@ -115,7 +115,7 @@
 				whose = "Staff";
 				break;
 			case 2 :
-				whose = "Client";
+				whose = "MajorClient";
 				break;
 			case 3 :
 				whose = "Admin";

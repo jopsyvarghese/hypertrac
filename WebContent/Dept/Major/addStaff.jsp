@@ -49,7 +49,25 @@
 		st = con.createStatement();
 		String sql = "SELECT id, dname FROM dept WHERE mc_id=" + loggedId;
 		ResultSet rs = st.executeQuery(sql);
-		ResultSet rs1 = helper.getAllPositions();
+		ResultSet rs1 = helper.getRoleByMcId(loggedId);
+		String firstName = "";
+		String lastName = "";
+		String userName = "";
+		String email = "";
+		String status = "";
+		String pwd = "";
+		String phone = "";
+		String dob = "";
+
+		if (request.getParameter("firstName") != null && request.getParameter("firstName") != "") {
+			firstName = request.getParameter("firstName");
+			lastName = request.getParameter("lastName");
+			userName = request.getParameter("userName");
+			email = request.getParameter("email");
+			pwd = request.getParameter("pwd");
+			phone = request.getParameter("phone");
+			dob = request.getParameter("dob");
+		}
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -94,23 +112,44 @@
 							<h3 class="text-info text-center">Staff Registration</h3>
 							<br />
 
+							<%
+								if (request.getParameter("status") != null) {
+									status = request.getParameter("status");
+									if (status.equals("success")) {
+							%>
+							<div class="alert alert-success alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Success!</strong> Added Successfully.
+							</div>
+							<%
+								} else if (status.equals("failed")) {
+							%>
+							<div class="alert alert-danger alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Failed!</strong> Username or Email Already Taken .
+							</div>
+							<%
+								}
+								}
+							%>
+
 							<form action="addStaff_2.jsp" method="post"
 								onsubmit="return passwordCheck()">
 								<table class="table">
 									<tr>
 										<th>First Name</th>
 										<td><input type="text" name="firstName"
-											class="form-control" /></td>
+											class="form-control" value="<%=firstName%>" required/></td>
 									</tr>
 									<tr>
 										<th>Last Name</th>
 										<td><input type="text" name="lastName"
-											class="form-control" /></td>
+											class="form-control" value="<%=lastName%>" /></td>
 									</tr>
 									<tr>
 										<th>User Name</th>
 										<td><input type="text" name="userName"
-											class="form-control" /></td>
+											class="form-control" value="<%=userName%>" required /></td>
 									</tr>
 									<tr>
 										<th>Department</th>
@@ -151,28 +190,28 @@
 									</tr>
 									<tr>
 										<th>Email</th>
-										<td><input type="email" name="email" class="form-control" />
-										</td>
+										<td><input type="email" name="email" class="form-control"
+											value="<%=email%>" required/></td>
 									</tr>
 									<tr>
 										<th>Phone</th>
 										<td><input type="number" name="phone"
-											class="form-control" /></td>
+											class="form-control" value="<%=phone%>" required/></td>
 									</tr>
 									<tr>
 										<th>Date Of Birth</th>
-										<td><input type="date" name="dob"
-											class="form-control" required/></td>
+										<td><input type="date" name="dob" class="form-control"
+											required value="<%=dob%>" required/></td>
 									</tr>
 									<tr>
 										<th>Password</th>
 										<td><input type="password" name="pwd" id="pwd"
-											class="form-control" /></td>
+											class="form-control" value="<%=pwd%>" required/></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" name="cpwd" id="cpwd"
-											class="form-control" /></td>
+											class="form-control" value="<%=pwd%>" /></td>
 									</tr>
 									<tr>
 										<th colspan="2" class="text-center">

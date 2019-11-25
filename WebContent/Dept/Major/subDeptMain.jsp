@@ -47,7 +47,7 @@ try {
 }
 
 if(myId > 0) {
-	String sql = "SELECT * FROM dept_sub";
+	String sql = "SELECT * FROM dept_sub WHERE dept_id IN(SELECT id FROM dept WHERE mc_id="+myId+") ORDER BY id DESC";
 	con = database.getConnection();
 	st = con.createStatement();
 	rs = st.executeQuery(sql);	

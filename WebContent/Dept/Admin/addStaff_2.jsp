@@ -31,16 +31,19 @@
 
 <body id="page-top">
 	<%
-int loggedId = 0;
-try {
-	if(session.getAttribute("loggedInUserId") == null) {
-		%>
-	<script>window.location="../../logout.jsp"</script>
+		int loggedId = 0;
+		try {
+			if (session.getAttribute("loggedInUserId") == null) {
+	%>
+	<script>
+		window.location = "../../logout.jsp"
+	</script>
 	<%
-	}
-	loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());	
-} catch(NullPointerException ne){}
-%>
+		}
+			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NullPointerException ne) {
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -78,71 +81,73 @@ try {
 						<div class="col-lg-3 mb-4"></div>
 						<div class="col-lg-6 mb-4">
 							<%
-						Helper helper = new Helper();
-						Connection con = null;
-						int lastInsertedId = 0;
-						ResultSet rs = null;
-						String firstname = request.getParameter("firstName");
-						String lastname = request.getParameter("lastName");
-						int random = (int)(Math.random() * 5000 + 1);
-						String username = request.getParameter("userName")+random;
-						int dept = Integer.parseInt(request.getParameter("dept"));
-						int subDept = Integer.parseInt(request.getParameter("subDept"));
-						int position = Integer.parseInt(request.getParameter("position"));
-						String email =  request.getParameter("email");
-						Long phone =  Long.parseLong(request.getParameter("phone"));
-						String dob =  request.getParameter("dob");
-						String pwd =  request.getParameter("pwd");					
-						con = database.getConnection();
-						
-						//Check username or email exists
-						String checkQry = "SELECT id FROM auth WHERE email=?";
-						PreparedStatement psQry = con.prepareStatement(checkQry);
-						psQry.setString(1, email);
-						ResultSet rsQry = psQry.executeQuery();
-						if (rsQry.next()) {
-							RequestDispatcher rd = request.getRequestDispatcher("addStaff.jsp");
-							rd.forward(request, response);	
-						}
-						
-						String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by, dob)" +
-						"VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-						PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-						ps.setString(1, firstname);
-						ps.setString(2, "");
-						ps.setString(3, username);
-						ps.setString(4, pwd);
-						ps.setString(5, email);
-						ps.setLong(6, phone);
-						ps.setInt(7, 1);
-						ps.setString(8, helper.getDateTime());
-						ps.setInt(9, 0);
-						ps.setInt(10, 0);
-						ps.setInt(11, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
-						ps.setString(12, dob);
-						if (ps.executeUpdate() > 0) {
-							rs = ps.getGeneratedKeys();
-							if (rs.next()) {
-								lastInsertedId = rs.getInt(1);
-								String sql2 = "INSERT INTO staff(id, dept, position, sub_dept_id, mc_id) VALUES (?,?,?,?,?)";
-								PreparedStatement ps2 = con.prepareStatement(sql2);
-								ps2.setInt(1, lastInsertedId);
-								ps2.setInt(2, dept);
-								ps2.setInt(3, position);
-								ps2.setInt(4, subDept);
-								ps2.setInt(5, loggedId);
-								if(ps2.executeUpdate() != 0){
-									response.sendRedirect("staffs.jsp?status=success");
+								Helper helper = new Helper();
+								Connection con = null;
+								int lastInsertedId = 0;
+								ResultSet rs = null;
+								String firstname = request.getParameter("firstName");
+								String lastname = request.getParameter("lastName");
+								String username = request.getParameter("userName");
+								int dept = Integer.parseInt(request.getParameter("dept"));
+								int subDept = Integer.parseInt(request.getParameter("subDept"));
+								int position = Integer.parseInt(request.getParameter("position"));
+								String email = request.getParameter("email");
+								Long phone = Long.parseLong(request.getParameter("phone"));
+								String dob = request.getParameter("dob");
+								String pwd = request.getParameter("pwd");
+								con = database.getConnection();
+
+								//Check username or email exists
+								String checkQry = "SELECT id FROM auth WHERE email=? OR uname=?";
+								PreparedStatement psQry = con.prepareStatement(checkQry);
+								psQry.setString(1, email);
+								psQry.setString(2, username);
+								ResultSet rsQry = psQry.executeQuery();
+								if (rsQry.next()) {
+									RequestDispatcher rd = request.getRequestDispatcher("addStaff.jsp");
+									request.setAttribute("status", "failed");
+									rd.forward(request, response);
 								} else {
-									response.sendRedirect("staffs.jsp?status=failed");
+
+									String sql = "INSERT INTO auth(fname, addr, uname, pwd, email, mob, role, created_at, rc, mob2, created_by, dob)"
+											+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+									PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+									ps.setString(1, firstname);
+									ps.setString(2, "");
+									ps.setString(3, username);
+									ps.setString(4, pwd);
+									ps.setString(5, email);
+									ps.setLong(6, phone);
+									ps.setInt(7, 1);
+									ps.setString(8, helper.getDateTime());
+									ps.setInt(9, 0);
+									ps.setInt(10, 0);
+									ps.setInt(11, Integer.parseInt(session.getAttribute("loggedInUserId").toString()));
+									ps.setString(12, dob);
+									if (ps.executeUpdate() > 0) {
+										rs = ps.getGeneratedKeys();
+										if (rs.next()) {
+											lastInsertedId = rs.getInt(1);
+											String sql2 = "INSERT INTO staff(id, dept, position, sub_dept_id, mc_id) VALUES (?,?,?,?,?)";
+											PreparedStatement ps2 = con.prepareStatement(sql2);
+											ps2.setInt(1, lastInsertedId);
+											ps2.setInt(2, dept);
+											ps2.setInt(3, position);
+											ps2.setInt(4, subDept);
+											ps2.setInt(5, loggedId);
+											if (ps2.executeUpdate() != 0) {
+												response.sendRedirect("staffs.jsp?status=success");
+											} else {
+												response.sendRedirect("staffs.jsp?status=failed");
+											}
+										} else {
+											response.sendRedirect("staffs.jsp?status=failed");
+										}
+									} else {
+										response.sendRedirect("staffs.jsp?status=failed");
+									}
 								}
-							} else {
-								response.sendRedirect("staffs.jsp?status=failed");
-							}
-						} else {
-							response.sendRedirect("staffs.jsp?status=failed");
-						}
-						%>
+							%>
 
 
 						</div>

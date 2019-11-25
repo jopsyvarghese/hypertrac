@@ -89,12 +89,12 @@ try {
 						</div>
 					</div>
 
-					<small class="pull-left"> <a href="dept.jsp"><i
+					<small class="pull-left"> <a href="subDeptMain.jsp"><i
 							class="fa fa-arrow-left" aria-hidden="true"></i></a>
 					</small>
 
 					<div class="text-center">
-						<h3 class="text-info">Edit Departments </h3>
+						<h3 class="text-info">Edit Sub Department </h3>
 						<form action="editSubDept_2.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
 								<input type="hidden" name="id" value="<%=id %>" />

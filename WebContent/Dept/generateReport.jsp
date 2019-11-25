@@ -62,6 +62,10 @@
 	font-size: 16px;
 	padding: 16px 32px;
 }
+
+#userTd, #contractorTd, #majorClientTd, #deptTd, #staffTd {
+	display: none;
+}
 </style>
 
 </head>
@@ -198,49 +202,120 @@
 				%>
 				<!-- End of Topbar -->
 				<div class="row">
-					<div class="col-sm-2 text-center">
-						<br /> <a href="<%=redirectUrl%>" class="btn btn-primary btn-sm">Back
+					<div class="col-sm-3 text-center">
+						<br /> <a href="<%=redirectUrl%>" class="btn btn-secondary btn-sm"><< Back
 							To Dashboard</a>
 					</div>
 
-					<div class="col-sm-8 text-center card">
+					<div class="col-sm-9 text-center card">
 						<!-- Profile Pic -->
 						<div class="container">
+						<br/>
 							<h2 class="text-primary">Generate Report</h2>
 							<form action="generateReportFinal.jsp" method="post">
 								<p>
-									<br /> Select Department <select name="dept"
-										class="form-control-sm">
-										<%
-											if (generateDeptId == 1) {
-										%>
-										<option value="0">Contractor</option>
-										<option value="4">User</option>
-										<%
-											} else if (generateDeptId == 2) {
-										%>
-										<option value="0">Contractor</option>
-										<option value="1">Staff</option>
-										<option value="4">User</option>
-										<%
-											} else if (generateDeptId == 3) {
-										%>
-										<option value="0">Contractor</option>
-										<option value="1">Staff</option>
-										<option value="2">Major Client</option>
-										<option value="4">User</option>
-										<%
-											}
-										%>
+									<br />
+								<table class="table">
+									<%
+										if (generateDeptId == 3) {
+									%>
+									<tr>
+										<th>Major Client</th>
+										<td><select name="majorClient" id="majorClient"
+											class="form-control" onchange="return loadDept()">
+												<option>Select Major Client</option>
+												<%
+													ResultSet rsMc = null;
+														String sqlMc = "SELECT id, fname FROM auth WHERE role=?";
+														PreparedStatement psMc = con.prepareStatement(sqlMc);
+														psMc.setInt(1, 2);
+														rsMc = psMc.executeQuery();
+														while (rsMc.next()) {
+												%>
+												<option value="<%=rsMc.getInt(1)%>"><%=rsMc.getString(2)%></option>
+												<%
+													}
+												%>
+												<optgroup id="majorClientData"></optgroup>
+										</select></td>
+									</tr>
+									<tr id="deptTd">
+										<th>Department Name</th>
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="return loadStaffs()">
+												<option>Select Department</option>
+												<optgroup id="deptData"></optgroup>
+										</select></td>
+									</tr>
+									<%
+										} else if (generateDeptId == 2) {
+									%>
+									<tr style="display:none;">
+										<th>Major Client</th>
+										<td><input type="hidden" id="majorClient"
+											name="majorClient" value="<%=myId%>" /></td>
+									</tr>
+									<tr>
+										<th>Department Name</th>
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="return loadStaffs()">
+												<option>Select Department</option>
+												<%
+													ResultSet rsDept = null;
+														String sqlDept = "SELECT id, dname FROM dept WHERE mc_id=?";
+														PreparedStatement psDept = con.prepareStatement(sqlDept);
+														psDept.setInt(1, myId);
+														rsDept = psDept.executeQuery();
+														while (rsDept.next()) {
+												%>
+												<option value="<%=rsDept.getInt(1)%>"><%=rsDept.getString(2)%></option>
+												<%
+													}
+												%>
+										</select></td>
+									</tr>
+									<%
+										}
+									%>
 
-									</select> <br /> <br /> <input type="submit" class="btn btn-primary"
-										value="Generate" />
+									<tr id="staffTd">
+										<th>Staff Name</th>
+										<td><select name="staff" id="staff" class="form-control">
+												<option>Select Staff</option>
+												<optgroup id="staffData"></optgroup>
+										</select></td>
+									</tr>
+									<tr id="majorClientTd">
+										<th>Major Client Name</th>
+										<td><select name="majorClient" id="majorClient"
+											class="form-control" onchange="return loadDept()">
+												<option>Select Major Client</option>
+												<optgroup id="majorClientData"></optgroup>
+										</select></td>
+									</tr>
+									<tr id="deptTd">
+										<th>Department Name</th>
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="return loadStaffs()">
+												<option>Select Department</option>
+												<optgroup id="deptData"></optgroup>
+										</select></td>
+									</tr>
+									<tr id="staffTd">
+										<th>Staff Name</th>
+										<td><select name="staff" id="staff" class="form-control">
+												<option>Select Staff</option>
+												<optgroup id="staffData"></optgroup>
+										</select></td>
+									</tr>
+								</table>
+								<br /> <br /> <input type="submit" class="btn btn-primary"
+									value="Generate" />
 								</p>
 							</form>
 						</div>
 					</div>
 
-					<div class="col-sm-2 text-center"></div>
 
 				</div>
 			</div>
@@ -303,6 +378,12 @@
 				return false;
 			}
 			return true;
+		}
+
+		function loadDept() {
+			var majorClient = $("#majorClient").val();
+			$("#deptData").load("deptList.jsp?mcId=" + majorClient);
+			$("#deptTd").show();
 		}
 	</script>
 </body>

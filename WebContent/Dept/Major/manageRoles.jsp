@@ -39,7 +39,7 @@
 		} catch (NullPointerException ne) {
 			response.sendRedirect("../../logout.jsp");
 		}
-		String sql = "SELECT * FROM role";
+		String sql = "SELECT * FROM role WHERE mc_id=" + myId;
 		Statement st = null;
 		Connection con = database.getConnection();
 		st = con.createStatement();
@@ -100,8 +100,9 @@
 											href="editRole.jsp?id=<%=rs.getInt(1)%>&q=<%=rs.getString(2)%>">
 												<span class="fa fa-pen"></span>
 										</a> / <a
-											href="deleteRole.jsp?id=<%=helper.encrypt("" + rs.getInt(1))%>">
-												<span class="fa fa-trash"></span>
+											href="deleteRole.jsp?id=<%=helper.encrypt("" + rs.getInt(1))%>"
+											onclick="return confirmDelete();"> <span
+												class="fa fa-trash"></span>
 										</a></td>
 									</tr>
 									<%
@@ -190,7 +191,16 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+	<script>
+		function confirmDelete() {
+			var r = confirm("Are you sure you want to Delete? !");
+			if (r == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
 </body>
 
 </html>

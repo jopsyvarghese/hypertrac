@@ -132,8 +132,8 @@
 				<nav
 					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 					<form action="downloadReport.jsp" method="post">
-						<input type="hidden" name="dept" value="<%=dept%>" /> <input
-							type="submit" value="Download Report" class="btn btn-primary" />
+						<input type="hidden" name="dept" value="<%=dept%>" /> <button
+							type="submit" class="btn btn-primary">Download Report <span class="fa fa-download"></span></button>
 					</form>
 
 					<!-- Sidebar Toggle (Topbar) -->
@@ -166,9 +166,10 @@
 				%>
 				<!-- End of Topbar -->
 				<div class="row">
-					<div class="col-sm-3">
-						&nbsp;<a href="<%=redirectUrl %>" class="btn btn-primary btn-sm">Back
-							To Dashboard</a>
+					<div class="col-sm-6">
+						&nbsp;<a href="generateReport.jsp" class="btn btn-secondary btn-sm"> << Go Back</a>
+						&nbsp;<a href="<%=redirectUrl %>" class="btn btn-info btn-sm pull-right"><< Back To Dashboard</a>
+						<br/>&nbsp;
 					</div>
 					<div class="col-sm-12 text-center card">
 						<br />
@@ -178,50 +179,11 @@
 							String sql = "";
 							Helper helper = new Helper();
 							String stat[] = helper.getAppStatus();
-
-							if (dept == 0 || dept == 4) {
-								sql = "SELECT * FROM auth WHERE role=?";
-							} else {
-								sql = "SELECT * FROM applications_comment WHERE role=?";
-							}
+							sql = "SELECT * FROM applications_comment WHERE role=?";
 							ps = con.prepareStatement(sql);
 							ps.setInt(1, dept);
 							ResultSet rs = ps.executeQuery();
-							if (dept == 0 || dept == 4) {
-						%>
-						<table class='table table-responsive'>
-							<tr>
-								<td>App ID</td>
-								<td>Name/No.</td>
-								<td>Subject</td>
-								<td>Submitted On</td>
-								<td>Status</td>
-							</tr>
-							<%
-								while (rs.next()) {
-										int userId = rs.getInt(1); // This is only correct when role is 0 or 4
-										// should check for 
-										String sql2 = "SELECT * FROM applications WHERE app_by=?";
-										PreparedStatement ps2 = con.prepareStatement(sql2);
-										ps2.setInt(1, userId);
-										ResultSet rs2 = ps2.executeQuery();
-										while (rs2.next()) {
 							%>
-							<tr>
-								<td><%=rs2.getInt(1)%></td>
-								<td><%=rs2.getString(2)%></td>
-								<td><%=rs2.getString(4)%></td>
-								<td><%=rs2.getString(5)%></td>
-								<td><%=stat[rs2.getInt(7)]%></td>
-							</tr>
-							<%
-								}
-									}
-							%>
-						</table>
-						<%
-							} else {
-						%>
 						<table class='table table-responsive'>
 							<tr>
 								<td>App ID</td>
@@ -246,10 +208,6 @@
 								}
 							%>
 						</table>
-						<%
-							}
-						%>
-
 					</div>
 
 				</div>

@@ -88,38 +88,47 @@
 								rs = ps.executeQuery();
 								if (rs.next()) {
 							%>
-							<h4>Update Department</h4>
-							<form action="updateDept.jsp" method="post" onsubmit="return checkForm();">
-								<input type="hidden" name="id" value="<%=rs.getInt(1)%>" />
-								<table>
-									<tr>
-										<td>Department Head</td>
-										<td>
-											<%
-											int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-												ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
-											%> <select name="deptHead" id="deptHead" class="form-control" required="required">
+							<div class="text-center">
+								<h4 class="text-info">Edit Department</h4>
+
+								<br />
+								<br />
+								<form action="updateDept.jsp" method="post"
+									onsubmit="return checkForm();">
+									<input type="hidden" name="id" value="<%=rs.getInt(1)%>" />
+									<table>
+										<tr>
+											<td>Department Head</td>
+											<td>
 												<%
-													for (int rowValue : arr) {
-												%>
-												<option value="<%=rowValue%>"><%=helper.getNameById(rowValue)%></option>
-												<%
-													}
-												%>
-										</select>
-										</td>
-									</tr>
-									<tr>
-										<td>Department Name</td>
-										<td><input type="text" name="deptName" id="deptName"
-											class="form-control" value="<%=rs.getString(2)%>" /></td>
-									</tr>
-									<tr>
-										<td colspan="2"><input type="submit" value="Update"
-											class="btn btn-primary" /></td>
-									</tr>
-								</table>
-							</form>
+													int mcId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+														ArrayList<Integer> arr = helper.getStaffNamesByMcId(mcId);
+												%> <select name="deptHead" id="deptHead" class="form-control">
+													<%
+														for (int rowValue : arr) {
+													%>
+													<option value="<%=rowValue%>"><%=helper.getNameById(rowValue)%></option>
+													<%
+														}
+													%>
+											</select>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">&nbsp;</td>
+										</tr>
+										<tr>
+											<td>Department Name</td>
+											<td><input type="text" name="deptName" id="deptName"
+												class="form-control" value="<%=rs.getString(2)%>" /></td>
+										</tr>
+										<tr>
+											<td colspan="2"><input type="submit" value="Update"
+												class="btn btn-primary" /></td>
+										</tr>
+									</table>
+								</form>
+							</div>
 							<%
 								}
 							%>
@@ -198,10 +207,10 @@
 			var deptHead = $("#deptHead").val();
 			var deptName = $("#deptName").val();
 			if (deptHead < 1 || deptName.length < 2) {
-				alert("Invalid Details Supplied");
-				return false;	
+				alert("You must select a department head to update this");
+				return false;
 			}
-			
+
 		}
 	</script>
 </body>

@@ -41,7 +41,25 @@
 </head>
 
 <body>
-
+<%
+//Check session already exists or not
+if(session.getAttribute("loggedInUserRole") != null && session.getAttribute("loggedInUserRole") != "") {
+	int role = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
+	String redirect = "";
+	if (role == 0 || role == 4) {
+		redirect = "Dept/User/";
+	} else if (role == 1) {
+		redirect = "Dept/Staff/";
+	} else if (role == 2) {
+		redirect = "Dept/Major/";
+	} else if (role == 3) {
+		redirect = "Dept/Admin/";
+	} else {
+		redirect = "logout.jsp";
+	}
+	response.sendRedirect(redirect);
+}
+%>
 	<!--==========================
 Header
 ============================-->

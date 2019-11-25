@@ -52,12 +52,13 @@
 			redirected = rsCount.getInt(4);
 			completed = rsCount.getInt(5);
 			totalCount = rsCount.getInt(6);
-
-			newPercentage = (newOpen * 100) / totalCount;
-			inProgressPercentage = (inProgress * 100) / totalCount;
-			onHoldPercentage = (onHold * 100) / totalCount;
-			redirectedPercentage = (redirected * 100) / totalCount;
-			completedPercentage = (completed * 100) / totalCount;
+			if (totalCount > 0) {
+				newPercentage = (newOpen * 100) / totalCount;	
+				inProgressPercentage = (inProgress * 100) / totalCount;
+				onHoldPercentage = (onHold * 100) / totalCount;
+				redirectedPercentage = (redirected * 100) / totalCount;
+				completedPercentage = (completed * 100) / totalCount;
+			}
 		}
 	%>
 	<!-- Page Wrapper -->

@@ -36,8 +36,11 @@
 		Connection con = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
+		ResultSet rs3 = null;
+		ResultSet rs4 = null;
 		con = database.getConnection();
 		int loggedId = 0;
+		int mcId = 0;
 		try {
 			if (session.getAttribute("loggedInUserId") == null) {
 	%>
@@ -116,20 +119,18 @@
 						<div class="col-lg-8 mb-4">
 							<h3 class="text-center">Edit Staff</h3>
 							<%
-							if (request.getAttribute("status") != null) {
+								if (request.getAttribute("status") != null) {
 							%>
 							<div class="alert alert-danger alert-dismissible fade show">
 								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<strong>Sorry! You Cannot Use this User name /Email ID</strong> Please type
-								another one
+								<strong>Sorry! You Cannot Use this User name /Email ID</strong>
+								Please type another one
 							</div>
 							<%
-							}
-							String sql = "SELECT * FROM auth WHERE id=?";
+								}
+								String sql = "SELECT * FROM auth WHERE id=?";
 								String sql2 = "SELECT * FROM staff WHERE id=?";
 								String sql3 = "SELECT id, dname FROM dept";
-								ResultSet rs3 = null;
-								ResultSet rs4 = null;
 								PreparedStatement ps = con.prepareStatement(sql);
 								PreparedStatement ps2 = con.prepareStatement(sql2);
 								PreparedStatement ps3 = con.prepareStatement(sql3);
@@ -138,9 +139,8 @@
 								rs = ps.executeQuery();
 								rs2 = ps2.executeQuery();
 								rs3 = ps3.executeQuery();
-								rs4 = helper.getRole();
 							%>
-							<form action="editStaff_2.jsp" method="post">
+							<form action="editStaff_2.jsp" method="post" onsubmit="return testFunction()">
 								<table class="table">
 									<%
 										if (rs.next()) {
@@ -153,7 +153,7 @@
 									</tr>
 									<tr>
 										<th>User Name</th>
-										<td><input type="text" name="userName"
+										<td><input type="text" name="userName" id="userName"
 											class="form-control" value="<%=rs.getString(4)%>" /></td>
 									</tr>
 									<tr>
@@ -180,6 +180,7 @@
 										}
 
 										if (rs2.next()) {
+											rs4 = helper.getRoleByMcId(rs2.getInt(5));
 									%>
 
 
@@ -306,7 +307,6 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
 </body>
 
 </html>

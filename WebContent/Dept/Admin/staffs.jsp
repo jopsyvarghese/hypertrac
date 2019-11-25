@@ -87,7 +87,9 @@
 					<div class="text-center">
 						<a href="addStaff.jsp" class="btn btn-primary btn-sm"> <span
 							class="fa fa-plus-circle"></span> New Staff
-						</a> <br /> <br />
+						</a> <br /> &nbsp;
+						<%@include file="../statusAlert.jsp" %>
+						&nbsp;<br />
 						<div class="table table-hover table-responsive">
 							<table class="table-hover table-responsive">
 								<tr class="table-warning">

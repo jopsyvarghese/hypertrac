@@ -193,14 +193,6 @@ public class Helper {
 		return "";
 	}
 
-	public ResultSet getAllPositions() throws SQLException {
-		String sql = "SELECT * FROM role";
-		Statement st = con.createStatement();
-		ResultSet rs = null;
-		rs = st.executeQuery(sql);
-		return rs;
-	}
-
 	public int getUserRoleById(int id) throws SQLException {
 		String sql = "SELECT role FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
@@ -221,6 +213,14 @@ public class Helper {
 			return rs.getString(2);
 		}
 		return "";
+	}
+	
+	public ResultSet getRoleByMcId(int mcId) throws SQLException {
+		String sql = "SELECT * FROM role WHERE mc_id="+mcId;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
 	}
 
 	public ResultSet getRole() throws SQLException {

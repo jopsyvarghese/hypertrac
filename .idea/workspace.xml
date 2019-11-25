@@ -7,10 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f4dadb8-feda-4526-a291-a33bc77ce4fc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/addRole.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/addRole.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/editDept.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/editDept.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/editSubDept.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/editSubDept.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/newApplication.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/newApplication.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/manageRoles.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/manageRoles.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/subDeptMain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/subDeptMain.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Staff/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Staff/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/changePassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/changePassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/generateReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/generateReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/generateReportFinal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/generateReportFinal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/Dept/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/profile.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +61,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/xampp/htdocs/MagentoCE2.3.1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -172,6 +181,8 @@
       <workItem from="1573530318691" duration="1290000" />
       <workItem from="1574013840615" duration="497000" />
       <workItem from="1574139078540" duration="260000" />
+      <workItem from="1574415021570" duration="193000" />
+      <workItem from="1574655437579" duration="1851000" />
     </task>
     <servers />
   </component>

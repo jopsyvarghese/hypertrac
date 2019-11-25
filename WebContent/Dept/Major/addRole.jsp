@@ -13,10 +13,11 @@ try {
 	response.sendRedirect("../../logout.jsp");
 }
 if(myId>0) {
-	String sql = "INSERT INTO role(role) VALUES(?)";
+	String sql = "INSERT INTO role(role, mc_id) VALUES(?,?)";
 	Connection con = database.getConnection();
 	PreparedStatement ps = con.prepareStatement(sql);
 	ps.setString(1, role);
+	ps.setInt(2, myId);
 	int i = ps.executeUpdate();
 	if (i > 0) {
 		response.sendRedirect("manageRoles.jsp?status=success");

@@ -47,10 +47,11 @@
 		Connection con = database.getConnection();
 		Statement st = null;
 		st = con.createStatement();
-		String sql = "SELECT id, dname FROM dept";
+		//String sql = "SELECT id, dname FROM dept";
+		String sql = "SELECT id, fname FROM auth WHERE role=2";
 		ResultSet rs = st.executeQuery(sql);
-		ResultSet rs1 = helper.getAllPositions();
-		
+		ResultSet rs1 = helper.getRole();
+
 		String firstName = "";
 		String lastName = "";
 		String userName = "";
@@ -58,7 +59,8 @@
 		int status = 0;
 		String pwd = "";
 		String phone = "";
-		
+		String dob = "";
+
 		if (request.getParameter("firstName") != null && request.getParameter("firstName") != "") {
 			firstName = request.getParameter("firstName");
 			lastName = request.getParameter("lastName");
@@ -67,9 +69,8 @@
 			pwd = request.getParameter("pwd");
 			status = 1;
 			phone = request.getParameter("phone");
+			dob = request.getParameter("dob");
 		}
-		
-		
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -115,41 +116,42 @@
 								<h3 class="text-info">Staff Registration</h3>
 								<br />
 							</div>
-							
+
 							<%
-						if(status > 0) {
-					%>
-					<div class="alert alert-danger alert-dismissible fade show">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<strong>Sorry! Email ID Already Taken</strong> Please type another one
-					</div>
-					<%
-						}
-					%>
-							
+								if (status > 0) {
+							%>
+							<div class="alert alert-danger alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Sorry! Email ID / User Name Already Taken</strong> Please type
+								another one
+							</div>
+							<%
+								}
+							%>
+
 							<form action="addStaff_2.jsp" method="post"
 								onsubmit="return passwordCheck()">
 								<table class="table">
 									<tr>
 										<th>First Name</th>
 										<td><input type="text" name="firstName"
-											class="form-control" value="<%=firstName%>"/></td>
+											class="form-control" value="<%=firstName%>" /></td>
 									</tr>
 									<tr>
 										<th>Last Name</th>
 										<td><input type="text" name="lastName"
-											class="form-control" value="<%=lastName%>"/></td>
+											class="form-control" value="<%=lastName%>" /></td>
 									</tr>
 									<tr>
 										<th>User Name</th>
 										<td><input type="text" name="userName"
-											class="form-control" value="<%=userName%>"/></td>
+											class="form-control" value="<%=userName%>" /></td>
 									</tr>
 									<tr>
-										<th>Department</th>
-										<td><select name="dept" id="dept" class="form-control"
-											onchange="return loadSub()">
-												<option value="0">Select Department</option>
+										<th>Major Client</th>
+										<td><select name="majorClient" id="majorClient" class="form-control"
+											onchange="return loadDept()">
+												<option value="0">Select Major Client</option>
 												<%
 													while (rs.next()) {
 												%>
@@ -157,6 +159,14 @@
 												<%
 													}
 												%>
+										</select></td>
+									</tr>
+									<tr>
+										<th>Department</th>
+										<td><select name="dept" id="dept" class="form-control"
+											onchange="return loadSub()">
+												<option>Select a Department</option>
+												<optgroup id="deptData"></optgroup>
 										</select></td>
 									</tr>
 
@@ -171,41 +181,35 @@
 									<tr>
 										<th>Position</th>
 										<td><select name="position" class="form-control">
-												<option value="0">Select Position</option>
-												<%
-													while (rs1.next()) {
-												%>
-												<option value="<%=rs1.getInt(1)%>"><%=rs1.getString(2)%></option>
-												<%
-													}
-												%>
+												<option>Select Position</option>
+												<optgroup id="positionData"></optgroup>
 
 										</select></td>
 									</tr>
 									<tr>
 										<th>Email</th>
-										<td><input type="email" name="email" class="form-control" value="<%=email%>"/>
-										</td>
+										<td><input type="email" name="email" class="form-control"
+											value="<%=email%>" /></td>
 									</tr>
 									<tr>
 										<th>Phone</th>
 										<td><input type="number" name="phone"
-											class="form-control" /></td>
+											class="form-control" value="<%=phone %>"/></td>
 									</tr>
 									<tr>
 										<th>Date Of Birth</th>
-										<td><input type="date" name="dob"
-											class="form-control" required/></td>
+										<td><input type="date" name="dob" class="form-control"
+											required value="<%=dob%>"/></td>
 									</tr>
 									<tr>
 										<th>Password</th>
 										<td><input type="password" name="pwd" id="pwd"
-											class="form-control" value="<%=pwd%>"/></td>
+											class="form-control" value="<%=pwd%>" /></td>
 									</tr>
 									<tr>
 										<th>Confirm Password</th>
 										<td><input type="password" name="cpwd" id="cpwd"
-											class="form-control" value="<%=pwd%>"/></td>
+											class="form-control" value="<%=pwd%>" /></td>
 									</tr>
 									<tr>
 										<th colspan="2" class="text-center">
@@ -287,6 +291,11 @@
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
+		function loadDept() {
+			var mcId = document.getElementById("majorClient").value;
+			$("#deptData").load("../loadDept.jsp?id=" + mcId);
+			loadPosition(mcId);
+		}
 		function loadSub() {
 			var deptId = document.getElementById("dept").value;
 			$("#subCatData").load("../Major/subDept.jsp?dept=" + deptId);
@@ -303,6 +312,9 @@
 				return false;
 			}
 			return true;
+		}
+		function loadPosition(mcId) {
+			$("#positionData").load("../loadPosition.jsp?mcId=" + mcId);
 		}
 	</script>
 </body>

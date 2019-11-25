@@ -37,25 +37,24 @@
 </head>
 
 <body id="page-top">
-<%
-Helper helper = new Helper();
-int q = 0;
-String redirect = "";
-try {
-q = Integer.parseInt(helper.decrypt(request.getParameter("q")));
-} catch(Exception e) {
-	throw new Exception("Something went wrong.. ! Please try later...");
-}
-if (q == 0 || q == 4) {
-	redirect = "User/";
-} else if (q == 1) {
-	redirect = "Staff/";
-} else if (q == 2) {
-	redirect = "Major/";
-} else if (q == 3) {
-	redirect = "Admin/";
-}
-%>
+	<%
+		Helper helper = new Helper();
+		int q = 0;
+		String redirect = "";
+		String qB4Decrypt = "";
+		try {
+			qB4Decrypt = request.getParameter("q");
+			q = Integer.parseInt(helper.decrypt(request.getParameter("q")));
+			if (q == 0 || q == 4) {
+				redirect = "User/";
+			} else if (q == 1) {
+				redirect = "Staff/";
+			} else if (q == 2) {
+				redirect = "Major/";
+			} else if (q == 3) {
+				redirect = "Admin/";
+			}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -63,7 +62,7 @@ if (q == 0 || q == 4) {
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-			
+
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
@@ -118,25 +117,30 @@ if (q == 0 || q == 4) {
 						<br />
 						<div class="row">
 							<div class="col-sm-3">
-								<a href="<%=redirect %>" class="text-primary"><span class="fa fa-arrow-left"></span></a>
+								<a href="<%=redirect%>" class="text-primary"><span
+									class="fa fa-arrow-left"></span></a>
 							</div>
 							<div class="col-sm-6">
 								<%
-							if(request.getParameter("status") != null) {
-								String status = request.getParameter("status");
-								if(status.equals("success")) { %>
+									if (request.getParameter("status") != null) {
+											String status = request.getParameter("status");
+											if (status.equals("success")) {
+								%>
 								<div class="alert alert-success alert-dismissible fade show">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
 									<strong>Success!</strong> Updated your comment.
 								</div>
-								<% } else if(status.equals("failed")) { %>
+								<%
+									} else if (status.equals("failed")) {
+								%>
 								<div class="alert alert-danger alert-dismissible fade show">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
 									<strong>Failed!</strong> Unable to Update.
 								</div>
-								<%}
-							}
-						%>
+								<%
+									}
+										}
+								%>
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
@@ -145,7 +149,7 @@ if (q == 0 || q == 4) {
 						<div class="row">
 							<div class="col-sm-3"></div>
 							<div class="col-sm-6">
-								<form action="chatSubmit.jsp" method="post">
+								<form action="chatSubmit.jsp?q=<%=qB4Decrypt %>" method="post">
 									<div class="text-center">
 										<strong>Add your comment</strong>
 									</div>
@@ -233,14 +237,25 @@ if (q == 0 || q == 4) {
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
 	<script>
-	function update() {
-		  $.get("chatRoomDataLoad.jsp", function(data) {
-		    $("#chatData").html(data);
-		    window.setTimeout(update, 3000);
-		  });
+		function update() {
+			$.get("chatRoomDataLoad.jsp", function(data) {
+				$("#chatData").html(data);
+				window.setTimeout(update, 3000);
+			});
 		}
-	update();
+		update();
 	</script>
+
+	<%
+		} catch (Exception e) {
+	%>
+	<div class="text-center">
+		<h3 class='text-danger' style='margin-top: 20%;'>Something went
+			wrong..Please try later..!</h3>
+	</div>
+	<%
+		}
+	%>
 </body>
 
 </html>

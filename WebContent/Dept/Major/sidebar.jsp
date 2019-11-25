@@ -26,7 +26,7 @@
 			class="fas fa-newspaper"></i> <span>Departments</span>
 	</a></li>
 	<li class="nav-item"><a class="nav-link" href="subDeptMain.jsp"> <i
-			class="fa fa-columns"></i> <span>Sub Department</span>
+			class="fa fa-columns"></i> <span>Sub Departments</span>
 	</a></li>
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link" href="appStatus.jsp">
@@ -34,7 +34,7 @@
 	</a></li>
 
 	<li class="nav-item"><a class="nav-link" href="applications.jsp">
-			<i class="fas fa-newspaper"></i> <span>Application</span>
+			<i class="fas fa-newspaper"></i> <span>Applications</span>
 	</a></li>
 
 	<!-- Nav Item - Pages Collapse Menu -->

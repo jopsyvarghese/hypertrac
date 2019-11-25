@@ -95,9 +95,9 @@
 							Dashboard <small class="text-info"><i> / <%=helper.getDeptNameByStaffId(loggedId)%>
 									/ <%=session.getAttribute("loggedInUserName").toString()%></i></small>
 						</h1>
-						<a href="../generateReport.jsp"
+						<!-- <a href="../generateReport.jsp"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
 					</div>
 
 					<!-- Content Row -->
@@ -152,8 +152,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Application
-										Status</h6>
+									<h6 class="m-0 font-weight-bold text-primary">My Dept. Applications Status</h6>
 									<div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
@@ -208,7 +207,7 @@
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">My
-										Department Tickets Status</h6>
+										Dept. Tickets Status</h6>
 								</div>
 								<div class="card-body">
 									<h4 class="small font-weight-bold">

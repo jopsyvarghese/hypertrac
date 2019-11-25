@@ -87,6 +87,7 @@
 								</a>
 							</div>
 							<br />
+							<%@include file="../statusAlert.jsp" %>
 							<table class="table table-hover table-bordered">
 								<tr class="table-warning">
 									<th>Sl.No</th>

@@ -74,7 +74,7 @@
 					</button>
 
 					<!-- Topbar Search -->
-					<form
+					<!-- <form
 						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 						<div class="input-group">
 							<input type="text" class="form-control bg-light border-0 small"
@@ -86,7 +86,7 @@
 								</button>
 							</div>
 						</div>
-					</form>
+					</form> -->
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -115,6 +115,9 @@
 						</div>
 						<div class="col-lg-8 mb-4">
 							<h3 class="text-center text-info">Edit Staff</h3>
+							<br/>&nbsp;
+							<%@include file="../statusAlert.jsp" %>
+							<br/>&nbsp;
 							<%
 								String sql = "SELECT * FROM auth WHERE id=?";
 								String sql2 = "SELECT * FROM staff WHERE id=?";
@@ -130,7 +133,7 @@
 								rs = ps.executeQuery();
 								rs2 = ps2.executeQuery();
 								rs3 = ps3.executeQuery();
-								rs4 = helper.getRole();
+								rs4 = helper.getRoleByMcId(loggedId);
 							%>
 							<form action="editStaff_2.jsp" method="post">
 								<table class="table">

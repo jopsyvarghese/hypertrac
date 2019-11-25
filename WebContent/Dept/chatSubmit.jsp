@@ -10,6 +10,7 @@
 	<%
 	Helper helper = new Helper();
 	String comment = request.getParameter("comment");
+	String q = request.getParameter("q");
 	String sql = "INSERT INTO chat_room(chat_by, comment, chat_on) VALUES(?,?,?)";
 	String chat_on = helper.getDateTime();
 	int chat_by = 0;
@@ -21,11 +22,11 @@
 		ps.setInt(1, chat_by);
 		ps.setString(2, comment);
 		ps.setString(3, chat_on);
+		String status = "failed";
 		if (ps.executeUpdate() > 0) {
-			response.sendRedirect("chatRoom.jsp?status=success");
-		} else {
-			response.sendRedirect("chatRoom.jsp?status=failed");
+			status="success";
 		}
+		response.sendRedirect("chatRoom.jsp?q="+q+"&status="+status);
 		con.close();
 	}
 	%>
