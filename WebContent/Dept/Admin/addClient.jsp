@@ -174,6 +174,7 @@
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
 	function passwordCheck() {
+		var regEx = /(?=^.{6,20}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/;
 		var newPwd = $("#pwd").val();
 		var confPwd = $("#cpwd").val();
 		if(newPwd!==confPwd) {
@@ -184,7 +185,10 @@
 			alert("New Password Should be atleast 6 characters length");
 			return false;
 		}
-		return true;
+		if (!newPwd.match(regEx)) {
+	        alert("Password Should be combination of Capital letter,Small letter,Number and/or Special Characters");
+	        return false;
+	    }
 	}
 </script>
 </body>

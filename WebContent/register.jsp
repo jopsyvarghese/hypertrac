@@ -302,6 +302,7 @@ Footer
 	<script src="js/main.js"></script>
 	<script>
 		function validate() {
+			var regEx = /(?=^.{6,20}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/;
 			var role = document.getElementById("role").value;
 			var rc = document.getElementById("rc").value;
 			var pwd = document.getElementById("pwd").value;
@@ -313,6 +314,10 @@ Footer
 				alert("Passwords doesn't match");
 				return false;
 			}
+			if (!pwd.match(regEx)) {
+		        alert("Password Should be combination of Capital letter,Small letter,Number and/or Special Characters");
+		        return false;
+		    }
 			if (role == "0" && rc.length > 2) {
 				return true;
 			} else if (role == "0" && rc.length <= 2) {

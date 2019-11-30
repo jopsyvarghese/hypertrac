@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="com.hypertrac.dao.database"%>
@@ -30,13 +31,15 @@
 
 <body id="page-top">
 	<%
-String sql = "SELECT id,fname FROM auth WHERE role=0";
-Connection con = database.getConnection();
-Statement st = null;
-ResultSet rs = null;
-st = con.createStatement();
-rs = st.executeQuery(sql);
-%>
+		String query = "SELECT DISTINCT(fk_id) FROM applications_more WHERE major_client=3 AND ";
+		String sql = "SELECT id,fname FROM auth WHERE role=0";
+		Connection con = database.getConnection();
+		Statement st = null;
+		ResultSet rs = null;
+		st = con.createStatement();
+		rs = st.executeQuery(sql);
+		Helper helper = new Helper();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -75,14 +78,48 @@ rs = st.executeQuery(sql);
 						<br />
 						<h4 class="text-info">Chat With Contractor</h4>
 						<br />
-						<form action="chatWithContractor_2.jsp" method="post">
-							<select name="contractor" class="form-control-sm">
+						<form action="#" method="post">
+							<%-- <select name="contractor" class="form-control-sm">
 								<option>Select Contractor</option>
 								<%	while(rs.next()) { %>
 								<option value="<%=rs.getInt(1) %>"><%=rs.getString(2) %></option>
 								<% } %>
-							</select> <input type="submit" class="btn-sm btn-primary" />
+							</select> --%>
+
+							<input list="users" name="contractor" class="form-control"
+								autocomplete="on" placeholder="Type a User's Name To Search"
+								style="width: 90%; float: left;">
+							<datalist id="users">
+								<%
+									while (rs.next()) {
+								%>
+								<option value="<%=rs.getString(2)%>">
+									<%
+										}
+									%>
+								
+							</datalist>
+
+							<button type="submit" class="btn btn-primary" style="width: 8%;">
+								<span class="fa fa-search"></span>
+							</button>
 						</form>
+
+						<div style="margin-top: 30px; padding: 10px;">
+							<%
+								if (request.getParameter("contractor") != null && request.getParameter("contractor") != "") {
+									ResultSet rsIds = helper.getContractorIdsByName(request.getParameter("contractor"));
+									while (rsIds.next()) {
+							%>
+							<a
+								href="chatWithContractor_2.jsp?contractor=<%=rsIds.getInt(1)%>"><span
+								class="badge badge-dark"><%=rsIds.getString(2)%> <small>(<%=rsIds.getString(3)%>)
+								</small></span></a>
+							<%
+								}
+								}
+							%>
+						</div>
 
 					</div>
 

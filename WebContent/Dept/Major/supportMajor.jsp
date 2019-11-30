@@ -108,7 +108,7 @@
 								msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("jopsy777@gmail.com", false));
 								msg.setSentDate(new Date());
 								Transport.send(msg);
-								out.println("<h4 class='text-success'>Email Sent</h4>");
+								out.println("<h4 class='text-success'>Thanks for contacting Hypertrac support team. We will get back to you in 24hours</h4>");
 							} catch (Exception e) {
 								System.out.println(e);
 							}

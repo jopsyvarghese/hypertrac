@@ -638,6 +638,14 @@ public class Helper {
 		return 0;
 	}
 	
+	public ResultSet getContractorIdsByName(String fname) throws SQLException {
+		String sql = "SELECT id, fname, email FROM auth WHERE fname like '%" + fname + "%' AND role=0;";
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		return rs;
+	}
+	
 	/**
 	 * 
 	 * @return
