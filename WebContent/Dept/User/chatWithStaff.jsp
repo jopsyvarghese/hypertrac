@@ -70,7 +70,7 @@
 						<div class="row">
 							<div class="col-sm-3"></div>
 							<div class="col-sm-6">
-								<h4 class="text-info">Chat With Customer Staff</h4>
+								<h4 class="text-info">Chat With Staff</h4>
 								<br /> <br />
 								<form action="chatWithStaff_2.jsp" method="post"
 									onsubmit="return formCheck()">
@@ -158,7 +158,6 @@
 	<script>
 		function getStaffName() {
 			var deptId = document.getElementById("majorClient").value;
-			alert(deptId);
 			$("#staffName").load("staffNamesByDept.jsp?id=" + deptId);
 		}
 

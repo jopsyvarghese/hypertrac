@@ -8,16 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1f4dadb8-feda-4526-a291-a33bc77ce4fc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/addClient.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/addClient.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Admin/addStaff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Admin/addStaff.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/addStaff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/addStaff.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/chatWithContractor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/chatWithContractor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/chatWithContractor_2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/chatWithContractor_2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/Major/supportMajor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/Major/supportMajor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/Dept/usernameCheck.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/Dept/usernameCheck.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/com/hypertrac/commons/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hypertrac/commons/Helper.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -182,6 +172,7 @@
       <workItem from="1574415021570" duration="193000" />
       <workItem from="1574655437579" duration="3137000" />
       <workItem from="1575123146044" duration="1169000" />
+      <workItem from="1575175247747" duration="1894000" />
     </task>
     <servers />
   </component>

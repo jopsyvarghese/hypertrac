@@ -54,6 +54,15 @@
 	<hr class="sidebar-divider">
 
 	<!-- Nav Item - Charts -->
+	<li class="nav-item"><a class="nav-link"
+		href="inviteContractor.jsp"> <i class="fa fa-handshake-o" aria-hidden="true"></i>
+			<span>Invitation To Contractor</span></a></li>
+
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+
+	<!-- Nav Item - Charts -->
 	<li class="nav-item"><a class="nav-link" href="support.jsp"> <i
 			class="fas fa-fw fa-comment"></i> <span>Support</span></a></li>
 

@@ -75,7 +75,7 @@
 								<%
 									int id = 0;
 									id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-									String sql = "SELECT * FROM applications WHERE app_by=?";
+									String sql = "SELECT * FROM applications WHERE app_by=? ORDER BY id DESC";
 									Connection con = database.getConnection();
 									PreparedStatement ps = con.prepareStatement(sql);
 									ps.setInt(1, id);
