@@ -5,6 +5,11 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="com.hypertrac.commons.Helper"%>
 <html lang="en">
+<%
+Helper helper = new Helper();
+try {
+%>
+
 
 <head>
 
@@ -42,8 +47,6 @@
 			loggedId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
 		} catch (NullPointerException ne) {
 		}
-
-		Helper helper = new Helper();
 		Connection con = database.getConnection();
 		Statement st = null;
 		st = con.createStatement();
@@ -292,5 +295,12 @@
 		}
 	</script>
 </body>
-
+<%
+}
+finally {
+	try {
+		helper.closeConnection();	
+	} catch(Exception e) {}
+}
+%>
 </html>

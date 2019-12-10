@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.sun.java.swing.plaf.motif.resources.motif"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -74,7 +75,13 @@
 									String userName = request.getParameter("userName");
 									String email = request.getParameter("email");
 									Long phone = Long.parseLong(request.getParameter("phone"));
-									String pwd = request.getParameter("pwd");
+									Helper helper = new Helper();
+									
+//									String pwd = helper.encryptPwd(request.getParameter("pwd"));
+									int subDept = 0;
+									if(request.getParameter("subDept")!=null && request.getParameter("subDept") != "") {
+										subDept = Integer.parseInt(request.getParameter("subDept"));
+									}									
 
 									int dept = Integer.parseInt(request.getParameter("dept"));
 									int position = Integer.parseInt(request.getParameter("position"));
@@ -92,21 +99,21 @@
 										request.setAttribute("status", 1);
 										rd.forward(request, response);
 									} else {
-										String sql = "UPDATE auth SET fname=?,uname=?,pwd=?,email=?,mob=? WHERE id=?";
+										String sql = "UPDATE auth SET fname=?,uname=?,email=?,mob=? WHERE id=?";
 
 										PreparedStatement ps = con.prepareStatement(sql);
 										ps.setString(1, firstName);
 										ps.setString(2, userName);
-										ps.setString(3, pwd);
-										ps.setString(4, email);
-										ps.setLong(5, phone);
-										ps.setInt(6, id);
+										ps.setString(3, email);
+										ps.setLong(4, phone);
+										ps.setInt(5, id);
 										if (ps.executeUpdate() > 0) {
-											String sql2 = "UPDATE staff SET dept=?, position=? WHERE id=?";
+											String sql2 = "UPDATE staff SET dept=?, position=?, sub_dept_id=? WHERE id=?";
 											PreparedStatement ps2 = con.prepareStatement(sql2);
 											ps2.setInt(1, dept);
 											ps2.setInt(2, position);
-											ps2.setInt(3, id);
+											ps2.setInt(3, subDept);
+											ps2.setInt(4, id);
 											if (ps2.executeUpdate() > 0) {
 												response.sendRedirect("staffs.jsp?status=success");
 											} else {

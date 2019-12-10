@@ -32,10 +32,10 @@
 		Helper helper = new Helper();
 		Connection con = database.getConnection();
 		int id = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-		int rc = 0;
+		long rc = 0L;
 		ResultSet rs = helper.getBuzzType();
 		ResultSet majorClients = helper.getMajorClients();
-		int rcSearch = 0;
+		long rcSearch = 0L;
 		String contractorName = "";
 		String addr = "";
 		Long phone = 0L;
@@ -46,23 +46,26 @@
 
 		// Check RC Search for fetching user data
 		if (request.getParameter("rcSearch") != null && request.getParameter("rcSearch") != "") {
-			System.out.println("RC Search IS: " + request.getParameter("rcSearch") + " . . . ");
-			rcSearch = Integer.parseInt(request.getParameter("rcSearch"));
+			rcSearch = Long.parseLong(request.getParameter("rcSearch"));
 			if (rcSearch > 0) {
 				rc = rcSearch;
 				userId = helper.getIdByRc(rc);
-				String rcQry = "SELECT company, comp_addr, phone, phone2, email, website FROM applications_more WHERE fk_id=(SELECT id FROM applications WHERE app_by=? ORDER BY id DESC limit 0,1) ORDER BY id DESC limit 0,1";
-				PreparedStatement psQ = con.prepareStatement(rcQry);
-				psQ.setInt(1, userId);
-				ResultSet rsQ = null;
-				rsQ = psQ.executeQuery();
-				while (rsQ.next()) {
-					contractorName = rsQ.getString(1);
-					addr = rsQ.getString(2);
-					phone = rsQ.getLong(3);
-					phone2 = rsQ.getLong(4);
-					email = rsQ.getString(5);
-					website = rsQ.getString(6);
+				if (userId > 0) {
+					String rcQry = "SELECT company, comp_addr, phone, phone2, email, website FROM applications_more WHERE fk_id=(SELECT id FROM applications WHERE app_by=? ORDER BY id DESC limit 0,1) ORDER BY id DESC limit 0,1";
+					PreparedStatement psQ = con.prepareStatement(rcQry);
+					psQ.setInt(1, userId);
+					ResultSet rsQ = null;
+					rsQ = psQ.executeQuery();
+					while (rsQ.next()) {
+						contractorName = rsQ.getString(1);
+						addr = rsQ.getString(2);
+						phone = rsQ.getLong(3);
+						phone2 = rsQ.getLong(4);
+						email = rsQ.getString(5);
+						website = rsQ.getString(6);
+					}
+				} else {
+					out.println("<script>alert('Invalid RC Given')</script>");
 				}
 			}
 		}
@@ -112,8 +115,7 @@
 								<button type="submit" class="btn btn-primary">
 									<span class="fa fa-search"></span>
 								</button>
-								<br />
-								<br />
+								<br /> <br />
 							</form>
 						</div>
 
@@ -131,7 +133,7 @@
 									<tr>
 										<td>RC Number</td>
 										<td><input type="text" class="form-control" name="rc"
-											value="<%=rc%>" readonly="readonly" /></td>
+											value="<%=rc%>"/></td>
 									</tr>
 									<tr>
 										<td>Company Address</td>

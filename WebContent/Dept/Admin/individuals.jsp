@@ -88,43 +88,42 @@
 						</a> -->
 						<h3 class="text-info">Individuals Portal</h3>
 						<br />
-
-						<table class="table table-hover table-bordered">
-							<tr class="table-warning">
-								<th>Sl.No</th>
-								<th>Name</th>
-								<th>Address</th>
-								<th>Email</th>
-								<th>Phone No.</th>
-								<th>Operation</th>
-							</tr>
-							<%
-								int i = 1;
-								while (rs.next()) {
-							%>
-							<form action="deleteContractor.jsp" method="get">
-								<input type="hidden" name="id" value="<%=rs.getInt(1) %>" /> <input
-									type="hidden" name="redirect" value="individuals.jsp" />
+						<form action="deleteContractor.jsp" method="get">
+							<table class="table table-hover table-bordered">
+								<tr class="table-warning">
+									<th>Sl.No</th>
+									<th>Name</th>
+									<th>Address</th>
+									<th>Email</th>
+									<th>Phone No.</th>
+									<th>Operation</th>
+								</tr>
+								<%
+									int i = 1;
+									while (rs.next()) {
+								%>
 								<tr>
-									<td><%=i%></td>
+									<td><%=i%> <input type="hidden" name="id"
+										value="<%=rs.getInt(1)%>" /> <input type="hidden"
+										name="redirect" value="individuals.jsp" /></td>
 									<td><%=rs.getString(2)%></td>
 									<td><%=rs.getString(3)%></td>
 									<td><%=rs.getString(6)%></td>
 									<td><%=rs.getString(7)%></td>
 									<td>
 										<%
-								//Check Status
-								int status = rs.getInt(16);
-								String btnColor = "btn-outline-danger";
-								String toggleStatus = "fa-toggle-off";
-								if(status == 1) {
-									btnColor = "btn-outline-success";
-									toggleStatus = "fa-toggle-on";
-								}
-								%> <a
-										href="../enableDisable.jsp?id=<%=rs.getInt(1) %>&redirect=Admin/individuals.jsp"
-										class="btn <%=btnColor %> btn-sm"> <i
-											class="fas <%=toggleStatus %>"></i>
+											//Check Status
+												int status = rs.getInt(16);
+												String btnColor = "btn-outline-danger";
+												String toggleStatus = "fa-toggle-off";
+												if (status == 1) {
+													btnColor = "btn-outline-success";
+													toggleStatus = "fa-toggle-on";
+												}
+										%> <a
+										href="../enableDisable.jsp?id=<%=rs.getInt(1)%>&redirect=Admin/individuals.jsp"
+										class="btn <%=btnColor%> btn-sm"> <i
+											class="fas <%=toggleStatus%>"></i>
 									</a>
 										<button class="btn btn-outline-danger btn-sm"
 											onclick="return Confirm();">
@@ -132,12 +131,13 @@
 										</button>
 									</td>
 								</tr>
-							</form>
-							<%
-								i++;
-								}
-							%>
-						</table>
+
+								<%
+									i++;
+									}
+								%>
+							</table>
+						</form>
 					</div>
 
 				</div>
@@ -184,15 +184,15 @@
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
 	<script>
-	function Confirm() {
-		var r = confirm("Are you sure you want to delete this user? ");
-		if (r == true) {
-		  return true;
-		} else {
-		  return false;
+		function Confirm() {
+			var r = confirm("Are you sure you want to delete this user? ");
+			if (r == true) {
+				return true;
+			} else {
+				return false;
+			}
 		}
-	}
-</script>
+	</script>
 </body>
 
 </html>

@@ -104,7 +104,7 @@
 										<td><select name="dept" class="form-control">
 												<option value="0">Select Any Department</option>
 												<%
-													ResultSet rsDept = helper.getDept();
+													ResultSet rsDept = helper.getDeptByMcId(myId);
 														while (rsDept.next()) {
 												%>
 												<option value="<%=rsDept.getInt(1)%>"><%=rsDept.getString(2)%></option>
@@ -130,8 +130,8 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td colspan="2"><input type="submit"
-											class="btn btn-primary" /></td>
+										<td colspan="2" class="text-center"><input type="submit"
+											class="btn btn-primary" value="Invite"/></td>
 									</tr>
 								</table>
 							</form>
@@ -174,7 +174,7 @@
 											if (rs2.next()) {
 												msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(rs2.getString(1), false));
 											} else {
-												throw new Exception("Invalid Email ID");
+												out.println("<strong class='text-center text-warning'>Unable to Send Invitation... Invalid Email ID Supplied..</strong>");
 											}
 
 											msg.setSubject("HyperTrac: Invitation Against Your Application");

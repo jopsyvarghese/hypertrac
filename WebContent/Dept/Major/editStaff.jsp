@@ -91,6 +91,7 @@
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 						<jsp:include page="header.jsp"></jsp:include>
+					</ul>
 				</nav>
 				<!-- End of Topbar -->
 
@@ -115,9 +116,9 @@
 						</div>
 						<div class="col-lg-8 mb-4">
 							<h3 class="text-center text-info">Edit Staff</h3>
-							<br/>&nbsp;
-							<%@include file="../statusAlert.jsp" %>
-							<br/>&nbsp;
+							<br />&nbsp;
+							<%@include file="../statusAlert.jsp"%>
+							<br />&nbsp;
 							<%
 								String sql = "SELECT * FROM auth WHERE id=?";
 								String sql2 = "SELECT * FROM staff WHERE id=?";
@@ -140,7 +141,7 @@
 									<%
 										if (rs.next()) {
 									%>
-									<input type="hidden" name="id" value="<%=id%>" />
+
 									<tr>
 										<th>Name</th>
 										<td><input type="text" name="firstName"
@@ -149,7 +150,8 @@
 									<tr>
 										<th>User Name</th>
 										<td><input type="text" name="userName"
-											class="form-control" value="<%=rs.getString(4)%>" /></td>
+											class="form-control" value="<%=rs.getString(4)%>" /><input
+											type="hidden" name="id" value="<%=id%>" /></td>
 									</tr>
 									<tr>
 										<th>Email</th>
@@ -170,7 +172,7 @@
 
 									<tr>
 										<th>Department</th>
-										<td><select name="dept" class="form-control">
+										<td><select name="dept" id="dept" class="form-control" onchange="return loadSubDept()">
 												<option value="0">Select Department</option>
 												<%
 													while (rs3.next()) {
@@ -179,18 +181,19 @@
 																selected = "selected='selected'";
 															}
 												%>
-												<option value="<%=rs3.getInt(1)%>" <%out.print(selected);%>><%=rs3.getString(2)%></option>
+												<option value="<%=rs3.getInt(1)%>" <%//out.print(selected);%>><%=rs3.getString(2)%></option>
 												<%
 													}
 												%>
 										</select> <%-- <input type="text" name="dept" class="form-control"
 											value="<%=helper.getDeptById(rs2.getInt(2)) %>" /> --%></td>
 									</tr>
-									<!-- <tr>
+									<tr>
 										<th>Sub Department</th>
-										<td><input type="text" name="subDept" class="form-control"
-											value="DEPT 1" /></td>
-									</tr> -->
+										<td><select name="subDept" class="form-control">
+												<optgroup label="Select Sub Department" id="subDeptData"></optgroup>
+										</select></td>
+									</tr>
 									<tr>
 										<th>Position</th>
 										<td><select name="position" class="form-control">
@@ -269,7 +272,12 @@
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-
+<script>
+	function loadSubDept() {
+		var dept = $("#dept").val();
+		$("#subDeptData").load("subDept.jsp?dept="+dept);
+	}
+	</script>
 </body>
 
 </html>

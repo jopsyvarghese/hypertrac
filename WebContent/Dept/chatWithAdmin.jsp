@@ -80,31 +80,31 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
+			<li><a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
-				<div class="sidebar-brand-icon rotate-n-15">
+				<span class="sidebar-brand-icon rotate-n-15">
 					<small> <i class="fas fa-walking"></i>
 					</small>
-				</div>
-				<div class="sidebar-brand-text mx-3">
+				</span>
+				<span class="sidebar-brand-text mx-3">
 					Chat<sup>Admin</sup>
-				</div>
-			</a>
+				</span>
+			</a></li>
 			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
+			<li><hr class="sidebar-divider my-0"></li>
 			<li class="nav-item active"><a class="nav-link"
 				href="../logout.jsp"> <i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Logout</span></a></li>
 			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
+			<li><hr class="sidebar-divider my-0"></li>
 			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
+			<li><hr class="sidebar-divider d-none d-md-block"></li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
+			<li><span class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
+			</span></li>
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -216,7 +216,7 @@
 
 							<div class="col-sm-12 text-center">
 								<table class="table table-hover table-responsive">
-									<div id="chatData"></div>
+									<tbody id="chatData"></tbody>
 								</table>
 							</div>
 						</div>

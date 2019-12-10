@@ -30,17 +30,16 @@
 
 <body id="page-top">
 	<%
-Helper helper = new Helper();
-int id = 0;		
-String email = "";		
-try {
-	id = Integer.parseInt(helper.decrypt(request.getParameter("id")));	
-	email = helper.decrypt(request.getParameter("q"));
-} catch(Exception e) {
-	e.getLocalizedMessage();
-}
-
-%>
+		Helper helper = new Helper();
+		int id = 0;
+		String email = "";
+		try {
+			id = Integer.parseInt(helper.decrypt(request.getParameter("id")));
+			email = helper.decrypt(request.getParameter("q"));
+		} catch (Exception e) {
+			e.getLocalizedMessage();
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -78,15 +77,16 @@ try {
 						<div class="col-lg-2 mb-4"></div>
 						<div class="col-lg-8 mb-4 text-center">
 							<%
-							if(id > 0) {
+								if (id > 0) {
 							%>
 							<form action="editCso_2.jsp" method="post">
 								<table class="table table-light">
-									<input type="hidden" name="id" value="<%=id %>" />
+
 									<tr>
 										<td>Email ID</td>
-										<td><input type="email" name="email" value="<%=email %>"
-											class="form-control" /></td>
+										<td><input type="email" name="email" value="<%=email%>"
+											class="form-control" /><input type="hidden" name="id"
+											value="<%=id%>" /></td>
 									</tr>
 									<tr>
 										<td colspan="2"><input type="submit" value="Update"
@@ -95,7 +95,7 @@ try {
 								</table>
 							</form>
 							<%
-							}
+								}
 							%>
 						</div>
 						<div class="col-lg-2 mb-4"></div>

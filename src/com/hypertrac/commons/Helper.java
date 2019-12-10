@@ -3,7 +3,6 @@ package com.hypertrac.commons;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
-import java.sql.Timestamp;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -30,7 +29,15 @@ public class Helper {
 	private String salt = "AEWufodjklfu23487yewo!!!!";
 
 	public Helper() throws ClassNotFoundException, SQLException {
-		con = com.hypertrac.dao.database.getConnection();
+		if (con == null) {
+			con = com.hypertrac.dao.database.getConnection();
+		}
+	}
+
+	public void closeConnection() throws SQLException {
+		if (con != null) {
+			con.close();
+		}
 	}
 
 	public String buzzType(int id) throws SQLException {
@@ -79,7 +86,6 @@ public class Helper {
 	}
 
 	public String getMajorClientByDeptId(int id) throws SQLException {
-		String arr[] = {};
 		String sql = "SELECT * FROM dept WHERE id=" + id;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
@@ -193,6 +199,17 @@ public class Helper {
 		return "";
 	}
 
+	public int getStaffPositionById(int id) throws SQLException {
+		String sql = "SELECT position FROM staff WHERE id=" + id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+
 	public int getUserRoleById(int id) throws SQLException {
 		String sql = "SELECT role FROM auth WHERE id=" + id;
 		Statement st = con.createStatement();
@@ -214,9 +231,9 @@ public class Helper {
 		}
 		return "";
 	}
-	
+
 	public ResultSet getRoleByMcId(int mcId) throws SQLException {
-		String sql = "SELECT * FROM role WHERE mc_id="+mcId;
+		String sql = "SELECT * FROM role WHERE mc_id=" + mcId;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
 		rs = st.executeQuery(sql);
@@ -616,6 +633,17 @@ public class Helper {
 		return 0;
 	}
 
+	public int getDeptByStaffId(int id) throws SQLException {
+		String sql = "SELECT dept FROM staff WHERE id=" + id;
+		Statement st = con.createStatement();
+		ResultSet rs = null;
+		rs = st.executeQuery(sql);
+		if (rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+
 	public String getDeptNameByStaffId(int id) throws SQLException {
 		String sql = "SELECT dname FROM dept WHERE id=(SELECT dept FROM staff WHERE id=" + id + ")";
 		Statement st = con.createStatement();
@@ -627,7 +655,7 @@ public class Helper {
 		return "";
 	}
 
-	public int getIdByRc(int rc) throws SQLException {
+	public int getIdByRc(long rc) throws SQLException {
 		String sql = "SELECT id FROM auth WHERE rc=" + rc;
 		Statement st = con.createStatement();
 		ResultSet rs = null;
@@ -637,7 +665,7 @@ public class Helper {
 		}
 		return 0;
 	}
-	
+
 	public ResultSet getContractorIdsByName(String fname) throws SQLException {
 		String sql = "SELECT id, fname, email FROM auth WHERE fname like '%" + fname + "%' AND role=0;";
 		Statement st = con.createStatement();
@@ -645,14 +673,14 @@ public class Helper {
 		rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 * @throws SQLException
 	 */
 	public ResultSet getStatusCountOfApplications() throws SQLException {
-		
+
 		String sql = "SELECT SUM(CASE WHEN status=0 THEN 1 ELSE 0 END ) as newOpen, "
 				+ "SUM(CASE WHEN status=1 THEN 1 ELSE 0 END ) as inProgress , "
 				+ "SUM(CASE WHEN status=2 THEN 1 ELSE 0 END ) as onHold , "
@@ -661,9 +689,9 @@ public class Helper {
 				+ "COUNT(id) as totalCount FROM applications;";
 		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery(sql);
-		return rs;		
+		return rs;
 	}
-	
+
 	/**
 	 * 
 	 * @param mcId
@@ -676,12 +704,12 @@ public class Helper {
 				+ "SUM(CASE WHEN status=2 THEN 1 ELSE 0 END ) as onHold , "
 				+ "SUM(CASE WHEN status=3 THEN 1 ELSE 0 END ) as redirected , "
 				+ "SUM(CASE WHEN status=4 THEN 1 ELSE 0 END ) as completed, COUNT(id) as totalCount "
-				+ "FROM applications WHERE dept IN(SELECT id FROM dept WHERE mc_id="+mcId+")";
+				+ "FROM applications WHERE dept IN(SELECT id FROM dept WHERE mc_id=" + mcId + ")";
 		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery(sql);
 		return rs;
 	}
-	
+
 	/**
 	 * 
 	 * @param staffId
@@ -694,9 +722,24 @@ public class Helper {
 				+ "SUM(CASE WHEN status=2 THEN 1 ELSE 0 END ) as onHold , "
 				+ "SUM(CASE WHEN status=3 THEN 1 ELSE 0 END ) as redirected , "
 				+ "SUM(CASE WHEN status=4 THEN 1 ELSE 0 END ) as completed, COUNT(id) as totalCount "
-				+ "FROM applications WHERE dept = (SELECT dept FROM staff WHERE id="+staffId+")";
+				+ "FROM applications WHERE dept = (SELECT dept FROM staff WHERE id=" + staffId + ")";
 		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery(sql);
+		return rs;
+	}
+
+	/**
+	 * 
+	 * @param mcId
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet getDistinctUsersByMcId(int mcId) throws SQLException {
+		String sql = "SELECT count(DISTINCT app_by), count(id) FROM applications WHERE dept IN(SELECT id FROM dept WHERE mc_id=?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, mcId);
+		ResultSet rs = null;
+		rs = ps.executeQuery();
 		return rs;
 	}
 

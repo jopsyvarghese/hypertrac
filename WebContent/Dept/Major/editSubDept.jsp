@@ -31,34 +31,34 @@
 
 <body id="page-top">
 	<%
-Connection con = null;
-ResultSet rs = null;		
-PreparedStatement ps = null;		
-Helper helper = new Helper();
-int id = 0;
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-} catch(Exception e) {
-	e.printStackTrace();
-}
-if(id == 0) {
-	throw new Exception("Invalid Data Provided");
-}
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Helper helper = new Helper();
+		int id = 0;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (id == 0) {
+			throw new Exception("Invalid Data Provided");
+		}
 
-int myId = 0;
-try {
-	myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
-} catch (NumberFormatException ne) {
-	response.sendRedirect("../../logout.jsp");
-}
+		int myId = 0;
+		try {
+			myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+		} catch (NumberFormatException ne) {
+			response.sendRedirect("../../logout.jsp");
+		}
 
-	String sql = "SELECT * FROM dept_sub WHERE id=?";
-	con = database.getConnection();
-	ps = con.prepareStatement(sql);
-	ps.setInt(1, id);
-	rs = ps.executeQuery();
-	ResultSet rsDept = helper.getDeptByMcId(myId);
-%>
+		String sql = "SELECT * FROM dept_sub WHERE id=?";
+		con = database.getConnection();
+		ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+		ResultSet rsDept = helper.getDeptByMcId(myId);
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -94,15 +94,15 @@ try {
 					</small>
 
 					<div class="text-center">
-						<h3 class="text-info">Edit Sub Department </h3>
+						<h3 class="text-info">Edit Sub Department</h3>
 						<form action="editSubDept_2.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
-								<input type="hidden" name="id" value="<%=id %>" />
+
 								<%
-								while(rs.next()) {
-									ResultSet rs2 = helper.getMajorClients();
-							%>
-							<input type="hidden" name="client" value="<%=myId %>" />											
+									while (rs.next()) {
+										ResultSet rs2 = helper.getMajorClients();
+								%>
+
 								<tr>
 									<th>Department</th>
 									<td><select name="dept" class="form-control">
@@ -113,20 +113,21 @@ try {
 											<%
 												}
 											%>
-									</select></td>
+									</select> <input type="hidden" name="client" value="<%=myId%>" /><input
+										type="hidden" name="id" value="<%=id%>" /></td>
 								</tr>
 								<tr>
 									<th>Sub Department Name</th>
-									<td><input type="text" name="subDept"
-										class="form-control" value="<%=rs.getString(3) %>" /></td>
+									<td><input type="text" name="subDept" class="form-control"
+										value="<%=rs.getString(3)%>" /></td>
 								</tr>
 								<%
-								}
+									}
 								%>
 							</table>
 							<br />
 							<button type="submit" class="btn btn-primary">
-								<span class="fa fa-pencil-alt"></span> &nbsp;Edit
+								<span class="fa fa-pencil-alt"></span> &nbsp;Update
 							</button>
 						</form>
 					</div>
@@ -197,12 +198,12 @@ try {
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-<script>
-function loadDepartment() {
-  var x = document.getElementById("client").value;
-  $("#department").load("../loadDept.jsp?id="+x);
-}
-</script>
+	<script>
+		function loadDepartment() {
+			var x = document.getElementById("client").value;
+			$("#department").load("../loadDept.jsp?id=" + x);
+		}
+	</script>
 </body>
 
 </html>

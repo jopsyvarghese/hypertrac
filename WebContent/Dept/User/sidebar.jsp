@@ -1,29 +1,31 @@
+<%@page import="com.hypertrac.commons.Helper"%>
+<% Helper helper = new Helper(); %>
 <ul
 	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 	id="accordionSidebar">
 
 	<!-- Sidebar - Brand -->
-	<a
+	<li><a
 		class="sidebar-brand d-flex align-items-center justify-content-center"
 		href="index.jsp">
-		<div class="sidebar-brand-icon rotate-n-15">
+		<span class="sidebar-brand-icon rotate-n-15">
 			<small> <i class="fas fa-walking"></i>
 			</small>
-		</div> <%
+		</span> <%
             	int userType = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());            	           	
             	if(userType == 0) { %>
-		<div class="sidebar-brand-text mx-3">
+		<span class="sidebar-brand-text mx-3">
 			Contra<sup>ctor</sup>
-		</div> <%} else { %>
-		<div class="sidebar-brand-text mx-3">
+		</span> <%} else { %>
+		<span class="sidebar-brand-text mx-3">
 			Us<sup>er</sup>
-		</div> <%}
+		</span> <%}
             %>
 
-	</a>
+	</a></li>
 
 	<!-- Divider -->
-	<hr class="sidebar-divider my-0">
+	<li><hr class="sidebar-divider my-0"></li>
 
 	<!-- Nav Item - Dashboard -->
 	<li class="nav-item active"><a class="nav-link" href="index.jsp">
@@ -31,8 +33,8 @@
 	</a></li>
 
 	<!-- Nav Item - Pages Collapse Menu -->
-	<li class="nav-item"><a class="nav-link" href="inbox.jsp"> <i
-			class="fas fa-truck-loading"></i> <span>Inbox</span>
+	<li class="nav-item"><a class="nav-link" href="../readMore.jsp?q=<%=helper.encrypt("4")%>"> <i
+			class="fas fa-truck-loading"></i> <span>Chat Inbox</span>
 	</a></li>
 
 	<!-- Nav Item - Pages Collapse Menu -->
@@ -55,10 +57,10 @@
 	</a></li>
 
 	<!-- Divider -->
-	<hr class="sidebar-divider d-none d-md-block">
+	<li><hr class="sidebar-divider d-none d-md-block"></li>
 
 	<!-- Sidebar Toggler (Sidebar) -->
-	<div class="text-center d-none d-md-inline">
+	<li class="text-center"><div class="d-none d-md-inline">
 		<button class="rounded-circle border-0" id="sidebarToggle"></button>
-	</div>
+	</div></li>
 </ul>

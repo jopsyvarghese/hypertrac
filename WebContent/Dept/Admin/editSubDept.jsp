@@ -31,26 +31,25 @@
 
 <body id="page-top">
 	<%
-Connection con = null;
-ResultSet rs = null;		
-PreparedStatement ps = null;		
-Helper helper = new Helper();
-int id = 0;
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-} catch(Exception e) {
-	e.printStackTrace();
-}
-if(id == 0) {
-	throw new Exception("Invalid Data Provided");
-}
-	String sql = "SELECT * FROM dept_sub WHERE id=?";
-	con = database.getConnection();
-	ps = con.prepareStatement(sql);
-	ps.setInt(1, id);
-	rs = ps.executeQuery();
-
-%>
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Helper helper = new Helper();
+		int id = 0;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (id == 0) {
+			throw new Exception("Invalid Data Provided");
+		}
+		String sql = "SELECT * FROM dept_sub WHERE id=?";
+		con = database.getConnection();
+		ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -86,48 +85,46 @@ if(id == 0) {
 					</small>
 
 					<div class="text-center">
-						<h3 class="text-info">Edit Departments </h3>
+						<h3 class="text-info">Edit Departments</h3>
 						<form action="editSubDept_2.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
-								<input type="hidden" name="id" value="<%=id %>" />
+
 								<%
-								while(rs.next()) {
-									ResultSet rs2 = helper.getMajorClients();
-							%>
+									while (rs.next()) {
+										ResultSet rs2 = helper.getMajorClients();
+								%>
 								<tr>
 									<th>Major Client</th>
-									<td><select name="client" class="form-control" id="client" onchange="loadDepartment()">
+									<td><select name="client" class="form-control" id="client"
+										onchange="loadDepartment()">
 											<option value="0">Select Major Client</option>
 											<%
-											String selected = "";											
-												while(rs2.next()) {
-													if(id == rs2.getInt(1)) {
-														selected = "selected='selected'";
-													}
+												String selected = "";
+													while (rs2.next()) {
+														if (id == rs2.getInt(1)) {
+															selected = "selected='selected'";
+														}
 											%>
-											<option value="<%=rs2.getInt(1) %>"
-												<% out.print(selected); %>><%=rs2.getString(2) %></option>
+											<option value="<%=rs2.getInt(1)%>"
+												<%out.print(selected);%>><%=rs2.getString(2)%></option>
 											<%
 												}
 											%>
-									</select></td>
+									</select> <input type="hidden" name="id" value="<%=id%>" /></td>
 								</tr>
 								<tr>
 									<th>Department</th>
-									<td>
-									<select name="dept" class="form-control">
-										<optgroup id="department"></optgroup>
-									</select>
-									
-									</td>
+									<td><select name="dept" class="form-control">
+											<optgroup id="department"></optgroup>
+									</select></td>
 								</tr>
 								<tr>
 									<th>Sub Department Name</th>
-									<td><input type="text" name="subDept"
-										class="form-control" value="<%=rs.getString(3) %>" /></td>
+									<td><input type="text" name="subDept" class="form-control"
+										value="<%=rs.getString(3)%>" /></td>
 								</tr>
 								<%
-								}
+									}
 								%>
 							</table>
 							<br />
@@ -203,12 +200,12 @@ if(id == 0) {
 	<!-- Page level custom scripts -->
 	<script src="../js/demo/chart-area-demo.js"></script>
 	<script src="../js/demo/chart-pie-demo.js"></script>
-<script>
-function loadDepartment() {
-  var x = document.getElementById("client").value;
-  $("#department").load("../loadDept.jsp?id="+x);
-}
-</script>
+	<script>
+		function loadDepartment() {
+			var x = document.getElementById("client").value;
+			$("#department").load("../loadDept.jsp?id=" + x);
+		}
+	</script>
 </body>
 
 </html>

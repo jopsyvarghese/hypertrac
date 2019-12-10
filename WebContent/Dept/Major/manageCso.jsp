@@ -111,10 +111,12 @@
 							<h4 class="text-info">Add CSO</h4>
 							<form action="addCso.jsp" method="post">
 								<table class="table table-light">
-									<td><input type="email" name="email" class="form-control"
-										placeholder="Enter new CSO Email ID" /></td>
-									<td><input type="submit" value="Add"
-										class="btn btn-primary" /></td>
+									<tr>
+										<td><input type="email" name="email" class="form-control"
+											placeholder="Enter new CSO Email ID" /></td>
+										<td><input type="submit" value="Add"
+											class="btn btn-primary" /></td>
+									</tr>
 								</table>
 							</form>
 						</div>

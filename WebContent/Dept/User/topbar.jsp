@@ -18,6 +18,20 @@
 		</button>
 
 		<%
+			String myId = "";
+			String myImg = "";
+			try {
+				if (session.getAttribute("loggedInUserName") == null) {
+		%>
+		<script>
+			window.location = "../../logout.jsp"
+		</script>
+		<%
+			}
+				myId = session.getAttribute("loggedInUserName").toString();
+				myImg = session.getAttribute("myImg").toString();
+			} catch (NullPointerException ne) {
+			}
 			Helper helper = new Helper();
 			Connection con = database.getConnection();
 			int loggedInId = 0;
@@ -77,12 +91,12 @@
  %> <span class="badge badge-danger badge-counter"><%=totalMessages%></span>
 					<%
 						}
-					%> </span>
+					%>
 			</a> <!-- Dropdown - Messages -->
 				<div
 					class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="messagesDropdown">
-					<h6 class="dropdown-header">Chats & Messages</h6>
+					<h6 class="dropdown-header">Chats n Messages</h6>
 					<%
 						while (rs.next()) {
 							String sql2 = "SELECT chat.comment, chat.c_by,chat.c_time, auth.pro_pic, auth.fname FROM chat INNER JOIN auth ON chat.c_by=auth.id WHERE chat.fk_id=? AND chat.read_status=? AND NOT chat.c_by=?";
@@ -106,19 +120,13 @@
 					%>
 					<a class="dropdown-item d-flex align-items-center" target="_blank"
 						href="../chatNow.jsp?q=<%=helper.encrypt(rs.getString(1))%>">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle"
-								src="../../files/<%=rs2.getString(4)%>" alt="">
-							<div class="status-indicator bg-success"></div>
-						</div>
-						<div class="font-weight-bold">
-							<%=rs2.getString(1)%>
-							<%=count%>
-							<div class="text-truncate"></div>
-							<div class="small text-gray-500"><%=rs2.getString(5)%>
-								·
-								<%=rs2.getString(3)%></div>
-						</div>
+						<span class="dropdown-list-image mr-3"> <img
+							class="rounded-circle" src="../../files/<%=rs2.getString(4)%>"
+							alt=""> <span class="status-indicator bg-success"></span>
+					</span> <span class="font-weight-bold"> <%=rs2.getString(1)%> <%=count%>
+							<span class="text-truncate"></span> <span
+							class="small text-gray-500"><%=rs2.getString(5)%> · <%=rs2.getString(3)%></span>
+					</span>
 					</a>
 					<%
 						}
@@ -126,28 +134,12 @@
 					%>
 
 					<a class="dropdown-item text-center small text-gray-500"
-						href="../readMore.jsp?q=<%=helper.encrypt("4")%>">Read
-						More Messages</a>
+						href="../readMore.jsp?q=<%=helper.encrypt("4")%>">Read More
+						Messages</a>
 				</div></li>
 
 
-			<div class="topbar-divider d-none d-sm-block"></div>
-			<%
-				String myId = "";
-				String myImg = "";
-				try {
-					if (session.getAttribute("loggedInUserName") == null) {
-			%>
-			<script>
-				window.location = "../../logout.jsp"
-			</script>
-			<%
-				}
-					myId = session.getAttribute("loggedInUserName").toString();
-					myImg = session.getAttribute("myImg").toString();
-				} catch (NullPointerException ne) {
-				}
-			%>
+			<li><div class="topbar-divider d-none d-sm-block"></div></li>
 			<!-- Nav Item - User Information -->
 			<li class="nav-item dropdown no-arrow"><a
 				class="nav-link dropdown-toggle" href="#" id="userDropdown"
@@ -164,9 +156,10 @@
 					<a class="dropdown-item"
 						href="../profile.jsp?q=<%=helper.encrypt("4")%>"> <i
 						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-						<div class="dropdown-divider"></div> <a class="dropdown-item"
-						href="../../logout.jsp"> <i
-							class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout
+					</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="../../logout.jsp"> <i
+						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout
 					</a>
 				</div></li>
 

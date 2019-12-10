@@ -30,17 +30,16 @@
 
 <body id="page-top">
 	<%
-Helper helper = new Helper();
-int id = 0;		
-String role = "";		
-try {
-	id = Integer.parseInt(request.getParameter("id"));	
-	role = request.getParameter("q");
-} catch(Exception e) {
-	e.getLocalizedMessage();
-}
-
-%>
+		Helper helper = new Helper();
+		int id = 0;
+		String role = "";
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+			role = request.getParameter("q");
+		} catch (Exception e) {
+			e.getLocalizedMessage();
+		}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -78,24 +77,25 @@ try {
 						<div class="col-lg-2 mb-4"></div>
 						<div class="col-lg-8 mb-4 text-center">
 							<%
-							if(id > 0) {
+								if (id > 0) {
 							%>
 							<form action="editRole_2.jsp" method="post">
 								<table class="table table-light">
-									<input type="hidden" name="id" value="<%=id %>" />
+
 									<tr>
 										<td>Role</td>
-										<td><input type="text" name="role" value="<%=role %>"
+										<td><input type="text" name="role" value="<%=role%>"
 											class="form-control" /></td>
 									</tr>
 									<tr>
 										<td colspan="2"><input type="submit" value="Update"
-											class="btn btn-primary" /></td>
+											class="btn btn-primary" /><input type="hidden" name="id"
+											value="<%=id%>" /></td>
 									</tr>
 								</table>
 							</form>
 							<%
-							}
+								}
 							%>
 						</div>
 						<div class="col-lg-2 mb-4"></div>

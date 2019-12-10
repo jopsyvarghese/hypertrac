@@ -90,7 +90,6 @@
 						<br />
 						<form action="addSubDeptFinal.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
-								<input type="hidden" name="client" value="<%=myId%>" />
 								<tr>
 									<th>Department</th>
 									<td><select name="dept" class="form-control">
@@ -101,7 +100,7 @@
 											<%
 												}
 											%>
-									</select></td>
+									</select> <input type="hidden" name="client" value="<%=myId%>" /></td>
 								</tr>
 								<tr>
 									<th>Sub Department</th>

@@ -133,7 +133,6 @@
 							tracking of their documents, files, proposals etc</li>
 					</ul></li>
 			</ul>
-			</p>
 			<p>HYPERTRAC software is an automated solution designed to
 				address the problems listed above in the following areas of Business
 				and Service delivery
@@ -154,7 +153,6 @@
 				<li><span class="fa fa-check text-info"></span>&nbsp;Ease of
 					Doing Business in any Country and Organization</li>
 			</ul>
-			</p>
 		</section>
 
 

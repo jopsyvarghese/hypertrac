@@ -74,7 +74,7 @@
 				<header class="section-header">
 					<h3>About Us</h3>
 					<p>We are providing services for all your documents and paper
-						works related to Embassy, Presidency, International Oils & Gas,
+						works related to Embassy, Presidency, International Oils and Gas,
 						GLO, Hospitals, Hotels etc.</p>
 				</header>
 

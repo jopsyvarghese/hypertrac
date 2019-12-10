@@ -88,12 +88,13 @@
 							</div>
 							<br />
 							<%@include file="../statusAlert.jsp" %>
-							<table class="table table-hover table-bordered">
+							<table class="table table-hover table-bordered table-responsive">
 								<tr class="table-warning">
 									<th>Sl.No</th>
 									<th>Staff Name</th>
 									<th>User Name</th>
-									<th>Department</th>
+									<th>Dept.</th>
+									<th>Sub Dept.</th>
 									<th>Position</th>
 									<th>Email</th>
 									<th>Phone No.</th>
@@ -114,6 +115,7 @@
 									String deptName = "";
 									String position = "";
 									String staffUname = "";
+									String subDeptName = "";
 									int status = 0;
 									while (rs.next()) {
 										staffId = rs.getInt(1);
@@ -121,6 +123,7 @@
 										mobile = helper.getPhoneById(staffId);
 										name = helper.getNameById(staffId);
 										deptName = helper.getDeptById(rs.getInt(2));
+										subDeptName = helper.getSubDept(rs.getInt(4));
 										position = helper.getPositionById(rs.getInt(3));
 										String stQry = "SELECT state,uname FROM auth WHERE id=" + staffId;
 										Statement stm = null;
@@ -136,6 +139,7 @@
 									<td><%=name%></td>
 									<td><%=staffUname %></td>
 									<td><%=deptName%></td>
+									<td><%=subDeptName%></td>
 									<td><%=position%></td>
 									<td><%=email%></td>
 									<td><%=mobile%></td>

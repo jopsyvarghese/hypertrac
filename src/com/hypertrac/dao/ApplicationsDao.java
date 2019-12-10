@@ -1,12 +1,17 @@
 package com.hypertrac.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import com.hypertrac.beans.*;
+
+import com.hypertrac.beans.Applications;
 
 public class ApplicationsDao {
-	
+
 	/**
 	 * 
 	 * @param start
@@ -38,7 +43,7 @@ public class ApplicationsDao {
 		con.close();
 		return list;
 	}
-	
+
 	/**
 	 * 
 	 * @param start
@@ -91,7 +96,7 @@ public class ApplicationsDao {
 		con.close();
 		return list;
 	}
-	
+
 	/**
 	 * 
 	 * @param start
@@ -124,29 +129,29 @@ public class ApplicationsDao {
 			}
 			i++;
 		}
-			String sql = "SELECT * FROM applications WHERE app_by=" + selectIds + " ORDER BY id DESC limit " + start + ","
-					+ total;
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = null;
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				Applications app = new Applications();
-				app.setId(rs.getInt(1));
-				app.setApp_by(rs.getInt(8));
-				app.setDept(rs.getInt(3));
-				app.setNameOrNo(rs.getString(2));
-				app.setStatus(7);
-				app.setSubject(rs.getString(4));
-				app.setSubmitted_on(rs.getString(5));
-				app.setValidity(rs.getString(6));
-				app.setItemCount(getItemCountByRole(selectIds));
-				list.add(app);
-			}
-		
+		String sql = "SELECT * FROM applications WHERE app_by=" + selectIds + " ORDER BY id DESC limit " + start + ","
+				+ total;
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = null;
+		rs = ps.executeQuery();
+		while (rs.next()) {
+			Applications app = new Applications();
+			app.setId(rs.getInt(1));
+			app.setApp_by(rs.getInt(8));
+			app.setDept(rs.getInt(3));
+			app.setNameOrNo(rs.getString(2));
+			app.setStatus(7);
+			app.setSubject(rs.getString(4));
+			app.setSubmitted_on(rs.getString(5));
+			app.setValidity(rs.getString(6));
+			app.setItemCount(getItemCountByRole(selectIds));
+			list.add(app);
+		}
+
 		con.close();
 		return list;
 	}
-	
+
 	/**
 	 * 
 	 * @param start
@@ -156,10 +161,12 @@ public class ApplicationsDao {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public static List<Applications> getRecordsByDeptId(int start, int total, int myDept) throws ClassNotFoundException, SQLException {
+	public static List<Applications> getRecordsByDeptId(int start, int total, int myDept)
+			throws ClassNotFoundException, SQLException {
 		List<Applications> list = new ArrayList<Applications>();
 		Connection con = database.getConnection();
-		String sql = "SELECT * FROM applications WHERE dept="+ myDept +" ORDER BY id DESC limit " + start + "," + total;
+		String sql = "SELECT * FROM applications WHERE dept=" + myDept + " ORDER BY id DESC limit " + start + ","
+				+ total;
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = null;
 		rs = ps.executeQuery();
@@ -180,8 +187,7 @@ public class ApplicationsDao {
 		con.close();
 		return list;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @return
@@ -243,7 +249,7 @@ public class ApplicationsDao {
 		}
 		return count;
 	}
-	
+
 	/**
 	 * 
 	 * @param myDept

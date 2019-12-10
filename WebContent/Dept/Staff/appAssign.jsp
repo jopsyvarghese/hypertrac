@@ -111,7 +111,7 @@
 							} catch (FileUploadException e) {
 								e.printStackTrace();
 							}
-							Iterator itr = items.iterator();
+							Iterator<FileItem> itr = items.iterator();
 							while (itr.hasNext()) {
 								FileItem item = (FileItem) itr.next();
 								if (item.isFormField()) {

@@ -127,7 +127,7 @@
 						<div class="member-info">
 							<div class="member-info-content">
 								<h4>Rock Adote</h4>
-								<span>Cyber Security, Software & Digital Marketing</span>
+								<span>Cyber Security, Software and Digital Marketing</span>
 								<div class="social">
 									<a href=""><i class="fa fa-twitter"></i></a> <a href=""><i
 										class="fa fa-facebook"></i></a> <a href=""><i
@@ -164,7 +164,7 @@
 						<div class="member-info">
 							<div class="member-info-content">
 								<h4>Eniga Ahiante</h4>
-								<span>VP Cyber Security & Software Dept.</span>
+								<span>VP Cyber Security and Software Dept.</span>
 								<div class="social">
 									<a href=""><i class="fa fa-twitter"></i></a> <a href=""><i
 										class="fa fa-facebook"></i></a> <a href=""><i

@@ -71,6 +71,7 @@
 							int maxFileSize = 2000 * 1024;
 							int i = 0;
 							int myId = 0;
+							Helper helper = new Helper();
 							
 							try {
 								myId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
@@ -110,7 +111,7 @@
 								} catch (FileUploadException e) {
 									e.printStackTrace();
 								}
-								Iterator itr = items.iterator();
+								Iterator<FileItem> itr = items.iterator();
 								while (itr.hasNext()) {
 									FileItem item = (FileItem) itr.next();
 									if (item.isFormField()) {
@@ -230,7 +231,27 @@
 										ps2.setInt(10, majorClient);
 										ps2.setInt(11, subDept);
 										int status = 0;
+										int role = 0;
+										role = helper.getStaffPositionById(myId);
+										String currentTime = helper.getDateTime();
+										int staffTo = 0;
+										staffTo = helper.getDeptHeadById(dept);
 										if (ps2.executeUpdate() > 0) {
+											
+											//Application details for Applications_comment Table for fetching the initial data.
+											String sqlComment = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
+											PreparedStatement psComment = con.prepareStatement(sqlComment);
+											psComment.setInt(1, lastInsertedId);
+											psComment.setInt(2, dept);
+											psComment.setString(3, "New Application");
+											psComment.setInt(4, myId);
+											psComment.setInt(5, role);
+											psComment.setString(6, currentTime);
+											psComment.setInt(7, status);
+											psComment.setInt(8, staffTo);
+											int count = psComment.executeUpdate();
+											
+											//Image Upload Details
 											for (int j = 0; j < savedFileName.length; j++) {
 												if (savedFileName[j] == null || savedFileName[j] == "") {
 													continue;
@@ -244,6 +265,14 @@
 												if (ps3.executeUpdate() > 0) {
 													status += 1;
 												}
+												
+												// Adding Notification & Realtime Info
+												int deptHead = helper.getDeptHeadById(dept);
+
+												String sql4 = "INSERT INTO applications_realtime(app_id, staff_id, mc_id, admin_id) VALUES("
+														+ lastInsertedId + ", " + deptHead + "," + majorClient + ", 4)";
+												Statement st4 = con.createStatement();
+												st4.executeUpdate(sql4);
 											}
 											if (status > 0) {
 												out.println(

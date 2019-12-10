@@ -15,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>HyperTrac Staff</title>
+<title>HyperTrac Admin</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -74,27 +74,27 @@ rs = ps.executeQuery();
 						</div>
 					</div>
 					<div class="text-center">
-						<table class="table table-striped table-bordered table-responsive">
+						<h3 class="text-info">Application Comments History</h3>
+					<br/>
+						<table class="table table-hover" style="width:100%;">
 							<tr class="bg-dark text-white">
 								<th>Comment</th>
 								<th>By</th>
 								<th>Role</th>
-								<th>Current Dept</th>
-								<th>Assigned Dept</th>
+								<th>Assigned Dept.</th>
 								<th>Assigned To</th>
 								<th>Commented On</th>
 							</tr>
 							<%	while(rs.next()) { 
                 	String role = helper.getRoleById(rs.getInt(6));
                 	if(role=="") {
-                		role = "Admin/Client";
+                		role = "Not Specified";
                 	}
                 	%>
 							<tr>
 								<td><%=rs.getString(4) %></td>
 								<td><%=helper.getNameById(rs.getInt(5)) %></td>
 								<td><%=role %></td>
-								<td><%=helper.getStaffDeptById(rs.getInt(5)) %></td>
 								<td><%=helper.getDeptById(rs.getInt(3)) %></td>
 								<td><%=helper.getNameById(rs.getInt(9)) %></td>
 								<td><%=rs.getString(7) %></td>

@@ -2,19 +2,18 @@ package com.hypertrac.dao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.CryptoPrimitive;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession; 
+import javax.servlet.http.HttpSession;
 
 import com.hypertrac.commons.Helper;
 
@@ -29,19 +28,22 @@ public class SignIn extends HttpServlet {
 	private Helper helper;
 	public static final String DEFAULT_ENCODING = "UTF-8";
 	static BASE64Encoder enc = new BASE64Encoder();
+
 	/**
 	 * 
 	 * @see HttpServlet#HttpServlet()
-     */
-    public SignIn() throws ClassNotFoundException, SQLException {
-        super();
-        helper = new Helper();
-    }
+	 */
+	public SignIn() throws ClassNotFoundException, SQLException {
+		super();
+		helper = new Helper();
+	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("uname");
 		String password = request.getParameter("pwd");
@@ -57,7 +59,8 @@ public class SignIn extends HttpServlet {
 			e1.printStackTrace();
 		}
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ? AND pwd_reset=? AND state=?");
+			PreparedStatement ps = con
+					.prepareStatement("SELECT * FROM auth WHERE uname = ? AND pwd = ? AND pwd_reset=? AND state=?");
 			ps.setString(1, username);
 			ps.setString(2, helper.encryptPwd(password));
 			ps.setInt(3, 0);
@@ -71,10 +74,10 @@ public class SignIn extends HttpServlet {
 				session.setAttribute("myImg", rs.getString(15));
 				int role = rs.getInt(8);
 
-				//Store Logged In Details
+				// Store Logged In Details
 				int id = 0;
 				ResultSet rsLog = null;
-				id = Integer.parseInt(""+rs.getInt(1));
+				id = Integer.parseInt("" + rs.getInt(1));
 				String sqlLog = "SELECT in_time FROM login_logs WHERE id=?";
 				PreparedStatement psLog = con.prepareStatement(sqlLog);
 				psLog.setInt(1, id);
@@ -92,34 +95,31 @@ public class SignIn extends HttpServlet {
 					pst.setString(2, helper.getDateTime());
 					pst.setString(3, helper.getDateTime());
 					pst.executeUpdate();
-				}				
-				
-				if (role == 0 ) {
+				}
+
+				if (role == 0) {
 					response.sendRedirect("Dept/User");
-				} else if(role == 1) {
+				} else if (role == 1) {
 					response.sendRedirect("Dept/Staff");
-				} else if(role == 2) {
+				} else if (role == 2) {
 					response.sendRedirect("Dept/Major");
-				}else if(role == 3) {
+				} else if (role == 3) {
 					response.sendRedirect("Dept/Admin");
-				} else if(role == 4) {
+				} else if (role == 4) {
 					response.sendRedirect("Dept/User");
 				}
 			} else {
 				out.println("Invalid Credentials");
 				RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
-				request.setAttribute("status", "<center><strong class='text-danger'>"
-						+ "Invalid Credentials / Account Disabled</strong><br/>"
-						+ "<small style='color:blue;font-weight:bold'>"
-						+ "Please do Re-Try / Forgot Password / Contact Administrator"
-						+ "</small></center>");
+				request.setAttribute("status",
+						"<center><strong class='text-danger'>" + "Invalid Credentials / Account Disabled</strong><br/>"
+								+ "<small style='color:blue;font-weight:bold'>"
+								+ "Please do Re-Try / Forgot Password / Contact Administrator" + "</small></center>");
 				rd.forward(request, response);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 }

@@ -73,6 +73,11 @@
 									String userName = request.getParameter("userName");
 									String email = request.getParameter("email");
 									Long phone = Long.parseLong(request.getParameter("phone"));
+									int subDept = 0;
+									if(request.getParameter("subDept")!=null && request.getParameter("subDept") != "") {
+										subDept = Integer.parseInt(request.getParameter("subDept"));
+									}
+									
 									int dept = Integer.parseInt(request.getParameter("dept"));
 									int position = Integer.parseInt(request.getParameter("position"));
 
@@ -85,13 +90,14 @@
 									ps.setLong(4, phone);
 									ps.setInt(5, id);
 									if (ps.executeUpdate() > 0) {
-										String sql2 = "UPDATE staff SET dept=?, position=? WHERE id=?";
+										String sql2 = "UPDATE staff SET dept=?, position=?, sub_dept_id=? WHERE id=?";
 										PreparedStatement ps2 = con.prepareStatement(sql2);
 										ps2.setInt(1, dept);
 										ps2.setInt(2, position);
-										ps2.setInt(3, id);
+										ps2.setInt(3, subDept);
+										ps2.setInt(4, id);
 										if (ps2.executeUpdate() > 0) {
-											response.sendRedirect("editStaff.jsp?id="+id+"&status=success");
+											response.sendRedirect("manageStaff.jsp?id="+id+"&status=success");
 										} else {
 											response.sendRedirect("editStaff.jsp?id="+id+"&status=failed");
 										}

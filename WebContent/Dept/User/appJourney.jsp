@@ -86,25 +86,7 @@ appId = Integer.parseInt(request.getParameter("id"));
 								PreparedStatement ps = con.prepareStatement(sql1);
 								ps.setInt(1, appId);
 								ResultSet rs = ps.executeQuery();
-								if (rs.next() == false) {
-									String sql2 = "SELECT status FROM applications WHERE id=" + appId;
-									Statement st = con.createStatement();
-									ResultSet rs2 = st.executeQuery(sql2);
-									if (rs2.next()) {
-							%>
-							<tr>
-								<td><strong class="rounded bg-secondary text-white">&nbsp;New
-										/ Open &nbsp; </strong></td>
-								<td><i>No Comments yet</i></td>
-								<td><i>No Details yet</i></td>
-								<td><i>Not Assigned yet</i></td>
-							</tr>
-							<%
-								} else {
-										out.println("<strong style='color:red'>No Records Found</strong>");
-									}
-								} else {
-									while (rs.next()) {
+								while (rs.next()) {
 							%>
 							<tr>
 								<td><strong class="rounded bg-warning text-white">&nbsp;<%=helper.getDeptById(rs.getInt(3))%>&nbsp;
@@ -114,8 +96,7 @@ appId = Integer.parseInt(request.getParameter("id"));
 								<td><%=helper.getRoleById(rs.getInt(6))%></td>
 							</tr>
 							<%
-								}
-								}
+								}								
 							%>
 						</table>
 					</div>

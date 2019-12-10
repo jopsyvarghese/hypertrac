@@ -40,7 +40,7 @@
 						Flat 1, Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill,
 						London.</small><br /> <span class="fa fa-phone"></span> +44 7956 674946<br />
 					<small><strong>India</strong>: CS-5 heavenly plaza, Civil
-						line road Kakkanad,Cochin-21.</small></strong><br /> <span class="fa fa-phone"></span>
+						line road Kakkanad,Cochin-21.</small><br /> <span class="fa fa-phone"></span>
 					+91 8105394675 <br /> <small><strong>Email:
 							info@hypertrac.online</strong></small><br />
 				</p>

@@ -60,7 +60,7 @@
 						<a href="../chatRoom.jsp?q=<%=helper.encrypt("4")%>"
 							class="btn btn-primary">Chat Room</a> <a href="chatWithStaff.jsp"
 							class="btn btn-primary">Chat With Dept. Staff</a> <a
-							class="btn btn-primary" href="../chatWithAdmin.jsp?q=4>">Chat
+							class="btn btn-primary" href="../chatWithAdmin.jsp?q=4">Chat
 							With Admin</a>
 					</div>
 

@@ -88,6 +88,7 @@
 								String firstname = request.getParameter("firstName");
 								String lastname = request.getParameter("lastName");
 								String username = request.getParameter("userName");
+								int majorClient = Integer.parseInt(request.getParameter("majorClient"));
 								int dept = Integer.parseInt(request.getParameter("dept"));
 								int subDept = Integer.parseInt(request.getParameter("subDept"));
 								int position = Integer.parseInt(request.getParameter("position"));
@@ -115,7 +116,7 @@
 									ps.setString(1, firstname);
 									ps.setString(2, "");
 									ps.setString(3, username);
-									ps.setString(4, pwd);
+									ps.setString(4, helper.encryptPwd(pwd));
 									ps.setString(5, email);
 									ps.setLong(6, phone);
 									ps.setInt(7, 1);
@@ -134,7 +135,7 @@
 											ps2.setInt(2, dept);
 											ps2.setInt(3, position);
 											ps2.setInt(4, subDept);
-											ps2.setInt(5, loggedId);
+											ps2.setInt(5, majorClient);
 											if (ps2.executeUpdate() != 0) {
 												response.sendRedirect("staffs.jsp?status=success");
 											} else {

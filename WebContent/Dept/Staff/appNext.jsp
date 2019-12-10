@@ -123,8 +123,7 @@
 									<tr>
 										<th>Staff</th>
 										<td><select name="staff" class="form-control">
-												<optgroup id="staffsList">Select Staff
-												</optgroup>
+												<optgroup id="staffsList" label="Select Staff"></optgroup>
 										</select></td>
 									</tr>
 									<tr>

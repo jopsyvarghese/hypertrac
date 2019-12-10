@@ -103,7 +103,8 @@
 								<tr class="table-warning">
 									<th>Sl. No</th>
 									<th>Application Name/No.</th>
-									<th>Department</th>
+									<th>Dept.</th>
+									<th>Sub Dept.</th>
 									<th>Subject</th>
 									<th>Submitted Date</th>
 									<th>Application Validity</th>
@@ -131,7 +132,8 @@
 									<td><%=i%></td>
 									<td><a href="viewApplication.jsp?id=<%=e.getId()%>"
 										class="btn-sm btn-outline-primary"><%=e.getId()%></a></td>
-									<td><%=helper.getMajorClientByDeptId(e.getDept())%></td>
+									<td><%=helper.getDeptById(e.getDept())%></td>
+									<td><%=helper.getSubDeptByAppId(e.getId())%></td>
 									<td><%=e.getSubject()%></td>
 									<td><%=e.getSubmitted_on()%></td>
 									<td><%=e.getValidity()%></td>

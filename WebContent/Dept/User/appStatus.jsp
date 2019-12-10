@@ -6,7 +6,10 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <html lang="en">
-
+<%
+Helper helper = new Helper();
+try {
+%>
 <head>
 
 <meta charset="utf-8">
@@ -84,7 +87,6 @@
 									<td><%=i%></td>
 									<td><a href="appJourney.jsp?id=<%=rs.getInt(1)%>"><%=rs.getString(1)%></a></td>
 									<%
-										Helper helper = new Helper();
 										Constants cons = new Constants();
 									%>
 									<td><%=helper.getDeptById(rs.getInt(3)) %> - <small><%=helper.getSubDeptByAppId(rs.getInt(1)) %></small></td>
@@ -166,5 +168,11 @@
 	<script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
-
+<%
+} finally {
+	try {
+		helper.closeConnection();
+	} catch(Exception e) {}
+}
+%>
 </html>

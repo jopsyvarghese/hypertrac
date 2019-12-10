@@ -1,19 +1,17 @@
 package com.hypertrac.dao;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.hypertrac.commons.Helper;
 
 /**
@@ -25,8 +23,8 @@ public class SignUp extends HttpServlet {
 	private Helper helper;
 
 	/**
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public SignUp() throws ClassNotFoundException, SQLException {
@@ -40,7 +38,6 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
 		Connection con = null;
 		try {
 			con = com.hypertrac.dao.database.getConnection();
@@ -59,31 +56,13 @@ public class SignUp extends HttpServlet {
 		String uname = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
 		String proPic = "";
-		String errorMsg = "";
-		/*
-		 * String checkQry = "SELECT uname,email,id FROM auth WHERE uname=? OR email=?";
-		 * PreparedStatement psQry = null; ResultSet rsQry = null; int unCount = 0; int
-		 * mailCount = 0;
-		 * 
-		 * try { psQry = con.prepareStatement(checkQry); psQry.setString(1, uname);
-		 * psQry.setString(2, email); rsQry = psQry.executeQuery(); while(rsQry.next())
-		 * { if(rsQry.getString(1) == uname) { unCount++; } if(rsQry.getString(2) ==
-		 * email) { mailCount++; } } if(mailCount > 0) { errorMsg =
-		 * "The following are Already Taken : "+email; } if(unCount > 0) {
-		 * if(errorMsg.length() > 0) { errorMsg +=" , "+uname; } else { errorMsg =
-		 * "Email ID Already Taken : "+email; } } if(errorMsg.length() > 0) {
-		 * RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
-		 * request.setAttribute("status", "Unable to SignUp "); rd.forward(request,
-		 * response); } } catch (SQLException e1) { // TODO Auto-generated catch block
-		 * e1.printStackTrace(); }
-		 */
-		
 		int role = 0;
 		try {
-			role = Integer.parseInt(request.getParameter("role"));	
-		} catch(NumberFormatException ne) {}
+			role = Integer.parseInt(request.getParameter("role"));
+		} catch (NumberFormatException ne) {
+		}
 		String rc = request.getParameter("rc");
-		
+
 		String currentTime = helper.getDateTime();
 
 		PreparedStatement ps;
@@ -93,34 +72,33 @@ public class SignUp extends HttpServlet {
 			ps.setString(1, fname);
 			ps.setString(2, addr);
 			ps.setString(3, uname);
-			ps.setString(4,  helper.encryptPwd(pwd));
+			ps.setString(4, helper.encryptPwd(pwd));
 			ps.setString(5, email);
 			ps.setLong(6, mob);
 			ps.setInt(7, role);
 			ps.setString(8, currentTime);
 			ps.setString(9, rc);
 			ps.setInt(10, 0);
-            ps.setInt(11, 0);
-            ps.setString(12, proPic);
-            ps.setString(13, dob);
+			ps.setInt(11, 0);
+			ps.setString(12, proPic);
+			ps.setString(13, dob);
 			int i = ps.executeUpdate();
-			if(i > 0) {
+			if (i > 0) {
 				RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
-				request.setAttribute("status", "<strong class='text-success'>Registration Successful! Account will be activated in 24 Hrs.</strong>");
+				request.setAttribute("status",
+						"<strong class='text-success'>Registration Successful! Account will be activated in 24 Hrs.</strong>");
 				rd.forward(request, response);
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
 				request.setAttribute("status", "Unable to SignUp ");
-				rd.forward(request, response);	
+				rd.forward(request, response);
 			}
-			
+
 		} catch (SQLException e) {
 			RequestDispatcher rdx = request.getRequestDispatcher("register.jsp");
-			rdx.forward(request, response);         
+			rdx.forward(request, response);
 		}
 
 	}
-
-	
 
 }

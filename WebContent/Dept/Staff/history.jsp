@@ -1,3 +1,4 @@
+<%@page import="com.hypertrac.commons.Helper"%>
 <%@page import="com.hypertrac.commons.Constants"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -5,7 +6,6 @@
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="utf-8">
@@ -30,7 +30,29 @@
 </head>
 
 <body id="page-top">
-
+<%
+Helper helper = new Helper();
+int loggedInId = 0;
+try {
+	if (session.getAttribute("loggedInUserId") == null
+			|| session.getAttribute("loggedInUserId").equals("")) {
+%>
+<script>
+window.location = "../../logout.jsp"
+</script>
+<%
+} else {
+		loggedInId = Integer.parseInt(session.getAttribute("loggedInUserId").toString());
+	}
+} catch (NumberFormatException ne) {
+	out.println("Sorry! Invalid Login Details Supplied");
+} catch (NullPointerException npe) {
+	out.println("Sorry! You're not Logged In");
+}
+if (loggedInId == 0) {
+	response.sendRedirect("../../logout.jsp");
+}
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -66,8 +88,10 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-							<div class="text-center">View History</div>
-							<table class="table">
+							<div class="text-center text-info">
+								<h3>View History</h3>
+							</div>
+							<table class="table table-hover">
 								<tr>
 									<th>Sl. No</th>
 									<th>Application ID/Name</th>
@@ -77,7 +101,8 @@
 								</tr>
 								<%
                            Constants consta = new Constants();
-                            String query = "SELECT * FROM applications ORDER BY id DESC";
+							int dept = helper.getDeptByStaffId(loggedInId);
+                            String query = "SELECT * FROM applications WHERE dept="+dept+" ORDER BY id DESC";
                             Connection con = database.getConnection();
                             Statement st = null;
                             ResultSet rs = null;
@@ -95,6 +120,7 @@
 								</tr>
 								<% i++; } %>
 							</table>
+							<br/><br/>
 						</div>
 					</div>
 				</div>
@@ -102,7 +128,6 @@
 
 			</div>
 			<!-- End of Main Content -->
-
 			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
@@ -165,5 +190,4 @@
 	<script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
-
 </html>

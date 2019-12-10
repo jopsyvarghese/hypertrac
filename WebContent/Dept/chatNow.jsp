@@ -66,31 +66,28 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
+			<li><a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.jsp">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<small> <i class="fas fa-walking"></i>
+				href="index.jsp"> <span class="sidebar-brand-icon rotate-n-15">
+						<small> <i class="fas fa-walking"></i>
 					</small>
-				</div>
-				<div class="sidebar-brand-text mx-3">
-					Chat<sup>Now</sup>
-				</div>
-			</a>
+				</span> <span class="sidebar-brand-text mx-3"> Chat<sup>Now</sup>
+				</span>
+			</a></li>
 			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
+			<li><hr class="sidebar-divider my-0"></li>
 			<li class="nav-item active"><a class="nav-link"
 				href="../logout.jsp"> <i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Logout</span></a></li>
 			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
+			<li><hr class="sidebar-divider my-0"></li>
 			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
+			<li><hr class="sidebar-divider d-none d-md-block"></li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
+			<li class="text-center"><div class="d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
+			</div></li>
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -115,7 +112,6 @@
 					<div class="col-sm-12">
 
 						<br />
-						<table class="table table-hover">
 							<%
 								if (request.getParameter("q") != null) {
 									//Decrypt User ID
@@ -136,8 +132,7 @@
 									type="submit" class="btn btn-primary"
 									style="width: 10%; margin-top: 10px;" value="Add" />
 							</form>
-							<br />
-							<br />
+							
 							<table class="table table-hover">
 								<tr>
 									<th>Comment</th>
@@ -176,7 +171,6 @@
 									}
 								}
 							%>
-						</table>
 					</div>
 				</div>
 				<!-- /.container-fluid -->

@@ -218,7 +218,6 @@
 							<li><span class="fa fa fa-thumbs-up text-info"></span>&nbsp;Makes
 								your organization and government even more transparent.</li>
 						</ul>
-						</small> </strong>
 					</div>
 				</div>
 
@@ -249,7 +248,6 @@
 							<li><span class="fa fa-check text-info"></span>&nbsp;Mobile
 								Security available and many more security services</li>
 						</ul>
-						</p>
 					</div>
 
 				</div>

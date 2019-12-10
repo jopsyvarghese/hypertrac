@@ -99,8 +99,7 @@
 										<td><a
 											href="editRole.jsp?id=<%=rs.getInt(1)%>&q=<%=rs.getString(2)%>">
 												<span class="fa fa-pen"></span>
-										</a> / <a
-											href="deleteRole.jsp?id=<%=helper.encrypt("" + rs.getInt(1))%>"
+										</a> / <a href="deleteRole.jsp?id=<%=rs.getInt(1)%>"
 											onclick="return confirmDelete();"> <span
 												class="fa fa-trash"></span>
 										</a></td>
@@ -116,10 +115,12 @@
 							<h4 class="text-info">Add Role</h4>
 							<form action="addRole.jsp" method="post">
 								<table class="table table-light">
-									<td><input type="text" name="role" class="form-control"
-										placeholder="Enter new Role Name" /></td>
-									<td><input type="submit" value="Add Role"
-										class="btn btn-primary" /></td>
+									<tr>
+										<td><input type="text" name="role" class="form-control"
+											placeholder="Enter new Role Name" /></td>
+										<td><input type="submit" value="Add Role"
+											class="btn btn-primary" /></td>
+									</tr>
 								</table>
 							</form>
 						</div>

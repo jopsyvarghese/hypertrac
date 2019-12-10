@@ -92,11 +92,12 @@
 									if (rs.next()) {
 								%>
 								<table class="table table-hover table-sm">
-									<input type="hidden" name="id" value="<%=rs.getInt(1)%>" />
+
 									<tr>
 										<th>Major Client Name</th>
 										<td><input type="text" class="form-control" name="fName"
-											value="<%=rs.getString(2)%>" /></td>
+											value="<%=rs.getString(2)%>" /><input type="hidden"
+											name="id" value="<%=rs.getInt(1)%>" /></td>
 									</tr>
 									<tr>
 										<th>Address</th>

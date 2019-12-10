@@ -115,7 +115,7 @@
 									} catch (FileUploadException e) {
 										e.printStackTrace();
 									}
-									Iterator itr = items.iterator();
+									Iterator<FileItem> itr = items.iterator();
 									while (itr.hasNext()) {
 										FileItem item = (FileItem) itr.next();
 										if (item.isFormField()) {
@@ -226,8 +226,8 @@
 											ps2.setInt(1, lastInsertedId);
 											ps2.setString(2, contractorName);
 											ps2.setString(3, addr);
-											ps2.setLong(4, Long.parseLong(countryCode+phone));
-											ps2.setLong(5, Long.parseLong(countryCode2+phone2));
+											ps2.setLong(4, Long.parseLong(countryCode + phone));
+											ps2.setLong(5, Long.parseLong(countryCode2 + phone2));
 											ps2.setString(6, email);
 											ps2.setString(7, website);
 											ps2.setInt(8, buzzType);
@@ -235,7 +235,28 @@
 											ps2.setInt(10, majorClient);
 											ps2.setInt(11, subDept);
 											int status = 0;
+											int role = 0;
+											role = (int) session.getAttribute("loggedInUserRole");
+											String currentTime = helper.getDateTime();
+											int staffTo = 0;
+											staffTo = helper.getDeptHeadById(dept);
+											
 											if (ps2.executeUpdate() > 0) {
+												
+												//Application details for Applications_comment Table for fetching the initial data.
+												String sqlComment = "INSERT INTO applications_comment SET app_id=?, dept_assigned=?, comment=?, comment_by=?, role=?, commented_on=?, status=?, staff_assigned=?";
+												PreparedStatement psComment = con.prepareStatement(sqlComment);
+												psComment.setInt(1, lastInsertedId);
+												psComment.setInt(2, dept);
+												psComment.setString(3, "New Application");
+												psComment.setInt(4, myId);
+												psComment.setInt(5, role);
+												psComment.setString(6, currentTime);
+												psComment.setInt(7, status);
+												psComment.setInt(8, staffTo);
+												int count = psComment.executeUpdate();
+
+												//Image Upload Details
 												for (int j = 0; j < savedFileName.length; j++) {
 													if (savedFileName[j] == null || savedFileName[j] == "") {
 														continue;

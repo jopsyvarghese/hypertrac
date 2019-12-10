@@ -74,12 +74,11 @@ rs = ps.executeQuery();
 						</div>
 					</div>
 					<div class="text-center">
-						<table class="table table-striped table-bordered table-responsive">
+						<table class="table table-striped table-hover">
 							<tr class="bg-dark text-white">
 								<th>Comment</th>
 								<th>By</th>
 								<th>Role</th>
-								<th>Current Dept</th>
 								<th>Assigned Dept</th>
 								<th>Assigned To</th>
 								<th>Commented On</th>
@@ -94,7 +93,6 @@ rs = ps.executeQuery();
 								<td><%=rs.getString(4) %></td>
 								<td><%=helper.getNameById(rs.getInt(5)) %></td>
 								<td><%=role %></td>
-								<td><%=helper.getStaffDeptById(rs.getInt(5)) %></td>
 								<td><%=helper.getDeptById(rs.getInt(3)) %></td>
 								<td><%=helper.getNameById(rs.getInt(9)) %></td>
 								<td><%=rs.getString(7) %></td>

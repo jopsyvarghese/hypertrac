@@ -18,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>HyperTrac Staff</title>
+<title>HyperTrac Admin</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -39,8 +39,8 @@
 		Connection con = database.getConnection();
 		ResultSet imgRs = helper.getImagesByFKey(id);
 		ResultSet imgRs1 = helper.getImagesByFKey(id);
-		
-		if (request.getParameter("read") != null || request.getParameter("read") !="") {
+
+		if (request.getParameter("read") != null || request.getParameter("read") != "") {
 			String updateNotificationQry = "UPDATE applications_realtime SET admin_read=1 WHERE app_id=?";
 			PreparedStatement psNotification = con.prepareStatement(updateNotificationQry);
 			psNotification.setInt(1, id);
@@ -225,47 +225,47 @@
 					</div>
 				</div>
 				<!-- /.container-fluid -->
-
-				<!-- End of Main Content -->
-
-				<!-- Footer -->
-				<footer class="sticky-footer bg-white">
-					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Copyright &copy; Preatech 2019</span>
-						</div>
-					</div>
-				</footer>
-				<!-- End of Footer -->
-
 			</div>
-			<!-- End of Content Wrapper -->
+			<!-- End of Main Content -->
+
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Preatech 2019</span>
+					</div>
+				</div>
+			</footer>
+			<!-- End of Footer -->
 
 		</div>
-		<!-- End of Page Wrapper -->
+		<!-- End of Content Wrapper -->
 
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
+	</div>
+	<!-- End of Page Wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
 
 
-		<!-- Bootstrap core JavaScript-->
-		<script src="../vendor/jquery/jquery.min.js"></script>
-		<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Core plugin JavaScript-->
-		<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-		<!-- Custom scripts for all pages-->
-		<script src="../js/sb-admin-2.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="../js/sb-admin-2.min.js"></script>
 
-		<!-- Page level plugins -->
-		<script src="../vendor/chart.js/Chart.min.js"></script>
+	<!-- Page level plugins -->
+	<script src="../vendor/chart.js/Chart.min.js"></script>
 
-		<!-- Page level custom scripts -->
-		<script src="../js/demo/chart-area-demo.js"></script>
-		<script src="../js/demo/chart-pie-demo.js"></script>
+	<!-- Page level custom scripts -->
+	<script src="../js/demo/chart-area-demo.js"></script>
+	<script src="../js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>

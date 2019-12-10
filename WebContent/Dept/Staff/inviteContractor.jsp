@@ -81,8 +81,8 @@
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
 							<h3>
-								<div class="text-center text-info">Invitation to
-									Contractor/Individual</div>
+								<span class="text-center text-info">Invitation to
+									Contractor/Individual</span>
 							</h3>
 							<br />
 							<table

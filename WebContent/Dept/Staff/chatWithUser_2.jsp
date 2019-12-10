@@ -78,7 +78,6 @@
 					<div class="col-sm-12">
 
 						<br />
-						<table class="table table-hover">
 							<%
 								if (request.getParameter("q") != null) {
 									//Decrypt User ID 
@@ -122,8 +121,7 @@
 								<input type="submit" class="btn btn-primary"
 									style="width: 10%; margin-top: 10px;" value="Add" />
 							</form>
-							<br />
-							<br />
+							
 							<table class="table table-hover">
 								<tr>
 									<th>Comment</th>
@@ -153,7 +151,6 @@
 								}
 								}
 							%>
-						</table>
 					</div>
 				</div>
 				<!-- /.container-fluid -->

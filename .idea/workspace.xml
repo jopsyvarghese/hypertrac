@@ -49,7 +49,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/xampp/htdocs" />
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/Poc231" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -172,7 +172,8 @@
       <workItem from="1574415021570" duration="193000" />
       <workItem from="1574655437579" duration="3137000" />
       <workItem from="1575123146044" duration="1169000" />
-      <workItem from="1575175247747" duration="1894000" />
+      <workItem from="1575175247747" duration="2491000" />
+      <workItem from="1575279039627" duration="15000" />
     </task>
     <servers />
   </component>

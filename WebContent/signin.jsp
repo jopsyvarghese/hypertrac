@@ -41,25 +41,25 @@
 </head>
 
 <body>
-<%
-//Check session already exists or not
-if(session.getAttribute("loggedInUserRole") != null && session.getAttribute("loggedInUserRole") != "") {
-	int role = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
-	String redirect = "";
-	if (role == 0 || role == 4) {
-		redirect = "Dept/User/";
-	} else if (role == 1) {
-		redirect = "Dept/Staff/";
-	} else if (role == 2) {
-		redirect = "Dept/Major/";
-	} else if (role == 3) {
-		redirect = "Dept/Admin/";
-	} else {
-		redirect = "logout.jsp";
-	}
-	response.sendRedirect(redirect);
-}
-%>
+	<%
+		//Check session already exists or not
+		if (session.getAttribute("loggedInUserRole") != null && session.getAttribute("loggedInUserRole") != "") {
+			int role = Integer.parseInt(session.getAttribute("loggedInUserRole").toString());
+			String redirect = "";
+			if (role == 0 || role == 4) {
+				redirect = "Dept/User/";
+			} else if (role == 1) {
+				redirect = "Dept/Staff/";
+			} else if (role == 2) {
+				redirect = "Dept/Major/";
+			} else if (role == 3) {
+				redirect = "Dept/Admin/";
+			} else {
+				redirect = "logout.jsp";
+			}
+			response.sendRedirect(redirect);
+		}
+	%>
 	<!--==========================
 Header
 ============================-->
@@ -132,10 +132,11 @@ Header
 								<td>Passwords</td>
 								<td>
 									<div class="input-container">
-										</i> <input class="form-control" type="password" name="pwd"
+										<input class="form-control" type="password" name="pwd"
 											id="myPassword" style="width: 85%; float: left;"><a
 											class="form-control"><i class="fa fa-eye"
 											style="width: 4%;" onclick="mouseoverPass();"></i></a>
+									</div>
 								</td>
 							</tr>
 							<!-- <tr>
@@ -203,17 +204,13 @@ Footer
 						<h4>Contact Us</h4>
 						<p>
 							<small><strong>Nigeria</strong>: House 2,"E" close, Kado
-								estate, FCT-Abuja.Nigeria. </small><br />
-								<span class="fa fa-phone"></span> +234 9019 2202 02 / +234 7088 2200 22<br/>
-								<small><strong>UK</strong>:
+								estate, FCT-Abuja.Nigeria. </small><br /> <span class="fa fa-phone"></span>
+							+234 9019 2202 02 / +234 7088 2200 22<br /> <small><strong>UK</strong>:
 								Flat 1, Burnell House, High Trees Bus-Stop, SW2-3PF, Tulse Hill,
-								London.</small><br />
-								<span class="fa fa-phone"></span> +44 7956 674946<br/>
-								<small><strong>India</strong>: CS-5
-								heavenly plaza, Civil line road Kakkanad,Cochin-21.</small></strong><br />
-									<span class="fa fa-phone"></span>
-									+91 8105394675 <br/> 
-							<small><strong>Email:
+								London.</small><br /> <span class="fa fa-phone"></span> +44 7956 674946<br />
+							<small><strong>India</strong>: CS-5 heavenly plaza, Civil
+								line road Kakkanad,Cochin-21.</small><br /> <span class="fa fa-phone"></span>
+							+91 8105394675 <br /> <small><strong>Email:
 									info@hypertrac.online</strong></small><br />
 						</p>
 
@@ -235,6 +232,7 @@ Footer
 				</div>
 				<div class="credits"></div>
 			</div>
+		</div>
 	</footer>
 	<!-- #footer -->
 

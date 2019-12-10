@@ -72,9 +72,9 @@
 
 						<!-- Content Column -->
 						<div class="col-lg-12 mb-4">
-							<h3>
-								<div class="text-center text-info">Invitation to
-									Contractor</div>
+							<h3 class="text-center">
+								<span class="text-info">Invitation to
+									Contractor</span>
 							</h3>
 							<table
 								class="table table-hover table-responsive-lg table-bordered">

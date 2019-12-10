@@ -88,7 +88,7 @@
 						Edit Departments <br /> <br />
 						<form action="editDept_2.jsp" method="post">
 							<table class="table table-hover table-responsive-lg">
-								<input type="hidden" name="id" value="<%=id%>" />
+
 								<%
 									while (rs.next()) {
 										ResultSet rs2 = helper.getMajorClients();
@@ -109,7 +109,7 @@
 											<%
 												}
 											%>
-									</select></td>
+									</select> <input type="hidden" name="id" value="<%=id%>" /></td>
 								</tr>
 								<tr>
 									<th>Department Head</th>

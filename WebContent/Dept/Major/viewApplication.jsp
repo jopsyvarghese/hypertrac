@@ -38,12 +38,22 @@
 		Connection con = database.getConnection();
 		ResultSet imgRs = helper.getImagesByFKey(id);
 		ResultSet imgRs1 = helper.getImagesByFKey(id);
-		
-		if (request.getParameter("read") != null || request.getParameter("read") !="") {
+
+		if (request.getParameter("read") != null || request.getParameter("read") != "") {
 			String updateNotificationQry = "UPDATE applications_realtime SET mc_read=1 WHERE app_id=?";
 			PreparedStatement psNotification = con.prepareStatement(updateNotificationQry);
 			psNotification.setInt(1, id);
 			psNotification.executeUpdate();
+		}
+
+		//For setting staff Unread
+		if (session.getAttribute("staffRead") != null && session.getAttribute("staffRead").toString() != "") {
+			String readQry = "UPDATE applications_realtime SET staff_read=0 WHERE app_id=" + id;
+			Statement stQry = con.createStatement();
+			int i = stQry.executeUpdate(readQry);
+			if (i > 0) {
+				session.removeAttribute("staffRead");
+			}
 		}
 	%>
 	<!-- Page Wrapper -->

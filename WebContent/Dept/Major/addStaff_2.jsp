@@ -88,9 +88,15 @@
 								String firstname = request.getParameter("firstName");
 								String lastname = request.getParameter("lastName");
 								String username = request.getParameter("userName");
-								int dept = Integer.parseInt(request.getParameter("dept"));
-								int subDept = Integer.parseInt(request.getParameter("subDept"));
-								int position = Integer.parseInt(request.getParameter("position"));
+								int dept = 0;
+								int subDept = 0;
+								int position = 0;
+								try {
+									dept = Integer.parseInt(request.getParameter("dept"));
+									subDept = Integer.parseInt(request.getParameter("subDept"));
+									position = Integer.parseInt(request.getParameter("position"));
+								} catch(NumberFormatException ne){}							
+								 
 								String email = request.getParameter("email");
 								String dob = request.getParameter("dob");
 								Long phone = Long.parseLong(request.getParameter("phone"));

@@ -96,7 +96,8 @@
 									<th>Sl.No</th>
 									<th>Staff Name</th>
 									<th>Major Client</th>
-									<th>Department</th>
+									<th>Dept.</th>
+									<th>Sub Dept.</th>
 									<th>Position</th>
 									<th>Email</th>
 									<th>Phone No.</th>
@@ -115,6 +116,7 @@
 									String mobile = "";
 									String name = "";
 									String deptName = "";
+									String subDeptName = "";
 									String position = "";
 									String majorClient = "";
 									int status = 0;
@@ -124,6 +126,7 @@
 										mobile = helper.getPhoneById(staffId);
 										name = helper.getNameById(staffId);
 										deptName = helper.getDeptById(rs.getInt(2));
+										subDeptName = helper.getSubDept(rs.getInt(4));
 										position = helper.getPositionById(rs.getInt(3));
 										majorClient = helper.getMajorClient(rs.getInt(5));
 										String stQry = "SELECT state FROM auth WHERE id=" + staffId;
@@ -139,6 +142,7 @@
 									<td><%=name%></td>
 									<td><%=majorClient%></td>
 									<td><%=deptName%></td>
+									<td><%=subDeptName%></td>
 									<td><%=position%></td>
 									<td><%=email%></td>
 									<td><%=mobile%></td>
